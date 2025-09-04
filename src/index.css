@@ -17,11 +17,15 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary gradient colors - purple/blue theme */
+    --primary: 235 47% 55%;
+    --primary-dark: 252 35% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary gradient colors - pink/red theme */
+    --secondary: 320 85% 75%;
+    --secondary-dark: 350 75% 65%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -34,9 +38,23 @@ All colors MUST be HSL.
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 235 47% 55%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
+
+    /* Custom design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
+    --gradient-secondary: linear-gradient(45deg, hsl(var(--secondary)), hsl(var(--secondary-dark)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-dark)) 100%);
+    
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-card-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --shadow-glow: 0 8px 16px rgba(102, 126, 234, 0.3);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --backdrop-blur: blur(10px);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +119,151 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+@layer components {
+  /* Hero Section Styles */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  .hero-title {
+    @apply text-5xl md:text-6xl font-black text-white mb-6;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    line-height: 1.1;
+  }
+
+  .hero-subtitle {
+    @apply text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto;
+  }
+
+  /* Card Styles */
+  .tool-card {
+    @apply bg-card rounded-2xl p-6 transition-all duration-300 border border-border/50;
+    box-shadow: var(--shadow-card);
+  }
+
+  .tool-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* Button Variants */
+  .btn-gradient {
+    background: var(--gradient-primary);
+    @apply text-primary-foreground font-semibold py-3 px-6 rounded-lg transition-all duration-300;
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .btn-category {
+    background: var(--gradient-secondary);
+    @apply text-secondary-foreground font-semibold py-3 px-6 rounded-full transition-all duration-300;
+  }
+
+  .btn-category:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(240, 147, 251, 0.3);
+  }
+
+  /* Search Styles */
+  .search-container {
+    @apply bg-card rounded-3xl p-8 shadow-2xl border border-border/20;
+    backdrop-filter: var(--backdrop-blur);
+  }
+
+  .search-input {
+    @apply w-full py-4 px-6 pr-32 border-2 border-border rounded-full text-lg outline-none transition-all duration-300;
+  }
+
+  .search-input:focus {
+    @apply border-ring;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  /* Stats Section */
+  .stats-gradient {
+    background: var(--gradient-primary);
+  }
+
+  .stat-number {
+    @apply text-5xl md:text-6xl font-black text-white mb-2;
+  }
+
+  .stat-label {
+    @apply text-lg md:text-xl text-white/90;
+  }
+
+  /* Navigation */
+  .nav-glass {
+    @apply bg-white/95 backdrop-blur-md border-b border-white/20;
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hover-lift {
+    @apply transition-transform duration-300;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
