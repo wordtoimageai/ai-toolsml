@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white py-16">
@@ -13,33 +15,33 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Categories</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white transition-colors">Writing & Content</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Design & Creative</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Development</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Marketing</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Productivity</a></li>
+              <li><Link to="/category/writing" className="hover:text-white transition-colors">Writing & Content</Link></li>
+              <li><Link to="/category/design" className="hover:text-white transition-colors">Design & Creative</Link></li>
+              <li><Link to="/category/coding" className="hover:text-white transition-colors">Development</Link></li>
+              <li><Link to="/category/marketing" className="hover:text-white transition-colors">Marketing</Link></li>
+              <li><Link to="/category/productivity" className="hover:text-white transition-colors">Productivity</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-semibold mb-4">Resources</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Tutorials</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">API Documentation</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Submit a Tool</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Changelog</a></li>
+              <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+              <li><Link to="/tutorials" className="hover:text-white transition-colors">Tutorials</Link></li>
+              <li><Link to="/api-docs" className="hover:text-white transition-colors">API Documentation</Link></li>
+              <li><Link to="/submit" className="hover:text-white transition-colors">Submit a Tool</Link></li>
+              <li><Link to="/changelog" className="hover:text-white transition-colors">Changelog</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-lg font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-gray-400">
-              <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Advertise</a></li>
+              <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
+              <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
+              <li><Link to="/advertise" className="hover:text-white transition-colors">Advertise</Link></li>
             </ul>
           </div>
         </div>
