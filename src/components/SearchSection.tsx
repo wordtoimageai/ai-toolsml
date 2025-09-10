@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
+import { useUrlState } from "@/hooks/useUrlState";
+import { useDebounce } from "use-debounce";
 
 const categories = [
   { id: 'writing', label: '✍️ Writing', emoji: '✍️' },
@@ -16,47 +17,30 @@ const categories = [
 ];
 
 const SearchSection = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
+  const { search, updateSearch, updateCategory } = useUrlState();
+  const [localSearch, setLocalSearch] = useState(search);
+  const [debouncedSearch] = useDebounce(localSearch, 500);
 
-  const handleSearch = () => {
-    if (!searchTerm.trim()) {
-      toast({
-        title: "Please enter a search term",
-        variant: "destructive",
-      });
-      return;
+  useEffect(() => {
+    if (debouncedSearch !== search) {
+      updateSearch(debouncedSearch);
     }
+  }, [debouncedSearch, search, updateSearch]);
 
-    setIsLoading(true);
+  const handleCategoryFilter = (categoryLabel: string) => {
+    const categoryMap: Record<string, string> = {
+      '✍️ Writing': 'writing',
+      '🎨 Design': 'design',
+      '💻 Coding': 'coding',
+      '📈 Marketing': 'marketing',
+      '⚡ Productivity': 'productivity',
+      '🎵 Audio': 'audio',
+      '🎬 Video': 'video',
+      '🔬 Research': 'research',
+    };
     
-    // Simulate search delay
-    setTimeout(() => {
-      setIsLoading(false);
-      toast({
-        title: "Search Results",
-        description: `Found AI tools related to: "${searchTerm}"`,
-      });
-    }, 1500);
-  };
-
-  const handleCategoryFilter = (category: string) => {
-    setIsLoading(true);
-    
-    setTimeout(() => {
-      setIsLoading(false);
-      toast({
-        title: "Category Filter Applied",
-        description: `Showing AI tools in: ${category}`,
-      });
-    }, 1000);
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
+    const category = categoryMap[categoryLabel] || categoryLabel.toLowerCase();
+    updateCategory(category);
   };
 
   return (
@@ -68,18 +52,10 @@ const SearchSection = () => {
             <Input
               type="text"
               placeholder="Search for AI tools, categories, or use cases..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyPress={handleKeyPress}
+              value={localSearch}
+              onChange={(e) => setLocalSearch(e.target.value)}
               className="search-input pl-16"
             />
-            <Button
-              onClick={handleSearch}
-              disabled={isLoading}
-              className="absolute right-2 top-2 bottom-2 btn-gradient px-8"
-            >
-              {isLoading ? "Searching..." : "Search"}
-            </Button>
           </div>
 
           <div className="flex flex-wrap gap-3 justify-center">
@@ -89,7 +65,6 @@ const SearchSection = () => {
                 variant="outline"
                 onClick={() => handleCategoryFilter(category.label)}
                 className="btn-category hover-lift"
-                disabled={isLoading}
               >
                 {category.label}
               </Button>
