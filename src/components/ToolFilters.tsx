@@ -32,12 +32,12 @@ const ToolFilters = () => {
       <div className="flex items-center gap-2">
         <span className="text-sm font-medium text-foreground">Filter by:</span>
         
-        <Select value={category} onValueChange={updateCategory}>
+        <Select value={category || 'all'} onValueChange={(value) => updateCategory(value === 'all' ? '' : value)}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Categories</SelectItem>
+            <SelectItem value="all">All Categories</SelectItem>
             {categories.map((cat) => (
               <SelectItem key={cat.id} value={cat.value}>
                 {cat.label}
