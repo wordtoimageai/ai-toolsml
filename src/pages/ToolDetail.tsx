@@ -1,10 +1,13 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { ArrowLeft, ExternalLink, Star, Users, Calendar, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getToolById } from "@/data/tools";
 import { useToast } from "@/hooks/use-toast";
+import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
+import useAnalytics from "@/hooks/useAnalytics";
 import SEO from "@/components/SEO";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -13,7 +16,17 @@ const ToolDetail = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { addToRecentlyViewed } = useRecentlyViewed();
+  const { trackToolView, trackToolVisit } = useAnalytics();
   const tool = id ? getToolById(id) : undefined;
+
+  // Track page view and add to recently viewed
+  useEffect(() => {
+    if (tool) {
+      trackToolView(tool.id, tool.title);
+      addToRecentlyViewed(tool);
+    }
+  }, [tool, trackToolView, addToRecentlyViewed]);
 
   if (!tool) {
     return (
@@ -31,6 +44,9 @@ const ToolDetail = () => {
   }
 
   const handleVisitTool = () => {
+    if (tool) {
+      trackToolVisit(tool.id, tool.title);
+    }
     toast({
       title: "Redirecting",
       description: `Opening ${tool.title} in a new tab...`,

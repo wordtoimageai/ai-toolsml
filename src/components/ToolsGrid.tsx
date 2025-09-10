@@ -1,16 +1,20 @@
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import ToolCard from "./ToolCard";
 import ToolFilters from "./ToolFilters";
 import Pagination from "./Pagination";
+import { ToolsGridSkeleton } from "./LoadingStates";
 import { useToast } from "@/hooks/use-toast";
 import { tools, searchTools, getAllTools } from "@/data/tools";
 import { useUrlState } from "@/hooks/useUrlState";
+import useAnalytics from "@/hooks/useAnalytics";
 
 const TOOLS_PER_PAGE = 9;
 
 const ToolsGrid = () => {
   const { toast } = useToast();
   const { search, category, sort, page, updatePage } = useUrlState();
+  const { trackSearch, trackToolVisit } = useAnalytics();
+  const [isLoading, setIsLoading] = useState(true);
 
   const filteredAndSortedTools = useMemo(() => {
     const allTools = getAllTools();
@@ -46,13 +50,34 @@ const ToolsGrid = () => {
   const startIndex = (page - 1) * TOOLS_PER_PAGE;
   const paginatedTools = filteredAndSortedTools.slice(startIndex, startIndex + TOOLS_PER_PAGE);
 
-  const handleVisitTool = (toolName: string, website: string) => {
+  // Track search when it changes
+  useEffect(() => {
+    if (search) {
+      trackSearch(search, filteredAndSortedTools.length);
+    }
+  }, [search, filteredAndSortedTools.length, trackSearch]);
+
+  // Simulate loading for better UX
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [search, category, sort]);
+
+  const handleVisitTool = (toolId: string, toolName: string, website: string) => {
+    trackToolVisit(toolId, toolName);
     toast({
       title: "Visiting Tool",
       description: `Redirecting to ${toolName}...`,
     });
     window.open(website, '_blank');
   };
+
+  if (isLoading) {
+    return <ToolsGridSkeleton />;
+  }
 
   return (
     <section className="py-20 bg-background">
@@ -92,7 +117,7 @@ const ToolsGrid = () => {
                 >
                   <ToolCard
                     tool={tool}
-                    onVisit={() => handleVisitTool(tool.title, tool.website)}
+                    onVisit={() => handleVisitTool(tool.id, tool.title, tool.website)}
                   />
                 </div>
               ))}

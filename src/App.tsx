@@ -4,59 +4,82 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import Index from "./pages/Index";
-import ToolDetail from "./pages/ToolDetail";
-import Category from "./pages/Category";
-import Favorites from "./pages/Favorites";
-import Compare from "./pages/Compare";
-import Submit from "./pages/Submit";
-import About from "./pages/About";
-import Blog from "./pages/Blog";
-import Contact from "./pages/Contact";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import Tutorials from "./pages/Tutorials";
-import ApiDocs from "./pages/ApiDocs";
-import Changelog from "./pages/Changelog";
-import Advertise from "./pages/Advertise";
-import Tag from "./pages/Tag";
-import NotFound from "./pages/NotFound";
+import { ThemeProvider } from "next-themes";
+import { Suspense, lazy } from "react";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { ToolsGridSkeleton } from "./components/LoadingStates";
 import CompareBar from "./components/CompareBar";
+
+// Lazy load components for better performance
+const Index = lazy(() => import("./pages/Index"));
+const ToolDetail = lazy(() => import("./pages/ToolDetail"));
+const Category = lazy(() => import("./pages/Category"));
+const Favorites = lazy(() => import("./pages/Favorites"));
+const Compare = lazy(() => import("./pages/Compare"));
+const Submit = lazy(() => import("./pages/Submit"));
+const About = lazy(() => import("./pages/About"));
+const Blog = lazy(() => import("./pages/Blog"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Tutorials = lazy(() => import("./pages/Tutorials"));
+const ApiDocs = lazy(() => import("./pages/ApiDocs"));
+const Changelog = lazy(() => import("./pages/Changelog"));
+const Advertise = lazy(() => import("./pages/Advertise"));
+const Tag = lazy(() => import("./pages/Tag"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
+const PageSkeleton = () => (
+  <div className="min-h-screen bg-background">
+    <ToolsGridSkeleton />
+  </div>
+);
+
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <CompareBar />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/tool/:id" element={<ToolDetail />} />
-            <Route path="/category/:category" element={<Category />} />
-            <Route path="/favorites" element={<Favorites />} />
-            <Route path="/compare" element={<Compare />} />
-            <Route path="/submit" element={<Submit />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/tutorials" element={<Tutorials />} />
-            <Route path="/api-docs" element={<ApiDocs />} />
-            <Route path="/changelog" element={<Changelog />} />
-            <Route path="/advertise" element={<Advertise />} />
-            <Route path="/tag/:tag" element={<Tag />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </HelmetProvider>
-  </QueryClientProvider>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <HelmetProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <CompareBar />
+              <Suspense fallback={<PageSkeleton />}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/tool/:id" element={<ToolDetail />} />
+                  <Route path="/category/:category" element={<Category />} />
+                  <Route path="/favorites" element={<Favorites />} />
+                  <Route path="/compare" element={<Compare />} />
+                  <Route path="/submit" element={<Submit />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/terms" element={<Terms />} />
+                  <Route path="/tutorials" element={<Tutorials />} />
+                  <Route path="/api-docs" element={<ApiDocs />} />
+                  <Route path="/changelog" element={<Changelog />} />
+                  <Route path="/advertise" element={<Advertise />} />
+                  <Route path="/tag/:tag" element={<Tag />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </BrowserRouter>
+          </TooltipProvider>
+        </ThemeProvider>
+      </HelmetProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;
