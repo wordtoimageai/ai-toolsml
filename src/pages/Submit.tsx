@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
@@ -9,39 +11,65 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
+import { useUserSubmissions } from '@/hooks/useUserSubmissions';
+import { CATEGORIES, PRICING_OPTIONS } from '@/lib/constants';
 
-interface SubmitForm {
-  title: string;
-  description: string;
-  website: string;
-  category: string;
-  pricing: string;
-  company: string;
-  email: string;
-  features: string;
-}
+const submitFormSchema = z.object({
+  title: z.string().min(1, 'Tool name is required').min(2, 'Tool name must be at least 2 characters'),
+  description: z.string().min(1, 'Description is required').min(10, 'Description must be at least 10 characters'),
+  website: z.string().url('Please enter a valid URL'),
+  category: z.string().min(1, 'Category is required'),
+  pricing: z.string().min(1, 'Pricing model is required'),
+  company: z.string().min(1, 'Company name is required'),
+  email: z.string().email('Please enter a valid email address'),
+  features: z.string().optional(),
+});
+
+type SubmitForm = z.infer<typeof submitFormSchema>;
 
 const Submit = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm<SubmitForm>();
+  const { addSubmission } = useUserSubmissions();
+  const { register, handleSubmit, formState: { errors }, reset, control, setValue } = useForm<SubmitForm>({
+    resolver: zodResolver(submitFormSchema),
+  });
 
   const onSubmit = async (data: SubmitForm) => {
     setIsSubmitting(true);
     
-    // Simulate submission delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // In a real app, this would send to backend
-    console.log('Tool submission:', data);
-    
-    toast({
-      title: "Tool Submitted Successfully!",
-      description: "Thank you for your submission. We'll review it within 48 hours.",
-    });
-    
-    reset();
-    setIsSubmitting(false);
+    try {
+      // Simulate submission delay
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Create submission with proper data structure
+      const submission = addSubmission({
+        title: data.title,
+        description: data.description,
+        website: data.website,
+        category: data.category,
+        pricing: data.pricing as any,
+        company: data.company,
+        features: data.features ? data.features.split('\n').filter(f => f.trim()) : [],
+        tags: [data.category, data.pricing], // Simple tags based on category and pricing
+        icon: '🤖' // Default icon for user submissions
+      });
+      
+      toast({
+        title: "Tool Submitted Successfully!",
+        description: "Thank you for your submission. We'll review it within 48 hours.",
+      });
+      
+      reset();
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: "There was an error submitting your tool. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -133,41 +161,51 @@ const Submit = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <Label htmlFor="category">Category *</Label>
-                    <Select onValueChange={(value) => setValue('category', value)}>
-                      <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="Select category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="writing">Writing</SelectItem>
-                        <SelectItem value="design">Design</SelectItem>
-                        <SelectItem value="coding">Coding</SelectItem>
-                        <SelectItem value="marketing">Marketing</SelectItem>
-                        <SelectItem value="productivity">Productivity</SelectItem>
-                        <SelectItem value="audio">Audio</SelectItem>
-                        <SelectItem value="video">Video</SelectItem>
-                        <SelectItem value="research">Research</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Controller
+                      name="category"
+                      control={control}
+                      render={({ field }) => (
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <SelectTrigger className="mt-1">
+                            <SelectValue placeholder="Select category" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {CATEGORIES.map((category) => (
+                              <SelectItem key={category.value} value={category.value}>
+                                {category.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
+                    />
                     {errors.category && (
-                      <p className="text-destructive text-sm mt-1">Category is required</p>
+                      <p className="text-destructive text-sm mt-1">{errors.category.message}</p>
                     )}
                   </div>
 
                   <div>
                     <Label htmlFor="pricing">Pricing Model *</Label>
-                    <Select onValueChange={(value) => setValue('pricing', value)}>
-                      <SelectTrigger className="mt-1">
-                        <SelectValue placeholder="Select pricing" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="Free">Free</SelectItem>
-                        <SelectItem value="Freemium">Freemium</SelectItem>
-                        <SelectItem value="Paid">Paid</SelectItem>
-                        <SelectItem value="Enterprise">Enterprise</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Controller
+                      name="pricing"
+                      control={control}
+                      render={({ field }) => (
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <SelectTrigger className="mt-1">
+                            <SelectValue placeholder="Select pricing" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {PRICING_OPTIONS.map((pricing) => (
+                              <SelectItem key={pricing.value} value={pricing.value}>
+                                {pricing.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      )}
+                    />
                     {errors.pricing && (
-                      <p className="text-destructive text-sm mt-1">Pricing model is required</p>
+                      <p className="text-destructive text-sm mt-1">{errors.pricing.message}</p>
                     )}
                   </div>
                 </div>

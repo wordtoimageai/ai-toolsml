@@ -7,6 +7,7 @@ interface SEOProps {
   image?: string;
   url?: string;
   type?: string;
+  jsonLd?: Record<string, any>;
 }
 
 const SEO = ({ 
@@ -15,7 +16,8 @@ const SEO = ({
   keywords = "AI tools, artificial intelligence, machine learning, productivity, automation, AI directory",
   image = "/og-image.png",
   url = "https://toolsml.com",
-  type = "website"
+  type = "website",
+  jsonLd
 }: SEOProps) => {
   const fullTitle = title.includes('ToolsML') ? title : `${title} | ToolsML`;
 
@@ -44,6 +46,13 @@ const SEO = ({
       <meta name="robots" content="index, follow" />
       <meta name="author" content="ToolsML" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      
+      {/* JSON-LD Structured Data */}
+      {jsonLd && (
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
+      )}
     </Helmet>
   );
 };

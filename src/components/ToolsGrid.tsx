@@ -3,7 +3,7 @@ import ToolCard from "./ToolCard";
 import ToolFilters from "./ToolFilters";
 import Pagination from "./Pagination";
 import { useToast } from "@/hooks/use-toast";
-import { tools, searchTools } from "@/data/tools";
+import { tools, searchTools, getAllTools } from "@/data/tools";
 import { useUrlState } from "@/hooks/useUrlState";
 
 const TOOLS_PER_PAGE = 9;
@@ -13,7 +13,8 @@ const ToolsGrid = () => {
   const { search, category, sort, page, updatePage } = useUrlState();
 
   const filteredAndSortedTools = useMemo(() => {
-    let filtered = search ? searchTools(search) : tools;
+    const allTools = getAllTools();
+    let filtered = search ? searchTools(search) : allTools;
     
     // Filter by category
     if (category) {

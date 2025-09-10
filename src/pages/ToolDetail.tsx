@@ -5,6 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getToolById } from "@/data/tools";
 import { useToast } from "@/hooks/use-toast";
+import SEO from "@/components/SEO";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const ToolDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -35,6 +38,37 @@ const ToolDetail = () => {
     window.open(tool.website, '_blank');
   };
 
+  // JSON-LD structured data for SEO
+  const jsonLd = tool ? {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": tool.title,
+    "description": tool.description,
+    "url": tool.website,
+    "applicationCategory": tool.category,
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": tool.pricing === 'Free' ? "0" : "Variable",
+        "priceCurrency": "USD"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": tool.rating,
+      "reviewCount": tool.reviewCount,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": tool.company,
+      "foundingDate": tool.founded
+    }
+  } : undefined;
+
   const pricingColor = {
     Free: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
     Freemium: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
@@ -43,7 +77,18 @@ const ToolDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
+      <SEO 
+        title={`${tool.title} - AI Tool Review`}
+        description={tool.description}
+        keywords={`${tool.title}, ${tool.category}, AI tool, ${tool.tags.join(', ')}`}
+        url={`https://toolsml.com/tool/${tool.id}`}
+        type="product"
+        jsonLd={jsonLd}
+      />
+      <Header />
+      
+      <div className="pt-20">
       {/* Header */}
       <div className="bg-gradient-to-r from-primary/10 to-primary/5 border-b">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -77,7 +122,15 @@ const ToolDetail = () => {
               
               <div className="flex flex-wrap gap-2 mb-6">
                 {tool.tags.map(tag => (
-                  <Badge key={tag} variant="secondary">
+                  <Badge 
+                    key={tag} 
+                    variant="secondary" 
+                    className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = `/tag/${encodeURIComponent(tag)}`;
+                    }}
+                  >
                     {tag}
                   </Badge>
                 ))}
@@ -246,6 +299,9 @@ const ToolDetail = () => {
           </div>
         </div>
       </div>
+      </div>
+      
+      <Footer />
     </div>
   );
 };

@@ -292,17 +292,22 @@ export const tools: Tool[] = [
   }
 ];
 
+export const getAllTools = (): Tool[] => {
+  // In the future, this can merge user submissions with static tools
+  return tools;
+};
+
 export const getToolById = (id: string): Tool | undefined => {
-  return tools.find(tool => tool.id === id);
+  return getAllTools().find(tool => tool.id === id);
 };
 
 export const getToolsByCategory = (category: string): Tool[] => {
-  return tools.filter(tool => tool.category === category);
+  return getAllTools().filter(tool => tool.category === category);
 };
 
 export const searchTools = (query: string): Tool[] => {
   const lowercaseQuery = query.toLowerCase();
-  return tools.filter(tool => 
+  return getAllTools().filter(tool => 
     tool.title.toLowerCase().includes(lowercaseQuery) ||
     tool.description.toLowerCase().includes(lowercaseQuery) ||
     tool.tags.some(tag => tag.toLowerCase().includes(lowercaseQuery)) ||

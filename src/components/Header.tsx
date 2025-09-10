@@ -21,9 +21,40 @@ const Header = () => {
             <Link to="/" className="text-foreground/80 hover:text-primary font-medium transition-colors">
               Home
             </Link>
-            <Link to="/about" className="text-foreground/80 hover:text-primary font-medium transition-colors">
-              About
-            </Link>
+            
+            {/* Resources Dropdown */}
+            <div className="relative group">
+              <button className="text-foreground/80 hover:text-primary font-medium transition-colors flex items-center gap-1">
+                Resources
+                <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute top-full left-0 mt-2 bg-background border rounded-lg shadow-lg py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <Link to="/blog" className="block px-4 py-2 text-foreground/80 hover:bg-muted hover:text-primary transition-colors">Blog</Link>
+                <Link to="/tutorials" className="block px-4 py-2 text-foreground/80 hover:bg-muted hover:text-primary transition-colors">Tutorials</Link>
+                <Link to="/api-docs" className="block px-4 py-2 text-foreground/80 hover:bg-muted hover:text-primary transition-colors">API Documentation</Link>
+                <Link to="/changelog" className="block px-4 py-2 text-foreground/80 hover:bg-muted hover:text-primary transition-colors">Changelog</Link>
+              </div>
+            </div>
+
+            {/* Company Dropdown */}
+            <div className="relative group">
+              <button className="text-foreground/80 hover:text-primary font-medium transition-colors flex items-center gap-1">
+                Company
+                <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute top-full left-0 mt-2 bg-background border rounded-lg shadow-lg py-2 min-w-[200px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <Link to="/about" className="block px-4 py-2 text-foreground/80 hover:bg-muted hover:text-primary transition-colors">About Us</Link>
+                <Link to="/contact" className="block px-4 py-2 text-foreground/80 hover:bg-muted hover:text-primary transition-colors">Contact</Link>
+                <Link to="/advertise" className="block px-4 py-2 text-foreground/80 hover:bg-muted hover:text-primary transition-colors">Advertise</Link>
+                <Link to="/privacy" className="block px-4 py-2 text-foreground/80 hover:bg-muted hover:text-primary transition-colors">Privacy Policy</Link>
+                <Link to="/terms" className="block px-4 py-2 text-foreground/80 hover:bg-muted hover:text-primary transition-colors">Terms of Service</Link>
+              </div>
+            </div>
+
             <Link to="/submit" className="text-foreground/80 hover:text-primary font-medium transition-colors">
               Submit Tool
             </Link>
@@ -48,6 +79,8 @@ const Header = () => {
           <button
             className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />

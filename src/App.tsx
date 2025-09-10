@@ -19,6 +19,7 @@ import Tutorials from "./pages/Tutorials";
 import ApiDocs from "./pages/ApiDocs";
 import Changelog from "./pages/Changelog";
 import Advertise from "./pages/Advertise";
+import Tag from "./pages/Tag";
 import NotFound from "./pages/NotFound";
 import CompareBar from "./components/CompareBar";
 
@@ -48,6 +49,7 @@ const App = () => (
             <Route path="/api-docs" element={<ApiDocs />} />
             <Route path="/changelog" element={<Changelog />} />
             <Route path="/advertise" element={<Advertise />} />
+            <Route path="/tag/:tag" element={<Tag />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
