@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Critical Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
     <link rel="icon" href="/lovable-uploads/f0a30a0d-578a-4da3-89e9-934e5fd30799.png" type="image/png">
     <title>ToolsML - Your Ultimate AI Tools Hub</title>
     <meta name="description" content="Discover the best AI tools across every industry. Your ultimate directory for finding and comparing AI-powered tools used by professionals worldwide." />
@@ -21,6 +28,6 @@
 
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx" rel="modulepreload"></script>
   </body>
 </html>
