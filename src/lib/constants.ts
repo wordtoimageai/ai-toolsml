@@ -10,7 +10,10 @@ export const CATEGORIES = [
   { value: 'video', label: 'Video' },
   { value: 'research', label: 'Research' },
   { value: 'data', label: 'Data & Analytics' },
-  { value: 'automation', label: 'Automation' }
+  { value: 'automation', label: 'Automation' },
+  { value: 'sales', label: 'Sales & CRM' },
+  { value: 'social', label: 'Social Media' },
+  { value: 'seo', label: 'SEO & Content Strategy' }
 ] as const;
 
 export const PRICING_OPTIONS = [
