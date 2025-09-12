@@ -82,9 +82,11 @@ const Blog = () => {
                         </div>
                       </div>
                       
-                      <h2 className="text-2xl font-bold text-foreground mb-3 hover:text-primary transition-colors cursor-pointer">
-                        {post.title}
-                      </h2>
+                      <Link to={`/blog/${post.id === 1 ? 'future-ai-tools-2025' : post.id === 2 ? 'choose-ai-writing-tool' : 'ai-design-tools-2025'}`}>
+                        <h2 className="text-2xl font-bold text-foreground mb-3 hover:text-primary transition-colors cursor-pointer">
+                          {post.title}
+                        </h2>
+                      </Link>
                       
                       <p className="text-muted-foreground mb-4 leading-relaxed">
                         {post.excerpt}
@@ -92,8 +94,10 @@ const Blog = () => {
                       
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-muted-foreground">{post.date}</span>
-                        <Button variant="outline" size="sm">
-                          Read More
+                        <Button variant="outline" size="sm" asChild>
+                          <Link to={`/blog/${post.id === 1 ? 'future-ai-tools-2025' : post.id === 2 ? 'choose-ai-writing-tool' : 'ai-design-tools-2025'}`}>
+                            Read More
+                          </Link>
                         </Button>
                       </div>
                     </div>

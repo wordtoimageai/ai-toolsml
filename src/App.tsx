@@ -27,6 +27,8 @@ const ApiDocs = lazy(() => import("./pages/ApiDocs"));
 const Changelog = lazy(() => import("./pages/Changelog"));
 const Advertise = lazy(() => import("./pages/Advertise"));
 const Tag = lazy(() => import("./pages/Tag"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const ToolComparison = lazy(() => import("./pages/ToolComparison"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -70,6 +72,8 @@ const App = () => (
                   <Route path="/changelog" element={<Changelog />} />
                   <Route path="/advertise" element={<Advertise />} />
                   <Route path="/tag/:tag" element={<Tag />} />
+                  <Route path="/blog/:slug" element={<BlogPost />} />
+                  <Route path="/comparison" element={<ToolComparison />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
