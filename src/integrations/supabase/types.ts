@@ -14,7 +14,242 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      affiliate_clicks: {
+        Row: {
+          affiliate_link_id: string | null
+          clicked_at: string | null
+          id: string
+          ip_address: unknown | null
+          referrer: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          affiliate_link_id?: string | null
+          clicked_at?: string | null
+          id?: string
+          ip_address?: unknown | null
+          referrer?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          affiliate_link_id?: string | null
+          clicked_at?: string | null
+          id?: string
+          ip_address?: unknown | null
+          referrer?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "affiliate_clicks_affiliate_link_id_fkey"
+            columns: ["affiliate_link_id"]
+            isOneToOne: false
+            referencedRelation: "affiliate_links"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      affiliate_links: {
+        Row: {
+          affiliate_url: string
+          commission_rate: number | null
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          partner_name: string | null
+          tool_id: string
+        }
+        Insert: {
+          affiliate_url: string
+          commission_rate?: number | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          partner_name?: string | null
+          tool_id: string
+        }
+        Update: {
+          affiliate_url?: string
+          commission_rate?: number | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          partner_name?: string | null
+          tool_id?: string
+        }
+        Relationships: []
+      }
+      analytics_events: {
+        Row: {
+          created_at: string | null
+          event_data: Json | null
+          event_type: string
+          id: string
+          ip_address: unknown | null
+          session_id: string | null
+          tool_id: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          event_data?: Json | null
+          event_type: string
+          id?: string
+          ip_address?: unknown | null
+          session_id?: string | null
+          tool_id?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          event_data?: Json | null
+          event_type?: string
+          id?: string
+          ip_address?: unknown | null
+          session_id?: string | null
+          tool_id?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      premium_content: {
+        Row: {
+          content: string | null
+          content_type: string
+          created_at: string | null
+          data: Json | null
+          id: string
+          required_tier: string | null
+          title: string
+          tool_id: string
+          updated_at: string | null
+        }
+        Insert: {
+          content?: string | null
+          content_type: string
+          created_at?: string | null
+          data?: Json | null
+          id?: string
+          required_tier?: string | null
+          title: string
+          tool_id: string
+          updated_at?: string | null
+        }
+        Update: {
+          content?: string | null
+          content_type?: string
+          created_at?: string | null
+          data?: Json | null
+          id?: string
+          required_tier?: string | null
+          title?: string
+          tool_id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          email: string | null
+          full_name: string | null
+          id: string
+          is_vendor: boolean | null
+          subscription_expires_at: string | null
+          subscription_tier: string | null
+          updated_at: string | null
+          vendor_company: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id: string
+          is_vendor?: boolean | null
+          subscription_expires_at?: string | null
+          subscription_tier?: string | null
+          updated_at?: string | null
+          vendor_company?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          is_vendor?: boolean | null
+          subscription_expires_at?: string | null
+          subscription_tier?: string | null
+          updated_at?: string | null
+          vendor_company?: string | null
+        }
+        Relationships: []
+      }
+      tool_submissions: {
+        Row: {
+          category: string | null
+          features: string[] | null
+          id: string
+          is_sponsored: boolean | null
+          logo_url: string | null
+          pricing_details: Json | null
+          pricing_model: string | null
+          reviewed_at: string | null
+          reviewed_by: string | null
+          sponsored_until: string | null
+          status: string | null
+          submitted_at: string | null
+          tool_description: string | null
+          tool_name: string
+          tool_url: string | null
+          vendor_id: string | null
+        }
+        Insert: {
+          category?: string | null
+          features?: string[] | null
+          id?: string
+          is_sponsored?: boolean | null
+          logo_url?: string | null
+          pricing_details?: Json | null
+          pricing_model?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          sponsored_until?: string | null
+          status?: string | null
+          submitted_at?: string | null
+          tool_description?: string | null
+          tool_name: string
+          tool_url?: string | null
+          vendor_id?: string | null
+        }
+        Update: {
+          category?: string | null
+          features?: string[] | null
+          id?: string
+          is_sponsored?: boolean | null
+          logo_url?: string | null
+          pricing_details?: Json | null
+          pricing_model?: string | null
+          reviewed_at?: string | null
+          reviewed_by?: string | null
+          sponsored_until?: string | null
+          status?: string | null
+          submitted_at?: string | null
+          tool_description?: string | null
+          tool_name?: string
+          tool_url?: string | null
+          vendor_id?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
