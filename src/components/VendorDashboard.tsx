@@ -29,7 +29,7 @@ interface ToolSubmission {
   reviewed_at: string | null;
 }
 
-export const VendorDashboard = () => {
+const VendorDashboard = () => {
   const { user, isVendor } = useAuth();
   const { toast } = useToast();
   const [submissions, setSubmissions] = useState<ToolSubmission[]>([]);
@@ -398,3 +398,5 @@ export const VendorDashboard = () => {
     </div>
   );
 };
+
+export default VendorDashboard;
