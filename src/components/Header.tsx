@@ -1,14 +1,25 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Heart, Scale } from "lucide-react";
+import { Heart, Scale, User, LogOut, Settings, Crown } from "lucide-react";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useCompare } from "@/hooks/useCompare";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Badge } from "@/components/ui/badge";
 import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { favoriteCount } = useFavorites();
   const { compareCount } = useCompare();
+  const { isAuthenticated, user, profile, isPro, isVendor, signOut } = useAuth();
 
   return (
     <header className="fixed top-0 w-full nav-glass z-50">
@@ -80,6 +91,48 @@ const Header = () => {
           <div className="flex items-center gap-2">
             <ThemeToggle />
             
+            {/* Authentication Section */}
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative flex items-center gap-2">
+                    <User className="w-4 h-4" />
+                    <span className="hidden sm:inline">
+                      {profile?.full_name || user?.email?.split('@')[0] || 'Account'}
+                    </span>
+                    {isPro && <Crown className="w-3 h-3 text-yellow-500" />}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <div className="px-2 py-1.5 text-sm">
+                    <div className="font-medium">{profile?.full_name || 'User'}</div>
+                    <div className="text-muted-foreground">{user?.email}</div>
+                    <div className="flex gap-1 mt-1">
+                      {isPro && <Badge variant="secondary" className="text-xs">Pro</Badge>}
+                      {isVendor && <Badge variant="outline" className="text-xs">Vendor</Badge>}
+                    </div>
+                  </div>
+                  <DropdownMenuSeparator />
+                  {isVendor && (
+                    <DropdownMenuItem asChild>
+                      <Link to="/vendor-dashboard" className="flex items-center gap-2">
+                        <Settings className="w-4 h-4" />
+                        Vendor Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuItem onClick={signOut} className="flex items-center gap-2 text-red-600">
+                    <LogOut className="w-4 h-4" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button asChild variant="default">
+                <Link to="/auth">Sign In</Link>
+              </Button>
+            )}
+            
             <button
               className="md:hidden p-2"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -107,6 +160,26 @@ const Header = () => {
                 <Scale className="w-4 h-4" />
                 Compare ({compareCount})
               </Link>
+            )}
+            {/* Mobile Auth Section */}
+            {isAuthenticated ? (
+              <>
+                {isVendor && (
+                  <Link to="/vendor-dashboard" className="block px-4 py-2 text-foreground/80 hover:text-primary flex items-center gap-1">
+                    <Settings className="w-4 h-4" />
+                    Vendor Dashboard
+                  </Link>
+                )}
+                <button 
+                  onClick={signOut}
+                  className="block w-full text-left px-4 py-2 text-red-600 hover:text-red-700 flex items-center gap-1"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <Link to="/auth" className="block px-4 py-2 text-foreground/80 hover:text-primary">Sign In</Link>
             )}
           </div>
         )}

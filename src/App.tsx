@@ -8,6 +8,7 @@ import { ThemeProvider } from "next-themes";
 import { Suspense, lazy } from "react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ToolsGridSkeleton } from "./components/LoadingStates";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import CompareBar from "./components/CompareBar";
 
 // Lazy load components for better performance
@@ -71,9 +72,15 @@ const App = () => (
                   <Route path="/terms" element={<Terms />} />
                   <Route path="/tutorials" element={<Tutorials />} />
                   <Route path="/api-docs" element={<ApiDocs />} />
-        {/* Add auth route */}
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/vendor-dashboard" element={<VendorDashboard />} />
+                  <Route path="/auth" element={<Auth />} />
+                  <Route 
+                    path="/vendor-dashboard" 
+                    element={
+                      <ProtectedRoute requireVendor>
+                        <VendorDashboard />
+                      </ProtectedRoute>
+                    } 
+                  />
                   <Route path="/advertise" element={<Advertise />} />
                   <Route path="/tag/:tag" element={<Tag />} />
                   <Route path="/blog/:slug" element={<BlogPost />} />
