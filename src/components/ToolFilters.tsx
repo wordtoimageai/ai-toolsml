@@ -18,6 +18,7 @@ const categories = [
 const sortOptions: { label: string; value: SortOption }[] = [
   { label: 'Name A-Z', value: 'name' },
   { label: 'Highest Rated', value: 'rating' },
+  { label: 'Most Popular', value: 'popularity' },
   { label: 'Category', value: 'category' },
   { label: 'Pricing', value: 'pricing' },
 ];

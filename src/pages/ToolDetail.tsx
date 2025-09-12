@@ -11,6 +11,9 @@ import useAnalytics from "@/hooks/useAnalytics";
 import SEO from "@/components/SEO";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import UserReviews from "@/components/UserReviews";
+import SocialShare from "@/components/SocialShare";
+import ToolRecommendations from "@/components/ToolRecommendations";
 
 const ToolDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -244,10 +247,16 @@ const ToolDetail = () => {
                 </CardContent>
               </Card>
             </div>
+
+            {/* User Reviews */}
+            <UserReviews toolId={tool.id} />
           </div>
 
           {/* Sidebar */}
           <div className="space-y-6">
+            {/* Social Share */}
+            <SocialShare tool={tool} />
+
             <Card>
               <CardHeader>
                 <CardTitle>Quick Info</CardTitle>
@@ -313,6 +322,16 @@ const ToolDetail = () => {
               </CardContent>
             </Card>
           </div>
+        </div>
+
+        {/* Tool Recommendations */}
+        <div className="mt-16">
+          <ToolRecommendations 
+            currentTool={tool}
+            showSimilar={true}
+            showTrending={true}
+            showPersonalized={false}
+          />
         </div>
       </div>
       </div>

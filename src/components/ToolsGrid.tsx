@@ -1,18 +1,20 @@
 import { useMemo, useState, useEffect } from "react";
 import ToolCard from "./ToolCard";
 import ToolFilters from "./ToolFilters";
+import AdvancedFilters from "./AdvancedFilters";
+import ToolRecommendations from "./ToolRecommendations";
 import Pagination from "./Pagination";
 import { ToolsGridSkeleton } from "./LoadingStates";
 import { useToast } from "@/hooks/use-toast";
 import { tools, searchTools, getAllTools } from "@/data/tools";
-import { useUrlState } from "@/hooks/useUrlState";
+import { useUrlState, PriceRange } from "@/hooks/useUrlState";
 import useAnalytics from "@/hooks/useAnalytics";
 
 const TOOLS_PER_PAGE = 9;
 
 const ToolsGrid = () => {
   const { toast } = useToast();
-  const { search, category, sort, page, updatePage } = useUrlState();
+  const { search, category, sort, page, priceRange, features, userRole, updatePage } = useUrlState();
   const { trackSearch, trackToolVisit } = useAnalytics();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,11 +29,60 @@ const ToolsGrid = () => {
       );
     }
 
+    // Filter by price range
+    if (priceRange) {
+      filtered = filtered.filter(tool => {
+        const toolPricing = tool.pricing.toLowerCase();
+        switch (priceRange) {
+          case 'free':
+            return toolPricing === 'free';
+          case 'freemium':
+            return toolPricing === 'freemium';
+          case 'paid':
+            return toolPricing === 'paid' || toolPricing === 'subscription';
+          case 'enterprise':
+            return toolPricing === 'enterprise' || toolPricing.includes('enterprise');
+          default:
+            return true;
+        }
+      });
+    }
+
+    // Filter by features
+    if (features.length > 0) {
+      filtered = filtered.filter(tool =>
+        features.every(feature => tool.features.some(f => 
+          f.toLowerCase().includes(feature.toLowerCase())
+        ))
+      );
+    }
+
+    // Filter by user role (based on category relevance)
+    if (userRole) {
+      const roleCategories: Record<string, string[]> = {
+        'developer': ['coding', 'productivity', 'research'],
+        'marketer': ['marketing', 'design', 'content'],
+        'designer': ['design', 'video', 'content'],
+        'content-creator': ['content', 'video', 'audio', 'design'],
+        'product-manager': ['productivity', 'research', 'marketing'],
+        'business-owner': ['marketing', 'productivity', 'research'],
+      };
+      
+      const relevantCategories = roleCategories[userRole] || [];
+      if (relevantCategories.length > 0) {
+        filtered = filtered.filter(tool =>
+          relevantCategories.includes(tool.category.toLowerCase())
+        );
+      }
+    }
+
     // Sort tools
     filtered.sort((a, b) => {
       switch (sort) {
         case 'rating':
           return b.rating - a.rating;
+        case 'popularity':
+          return b.reviewCount - a.reviewCount;
         case 'category':
           return a.category.localeCompare(b.category);
         case 'pricing':
@@ -44,7 +95,7 @@ const ToolsGrid = () => {
     });
 
     return filtered;
-  }, [search, category, sort]);
+  }, [search, category, sort, priceRange, features, userRole]);
 
   const totalPages = Math.ceil(filteredAndSortedTools.length / TOOLS_PER_PAGE);
   const startIndex = (page - 1) * TOOLS_PER_PAGE;
@@ -64,7 +115,7 @@ const ToolsGrid = () => {
       setIsLoading(false);
     }, 300);
     return () => clearTimeout(timer);
-  }, [search, category, sort]);
+  }, [search, category, sort, priceRange, features, userRole]);
 
   const handleVisitTool = (toolId: string, toolName: string, website: string) => {
     trackToolVisit(toolId, toolName);
@@ -95,6 +146,7 @@ const ToolsGrid = () => {
         </div>
 
         <ToolFilters />
+        <AdvancedFilters />
 
         {paginatedTools.length === 0 ? (
           <div className="text-center py-20">
@@ -128,6 +180,17 @@ const ToolsGrid = () => {
               totalPages={totalPages}
               onPageChange={updatePage}
             />
+
+            {/* Show recommendations when no search/filter is active */}
+            {!search && !category && !priceRange && features.length === 0 && (
+              <div className="mt-16">
+                <ToolRecommendations
+                  showPersonalized={true}
+                  showTrending={true}
+                  showSimilar={false}
+                />
+              </div>
+            )}
           </>
         )}
       </div>
