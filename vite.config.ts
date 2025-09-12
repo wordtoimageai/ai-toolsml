@@ -60,13 +60,11 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: true,
     // Enable modern browser features
     target: 'esnext',
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: mode === 'production',
-        drop_debugger: mode === 'production'
-      }
-    }
+    minify: true, // Use default esbuild minifier which is faster and doesn't require terser
+    // Drop console and debugger in production builds
+    esbuild: mode === 'production' ? {
+      drop: ['console', 'debugger']
+    } : undefined
   },
   // Optimize dependencies
   optimizeDeps: {
