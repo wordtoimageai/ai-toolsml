@@ -25,9 +25,12 @@ const SocialShare = ({ tool, className = "" }: SocialShareProps) => {
 
   const handleShare = async (platform: string) => {
     trackEvent({
-      action: 'tool_share',
-      category: 'engagement',
-      label: `${tool.id}:${tool.title}:${platform}`
+      event_type: 'tool_share',
+      event_data: {
+        platform,
+        tool_name: tool.title
+      },
+      tool_id: tool.id
     });
 
     if (platform === 'copy') {

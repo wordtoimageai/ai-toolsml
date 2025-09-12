@@ -11,7 +11,7 @@ const RecentlyViewed = () => {
   const { trackToolVisit } = useAnalytics();
 
   const handleVisitTool = (toolId: string, toolName: string, website: string) => {
-    trackToolVisit(toolId, toolName);
+    trackToolVisit(toolId, toolName, website);
     toast({
       title: "Visiting Tool",
       description: `Redirecting to ${toolName}...`,

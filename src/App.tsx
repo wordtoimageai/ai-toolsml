@@ -30,6 +30,8 @@ const Tag = lazy(() => import("./pages/Tag"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
 const ToolComparison = lazy(() => import("./pages/ToolComparison"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const Auth = lazy(() => import("./pages/Auth"));
+const VendorDashboard = lazy(() => import("./components/VendorDashboard"));
 
 const queryClient = new QueryClient();
 
@@ -69,7 +71,9 @@ const App = () => (
                   <Route path="/terms" element={<Terms />} />
                   <Route path="/tutorials" element={<Tutorials />} />
                   <Route path="/api-docs" element={<ApiDocs />} />
-                  <Route path="/changelog" element={<Changelog />} />
+        {/* Add auth route */}
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/vendor-dashboard" element={<VendorDashboard />} />
                   <Route path="/advertise" element={<Advertise />} />
                   <Route path="/tag/:tag" element={<Tag />} />
                   <Route path="/blog/:slug" element={<BlogPost />} />

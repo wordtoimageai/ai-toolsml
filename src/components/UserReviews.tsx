@@ -68,9 +68,12 @@ const UserReviews = ({ toolId }: UserReviewsProps) => {
     setReviews(prev => [...prev, newReview]);
     
     trackEvent({
-      action: 'review_submitted',
-      category: 'engagement',
-      label: `${toolId}:rating_${review.rating}`
+      event_type: 'review_submitted',
+      event_data: {
+        rating: review.rating,
+        has_content: !!review.content
+      },
+      tool_id: toolId
     });
   };
 
@@ -94,9 +97,11 @@ const UserReviews = ({ toolId }: UserReviewsProps) => {
       );
       
       trackEvent({
-        action: 'review_helpful_vote',
-        category: 'engagement',
-        label: `${reviewId}:${toolId}`
+        event_type: 'review_helpful_vote',
+        tool_id: toolId,
+        event_data: {
+          review_id: reviewId
+        }
       });
     }
   };

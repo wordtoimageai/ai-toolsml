@@ -48,7 +48,7 @@ const ToolDetail = () => {
 
   const handleVisitTool = () => {
     if (tool) {
-      trackToolVisit(tool.id, tool.title);
+      trackToolVisit(tool.id, tool.title, tool.website);
     }
     toast({
       title: "Redirecting",

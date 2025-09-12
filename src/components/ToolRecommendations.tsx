@@ -27,9 +27,13 @@ const ToolRecommendations = ({
 
   const handleRecommendationClick = (tool: Tool, source: 'similar' | 'trending' | 'personalized') => {
     trackEvent({
-      action: 'recommendation_click',
-      category: 'engagement',
-      label: `${tool.id}:${tool.title}:${source}:${currentTool?.id || 'none'}`
+      event_type: 'recommendation_click',
+      tool_id: tool.id,
+      event_data: {
+        tool_name: tool.title,
+        source,
+        current_tool_id: currentTool?.id || 'none'
+      }
     });
   };
 
