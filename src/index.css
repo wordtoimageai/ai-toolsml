@@ -204,18 +204,6 @@ All colors MUST be HSL.
     @apply bg-white/95 backdrop-blur-md border-b border-white/20;
   }
 
-  /* Animations */
-  .animate-fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  .animate-scale-in {
-    animation: scaleIn 0.3s ease-out forwards;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.8s ease-out forwards;
-  }
 }
 
 @layer utilities {
@@ -232,38 +220,5 @@ All colors MUST be HSL.
 
   .hover-lift:hover {
     transform: translateY(-4px);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
