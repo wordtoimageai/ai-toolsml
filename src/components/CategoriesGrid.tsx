@@ -13,28 +13,21 @@ import {
 const categories = [
   {
     id: "writing",
-    label: "Writing",
+    label: "Writing & Content",
     icon: Pen,
     description: "AI writers, editors, and content creators",
     count: "45+ tools"
   },
   {
     id: "design",
-    label: "Image",
+    label: "Design & Creative",
     icon: Palette,
     description: "Image generators, editors, and design tools",
     count: "38+ tools"
   },
   {
-    id: "video",
-    label: "Video",
-    icon: Video,
-    description: "Video creation, editing, and enhancement",
-    count: "29+ tools"
-  },
-  {
     id: "coding",
-    label: "Code",
+    label: "Development",
     icon: Code,
     description: "Development assistants and automation",
     count: "52+ tools"
@@ -47,13 +40,6 @@ const categories = [
     count: "31+ tools"
   },
   {
-    id: "research",
-    label: "Research",
-    icon: Search,
-    description: "Data analysis and information discovery",
-    count: "24+ tools"
-  },
-  {
     id: "productivity",
     label: "Productivity",
     icon: Zap,
@@ -61,8 +47,22 @@ const categories = [
     count: "41+ tools"
   },
   {
+    id: "video",
+    label: "Video & Media",
+    icon: Video,
+    description: "Video creation, editing, and enhancement",
+    count: "29+ tools"
+  },
+  {
+    id: "research",
+    label: "Research & Analytics",
+    icon: Search,
+    description: "Data analysis and information discovery",
+    count: "24+ tools"
+  },
+  {
     id: "audio",
-    label: "Education",
+    label: "Education & Learning",
     icon: GraduationCap,
     description: "Learning platforms and educational tools",
     count: "18+ tools"

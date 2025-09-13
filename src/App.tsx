@@ -72,6 +72,8 @@ const App = () => (
                   <Route path="/terms" element={<Terms />} />
                   <Route path="/tutorials" element={<Tutorials />} />
                   <Route path="/api-docs" element={<ApiDocs />} />
+                  <Route path="/changelog" element={<Changelog />} />
+                  <Route path="/tools" element={<Index />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route 
                     path="/vendor-dashboard" 
