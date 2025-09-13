@@ -255,7 +255,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_analytics_summary: {
+        Args: { end_date?: string; start_date?: string }
+        Returns: {
+          event_count: number
+          event_type: string
+          unique_users: number
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
