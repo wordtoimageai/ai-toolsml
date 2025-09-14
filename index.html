@@ -97,8 +97,26 @@
       .text-center { text-align: center; }
     </style>
     
-    <!-- Async CSS Loading to prevent render blocking -->
-    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Completely async CSS loading to eliminate render blocking -->
+    <script>
+      // Load CSS asynchronously to prevent render blocking
+      function loadCSS(href) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        link.media = 'print';
+        link.onload = function() { this.media = 'all'; };
+        document.head.appendChild(link);
+      }
+      // Load CSS after DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          loadCSS('/src/index.css');
+        });
+      } else {
+        loadCSS('/src/index.css');
+      }
+    </script>
     <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
     
     <link rel="icon" href="/lovable-uploads/f0a30a0d-578a-4da3-89e9-934e5fd30799.png" type="image/png">
