@@ -51,16 +51,19 @@ export const useAuth = (): AuthState & {
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      (event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
         
-        if (session?.user) {
-          await fetchProfile(session.user.id);
-        } else {
-          setProfile(null);
-        }
-        setLoading(false);
+        // Use setTimeout to prevent potential deadlocks in auth callback
+        setTimeout(() => {
+          if (session?.user) {
+            fetchProfile(session.user.id).catch(console.error);
+          } else {
+            setProfile(null);
+          }
+          setLoading(false);
+        }, 0);
       }
     );
 

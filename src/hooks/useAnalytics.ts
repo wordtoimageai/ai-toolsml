@@ -18,6 +18,16 @@ const getSessionId = () => {
   return sessionId;
 };
 
+// Anonymize user agent for privacy protection
+const getAnonymizedUserAgent = () => {
+  const userAgent = navigator.userAgent;
+  // Remove specific version numbers and personal identifiers
+  return userAgent
+    .replace(/\d+\.\d+\.\d+/g, 'x.x.x')  // Replace version numbers
+    .replace(/;\s*[^)]*\)/g, '; Anonymous)')  // Remove system details
+    .substring(0, 200);  // Limit length
+};
+
 export const useAnalytics = () => {
   const { user } = useAuth();
   
@@ -31,8 +41,8 @@ export const useAnalytics = () => {
           event_data: event_data || null,
           tool_id: tool_id || null,
           session_id: getSessionId(),
-          ip_address: null, // Will be handled server-side if needed
-          user_agent: navigator.userAgent
+          ip_address: null, // IP addresses not collected for privacy
+          user_agent: getAnonymizedUserAgent()
         });
     } catch (error) {
       console.error('Error tracking event:', error);
