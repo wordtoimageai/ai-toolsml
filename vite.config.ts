@@ -58,8 +58,8 @@ export default defineConfig(({ mode }) => ({
     chunkSizeWarningLimit: 1000,
     // Optimize CSS
     cssCodeSplit: true,
-    // Enable modern browser features
-    target: 'esnext',
+    // Enable modern browser features with better compatibility
+    target: 'es2020',
     minify: true, // Use default esbuild minifier which is faster and doesn't require terser
     // Drop console and debugger in production builds
     esbuild: mode === 'production' ? {
