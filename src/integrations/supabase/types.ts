@@ -162,6 +162,7 @@ export type Database = {
           full_name: string | null
           id: string
           is_vendor: boolean | null
+          privacy_preferences: Json | null
           subscription_expires_at: string | null
           subscription_tier: string | null
           updated_at: string | null
@@ -174,6 +175,7 @@ export type Database = {
           full_name?: string | null
           id: string
           is_vendor?: boolean | null
+          privacy_preferences?: Json | null
           subscription_expires_at?: string | null
           subscription_tier?: string | null
           updated_at?: string | null
@@ -186,10 +188,44 @@ export type Database = {
           full_name?: string | null
           id?: string
           is_vendor?: boolean | null
+          privacy_preferences?: Json | null
           subscription_expires_at?: string | null
           subscription_tier?: string | null
           updated_at?: string | null
           vendor_company?: string | null
+        }
+        Relationships: []
+      }
+      security_audit_log: {
+        Row: {
+          created_at: string | null
+          event_data: Json | null
+          event_type: string
+          id: string
+          ip_address: unknown | null
+          severity: string | null
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          event_data?: Json | null
+          event_type: string
+          id?: string
+          ip_address?: unknown | null
+          severity?: string | null
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          event_data?: Json | null
+          event_type?: string
+          id?: string
+          ip_address?: unknown | null
+          severity?: string | null
+          user_agent?: string | null
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -255,6 +291,18 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      anonymize_old_analytics: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
+      cleanup_old_affiliate_clicks: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
+      cleanup_old_analytics_events: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
+      }
       get_analytics_summary: {
         Args: { end_date?: string; start_date?: string }
         Returns: {
@@ -262,6 +310,21 @@ export type Database = {
           event_type: string
           unique_users: number
         }[]
+      }
+      log_security_event: {
+        Args: {
+          p_event_data?: Json
+          p_event_type: string
+          p_ip_address?: unknown
+          p_severity?: string
+          p_user_agent?: string
+          p_user_id?: string
+        }
+        Returns: undefined
+      }
+      user_allows_analytics: {
+        Args: { user_uuid: string }
+        Returns: boolean
       }
     }
     Enums: {

@@ -3,12 +3,12 @@ import ToolCard from "./ToolCard";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import useAnalytics from "@/hooks/useAnalytics";
+import { usePrivacyAnalytics } from "@/hooks/usePrivacyAnalytics";
 
 const RecentlyViewed = () => {
   const { recentlyViewed, clearRecentlyViewed } = useRecentlyViewed();
   const { toast } = useToast();
-  const { trackToolVisit } = useAnalytics();
+  const { trackToolVisit } = usePrivacyAnalytics();
 
   const handleVisitTool = (toolId: string, toolName: string, website: string) => {
     trackToolVisit(toolId, toolName, website);

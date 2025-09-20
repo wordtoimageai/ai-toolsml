@@ -11,6 +11,12 @@ interface Profile {
   subscription_expires_at: string | null;
   is_vendor: boolean;
   vendor_company: string | null;
+  privacy_preferences?: {
+    analytics_consent: boolean;
+    marketing_consent: boolean;
+    data_retention_months: number;
+    opt_out_analytics: boolean;
+  };
   created_at: string;
   updated_at: string;
 }
@@ -83,7 +89,10 @@ export const useAuth = (): AuthState & {
         return;
       }
 
-      setProfile(data);
+      setProfile({
+        ...data,
+        privacy_preferences: data.privacy_preferences as Profile['privacy_preferences']
+      });
     } catch (error) {
       console.error('Error fetching profile:', error);
     }

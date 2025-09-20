@@ -10,6 +10,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ToolsGridSkeleton } from "./components/LoadingStates";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import CompareBar from "./components/CompareBar";
+import PrivacyConsentBanner from "./components/PrivacyConsentBanner";
 
 // Lazy load components for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -33,6 +34,7 @@ const ToolComparison = lazy(() => import("./pages/ToolComparison"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Auth = lazy(() => import("./pages/Auth"));
 const VendorDashboard = lazy(() => import("./components/VendorDashboard"));
+const UserPrivacyDashboard = lazy(() => import("./components/UserPrivacyDashboard"));
 
 const queryClient = new QueryClient();
 
@@ -57,6 +59,7 @@ const App = () => (
             <Sonner />
             <BrowserRouter>
               <CompareBar />
+              <PrivacyConsentBanner />
               <Suspense fallback={<PageSkeleton />}>
                 <Routes>
                   <Route path="/" element={<Index />} />
@@ -80,6 +83,14 @@ const App = () => (
                     element={
                       <ProtectedRoute requireVendor>
                         <VendorDashboard />
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/privacy-dashboard" 
+                    element={
+                      <ProtectedRoute>
+                        <UserPrivacyDashboard />
                       </ProtectedRoute>
                     } 
                   />
