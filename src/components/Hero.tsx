@@ -9,7 +9,7 @@ const Hero = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      navigate(`/?search=${encodeURIComponent(searchQuery.trim())}`);
     }
   };
 
@@ -67,7 +67,7 @@ const Hero = () => {
                   key={index}
                   onClick={() => {
                     setSearchQuery(search);
-                    navigate(`/search?q=${encodeURIComponent(search)}`);
+                    navigate(`/?search=${encodeURIComponent(search)}`);
                   }}
                   className="text-white/90 hover:text-white text-sm underline underline-offset-2 transition-colors"
                 >
