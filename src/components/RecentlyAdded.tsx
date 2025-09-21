@@ -88,6 +88,7 @@ const RecentlyAdded = () => {
                     target="_blank"
                     rel="nofollow sponsored"
                     className="text-muted-foreground hover:text-foreground transition-colors"
+                    aria-label={`Visit ${tool.title} website`}
                   >
                     <ExternalLink className="w-4 h-4" />
                   </a>
