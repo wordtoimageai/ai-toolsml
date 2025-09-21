@@ -10,9 +10,7 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
-    <!-- Preload critical assets - Let Vite handle module paths -->
-    <link rel="modulepreload" as="script" crossorigin href="/src/main.tsx">
-    <link rel="preload" as="style" href="/src/index.css">
+    <!-- Let Vite handle asset loading and MIME types -->
     
     <!-- Critical CSS inline to prevent render blocking -->
     <style>
@@ -97,27 +95,7 @@
       .text-center { text-align: center; }
     </style>
     
-    <!-- Completely async CSS loading to eliminate render blocking -->
-    <script>
-      // Load CSS asynchronously to prevent render blocking
-      function loadCSS(href) {
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = href;
-        link.media = 'print';
-        link.onload = function() { this.media = 'all'; };
-        document.head.appendChild(link);
-      }
-      // Load CSS after DOM is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-          loadCSS('/src/index.css');
-        });
-      } else {
-        loadCSS('/src/index.css');
-      }
-    </script>
-    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
+    <!-- Let Vite handle CSS loading with proper MIME types -->
     
     <!-- Favicon -->
     <link rel="icon" href="/favicon.png" type="image/png">
