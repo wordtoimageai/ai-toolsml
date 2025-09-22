@@ -36,7 +36,11 @@ const Header = () => {
             
             {/* Resources Dropdown */}
             <div className="relative group">
-              <button className="text-foreground/80 hover:text-primary font-medium transition-colors flex items-center gap-1">
+              <button 
+                className="text-foreground/80 hover:text-primary font-medium transition-colors flex items-center gap-1"
+                aria-label="Resources menu"
+                aria-expanded="false"
+              >
                 Resources
                 <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -52,7 +56,11 @@ const Header = () => {
 
             {/* Company Dropdown */}
             <div className="relative group">
-              <button className="text-foreground/80 hover:text-primary font-medium transition-colors flex items-center gap-1">
+              <button 
+                className="text-foreground/80 hover:text-primary font-medium transition-colors flex items-center gap-1"
+                aria-label="Company menu" 
+                aria-expanded="false"
+              >
                 Company
                 <svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -173,6 +181,7 @@ const Header = () => {
                 <button 
                   onClick={signOut}
                   className="block w-full text-left px-4 py-2 text-red-600 hover:text-red-700 flex items-center gap-1"
+                  aria-label="Sign out"
                 >
                   <LogOut className="w-4 h-4" />
                   Sign Out
