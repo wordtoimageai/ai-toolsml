@@ -1,4 +1,11 @@
 import { Helmet } from 'react-helmet-async';
+import { 
+  generateSEOTitle, 
+  generateMetaDescription, 
+  generateKeywords,
+  generateCanonicalUrl,
+  optimizeMetaDescription
+} from '@/lib/seo-utils';
 
 interface SEOProps {
   title?: string;
@@ -8,18 +15,31 @@ interface SEOProps {
   url?: string;
   type?: string;
   jsonLd?: Record<string, any>;
+  toolName?: string;
+  category?: string;
+  tags?: string[];
 }
 
 const SEO = ({ 
-  title = "ToolsML — Discover & Compare the Best AI Tools (Curated Weekly)",
-  description = "Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases.",
-  keywords = "AI tools, artificial intelligence, machine learning, productivity, automation, AI directory, AI software, best AI tools",
+  title,
+  description,
+  keywords,
   image = "/og-image.png",
   url = "https://ai-toolsml.lovable.app",
   type = "website",
-  jsonLd
+  jsonLd,
+  toolName,
+  category,
+  tags
 }: SEOProps) => {
-  const fullTitle = title.includes('ToolsML') ? title : `${title} | ToolsML`;
+  // Generate optimized SEO data
+  const seoTitle = title || generateSEOTitle(toolName, category);
+  const seoDescription = description || generateMetaDescription(toolName, category);
+  const seoKeywords = keywords || generateKeywords(toolName, category, tags);
+  const canonicalUrl = generateCanonicalUrl(url);
+  const optimizedDescription = optimizeMetaDescription(seoDescription);
+  
+  const fullTitle = seoTitle.includes('ToolsML') ? seoTitle : `${seoTitle} | ToolsML`;
 
   // Default structured data for the homepage
   const defaultStructuredData = {
@@ -92,9 +112,9 @@ const SEO = ({
   return (
     <Helmet>
       <title>{fullTitle}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      <link rel="canonical" href={url} />
+      <meta name="description" content={optimizedDescription} />
+      <meta name="keywords" content={seoKeywords} />
+      <link rel="canonical" href={canonicalUrl} />
       
       {/* Preconnect to external domains */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -103,17 +123,23 @@ const SEO = ({
       {/* Open Graph */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={optimizedDescription} />
       <meta property="og:image" content={image} />
-      <meta property="og:url" content={url} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={`${fullTitle} - AI Tools Comparison`} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:site_name" content="ToolsML" />
       <meta property="og:locale" content="en_US" />
       
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:description" content={optimizedDescription} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:image:alt" content={`${fullTitle} - AI Tools Comparison`} />
+      <meta name="twitter:site" content="@toolsml" />
+      <meta name="twitter:creator" content="@toolsml" />
       
       {/* Additional SEO */}
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />

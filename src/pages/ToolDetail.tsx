@@ -8,6 +8,7 @@ import { getToolById } from "@/data/tools";
 import { useToast } from "@/hooks/use-toast";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import useAnalytics from "@/hooks/useAnalytics";
+import { generateToolStructuredData, generateSEOTitle, generateMetaDescription, generateKeywords } from "@/lib/seo-utils";
 import SEO from "@/components/SEO";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -57,36 +58,13 @@ const ToolDetail = () => {
     window.open(tool.website, '_blank');
   };
 
-  // JSON-LD structured data for SEO
-  const jsonLd = tool ? {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": tool.title,
-    "description": tool.description,
-    "url": tool.website,
-    "applicationCategory": tool.category,
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "price": tool.pricing === 'Free' ? "0" : "Variable",
-        "priceCurrency": "USD"
-      }
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": tool.rating,
-      "reviewCount": tool.reviewCount,
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "author": {
-      "@type": "Organization",
-      "name": tool.company,
-      "foundingDate": tool.founded
-    }
-  } : undefined;
+  // Enhanced structured data for better SEO
+  const jsonLd = tool ? generateToolStructuredData(tool, window.location.href) : undefined;
+  
+  // Generate optimized SEO data
+  const seoTitle = tool ? generateSEOTitle(tool.title, tool.category, 'Review & Pricing') : undefined;
+  const seoDescription = tool ? generateMetaDescription(tool.title, tool.category, tool.longDescription, 'Review') : undefined;
+  const seoKeywords = tool ? generateKeywords(tool.title, tool.category, tool.tags) : undefined;
 
   const pricingColor = {
     Free: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
@@ -98,12 +76,16 @@ const ToolDetail = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title={`${tool.title} - AI Tool Review`}
-        description={tool.description}
-        keywords={`${tool.title}, ${tool.category}, AI tool, ${tool.tags.join(', ')}`}
-        url={`https://toolsml.com/tool/${tool.id}`}
-        type="product"
+        title={seoTitle}
+        description={seoDescription}
+        keywords={seoKeywords}
+        url={window.location.href}
+        image={`/tool-screenshots/${tool.id}.jpg`}
+        type="article"
         jsonLd={jsonLd}
+        toolName={tool.title}
+        category={tool.category}
+        tags={tool.tags}
       />
       <Header />
       

@@ -1,6 +1,10 @@
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import { initPerformanceOptimizations } from './lib/performance-utils'
+
+// Initialize performance optimizations
+initPerformanceOptimizations();
 
 // Performance monitoring
 if (typeof window !== 'undefined' && 'performance' in window) {

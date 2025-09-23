@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { getToolsByCategory } from '@/data/tools';
+import { generateCategoryStructuredData, generateSEOTitle, generateMetaDescription } from "@/lib/seo-utils";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
