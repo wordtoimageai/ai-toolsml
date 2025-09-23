@@ -133,6 +133,7 @@ const PrivacyConsentBanner = () => {
               size="sm"
               onClick={() => setShowBanner(false)}
               className="flex-shrink-0"
+              aria-label="Close privacy banner"
             >
               <X className="h-4 w-4" />
             </Button>
@@ -150,6 +151,7 @@ const PrivacyConsentBanner = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setShowSettings(false)}
+                aria-label="Close privacy settings"
               >
                 <X className="h-4 w-4" />
               </Button>
