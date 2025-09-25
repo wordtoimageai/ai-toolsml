@@ -9,7 +9,8 @@ import StatsSection from "@/components/StatsSection";
 import Newsletter from "@/components/Newsletter";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
+import { AdvancedSEO } from "@/components/AdvancedSEO";
+import { SitemapGenerator } from "@/components/SitemapGenerator";
 import useAnalytics from "@/hooks/useAnalytics";
 import { tools } from "@/data/tools";
 
@@ -34,7 +35,7 @@ const Index = () => {
         "@type": "SoftwareApplication",
         "name": tool.title,
         "description": tool.description,
-        "url": `https://toolsml.com/tool/${tool.id}`,
+        "url": `https://ai-toolsml.lovable.app/tool/${tool.id}`,
         "applicationCategory": "AI Tool",
         "operatingSystem": "Web",
         "offers": {
@@ -56,7 +57,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO jsonLd={featuredToolsStructuredData} />
+      <AdvancedSEO 
+        pageType="homepage"
+        title="ToolsML — Discover & Compare the Best AI Tools (Curated Weekly)"
+        description="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases."
+        url="/"
+        image="/og-image.jpg"
+      />
+      <SitemapGenerator />
       <Header />
       <Hero />
       <CategoriesGrid />

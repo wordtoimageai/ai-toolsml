@@ -151,7 +151,7 @@ const Category = () => {
       "numberOfItems": tools.length,
       "itemListElement": tools.map((tool, index) => ({
         "@type": "SoftwareApplication",
-        "@id": `https://toolsml.com/tool/${tool.id}`,
+        "@id": `https://ai-toolsml.lovable.app/tool/${tool.id}`,
         "position": index + 1,
         "name": tool.title,
         "description": tool.description,
