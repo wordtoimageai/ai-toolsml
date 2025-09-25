@@ -8,8 +8,7 @@ import { getToolById } from "@/data/tools";
 import { useToast } from "@/hooks/use-toast";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import useAnalytics from "@/hooks/useAnalytics";
-import { generateToolStructuredData, generateSEOTitle, generateMetaDescription, generateKeywords } from "@/lib/seo-utils";
-import SEO from "@/components/SEO";
+import AdvancedSEO from "@/components/AdvancedSEO";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import UserReviews from "@/components/UserReviews";
@@ -58,13 +57,6 @@ const ToolDetail = () => {
     window.open(tool.website, '_blank');
   };
 
-  // Enhanced structured data for better SEO
-  const jsonLd = tool ? generateToolStructuredData(tool, window.location.href) : undefined;
-  
-  // Generate optimized SEO data
-  const seoTitle = tool ? generateSEOTitle(tool.title, tool.category, 'Review & Pricing') : undefined;
-  const seoDescription = tool ? generateMetaDescription(tool.title, tool.category, tool.longDescription, 'Review') : undefined;
-  const seoKeywords = tool ? generateKeywords(tool.title, tool.category, tool.tags) : undefined;
 
   const pricingColor = {
     Free: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
@@ -75,17 +67,10 @@ const ToolDetail = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO 
-        title={seoTitle}
-        description={seoDescription}
-        keywords={seoKeywords}
+      <AdvancedSEO 
+        tool={tool}
         url={window.location.href}
-        image={`/tool-screenshots/${tool.id}.jpg`}
-        type="article"
-        jsonLd={jsonLd}
-        toolName={tool.title}
-        category={tool.category}
-        tags={tool.tags}
+        pageType="tool"
       />
       <Header />
       
