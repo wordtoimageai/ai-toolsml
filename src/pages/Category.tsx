@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { getToolsByCategory } from '@/data/tools';
-import { generateCategoryStructuredData, generateSEOTitle, generateMetaDescription } from "@/lib/seo-utils";
+import AdvancedSEO from '@/components/AdvancedSEO';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
-import SEO from '@/components/SEO';
 import Breadcrumb from '@/components/Breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -141,37 +140,15 @@ const Category = () => {
     window.open(website, '_blank');
   };
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    "name": `${displayName} AI Tools`,
-    "description": `Discover the best AI tools for ${category}`,
-    "mainEntity": {
-      "@type": "ItemList",
-      "numberOfItems": tools.length,
-      "itemListElement": tools.map((tool, index) => ({
-        "@type": "SoftwareApplication",
-        "@id": `https://ai-toolsml.lovable.app/tool/${tool.id}`,
-        "position": index + 1,
-        "name": tool.title,
-        "description": tool.description,
-        "applicationCategory": "AI Tool",
-        "operatingSystem": "Web",
-        "offers": {
-          "@type": "Offer",
-          "price": tool.pricing === 'Free' ? "0" : tool.pricing,
-          "priceCurrency": "USD"
-        }
-      }))
-    }
-  };
-
+  return (
     <div className="min-h-screen">
-      <SEO 
+      <AdvancedSEO 
         title={`${displayName} AI Tools - Best ${displayName} Solutions 2025`}
         description={guide?.introduction || `Discover the best AI tools for ${category}. Compare features, pricing, and reviews.`}
         keywords={`${category} AI tools, ${category} artificial intelligence, ${category} automation, best ${category} tools`}
-        jsonLd={jsonLd}
+        category={category}
+        url={window.location.href}
+        pageType="category"
       />
       <Header />
       
@@ -314,6 +291,7 @@ const Category = () => {
 
       <Footer />
     </div>
+  );
 };
 
 export default Category;
