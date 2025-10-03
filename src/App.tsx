@@ -11,6 +11,7 @@ import { ToolsGridSkeleton } from "./components/LoadingStates";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import CompareBar from "./components/CompareBar";
 import PrivacyConsentBanner from "./components/PrivacyConsentBanner";
+import PreconnectLinks from "./components/PreconnectLinks";
 
 // Lazy load components for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -48,6 +49,7 @@ const App = () => (
   <ErrorBoundary>
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
+        <PreconnectLinks />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

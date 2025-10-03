@@ -1,13 +1,15 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 
 const Terms = () => {
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="Terms of Service - ToolsML"
-        description="Read ToolsML's terms of service and user agreement."
+      <AdvancedSEO 
+        title="Terms of Service - ToolsML | User Agreement"
+        description="Read ToolsML's terms of service and user agreement. Understand your rights and responsibilities when using our AI tools directory."
+        url={window.location.href}
+        pageType="homepage"
       />
       <Header />
       

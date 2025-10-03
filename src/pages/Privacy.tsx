@@ -1,13 +1,15 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 
 const Privacy = () => {
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="Privacy Policy - ToolsML"
-        description="Learn how ToolsML protects your privacy and handles your personal information."
+      <AdvancedSEO 
+        title="Privacy Policy - ToolsML | Data Protection & Security"
+        description="Learn how ToolsML protects your privacy and handles your personal information. Transparent data practices and user rights."
+        url={window.location.href}
+        pageType="homepage"
       />
       <Header />
       

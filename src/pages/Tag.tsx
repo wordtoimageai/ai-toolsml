@@ -1,7 +1,7 @@
 import { useParams, Navigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 import ToolCard from '@/components/ToolCard';
 import { getAllTools } from '@/data/tools';
 import { Badge } from '@/components/ui/badge';
@@ -22,10 +22,11 @@ const Tag = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO 
-        title={`${decodedTag} AI Tools`}
-        description={`Discover the best AI tools tagged with "${decodedTag}". Find cutting-edge solutions for your needs.`}
-        keywords={`${decodedTag}, AI tools, artificial intelligence, ${decodedTag} tools`}
+      <AdvancedSEO 
+        title={`${decodedTag} AI Tools - Discover ${filteredTools.length}+ Solutions`}
+        description={`Discover the best AI tools tagged with "${decodedTag}". Find cutting-edge solutions for your needs. Browse ${filteredTools.length} tools.`}
+        url={window.location.href}
+        pageType="homepage"
       />
       <Header />
       

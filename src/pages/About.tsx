@@ -1,15 +1,17 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="About ToolsML"
-        description="Learn about ToolsML's mission to help professionals discover and compare the best AI tools available."
+      <AdvancedSEO 
+        title="About ToolsML - Your Trusted AI Tools Directory"
+        description="Learn about ToolsML's mission to help professionals discover and compare the best AI tools available. Join 50K+ users finding perfect AI solutions."
+        url={window.location.href}
+        pageType="homepage"
       />
       <Header />
       

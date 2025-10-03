@@ -1,17 +1,18 @@
 import { useEffect } from "react";
+import { useAnalytics } from "@/hooks/useAnalytics";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import CategoriesGrid from "@/components/CategoriesGrid";
+import RecentlyViewed from "@/components/RecentlyViewed";
 import FeaturedTools from "@/components/FeaturedTools";
 import RecentlyAdded from "@/components/RecentlyAdded";
 import TrustSignals from "@/components/TrustSignals";
 import StatsSection from "@/components/StatsSection";
 import Newsletter from "@/components/Newsletter";
-import RecentlyViewed from "@/components/RecentlyViewed";
 import Footer from "@/components/Footer";
-import { AdvancedSEO } from "@/components/AdvancedSEO";
-import { SitemapGenerator } from "@/components/SitemapGenerator";
-import useAnalytics from "@/hooks/useAnalytics";
+import AdvancedSEO from "@/components/AdvancedSEO";
+import SitemapGenerator from "@/components/SitemapGenerator";
+import OrganizationSchema from "@/components/OrganizationSchema";
 import { tools } from "@/data/tools";
 
 const Index = () => {
@@ -56,26 +57,28 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <>
       <AdvancedSEO 
+        title="ToolsML - Discover Best AI Tools 2025 | 1000+ Curated Solutions"
+        description="Find perfect AI tools from 1000+ options across 200+ categories. Compare features, pricing, and reviews. Updated weekly with latest AI innovations."
         pageType="homepage"
-        title="ToolsML — Discover & Compare the Best AI Tools (Curated Weekly)"
-        description="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases."
-        url="/"
-        image="/og-image.jpg"
+        url="https://ai-toolsml.lovable.app"
       />
+      <OrganizationSchema />
       <SitemapGenerator />
       <Header />
-      <Hero />
-      <CategoriesGrid />
-      <RecentlyViewed />
-      <FeaturedTools />
-      <RecentlyAdded />
-      <TrustSignals />
-      <StatsSection />
-      <Newsletter />
+      <main>
+        <Hero />
+        <CategoriesGrid />
+        <RecentlyViewed />
+        <FeaturedTools />
+        <RecentlyAdded />
+        <TrustSignals />
+        <StatsSection />
+        <Newsletter />
+      </main>
       <Footer />
-    </div>
+    </>
   );
 };
 
