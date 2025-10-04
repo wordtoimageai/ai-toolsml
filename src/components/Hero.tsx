@@ -21,11 +21,11 @@ const Hero = () => {
     <section className="hero-gradient min-h-screen flex items-center justify-center pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="animate-fade-in space-y-8">
-          <h1 className="hero-title">
-            Discover the right AI tool — fast.
+          <h1 className="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            Discover the Best AI Tools for 2025 — Fast & Free
           </h1>
-          <p className="hero-subtitle">
-            Human-curated directory of AI tools with pricing, features, and real use-case tags.
+          <p className="hero-subtitle text-lg sm:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+            Human-curated directory of 1000+ AI tools with detailed pricing comparisons, feature breakdowns, and real-world use cases. Find the perfect AI solution for content creation, automation, design, development, and more.
           </p>
           
           {/* Value Props */}

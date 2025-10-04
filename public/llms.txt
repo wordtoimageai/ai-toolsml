@@ -1,0 +1,51 @@
+# ToolsML - AI Tools Directory
+
+## Purpose
+ToolsML is a comprehensive directory featuring 1000+ curated AI tools across 200+ categories. We help users discover, compare, and choose the right AI solutions for their needs.
+
+## Categories
+- AI Writing & Content Generation
+- Image Generation & Design
+- Video Editing & Production
+- Developer Tools & Code Assistants
+- Chatbots & Conversational AI
+- Machine Learning Platforms
+- Audio & Music Generation
+- Business & Productivity Tools
+- Marketing & SEO Automation
+- Document Processing & OCR
+- Research & Data Analytics
+- Creative & Design Tools
+
+## Features
+- Human-curated tool reviews
+- Detailed pricing comparisons
+- Feature breakdowns and specifications
+- User ratings and reviews
+- Advanced filtering and search
+- Weekly updates with new tools
+- Category-based browsing
+- Tool comparison functionality
+
+## Content
+All tools in our directory include:
+- Comprehensive descriptions
+- Pricing models (Free, Freemium, Paid)
+- Key features and capabilities
+- User reviews and ratings
+- Company information
+- Use case examples
+- Pros and cons analysis
+
+## API
+For developers interested in accessing our tool data, please contact us through our website.
+
+## Contact
+Website: https://toolsml.com
+Submit a tool: https://toolsml.com/submit
+Advertise: https://toolsml.com/advertise
+
+## Updates
+Last updated: October 2025
+New tools added weekly
+Review data refreshed daily

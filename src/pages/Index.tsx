@@ -13,6 +13,8 @@ import Footer from "@/components/Footer";
 import AdvancedSEO from "@/components/AdvancedSEO";
 import SitemapGenerator from "@/components/SitemapGenerator";
 import OrganizationSchema from "@/components/OrganizationSchema";
+import HowItWorks from "@/components/HowItWorks";
+import AIToolCategories from "@/components/AIToolCategories";
 import { tools } from "@/data/tools";
 
 const Index = () => {
@@ -69,7 +71,9 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <HowItWorks />
         <CategoriesGrid />
+        <AIToolCategories />
         <RecentlyViewed />
         <FeaturedTools />
         <RecentlyAdded />
