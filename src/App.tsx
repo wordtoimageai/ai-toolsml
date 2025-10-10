@@ -36,6 +36,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Auth = lazy(() => import("./pages/Auth"));
 const VendorDashboard = lazy(() => import("./components/VendorDashboard"));
 const UserPrivacyDashboard = lazy(() => import("./components/UserPrivacyDashboard"));
+const SiteMap = lazy(() => import("./pages/SiteMap"));
 
 const queryClient = new QueryClient();
 
@@ -100,6 +101,7 @@ const App = () => (
                   <Route path="/tag/:tag" element={<Tag />} />
                   <Route path="/blog/:slug" element={<BlogPost />} />
                   <Route path="/comparison" element={<ToolComparison />} />
+                  <Route path="/site-map" element={<SiteMap />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
