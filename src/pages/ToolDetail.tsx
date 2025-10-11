@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { ArrowLeft, ExternalLink, Star, Users, Calendar, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -14,6 +15,8 @@ import Footer from "@/components/Footer";
 import UserReviews from "@/components/UserReviews";
 import SocialShare from "@/components/SocialShare";
 import ToolRecommendations from "@/components/ToolRecommendations";
+import FAQ, { generateFAQSchema } from "@/components/FAQ";
+import { generateToolFAQs } from "@/data/tool-faq-generator";
 
 const ToolDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -72,6 +75,11 @@ const ToolDetail = () => {
         url={window.location.href}
         pageType="tool"
       />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(generateFAQSchema(generateToolFAQs(tool)))}
+        </script>
+      </Helmet>
       <Header />
       
       <div className="pt-20">
@@ -298,6 +306,15 @@ const ToolDetail = () => {
             showSimilar={true}
             showTrending={true}
             showPersonalized={false}
+          />
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-16">
+          <FAQ 
+            items={generateToolFAQs(tool)}
+            title={`${tool.title} - Frequently Asked Questions`}
+            description={`Common questions about ${tool.title}, its features, pricing, and use cases`}
           />
         </div>
       </div>

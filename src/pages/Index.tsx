@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import CategoriesGrid from "@/components/CategoriesGrid";
@@ -15,7 +16,11 @@ import SitemapGenerator from "@/components/SitemapGenerator";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import HowItWorks from "@/components/HowItWorks";
 import AIToolCategories from "@/components/AIToolCategories";
+import WhyChooseUs from "@/components/WhyChooseUs";
+import AITrends from "@/components/AITrends";
+import FAQ, { generateFAQSchema } from "@/components/FAQ";
 import { tools } from "@/data/tools";
+import { homepageFAQs } from "@/data/homepage-faq";
 
 const Index = () => {
   const { trackPageView } = useAnalytics();
@@ -66,17 +71,29 @@ const Index = () => {
         pageType="homepage"
         url="https://ai-toolsml.lovable.app"
       />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(generateFAQSchema(homepageFAQs))}
+        </script>
+      </Helmet>
       <OrganizationSchema />
       <SitemapGenerator />
       <Header />
       <main>
         <Hero />
         <HowItWorks />
+        <WhyChooseUs />
         <CategoriesGrid />
         <AIToolCategories />
+        <AITrends />
         <RecentlyViewed />
         <FeaturedTools />
         <RecentlyAdded />
+        <FAQ 
+          items={homepageFAQs}
+          title="Frequently Asked Questions"
+          description="Everything you need to know about finding and using AI tools on ToolsML"
+        />
         <TrustSignals />
         <StatsSection />
         <Newsletter />
