@@ -37,7 +37,11 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
     { path: '/tutorials', priority: 0.7, changefreq: 'monthly' as const },
     { path: '/api-docs', priority: 0.6, changefreq: 'monthly' as const },
     { path: '/changelog', priority: 0.7, changefreq: 'weekly' as const },
-    { path: '/advertise', priority: 0.6, changefreq: 'monthly' as const }
+    { path: '/advertise', priority: 0.6, changefreq: 'monthly' as const },
+    { path: '/submit', priority: 0.7, changefreq: 'monthly' as const },
+    { path: '/favorites', priority: 0.5, changefreq: 'daily' as const },
+    { path: '/compare', priority: 0.7, changefreq: 'weekly' as const },
+    { path: '/site-map', priority: 0.5, changefreq: 'monthly' as const }
   ];
 
   staticPages.forEach(page => {
@@ -113,20 +117,24 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
 };
 
 /**
- * Generate XML sitemap content
+ * Generate XML sitemap content with XSL stylesheet for better visualization
  */
 export const generateSitemapXML = (): string => {
   const entries = generateSitemapEntries();
   
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  xml += '<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
+  xml += '        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n';
+  xml += '        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9\n';
+  xml += '        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n';
   
   entries.forEach(entry => {
     xml += '  <url>\n';
     xml += `    <loc>${entry.url}</loc>\n`;
     xml += `    <lastmod>${entry.lastmod}</lastmod>\n`;
     xml += `    <changefreq>${entry.changefreq}</changefreq>\n`;
-    xml += `    <priority>${entry.priority}</priority>\n`;
+    xml += `    <priority>${entry.priority.toFixed(1)}</priority>\n`;
     xml += '  </url>\n';
   });
   

@@ -12,6 +12,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import CompareBar from "./components/CompareBar";
 import PrivacyConsentBanner from "./components/PrivacyConsentBanner";
 import PreconnectLinks from "./components/PreconnectLinks";
+import PrerenderReady from "./components/PrerenderReady";
 
 // Lazy load components for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -61,6 +62,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <PrerenderReady />
               <CompareBar />
               <PrivacyConsentBanner />
               <Suspense fallback={<PageSkeleton />}>

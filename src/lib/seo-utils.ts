@@ -41,6 +41,7 @@ export const generateSEOTitle = (
 
 /**
  * Generate SEO-optimized meta description with keywords and calls-to-action
+ * Optimized for 150-160 characters for best search engine display
  */
 export const generateMetaDescription = (
   toolName?: string,
@@ -48,22 +49,50 @@ export const generateMetaDescription = (
   description?: string,
   action?: string
 ): string => {
-  const maxLength = 155;
+  const minLength = 150;
+  const maxLength = 160;
   
   if (toolName && description) {
     // Tool-specific descriptions with use cases
-    const baseDesc = `${toolName}: ${description} Compare features, pricing, pros & cons.`;
-    return baseDesc.length <= maxLength ? baseDesc : baseDesc.substring(0, maxLength - 3) + '...';
+    let baseDesc = `${toolName}: ${description}`;
+    
+    // Add call-to-action to reach optimal length
+    if (baseDesc.length < minLength) {
+      baseDesc += ' Compare features, pricing & alternatives.';
+    }
+    
+    if (baseDesc.length < minLength) {
+      baseDesc += ' Read reviews & get started today.';
+    }
+    
+    // Truncate if too long
+    if (baseDesc.length > maxLength) {
+      return baseDesc.substring(0, maxLength - 3) + '...';
+    }
+    
+    return baseDesc;
   }
   
   if (category) {
     // Category-specific descriptions
-    const categoryDesc = `Discover the best AI ${category} tools of 2025. Compare features, pricing, and user reviews. Find the perfect AI solution for your needs.`;
-    return categoryDesc.length <= maxLength ? categoryDesc : categoryDesc.substring(0, maxLength - 3) + '...';
+    const categoryTitle = category.charAt(0).toUpperCase() + category.slice(1);
+    let categoryDesc = `Discover top AI ${category} tools in 2025. Compare features, pricing & user reviews.`;
+    
+    // Pad to optimal length if needed
+    if (categoryDesc.length < minLength) {
+      categoryDesc += ` Find the best AI ${categoryTitle} solution for your needs.`;
+    }
+    
+    // Truncate if too long
+    if (categoryDesc.length > maxLength) {
+      return categoryDesc.substring(0, maxLength - 3) + '...';
+    }
+    
+    return categoryDesc;
   }
   
-  // Default description
-  return "Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases.";
+  // Default description optimized for 150-160 characters
+  return "Find & compare 1000+ AI tools for writing, design, video, coding & more. Human-curated directory updated weekly. Compare features, pricing & reviews.";
 };
 
 /**
@@ -310,20 +339,53 @@ export const generateOGImage = (toolName?: string, category?: string): string =>
 };
 
 /**
- * Validate and optimize meta description length
+ * Validate and optimize meta description length to 150-160 characters
+ * This is the sweet spot for search engine display
  */
 export const optimizeMetaDescription = (description: string): string => {
-  const maxLength = 155;
-  const minLength = 120;
+  const minLength = 150;
+  const maxLength = 160;
   
-  if (description.length <= maxLength && description.length >= minLength) {
+  // Already optimal length
+  if (description.length >= minLength && description.length <= maxLength) {
     return description;
   }
   
+  // Too long - truncate intelligently
   if (description.length > maxLength) {
-    return description.substring(0, maxLength - 3) + '...';
+    // Try to truncate at a sentence or word boundary
+    const truncated = description.substring(0, maxLength - 3);
+    const lastPeriod = truncated.lastIndexOf('.');
+    const lastSpace = truncated.lastIndexOf(' ');
+    
+    if (lastPeriod > maxLength - 20) {
+      return truncated.substring(0, lastPeriod + 1);
+    }
+    
+    if (lastSpace > maxLength - 10) {
+      return truncated.substring(0, lastSpace) + '...';
+    }
+    
+    return truncated + '...';
   }
   
-  // If too short, pad with relevant keywords
-  return description + ' Compare features, pricing, reviews, and alternatives.';
+  // Too short - pad with relevant keywords and CTAs
+  let padded = description;
+  
+  const paddingOptions = [
+    ' Compare features & pricing.',
+    ' Read user reviews.',
+    ' Find the best solution for your needs.',
+    ' Updated weekly with new tools.',
+    ' Start your free trial today.'
+  ];
+  
+  for (const padding of paddingOptions) {
+    if (padded.length >= minLength) break;
+    if (padded.length + padding.length <= maxLength) {
+      padded += padding;
+    }
+  }
+  
+  return padded;
 };

@@ -31,9 +31,9 @@ export const AdvancedSEO = ({
     'ToolsML — Discover & Compare the Best AI Tools (Curated Weekly)');
   
   const seoDescription = description || (tool ? 
-    `${tool.description} Compare features, pricing, pros & cons. ${tool.features.slice(0, 3).join(', ')}.` :
-    category ? `Discover the best AI ${category} tools of 2025. Compare features, pricing, and user reviews.` :
-    'Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly.');
+    `${tool.description} Compare features, pricing & alternatives. Top-rated ${tool.category} AI tool with ${tool.reviewCount}+ reviews. Get started today.` :
+    category ? `Discover top AI ${category} tools in 2025. Compare features, pricing & user reviews. Find the best AI ${category} solution for your needs today.` :
+    'Find & compare 1000+ AI tools for writing, design, video, coding & more. Human-curated directory updated weekly. Compare features, pricing & reviews.');
   
   const seoKeywords = keywords || (tool ? 
     `${tool.title}, ${tool.category} AI tool, ${tool.tags.join(', ')}, AI software, artificial intelligence` :
