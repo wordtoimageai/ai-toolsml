@@ -11,6 +11,8 @@ import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 import { TrendingUp, Users, Zap, Award } from 'lucide-react';
+import FAQ from '@/components/FAQ';
+import { generateCategoryFAQs } from '@/data/category-faq';
 
 const categoryEmojis: Record<string, string> = {
   writing: '✍️',
@@ -131,6 +133,7 @@ const Category = () => {
   const emoji = categoryEmojis[category.toLowerCase()] || '🔧';
   const displayName = category.charAt(0).toUpperCase() + category.slice(1);
   const guide = categoryGuides[category.toLowerCase()];
+  const categoryFAQs = generateCategoryFAQs(category);
 
   const handleVisitTool = (toolName: string, website: string) => {
     toast({
@@ -261,6 +264,23 @@ const Category = () => {
             )}
           </div>
         </section>
+
+        {/* FAQ Section */}
+        {categoryFAQs.length > 0 && (
+          <section className="py-20 bg-muted/30">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-foreground mb-4">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-muted-foreground">
+                  Common questions about {displayName} AI tools answered
+                </p>
+              </div>
+              <FAQ items={categoryFAQs} />
+            </div>
+          </section>
+        )}
 
         {/* Bottom CTA */}
         {guide && (
