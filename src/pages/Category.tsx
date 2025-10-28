@@ -2,6 +2,9 @@ import { useParams } from 'react-router-dom';
 import { getToolsByCategory } from '@/data/tools';
 import AdvancedSEO from '@/components/AdvancedSEO';
 import CollectionPageSchema from '@/components/CollectionPageSchema';
+import AdvancedMetaTags from '@/components/AdvancedMetaTags';
+import PerformanceOptimizer from '@/components/PerformanceOptimizer';
+import { ContextualCTA } from '@/components/InternalLinks';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
@@ -159,6 +162,20 @@ const Category = () => {
         tools={tools}
         description={guide?.introduction || `Discover the best AI tools for ${category}. Compare features, pricing, and reviews.`}
       />
+      <AdvancedMetaTags
+        title={`${displayName} AI Tools - Best ${displayName} Solutions 2025`}
+        description={guide?.introduction || `Discover the best AI tools for ${category}. Compare features, pricing, and reviews.`}
+        url={`/category/${category}`}
+        type="website"
+        section={displayName}
+        tags={[`${category} AI`, 'AI tools', displayName, 'artificial intelligence']}
+      />
+      <PerformanceOptimizer
+        prefetch={tools.slice(0, 5).map(tool => ({
+          href: `/tool/${tool.id}`,
+          as: 'document' as const
+        }))}
+      />
       <Header />
       
       <main className="pt-20">
@@ -284,6 +301,14 @@ const Category = () => {
                 </p>
               </div>
               <FAQ items={categoryFAQs} />
+              
+              {/* Contextual CTA */}
+              <div className="mt-8">
+                <ContextualCTA 
+                  context="category"
+                  currentCategory={category}
+                />
+              </div>
             </div>
           </section>
         )}

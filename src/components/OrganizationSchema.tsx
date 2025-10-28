@@ -117,6 +117,19 @@ const OrganizationSchema = () => {
     "keywords": "AI tools, artificial intelligence, machine learning, AI software, productivity tools, AI directory"
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://ai-toolsml.lovable.app"
+      }
+    ]
+  };
+
   return (
     <Helmet>
       <script type="application/ld+json">
@@ -124,6 +137,9 @@ const OrganizationSchema = () => {
       </script>
       <script type="application/ld+json">
         {JSON.stringify(websiteSchema)}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify(breadcrumbSchema)}
       </script>
     </Helmet>
   );

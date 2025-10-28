@@ -11,6 +11,9 @@ import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import useAnalytics from "@/hooks/useAnalytics";
 import AdvancedSEO from "@/components/AdvancedSEO";
 import ProductSchema from "@/components/ProductSchema";
+import AdvancedMetaTags from "@/components/AdvancedMetaTags";
+import PerformanceOptimizer from "@/components/PerformanceOptimizer";
+import { RelatedTools, ContextualCTA } from "@/components/InternalLinks";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import UserReviews from "@/components/UserReviews";
@@ -18,6 +21,7 @@ import SocialShare from "@/components/SocialShare";
 import ToolRecommendations from "@/components/ToolRecommendations";
 import FAQ, { generateFAQSchema } from "@/components/FAQ";
 import { generateToolFAQs } from "@/data/tool-faq-generator";
+import { tools } from "@/data/tools";
 
 const ToolDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -77,6 +81,23 @@ const ToolDetail = () => {
         pageType="tool"
       />
       <ProductSchema tool={tool} />
+      <AdvancedMetaTags
+        title={`${tool.title} - ${tool.description}`}
+        description={tool.longDescription}
+        url={`/tool/${tool.id}`}
+        type="product"
+        tool={tool}
+        tags={tool.tags}
+        author={tool.company}
+        publishedTime={tool.founded}
+      />
+      <PerformanceOptimizer
+        preconnect={[tool.website]}
+        criticalImages={['/og-image.jpg']}
+        prefetch={[
+          { href: `/category/${tool.category}`, as: 'document' }
+        ]}
+      />
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(generateFAQSchema(generateToolFAQs(tool)))}
@@ -308,6 +329,23 @@ const ToolDetail = () => {
             showSimilar={true}
             showTrending={true}
             showPersonalized={false}
+          />
+        </div>
+
+        {/* Related Tools with Strategic Internal Linking */}
+        <div className="mt-16">
+          <RelatedTools 
+            currentTool={tool}
+            allTools={tools}
+            maxItems={3}
+          />
+        </div>
+
+        {/* Contextual CTA */}
+        <div className="mt-8">
+          <ContextualCTA 
+            context="tool-detail"
+            currentCategory={tool.category}
           />
         </div>
 

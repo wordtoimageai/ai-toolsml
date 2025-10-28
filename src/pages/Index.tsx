@@ -15,6 +15,9 @@ import AdvancedSEO from "@/components/AdvancedSEO";
 import SitemapGenerator from "@/components/SitemapGenerator";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import ItemListSchema from "@/components/ItemListSchema";
+import AdvancedMetaTags from "@/components/AdvancedMetaTags";
+import PerformanceOptimizer from "@/components/PerformanceOptimizer";
+import { CategoryLinks, PopularTags } from "@/components/InternalLinks";
 import HowItWorks from "@/components/HowItWorks";
 import AIToolCategories from "@/components/AIToolCategories";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -34,6 +37,14 @@ const Index = () => {
   const topRatedTools = [...tools].sort((a, b) => b.rating - a.rating).slice(0, 10);
   const featuredTools = tools.slice(0, 8);
 
+  // Generate popular tags for internal linking
+  const allTags = tools.flatMap(tool => tool.tags);
+  const tagCounts = allTags.reduce((acc, tag) => {
+    acc[tag] = (acc[tag] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+  const popularTags = Object.entries(tagCounts).map(([name, count]) => ({ name, count }));
+
   return (
     <>
       <AdvancedSEO 
@@ -41,6 +52,24 @@ const Index = () => {
         description="Find perfect AI tools from 1000+ options across 200+ categories. Compare features, pricing, and reviews. Updated weekly with latest AI innovations."
         pageType="homepage"
         url="https://ai-toolsml.lovable.app"
+      />
+      <AdvancedMetaTags
+        title="ToolsML - Discover Best AI Tools 2025 | 1000+ Curated Solutions"
+        description="Find perfect AI tools from 1000+ options across 200+ categories. Compare features, pricing, and reviews. Updated weekly with latest AI innovations."
+        url="/"
+        type="website"
+        tags={['AI tools', 'artificial intelligence', 'machine learning', 'productivity']}
+      />
+      <PerformanceOptimizer
+        preconnect={[
+          'https://fonts.googleapis.com',
+          'https://fonts.gstatic.com'
+        ]}
+        dnsPrefetch={[
+          '//ai-toolsml.lovable.app',
+          '//www.google-analytics.com'
+        ]}
+        criticalImages={['/og-image.jpg']}
       />
       <Helmet>
         <script type="application/ld+json">
@@ -77,6 +106,12 @@ const Index = () => {
           title="Frequently Asked Questions"
           description="Everything you need to know about finding and using AI tools on ToolsML"
         />
+        <section className="py-12 bg-muted/30">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <CategoryLinks className="mb-12" />
+            <PopularTags tags={popularTags} />
+          </div>
+        </section>
         <TrustSignals />
         <StatsSection />
         <Newsletter />
