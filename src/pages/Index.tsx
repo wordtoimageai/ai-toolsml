@@ -14,6 +14,7 @@ import Footer from "@/components/Footer";
 import AdvancedSEO from "@/components/AdvancedSEO";
 import SitemapGenerator from "@/components/SitemapGenerator";
 import OrganizationSchema from "@/components/OrganizationSchema";
+import ItemListSchema from "@/components/ItemListSchema";
 import HowItWorks from "@/components/HowItWorks";
 import AIToolCategories from "@/components/AIToolCategories";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -29,39 +30,9 @@ const Index = () => {
     trackPageView('home');
   }, [trackPageView]);
 
-  // Structured data for featured tools
-  const featuredToolsStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Featured AI Tools",
-    "description": "Top-rated AI tools curated by ToolsML editorial team",
-    "numberOfItems": 8,
-    "itemListElement": tools.slice(0, 8).map((tool, index) => ({
-      "@type": "ListItem",
-      "position": index + 1,
-      "item": {
-        "@type": "SoftwareApplication",
-        "name": tool.title,
-        "description": tool.description,
-        "url": `https://ai-toolsml.lovable.app/tool/${tool.id}`,
-        "applicationCategory": "AI Tool",
-        "operatingSystem": "Web",
-        "offers": {
-          "@type": "Offer",
-          "price": tool.pricing === 'Free' ? "0" : null,
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": tool.rating,
-          "reviewCount": tool.reviewCount,
-          "bestRating": "5",
-          "worstRating": "1"
-        }
-      }
-    }))
-  };
+  // Get top rated tools for ItemList schema
+  const topRatedTools = [...tools].sort((a, b) => b.rating - a.rating).slice(0, 10);
+  const featuredTools = tools.slice(0, 8);
 
   return (
     <>
@@ -77,6 +48,18 @@ const Index = () => {
         </script>
       </Helmet>
       <OrganizationSchema />
+      <ItemListSchema 
+        items={featuredTools}
+        listName="Featured AI Tools 2025"
+        listDescription="Top-rated AI tools curated by ToolsML editorial team"
+        maxItems={8}
+      />
+      <ItemListSchema 
+        items={topRatedTools}
+        listName="Highest Rated AI Tools"
+        listDescription="Best AI tools based on user ratings and reviews"
+        maxItems={10}
+      />
       <SitemapGenerator />
       <Header />
       <main>

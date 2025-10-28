@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import useAnalytics from "@/hooks/useAnalytics";
 import AdvancedSEO from "@/components/AdvancedSEO";
+import ProductSchema from "@/components/ProductSchema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import UserReviews from "@/components/UserReviews";
@@ -75,6 +76,7 @@ const ToolDetail = () => {
         url={window.location.href}
         pageType="tool"
       />
+      <ProductSchema tool={tool} />
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(generateFAQSchema(generateToolFAQs(tool)))}

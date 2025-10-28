@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { getToolsByCategory } from '@/data/tools';
 import AdvancedSEO from '@/components/AdvancedSEO';
+import CollectionPageSchema from '@/components/CollectionPageSchema';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
@@ -152,6 +153,11 @@ const Category = () => {
         category={category}
         url={window.location.href}
         pageType="category"
+      />
+      <CollectionPageSchema 
+        category={category}
+        tools={tools}
+        description={guide?.introduction || `Discover the best AI tools for ${category}. Compare features, pricing, and reviews.`}
       />
       <Header />
       
