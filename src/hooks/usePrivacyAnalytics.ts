@@ -25,6 +25,48 @@ const getMinimalUserAgent = (): string => {
   return match ? `${match[1]}/${match[2]}` : 'Unknown';
 };
 
+// Deep sanitize event data to remove PII from nested objects
+const sanitizeEventData = (data?: Record<string, any>): Record<string, any> | undefined => {
+  if (!data) return undefined;
+  
+  const piiFields = [
+    'email', 'phone', 'address', 'full_name', 'password', 'credit_card',
+    'ssn', 'social_security', 'creditCard', 'cardNumber', 'cvv', 'cvc',
+    'firstName', 'lastName', 'name', 'phoneNumber', 'zipCode', 'postalCode',
+    'dateOfBirth', 'dob', 'ip', 'ipAddress'
+  ];
+  
+  const deepSanitize = (obj: any): any => {
+    if (obj === null || obj === undefined) return obj;
+    
+    // Handle arrays
+    if (Array.isArray(obj)) {
+      return obj.map(item => deepSanitize(item));
+    }
+    
+    // Handle objects
+    if (typeof obj === 'object') {
+      const sanitized: Record<string, any> = {};
+      
+      for (const [key, value] of Object.entries(obj)) {
+        // Skip PII fields (case-insensitive check)
+        if (piiFields.some(field => key.toLowerCase().includes(field.toLowerCase()))) {
+          continue;
+        }
+        
+        // Recursively sanitize nested objects
+        sanitized[key] = deepSanitize(value);
+      }
+      
+      return sanitized;
+    }
+    
+    return obj;
+  };
+  
+  return deepSanitize(data);
+};
+
 export const usePrivacyAnalytics = () => {
   const { isAuthenticated, profile, user } = useAuth();
   const [privacyPreferences, setPrivacyPreferences] = useState({
@@ -73,15 +115,8 @@ export const usePrivacyAnalytics = () => {
     }
 
     try {
-      // Sanitize event data to remove PII
-      const sanitizedData = event_data ? {
-        ...event_data,
-        // Remove potentially sensitive fields
-        email: undefined,
-        phone: undefined,
-        address: undefined,
-        full_name: undefined
-      } : undefined;
+      // Deep sanitize event data to remove PII from all nested objects
+      const sanitizedData = sanitizeEventData(event_data);
 
       const eventPayload = {
         event_type,

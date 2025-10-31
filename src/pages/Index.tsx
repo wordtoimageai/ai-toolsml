@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAnalytics } from "@/hooks/useAnalytics";
+import { usePrivacyAnalytics } from "@/hooks/usePrivacyAnalytics";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -27,7 +27,7 @@ import { tools } from "@/data/tools";
 import { homepageFAQs } from "@/data/homepage-faq";
 
 const Index = () => {
-  const { trackPageView } = useAnalytics();
+  const { trackPageView } = usePrivacyAnalytics();
 
   useEffect(() => {
     trackPageView('home');

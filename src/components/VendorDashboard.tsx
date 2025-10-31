@@ -16,17 +16,15 @@ interface ToolSubmission {
   id: string;
   tool_name: string;
   tool_description: string | null;
-  tool_url: string | null;
-  logo_url: string | null;
-  category: string | null;
+  tool_url: string;
+  tool_logo_url: string | null;
+  category: string;
   pricing_model: string | null;
-  pricing_details: any;
-  features: string[] | null;
+  submission_data: any;
   status: string;
-  is_sponsored: boolean;
-  sponsored_until: string | null;
-  submitted_at: string;
-  reviewed_at: string | null;
+  created_at: string;
+  updated_at: string;
+  vendor_id: string;
 }
 
 const VendorDashboard = () => {
@@ -42,10 +40,10 @@ const VendorDashboard = () => {
     tool_name: '',
     tool_description: '',
     tool_url: '',
-    logo_url: '',
+    tool_logo_url: '',
     category: '',
     pricing_model: 'freemium',
-    pricing_details: {},
+    submission_data: {},
     features: [] as string[]
   });
 
@@ -108,10 +106,10 @@ const VendorDashboard = () => {
           tool_name: '',
           tool_description: '',
           tool_url: '',
-          logo_url: '',
+          tool_logo_url: '',
           category: '',
           pricing_model: 'freemium',
-          pricing_details: {},
+          submission_data: {},
           features: []
         });
         setShowSubmissionForm(false);
@@ -258,12 +256,12 @@ const VendorDashboard = () => {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="logo_url">Logo URL</Label>
+                  <Label htmlFor="tool_logo_url">Logo URL</Label>
                   <Input
-                    id="logo_url"
+                    id="tool_logo_url"
                     type="url"
-                    value={formData.logo_url}
-                    onChange={(e) => setFormData(prev => ({ ...prev, logo_url: e.target.value }))}
+                    value={formData.tool_logo_url}
+                    onChange={(e) => setFormData(prev => ({ ...prev, tool_logo_url: e.target.value }))}
                   />
                 </div>
               </div>
@@ -330,9 +328,9 @@ const VendorDashboard = () => {
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
-                    {submission.logo_url && (
+                    {submission.tool_logo_url && (
                       <img
-                        src={submission.logo_url}
+                        src={submission.tool_logo_url}
                         alt={submission.tool_name}
                         className="w-10 h-10 rounded-lg object-cover"
                       />
@@ -352,14 +350,11 @@ const VendorDashboard = () => {
                         )}
                       </CardTitle>
                       <CardDescription>
-                        Submitted {new Date(submission.submitted_at).toLocaleDateString()}
+                        Submitted {new Date(submission.created_at).toLocaleDateString()}
                       </CardDescription>
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
-                    {submission.is_sponsored && (
-                      <Badge variant="secondary">Sponsored</Badge>
-                    )}
                     <Badge className={getStatusColor(submission.status)}>
                       <div className="flex items-center space-x-1">
                         {getStatusIcon(submission.status)}
@@ -384,11 +379,6 @@ const VendorDashboard = () => {
                       <Badge variant="outline">{submission.pricing_model}</Badge>
                     )}
                   </div>
-                  {submission.features && submission.features.length > 0 && (
-                    <div className="text-sm">
-                      <strong>Features:</strong> {submission.features.join(', ')}
-                    </div>
-                  )}
                 </div>
               </CardContent>
             </Card>

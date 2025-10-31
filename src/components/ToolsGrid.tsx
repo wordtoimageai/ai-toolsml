@@ -8,14 +8,14 @@ import { ToolsGridSkeleton } from "./LoadingStates";
 import { useToast } from "@/hooks/use-toast";
 import { tools, searchTools, getAllTools } from "@/data/tools";
 import { useUrlState, PriceRange } from "@/hooks/useUrlState";
-import useAnalytics from "@/hooks/useAnalytics";
+import { usePrivacyAnalytics } from "@/hooks/usePrivacyAnalytics";
 
 const TOOLS_PER_PAGE = 9;
 
 const ToolsGrid = () => {
   const { toast } = useToast();
   const { search, category, sort, page, priceRange, features, userRole, updatePage } = useUrlState();
-  const { trackSearch, trackToolVisit } = useAnalytics();
+  const { trackSearch, trackToolVisit } = usePrivacyAnalytics();
   const [isLoading, setIsLoading] = useState(true);
 
   const filteredAndSortedTools = useMemo(() => {

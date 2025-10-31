@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { getToolById } from "@/data/tools";
 import { useToast } from "@/hooks/use-toast";
 import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
-import useAnalytics from "@/hooks/useAnalytics";
+import { usePrivacyAnalytics } from "@/hooks/usePrivacyAnalytics";
 import AdvancedSEO from "@/components/AdvancedSEO";
 import ProductSchema from "@/components/ProductSchema";
 import AdvancedMetaTags from "@/components/AdvancedMetaTags";
@@ -28,7 +28,7 @@ const ToolDetail = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const { addToRecentlyViewed } = useRecentlyViewed();
-  const { trackToolView, trackToolVisit } = useAnalytics();
+  const { trackToolView, trackToolVisit } = usePrivacyAnalytics();
   const tool = id ? getToolById(id) : undefined;
 
   // Track page view and add to recently viewed

@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Share2, Twitter, Linkedin, Facebook, Link, Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import useAnalytics from '@/hooks/useAnalytics';
+import { usePrivacyAnalytics } from '@/hooks/usePrivacyAnalytics';
 import { Tool } from '@/data/tools';
 
 interface SocialShareProps {
@@ -12,7 +12,7 @@ interface SocialShareProps {
 
 const SocialShare = ({ tool, className = "" }: SocialShareProps) => {
   const { toast } = useToast();
-  const { trackEvent } = useAnalytics();
+  const { trackEvent } = usePrivacyAnalytics();
   
   const currentUrl = window.location.href;
   const shareText = `Check out ${tool.title} - ${tool.description}`;

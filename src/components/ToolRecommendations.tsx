@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Star, TrendingUp, Sparkles, ArrowRight } from 'lucide-react';
 import { Tool } from '@/data/tools';
 import { useRecommendations } from '@/hooks/useRecommendations';
-import useAnalytics from '@/hooks/useAnalytics';
+import { usePrivacyAnalytics } from '@/hooks/usePrivacyAnalytics';
 
 interface ToolRecommendationsProps {
   currentTool?: Tool;
@@ -23,7 +23,7 @@ const ToolRecommendations = ({
   className = ""
 }: ToolRecommendationsProps) => {
   const { similar, trending, personalized } = useRecommendations(currentTool);
-  const { trackEvent } = useAnalytics();
+  const { trackEvent } = usePrivacyAnalytics();
 
   const handleRecommendationClick = (tool: Tool, source: 'similar' | 'trending' | 'personalized') => {
     trackEvent({

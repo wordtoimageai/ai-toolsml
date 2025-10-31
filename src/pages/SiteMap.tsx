@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useAnalytics } from "@/hooks/useAnalytics";
+import { usePrivacyAnalytics } from "@/hooks/usePrivacyAnalytics";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AdvancedSEO from "@/components/AdvancedSEO";
@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Circle, AlertCircle } from "lucide-react";
 
 const SiteMap = () => {
-  const { trackPageView } = useAnalytics();
+  const { trackPageView } = usePrivacyAnalytics();
 
   useEffect(() => {
     trackPageView('sitemap');

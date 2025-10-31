@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Star, ThumbsUp, MessageSquare, Plus } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import useAnalytics from '@/hooks/useAnalytics';
+import { usePrivacyAnalytics } from '@/hooks/usePrivacyAnalytics';
 
 interface Review {
   id: string;
@@ -37,7 +37,7 @@ const UserReviews = ({ toolId }: UserReviewsProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const { toast } = useToast();
-  const { trackEvent } = useAnalytics();
+  const { trackEvent } = usePrivacyAnalytics();
 
   // Load reviews from localStorage
   useEffect(() => {
