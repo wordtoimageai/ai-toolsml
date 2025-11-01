@@ -21,6 +21,8 @@ interface Profile {
   updated_at: string;
 }
 
+type UserRole = 'admin' | 'vendor' | 'user';
+
 interface AuthState {
   user: User | null;
   session: Session | null;
@@ -29,6 +31,8 @@ interface AuthState {
   isAuthenticated: boolean;
   isPro: boolean;
   isVendor: boolean;
+  isAdmin: boolean;
+  roles: UserRole[];
 }
 
 export const useAuth = (): AuthState & {
@@ -38,6 +42,7 @@ export const useAuth = (): AuthState & {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [roles, setRoles] = useState<UserRole[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -78,21 +83,35 @@ export const useAuth = (): AuthState & {
 
   const fetchProfile = async (userId: string) => {
     try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', userId)
-        .single();
+      // Fetch profile and roles in parallel for better performance
+      const [profileResult, rolesResult] = await Promise.all([
+        supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', userId)
+          .single(),
+        supabase
+          .from('user_roles')
+          .select('role')
+          .eq('user_id', userId)
+      ]);
 
-      if (error) {
-        console.error('Error fetching profile:', error);
+      if (profileResult.error) {
+        console.error('Error fetching profile:', profileResult.error);
         return;
       }
 
       setProfile({
-        ...data,
-        privacy_preferences: data.privacy_preferences as Profile['privacy_preferences']
+        ...profileResult.data,
+        privacy_preferences: profileResult.data.privacy_preferences as Profile['privacy_preferences']
       });
+
+      // Set roles from user_roles table (server-side source of truth)
+      if (!rolesResult.error && rolesResult.data) {
+        setRoles(rolesResult.data.map(r => r.role as UserRole));
+      } else {
+        setRoles([]);
+      }
     } catch (error) {
       console.error('Error fetching profile:', error);
     }
@@ -113,7 +132,9 @@ export const useAuth = (): AuthState & {
 
   const isAuthenticated = !!user;
   const isPro = profile?.subscription_tier === 'pro' || profile?.subscription_tier === 'enterprise';
-  const isVendor = profile?.is_vendor || false;
+  // Use roles array as source of truth, with is_vendor as fallback for backward compatibility
+  const isVendor = roles.includes('vendor') || profile?.is_vendor || false;
+  const isAdmin = roles.includes('admin');
 
   return {
     user,
@@ -123,6 +144,8 @@ export const useAuth = (): AuthState & {
     isAuthenticated,
     isPro,
     isVendor,
+    isAdmin,
+    roles,
     signOut,
     refreshProfile,
   };
