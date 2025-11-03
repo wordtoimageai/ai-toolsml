@@ -133,11 +133,13 @@ export const usePrivacyAnalytics = () => {
         .from('analytics_events')
         .insert([eventPayload]);
 
-      if (error) {
+      if (error && import.meta.env.DEV) {
         console.error('Analytics tracking error:', error);
       }
     } catch (error) {
-      console.error('Failed to track event:', error);
+      if (import.meta.env.DEV) {
+        console.error('Failed to track event:', error);
+      }
     }
   }, [shouldTrack, isAuthenticated, user?.id]);
 

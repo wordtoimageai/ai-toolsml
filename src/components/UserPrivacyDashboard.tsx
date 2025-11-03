@@ -46,7 +46,9 @@ const UserPrivacyDashboard = () => {
       if (error) throw error;
       setAnalyticsData(data || []);
     } catch (error) {
-      console.error('Failed to fetch analytics data:', error);
+      if (import.meta.env.DEV) {
+        console.error('Failed to fetch analytics data:', error);
+      }
     } finally {
       setLoading(false);
     }
@@ -74,7 +76,9 @@ const UserPrivacyDashboard = () => {
         description: "Your privacy settings have been saved successfully."
       });
     } catch (error) {
-      console.error('Failed to update preferences:', error);
+      if (import.meta.env.DEV) {
+        console.error('Failed to update preferences:', error);
+      }
       toast({
         title: "Update failed",
         description: "Failed to update privacy preferences. Please try again.",
@@ -110,7 +114,9 @@ const UserPrivacyDashboard = () => {
         description: "Your data has been downloaded successfully."
       });
     } catch (error) {
-      console.error('Failed to download data:', error);
+      if (import.meta.env.DEV) {
+        console.error('Failed to download data:', error);
+      }
       toast({
         title: "Export failed",
         description: "Failed to export your data. Please try again.",
@@ -138,7 +144,9 @@ const UserPrivacyDashboard = () => {
         description: "All your analytics data has been permanently deleted."
       });
     } catch (error) {
-      console.error('Failed to delete data:', error);
+      if (import.meta.env.DEV) {
+        console.error('Failed to delete data:', error);
+      }
       toast({
         title: "Deletion failed",
         description: "Failed to delete your data. Please try again.",

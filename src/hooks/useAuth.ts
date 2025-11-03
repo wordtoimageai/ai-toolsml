@@ -97,7 +97,9 @@ export const useAuth = (): AuthState & {
       ]);
 
       if (profileResult.error) {
-        console.error('Error fetching profile:', profileResult.error);
+        if (import.meta.env.DEV) {
+          console.error('Error fetching profile:', profileResult.error);
+        }
         return;
       }
 
@@ -113,13 +115,15 @@ export const useAuth = (): AuthState & {
         setRoles([]);
       }
     } catch (error) {
-      console.error('Error fetching profile:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error fetching profile:', error);
+      }
     }
   };
 
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
-    if (error) {
+    if (error && import.meta.env.DEV) {
       console.error('Error signing out:', error);
     }
   };
