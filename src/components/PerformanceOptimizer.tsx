@@ -96,17 +96,37 @@ const PerformanceOptimizer = ({
 
   return (
     <Helmet>
-      {/* Preconnect to critical origins */}
-      {preconnect.map((url) => (
-        <link key={url} rel="preconnect" href={url} crossOrigin="anonymous" />
-      ))}
+      {/* Critical inline CSS for above-the-fold content */}
+      <style>{`
+        .hero-gradient{background:linear-gradient(135deg,hsl(235,47%,55%),hsl(252,35%,45%));min-height:100vh}
+        .hero-title{line-height:1.2;letter-spacing:-0.02em;font-weight:700}
+        .hero-subtitle{line-height:1.6}
+        .animate-fade-in{animation:fadeIn 0.6s ease-in}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+      `}</style>
+
+      {/* Preconnect to critical origins - avoid duplicates */}
+      {preconnect.length > 0 ? (
+        preconnect.map((url) => (
+          <link key={url} rel="preconnect" href={url} crossOrigin="anonymous" />
+        ))
+      ) : (
+        <>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        </>
+      )}
 
       {/* DNS Prefetch for third-party domains */}
-      {dnsPrefetch.map((url) => (
-        <link key={url} rel="dns-prefetch" href={url} />
-      ))}
+      {dnsPrefetch.length > 0 ? (
+        dnsPrefetch.map((url) => (
+          <link key={url} rel="dns-prefetch" href={url} />
+        ))
+      ) : (
+        <link rel="dns-prefetch" href="//ai-toolsml.lovable.app" />
+      )}
 
-      {/* Preload critical resources */}
+      {/* Preload critical resources with high priority */}
       {preload.map((resource, index) => (
         <link
           key={`${resource.href}-${index}`}
@@ -115,6 +135,7 @@ const PerformanceOptimizer = ({
           as={resource.as}
           type={resource.type}
           crossOrigin={resource.crossorigin}
+          fetchPriority="high"
         />
       ))}
 
@@ -128,26 +149,26 @@ const PerformanceOptimizer = ({
         />
       ))}
 
-      {/* Preload critical images */}
+      {/* Preload critical images with high priority */}
       {criticalImages.map((imageUrl) => (
         <link
           key={imageUrl}
           rel="preload"
           href={imageUrl}
           as="image"
-          imageSrcSet={`${imageUrl} 1x, ${imageUrl.replace('.jpg', '@2x.jpg')} 2x`}
-          imageSizes="100vw"
+          fetchPriority="high"
         />
       ))}
-
-      {/* Resource hints for performance */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="dns-prefetch" href="//ai-toolsml.lovable.app" />
-      <link rel="dns-prefetch" href="//www.google-analytics.com" />
       
-      {/* Early hints for critical CSS */}
-      <link rel="preload" href="/src/index.css" as="style" />
+      {/* Optimize font loading with font-display swap */}
+      <link 
+        rel="preload" 
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
+        as="style"
+      />
+      <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      </noscript>
       
       {/* Module preload for critical JS */}
       <link rel="modulepreload" href="/src/main.tsx" />

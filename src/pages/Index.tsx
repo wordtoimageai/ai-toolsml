@@ -63,11 +63,15 @@ const Index = () => {
       <PerformanceOptimizer
         preconnect={[
           'https://fonts.googleapis.com',
-          'https://fonts.gstatic.com'
+          'https://fonts.gstatic.com',
+          'https://www.googletagmanager.com',
+          'https://www.google-analytics.com'
         ]}
         dnsPrefetch={[
-          '//ai-toolsml.lovable.app',
-          '//www.google-analytics.com'
+          '//ai-toolsml.lovable.app'
+        ]}
+        preload={[
+          { href: '/og-image.jpg', as: 'image' }
         ]}
         criticalImages={['/og-image.jpg']}
       />

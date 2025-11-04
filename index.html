@@ -7,8 +7,17 @@
     <!-- Critical Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Async font loading with font-display swap for optimal LCP -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+    <script>
+      // Async font loading polyfill for older browsers
+      !function(e){"use strict";var t=function(t,n,o){var r,a=e.document,i=a.createElement("link");if(n)r=n;else{var d=(a.body||a.getElementsByTagName("head")[0]).childNodes;r=d[d.length-1]}var l=a.styleSheets;if(o)for(var s in o)o.hasOwnProperty(s)&&i.setAttribute(s,o[s]);i.rel="stylesheet",i.href=t,i.media="only x",function e(t){if(a.body)return t();setTimeout(function(){e(t)})}(function(){r.parentNode.insertBefore(i,n?r:r.nextSibling)});var f=function(e){for(var t=i.href,n=l.length;n--;)if(l[n].href===t)return e();setTimeout(function(){f(e)})};return i.addEventListener&&i.addEventListener("load",function(){this.media="all"}),i.onloadcssdefined=f,f(function(){i.media!=="all"&&(i.media="all")}),i};"undefined"!=typeof exports?exports.loadCSS=t:e.loadCSS=t}("undefined"!=typeof global?global:this);
+    </script>
     
     <!-- Let Vite handle asset loading and MIME types -->
     
@@ -135,14 +144,16 @@
     <meta name="twitter:site" content="@toolsml" />
     <meta name="twitter:creator" content="@toolsml" />
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BWC5XNH86E"></script>
+    <!-- Google tag (gtag.js) - Defer to prevent render blocking -->
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-BWC5XNH86E"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'G-BWC5XNH86E');
+      gtag('config', 'G-BWC5XNH86E', {
+        'send_page_view': false  // Prevent automatic page view, let app control
+      });
     </script>
   </head>
 
