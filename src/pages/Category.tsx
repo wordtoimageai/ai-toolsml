@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { getToolsByCategory } from '@/data/tools';
+import { getCategorySEO } from '@/data/category-seo';
 import AdvancedSEO from '@/components/AdvancedSEO';
 import CollectionPageSchema from '@/components/CollectionPageSchema';
 import AdvancedMetaTags from '@/components/AdvancedMetaTags';
@@ -138,6 +139,7 @@ const Category = () => {
   const displayName = category.charAt(0).toUpperCase() + category.slice(1);
   const guide = categoryGuides[category.toLowerCase()];
   const categoryFAQs = generateCategoryFAQs(category);
+  const categorySEO = getCategorySEO(category);
 
   const handleVisitTool = (toolName: string, website: string) => {
     toast({
@@ -150,9 +152,9 @@ const Category = () => {
   return (
     <div className="min-h-screen">
       <AdvancedSEO 
-        title={`${displayName} AI Tools - Best ${displayName} Solutions 2025`}
-        description={guide?.introduction || `Discover the best AI tools for ${category}. Compare features, pricing, and reviews.`}
-        keywords={`${category} AI tools, ${category} artificial intelligence, ${category} automation, best ${category} tools`}
+        title={categorySEO.title}
+        description={categorySEO.description}
+        keywords={categorySEO.keywords}
         category={category}
         url={window.location.href}
         pageType="category"
@@ -160,15 +162,15 @@ const Category = () => {
       <CollectionPageSchema 
         category={category}
         tools={tools}
-        description={guide?.introduction || `Discover the best AI tools for ${category}. Compare features, pricing, and reviews.`}
+        description={categorySEO.description}
       />
       <AdvancedMetaTags
-        title={`${displayName} AI Tools - Best ${displayName} Solutions 2025`}
-        description={guide?.introduction || `Discover the best AI tools for ${category}. Compare features, pricing, and reviews.`}
+        title={categorySEO.title}
+        description={categorySEO.description}
         url={`/category/${category}`}
         type="website"
         section={displayName}
-        tags={[`${category} AI`, 'AI tools', displayName, 'artificial intelligence']}
+        tags={categorySEO.keywords.split(', ')}
       />
       <PerformanceOptimizer
         prefetch={tools.slice(0, 5).map(tool => ({
