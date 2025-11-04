@@ -166,9 +166,7 @@ const PerformanceOptimizer = ({
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
         as="style"
       />
-      <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-      </noscript>
+      <noscript>{`<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />`}</noscript>
       
       {/* Module preload for critical JS */}
       <link rel="modulepreload" href="/src/main.tsx" />
