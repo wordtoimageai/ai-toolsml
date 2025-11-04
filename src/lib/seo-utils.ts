@@ -130,7 +130,6 @@ export const generateToolStructuredData = (tool: Tool, url: string) => {
     },
     "datePublished": tool.founded,
     "featureList": tool.features,
-    "screenshot": `https://ai-toolsml.lovable.app/tool-screenshots/${tool.id}.jpg`,
     "softwareVersion": "Latest",
     "downloadUrl": tool.website,
     "installUrl": tool.website,
@@ -139,6 +138,7 @@ export const generateToolStructuredData = (tool: Tool, url: string) => {
     "processorRequirements": "Any modern device",
     "keywords": tool.tags.join(', '),
     "isAccessibleForFree": tool.pricing === 'Free',
+    "screenshot": `https://toolsml.com/tool-screenshots/${tool.id}.jpg`,
     "hasPart": tool.features.map((feature, index) => ({
       "@type": "SoftwareFeature",
       "name": feature,
@@ -163,7 +163,7 @@ export const generateCategoryStructuredData = (
     "url": url,
     "hasPart": tools.slice(0, 10).map(tool => ({
       "@type": "SoftwareApplication",
-      "@id": `https://ai-toolsml.lovable.app/tool/${tool.id}`,
+      "@id": `https://toolsml.com/tool/${tool.id}`,
       "name": tool.title,
       "description": tool.description,
       "aggregateRating": {
@@ -180,7 +180,7 @@ export const generateCategoryStructuredData = (
         "position": index + 1,
         "item": {
           "@type": "SoftwareApplication",
-          "@id": `https://ai-toolsml.lovable.app/tool/${tool.id}`,
+          "@id": `https://toolsml.com/tool/${tool.id}`,
           "name": tool.title,
           "description": tool.description
         }
@@ -313,7 +313,7 @@ export const generateKeywords = (
  * Generate canonical URL with proper formatting
  */
 export const generateCanonicalUrl = (path: string): string => {
-  const baseUrl = 'https://ai-toolsml.lovable.app';
+  const baseUrl = 'https://toolsml.com';
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   return `${baseUrl}${cleanPath}`;
 };
@@ -322,7 +322,7 @@ export const generateCanonicalUrl = (path: string): string => {
  * Generate Open Graph image URL for tools
  */
 export const generateOGImage = (toolName?: string, category?: string): string => {
-  const baseUrl = 'https://ai-toolsml.lovable.app';
+  const baseUrl = 'https://toolsml.com';
   
   if (toolName) {
     // Tool-specific OG image

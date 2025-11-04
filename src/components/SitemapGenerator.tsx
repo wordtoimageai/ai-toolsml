@@ -9,7 +9,7 @@ export const SitemapGenerator = () => {
   useEffect(() => {
     // Generate sitemap data
     const generateSitemap = () => {
-      const baseUrl = 'https://ai-toolsml.lovable.app';
+      const baseUrl = 'https://toolsml.com';
       const currentDate = new Date().toISOString().split('T')[0];
       
       // Static pages with proper priorities

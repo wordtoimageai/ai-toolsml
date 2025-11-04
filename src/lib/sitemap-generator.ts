@@ -15,7 +15,7 @@ interface SitemapEntry {
  * Generate sitemap entries for all pages
  */
 export const generateSitemapEntries = (): SitemapEntry[] => {
-  const baseUrl = 'https://ai-toolsml.lovable.app';
+  const baseUrl = 'https://toolsml.com';
   const currentDate = new Date().toISOString().split('T')[0];
   const entries: SitemapEntry[] = [];
 
@@ -147,7 +147,7 @@ export const generateSitemapXML = (): string => {
  * Generate robots.txt content
  */
 export const generateRobotsTxt = (): string => {
-  const baseUrl = 'https://ai-toolsml.lovable.app';
+  const baseUrl = 'https://toolsml.com';
   
   return `User-agent: *
 Allow: /
@@ -266,7 +266,7 @@ export const generateImageSitemapXML = (): string => {
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
   xml += '        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n';
   
-  const baseUrl = 'https://ai-toolsml.lovable.app';
+  const baseUrl = 'https://toolsml.com';
   
   // Homepage images
   xml += '  <url>\n';
@@ -308,7 +308,7 @@ export const generateNewsSitemapXML = (): string => {
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
   xml += '        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">\n';
   
-  const baseUrl = 'https://ai-toolsml.lovable.app';
+  const baseUrl = 'https://toolsml.com';
   const currentDate = new Date();
   
   // Recent blog posts (last 7 days for news sitemap)
@@ -353,7 +353,7 @@ export const generateNewsSitemapXML = (): string => {
  * Generate sitemap index file
  */
 export const generateSitemapIndex = (): string => {
-  const baseUrl = 'https://ai-toolsml.lovable.app';
+  const baseUrl = 'https://toolsml.com';
   const currentDate = new Date().toISOString().split('T')[0];
   
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
