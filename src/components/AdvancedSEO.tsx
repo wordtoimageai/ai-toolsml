@@ -1,5 +1,12 @@
 import { Helmet } from 'react-helmet-async';
 import { Tool } from '@/data/tools';
+import { 
+  generateSEOTitle, 
+  generateMetaDescription, 
+  generateKeywords,
+  generateCanonicalUrl,
+  generateOGImage
+} from '@/lib/seo-utils';
 
 interface AdvancedSEOProps {
   title?: string;
@@ -13,7 +20,7 @@ interface AdvancedSEOProps {
 }
 
 /**
- * Advanced SEO component with comprehensive optimization
+ * Advanced SEO component with comprehensive optimization and dynamic meta tag generation
  */
 export const AdvancedSEO = ({
   title,
@@ -25,24 +32,32 @@ export const AdvancedSEO = ({
   category,
   pageType = 'homepage'
 }: AdvancedSEOProps) => {
-  // Generate optimized content
-  const seoTitle = title || (tool ? `${tool.title} - AI ${tool.category} Tool | ToolsML` : 
-    category ? `Best AI ${category.charAt(0).toUpperCase() + category.slice(1)} Tools 2025 | ToolsML` :
-    'ToolsML — Discover & Compare the Best AI Tools (Curated Weekly)');
+  // Generate optimized, dynamic content using SEO utility functions
+  const seoTitle = title || (
+    tool 
+      ? `${tool.title} Review 2025: Features, Pricing & Alternatives | ToolsML`
+      : category 
+        ? generateSEOTitle(undefined, category)
+        : generateSEOTitle()
+  );
   
-  const seoDescription = description || (tool ? 
-    `${tool.description} Compare features, pricing & alternatives. Top-rated ${tool.category} AI tool with ${tool.reviewCount}+ reviews. Get started today.` :
-    category ? `Discover top AI ${category} tools in 2025. Compare features, pricing & user reviews. Find the best AI ${category} solution for your needs today.` :
-    'Find & compare 1000+ AI tools for writing, design, video, coding & more. Human-curated directory updated weekly. Compare features, pricing & reviews.');
+  const seoDescription = description || (
+    tool 
+      ? generateMetaDescription(tool.title, tool.category, tool.longDescription)
+      : category 
+        ? generateMetaDescription(undefined, category)
+        : generateMetaDescription()
+  );
   
-  const seoKeywords = keywords || (tool ? 
-    `${tool.title}, ${tool.category} AI tool, ${tool.tags.join(', ')}, AI software, artificial intelligence` :
-    category ? `AI ${category} tools, best ${category} software, ${category} automation, AI assistant` :
-    'AI tools, artificial intelligence, productivity tools, AI directory, AI comparison');
+  const seoKeywords = keywords || generateKeywords(tool?.title, tool?.category, tool?.tags);
   
-  const canonicalUrl = url.startsWith('http') ? url : `https://ai-toolsml.lovable.app${url}`;
-  const ogImage = image || '/og-image.jpg';
-  const fullImageUrl = ogImage.startsWith('http') ? ogImage : `https://ai-toolsml.lovable.app${ogImage}`;
+  // Generate proper URLs
+  const pathOnly = url.includes('http') ? new URL(url).pathname : url;
+  const canonicalUrl = generateCanonicalUrl(pathOnly);
+  
+  // Generate dynamic Open Graph image based on tool data
+  const ogImage = image || (tool ? generateOGImage(tool.title, tool.category) : generateOGImage());
+  const fullImageUrl = ogImage.startsWith('http') ? ogImage : `https://toolsml.com${ogImage}`;
   
   // Generate structured data
   const generateStructuredData = () => {
@@ -138,12 +153,19 @@ export const AdvancedSEO = ({
         {JSON.stringify(generateStructuredData())}
       </script>
       
-      {/* Additional tool-specific meta tags */}
+      {/* Additional tool-specific meta tags for rich results */}
       {tool && (
         <>
           <meta property="product:price:amount" content={tool.pricing === 'Free' ? '0' : undefined} />
           <meta property="product:price:currency" content="USD" />
           <meta name="application-name" content={tool.title} />
+          <meta property="product:brand" content={tool.company} />
+          <meta property="product:category" content={`AI ${tool.category} Tools`} />
+          <meta property="product:rating:value" content={tool.rating.toString()} />
+          <meta property="product:rating:count" content={tool.reviewCount.toString()} />
+          {tool.features.length > 0 && (
+            <meta name="keywords" content={`${tool.title}, ${tool.features.slice(0, 3).join(', ')}, ${tool.tags.join(', ')}`} />
+          )}
         </>
       )}
     </Helmet>
