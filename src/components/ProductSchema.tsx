@@ -1,23 +1,27 @@
 import { Helmet } from 'react-helmet-async';
 import { Tool } from '@/data/tools';
+import { generateOGImage } from '@/lib/seo-utils';
 
 interface ProductSchemaProps {
   tool: Tool;
 }
 
 /**
- * Product Schema component for tool detail pages
- * Provides comprehensive structured data for individual tools
+ * Product Schema component for tool detail pages with dynamic structured data
+ * Provides comprehensive structured data for individual tools with rich metadata
  */
 const ProductSchema = ({ tool }: ProductSchemaProps) => {
+  const toolUrl = `https://toolsml.com/tool/${tool.id}`;
+  const toolImage = generateOGImage(tool.title, tool.category);
+  
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
-    "@id": `https://ai-toolsml.lovable.app/tool/${tool.id}`,
+    "@id": toolUrl,
     "name": tool.title,
     "description": tool.longDescription,
-    "image": "https://ai-toolsml.lovable.app/og-image.jpg",
-    "url": `https://ai-toolsml.lovable.app/tool/${tool.id}`,
+    "image": toolImage,
+    "url": toolUrl,
     "brand": {
       "@type": "Brand",
       "name": tool.company
@@ -26,7 +30,8 @@ const ProductSchema = ({ tool }: ProductSchemaProps) => {
       "@type": "Organization",
       "name": tool.company
     },
-    "category": tool.category,
+    "category": `AI ${tool.category} Tools`,
+    "keywords": tool.tags.join(', '),
     "audience": {
       "@type": "Audience",
       "audienceType": "Business Professional"
@@ -65,7 +70,7 @@ const ProductSchema = ({ tool }: ProductSchemaProps) => {
           "name": "ToolsML Editorial Team"
         },
         "datePublished": tool.founded,
-        "reviewBody": tool.description
+        "reviewBody": `${tool.description} Key features include: ${tool.features.slice(0, 3).join(', ')}. Strengths: ${tool.pros.join(', ')}.`
       }
     ],
     "additionalProperty": tool.features.map(feature => ({
