@@ -25,7 +25,7 @@ const Tag = () => {
       <AdvancedSEO 
         title={`${decodedTag} AI Tools - Discover ${filteredTools.length}+ Solutions`}
         description={`Discover the best AI tools tagged with "${decodedTag}". Find cutting-edge solutions for your needs. Browse ${filteredTools.length} tools.`}
-        url={window.location.href}
+        url={`/tag/${encodeURIComponent(tag)}`}
         pageType="homepage"
       />
       <Header />

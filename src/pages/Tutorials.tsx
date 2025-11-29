@@ -84,6 +84,7 @@ const Tutorials = () => {
         title="AI Tools Tutorials - Learn How to Use AI Effectively"
         description="Step-by-step tutorials on how to use AI tools effectively. From beginner guides to advanced techniques."
         keywords="AI tutorials, how to use AI tools, AI guides, artificial intelligence learning"
+        url="/tutorials"
       />
       <Header />
       

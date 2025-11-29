@@ -60,6 +60,7 @@ const Compare = () => {
       <SEO 
         title={`Compare ${tools.map(t => t.title).join(' vs ')}`}
         description={`Side-by-side comparison of ${tools.map(t => t.title).join(', ')}`}
+        url="/comparison"
       />
       <Header />
       
