@@ -95,10 +95,10 @@ export const AdvancedSEO = ({
       "@type": "WebSite",
       "name": "ToolsML",
       "description": "Human-curated directory of AI tools with pricing, features, and reviews",
-      "url": "https://ai-toolsml.lovable.app",
+      "url": "https://toolsml.com",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://ai-toolsml.lovable.app/?search={search_term_string}",
+        "target": "https://toolsml.com/?search={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     };
@@ -146,7 +146,7 @@ export const AdvancedSEO = ({
       {/* Performance hints */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="dns-prefetch" href="//ai-toolsml.lovable.app" />
+      <link rel="dns-prefetch" href="//toolsml.com" />
       
       {/* Structured Data */}
       <script type="application/ld+json">

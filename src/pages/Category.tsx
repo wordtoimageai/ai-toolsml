@@ -156,7 +156,7 @@ const Category = () => {
         description={categorySEO.description}
         keywords={categorySEO.keywords}
         category={category}
-        url={window.location.href}
+        url={`/category/${category}`}
         pageType="category"
       />
       <CollectionPageSchema 

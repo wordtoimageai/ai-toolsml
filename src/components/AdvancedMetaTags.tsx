@@ -77,7 +77,6 @@ const AdvancedMetaTags = ({
       <meta property="og:image:type" content="image/jpeg" />
       <meta property="og:site_name" content="ToolsML" />
       <meta property="og:locale" content="en_US" />
-      <meta property="og:locale:alternate" content="en_GB" />
       
       {/* Article-specific tags */}
       {type === 'article' && (
@@ -114,7 +113,7 @@ const AdvancedMetaTags = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={finalImageAlt} />
-      <meta name="twitter:domain" content="ai-toolsml.lovable.app" />
+      <meta name="twitter:domain" content="toolsml.com" />
       <meta name="twitter:url" content={fullUrl} />
       
       {/* Twitter App Card (for mobile deep linking) */}

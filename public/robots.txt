@@ -2,9 +2,9 @@ User-agent: *
 Allow: /
 
 # Sitemap references
-Sitemap: https://ai-toolsml.lovable.app/sitemap.xml
-Sitemap: https://ai-toolsml.lovable.app/sitemap-images.xml
-Sitemap: https://ai-toolsml.lovable.app/sitemap-news.xml
+Sitemap: https://toolsml.com/sitemap.xml
+Sitemap: https://toolsml.com/sitemap-images.xml
+Sitemap: https://toolsml.com/sitemap-news.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

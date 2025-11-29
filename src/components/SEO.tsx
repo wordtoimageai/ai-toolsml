@@ -25,7 +25,7 @@ const SEO = ({
   description,
   keywords,
   image = "/og-image.png",
-  url = "https://ai-toolsml.lovable.app",
+  url = "https://toolsml.com",
   type = "website",
   jsonLd,
   toolName,
@@ -47,19 +47,19 @@ const SEO = ({
     "@graph": [
       {
         "@type": "WebSite",
-        "@id": "https://ai-toolsml.lovable.app/#website",
-        "url": "https://ai-toolsml.lovable.app",
+        "@id": "https://toolsml.com/#website",
+        "url": "https://toolsml.com",
         "name": "ToolsML",
         "description": "Discover and compare the best AI tools with our human-curated directory",
         "publisher": {
-          "@id": "https://ai-toolsml.lovable.app/#organization"
+          "@id": "https://toolsml.com/#organization"
         },
         "potentialAction": [
           {
             "@type": "SearchAction",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://ai-toolsml.lovable.app/search?q={search_term_string}"
+              "urlTemplate": "https://toolsml.com/search?q={search_term_string}"
             },
             "query-input": "required name=search_term_string"
           }
@@ -68,21 +68,21 @@ const SEO = ({
       },
       {
         "@type": "Organization",
-        "@id": "https://ai-toolsml.lovable.app/#organization",
+        "@id": "https://toolsml.com/#organization",
         "name": "ToolsML",
-        "url": "https://ai-toolsml.lovable.app",
+        "url": "https://toolsml.com",
         "logo": {
           "@type": "ImageObject",
           "inLanguage": "en-US",
-          "@id": "https://ai-toolsml.lovable.app/#/schema/logo/image/",
-          "url": "https://ai-toolsml.lovable.app/favicon.png",
-          "contentUrl": "https://ai-toolsml.lovable.app/favicon.png",
+          "@id": "https://toolsml.com/#/schema/logo/image/",
+          "url": "https://toolsml.com/favicon.png",
+          "contentUrl": "https://toolsml.com/favicon.png",
           "width": 512,
           "height": 512,
           "caption": "ToolsML"
         },
         "image": {
-          "@id": "https://ai-toolsml.lovable.app/#/schema/logo/image/"
+          "@id": "https://toolsml.com/#/schema/logo/image/"
         },
         "sameAs": [],
         "description": "Human-curated directory of AI tools with pricing, features, and reviews"
@@ -93,10 +93,10 @@ const SEO = ({
         "url": url,
         "name": fullTitle,
         "isPartOf": {
-          "@id": "https://ai-toolsml.lovable.app/#website"
+          "@id": "https://toolsml.com/#website"
         },
         "about": {
-          "@id": "https://ai-toolsml.lovable.app/#organization"
+          "@id": "https://toolsml.com/#organization"
         },
         "description": description,
         "breadcrumb": {
