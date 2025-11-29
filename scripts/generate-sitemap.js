@@ -14,8 +14,10 @@ import {
   generateImageSitemapXML, 
   generateNewsSitemapXML,
   generateSitemapIndex,
+  generateCategorySitemapXML,
   generateRobotsTxt 
 } from '../src/lib/sitemap-generator.ts';
+import { CATEGORIES } from '../src/lib/constants.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -45,6 +47,14 @@ try {
   writeFileSync(join(publicDir, 'sitemap-news.xml'), newsSitemap, 'utf8');
   console.log('✅ Generated sitemap-news.xml');
 
+  // Generate category-specific sitemaps
+  console.log('📝 Generating category-specific sitemaps...');
+  CATEGORIES.forEach(category => {
+    const categorySitemap = generateCategorySitemapXML(category.value);
+    writeFileSync(join(publicDir, `sitemap-${category.value}.xml`), categorySitemap, 'utf8');
+    console.log(`✅ Generated sitemap-${category.value}.xml`);
+  });
+
   // Generate sitemap index
   console.log('📝 Generating sitemap index...');
   const sitemapIndex = generateSitemapIndex();
@@ -62,6 +72,9 @@ try {
   console.log('   - sitemap.xml (main sitemap with all URLs)');
   console.log('   - sitemap-images.xml (image sitemap for tool screenshots)');
   console.log('   - sitemap-news.xml (news sitemap for blog posts)');
+  CATEGORIES.forEach(category => {
+    console.log(`   - sitemap-${category.value}.xml (${category.label} category sitemap)`);
+  });
   console.log('   - sitemap-index.xml (sitemap index file)');
   console.log('   - robots.txt (robots file with sitemap references)');
   console.log('\n📤 Next steps:');
