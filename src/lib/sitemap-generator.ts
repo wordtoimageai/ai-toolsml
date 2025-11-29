@@ -1,4 +1,5 @@
 import { tools } from '../data/tools';
+import { CATEGORIES } from './constants';
 
 /**
  * Dynamic sitemap generation utilities for better SEO crawling
@@ -149,13 +150,20 @@ export const generateSitemapXML = (): string => {
 export const generateRobotsTxt = (): string => {
   const baseUrl = 'https://toolsml.com';
   
+  // Build category sitemap references
+  const categorySitemaps = CATEGORIES.map(cat => `Sitemap: ${baseUrl}/sitemap-${cat.value}.xml`).join('\n');
+  
   return `User-agent: *
 Allow: /
 
-# Sitemap references
+# Sitemap index (includes all sitemaps)
+Sitemap: ${baseUrl}/sitemap-index.xml
+
+# Individual sitemaps
 Sitemap: ${baseUrl}/sitemap.xml
 Sitemap: ${baseUrl}/sitemap-images.xml
 Sitemap: ${baseUrl}/sitemap-news.xml
+${categorySitemaps}
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
@@ -350,6 +358,46 @@ export const generateNewsSitemapXML = (): string => {
 };
 
 /**
+ * Generate category-specific sitemap for a given category
+ */
+export const generateCategorySitemapXML = (categoryValue: string): string => {
+  const baseUrl = 'https://toolsml.com';
+  const currentDate = new Date().toISOString().split('T')[0];
+  
+  // Filter tools by category
+  const categoryTools = tools.filter(tool => tool.category === categoryValue);
+  
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
+  xml += '        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n';
+  xml += '        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9\n';
+  xml += '        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">\n';
+  
+  // Category page itself
+  xml += '  <url>\n';
+  xml += `    <loc>${baseUrl}/category/${categoryValue}</loc>\n`;
+  xml += `    <lastmod>${currentDate}</lastmod>\n`;
+  xml += '    <changefreq>daily</changefreq>\n';
+  xml += '    <priority>0.9</priority>\n';
+  xml += '  </url>\n';
+  
+  // Tool pages in this category
+  categoryTools.forEach(tool => {
+    xml += '  <url>\n';
+    xml += `    <loc>${baseUrl}/tool/${tool.id}</loc>\n`;
+    xml += `    <lastmod>${currentDate}</lastmod>\n`;
+    xml += '    <changefreq>weekly</changefreq>\n';
+    xml += '    <priority>0.8</priority>\n';
+    xml += '  </url>\n';
+  });
+  
+  xml += '</urlset>';
+  
+  return xml;
+};
+
+/**
  * Generate sitemap index file
  */
 export const generateSitemapIndex = (): string => {
@@ -364,6 +412,14 @@ export const generateSitemapIndex = (): string => {
     { url: `${baseUrl}/sitemap-images.xml`, lastmod: currentDate },
     { url: `${baseUrl}/sitemap-news.xml`, lastmod: currentDate }
   ];
+  
+  // Add category-specific sitemaps
+  CATEGORIES.forEach(category => {
+    sitemaps.push({
+      url: `${baseUrl}/sitemap-${category.value}.xml`,
+      lastmod: currentDate
+    });
+  });
   
   sitemaps.forEach(sitemap => {
     xml += '  <sitemap>\n';
