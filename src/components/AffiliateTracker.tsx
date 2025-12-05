@@ -2,6 +2,13 @@ import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 
+// Minimal user agent to reduce fingerprinting
+const getMinimalUserAgent = (): string => {
+  const ua = navigator.userAgent;
+  const match = ua.match(/(Chrome|Firefox|Safari|Edge)\/(\d+)/);
+  return match ? `${match[1]}/${match[2]}` : 'Unknown';
+};
+
 interface AffiliateTrackerProps {
   toolId: string;
   children: (props: { 
@@ -62,8 +69,8 @@ export const AffiliateTracker = ({ toolId, children }: AffiliateTrackerProps) =>
           .insert({
             affiliate_link_id: affiliateLink.id,
             user_id: user?.id || null,
-            ip_address: null, // Will be handled by RLS/triggers if needed
-            user_agent: navigator.userAgent,
+            ip_address: null,
+            user_agent: getMinimalUserAgent(),
             referrer: document.referrer || null
           });
       }
@@ -125,7 +132,7 @@ export const useAffiliateTracker = (toolId: string) => {
             affiliate_link_id: affiliateLink.id,
             user_id: user?.id || null,
             ip_address: null,
-            user_agent: navigator.userAgent,
+            user_agent: getMinimalUserAgent(),
             referrer: document.referrer || null
           });
       }
