@@ -9,6 +9,37 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, Mail, Lock, User, Building } from 'lucide-react';
 import SEO from '@/components/SEO';
+import { z } from 'zod';
+
+// Validation schemas
+const signInSchema = z.object({
+  email: z.string()
+    .min(1, 'Email is required')
+    .email('Please enter a valid email address')
+    .max(255, 'Email must be less than 255 characters'),
+  password: z.string()
+    .min(1, 'Password is required')
+});
+
+const signUpSchema = z.object({
+  fullName: z.string()
+    .min(1, 'Full name is required')
+    .max(100, 'Full name must be less than 100 characters')
+    .regex(/^[a-zA-Z\s'-]+$/, 'Full name can only contain letters, spaces, hyphens, and apostrophes'),
+  email: z.string()
+    .min(1, 'Email is required')
+    .email('Please enter a valid email address')
+    .max(255, 'Email must be less than 255 characters'),
+  password: z.string()
+    .min(8, 'Password must be at least 8 characters')
+    .max(128, 'Password must be less than 128 characters')
+    .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+    .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+    .regex(/[0-9]/, 'Password must contain at least one number'),
+  vendorCompany: z.string()
+    .max(100, 'Company name must be less than 100 characters')
+    .optional()
+});
 
 export default function Auth() {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,6 +48,7 @@ export default function Auth() {
   const [fullName, setFullName] = useState('');
   const [isVendor, setIsVendor] = useState(false);
   const [vendorCompany, setVendorCompany] = useState('');
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -40,20 +72,50 @@ export default function Auth() {
     return () => subscription.unsubscribe();
   }, [navigate]);
 
+  const clearValidationErrors = () => {
+    setValidationErrors({});
+  };
+
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    clearValidationErrors();
+
+    // Validate with zod schema
+    const validationResult = signUpSchema.safeParse({
+      fullName,
+      email,
+      password,
+      vendorCompany: isVendor ? vendorCompany : undefined
+    });
+
+    if (!validationResult.success) {
+      const errors: Record<string, string> = {};
+      validationResult.error.issues.forEach((issue) => {
+        const field = issue.path[0] as string;
+        errors[field] = issue.message;
+      });
+      setValidationErrors(errors);
+      return;
+    }
+
+    // Additional vendor company validation
+    if (isVendor && (!vendorCompany || vendorCompany.trim().length === 0)) {
+      setValidationErrors({ vendorCompany: 'Company name is required for vendor accounts' });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
       const { error } = await supabase.auth.signUp({
-        email,
-        password,
+        email: validationResult.data.email,
+        password: validationResult.data.password,
         options: {
           emailRedirectTo: `${window.location.origin}/`,
           data: {
-            full_name: fullName,
+            full_name: validationResult.data.fullName,
             is_vendor: isVendor,
-            vendor_company: isVendor ? vendorCompany : null
+            vendor_company: isVendor ? vendorCompany.trim() : null
           }
         }
       });
@@ -83,12 +145,27 @@ export default function Auth() {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    clearValidationErrors();
+
+    // Validate with zod schema
+    const validationResult = signInSchema.safeParse({ email, password });
+
+    if (!validationResult.success) {
+      const errors: Record<string, string> = {};
+      validationResult.error.issues.forEach((issue) => {
+        const field = issue.path[0] as string;
+        errors[field] = issue.message;
+      });
+      setValidationErrors(errors);
+      return;
+    }
+
     setIsLoading(true);
 
     try {
       const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+        email: validationResult.data.email,
+        password: validationResult.data.password,
       });
 
       if (error) {
@@ -125,7 +202,7 @@ export default function Auth() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs defaultValue="signin" className="space-y-4">
+            <Tabs defaultValue="signin" className="space-y-4" onValueChange={clearValidationErrors}>
               <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="signin">Sign In</TabsTrigger>
                 <TabsTrigger value="signup">Sign Up</TabsTrigger>
@@ -143,10 +220,13 @@ export default function Auth() {
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="pl-10"
-                        required
+                        className={`pl-10 ${validationErrors.email ? 'border-destructive' : ''}`}
+                        aria-invalid={!!validationErrors.email}
                       />
                     </div>
+                    {validationErrors.email && (
+                      <p className="text-sm text-destructive">{validationErrors.email}</p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="signin-password">Password</Label>
@@ -158,10 +238,13 @@ export default function Auth() {
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="pl-10"
-                        required
+                        className={`pl-10 ${validationErrors.password ? 'border-destructive' : ''}`}
+                        aria-invalid={!!validationErrors.password}
                       />
                     </div>
+                    {validationErrors.password && (
+                      <p className="text-sm text-destructive">{validationErrors.password}</p>
+                    )}
                   </div>
                   <Button type="submit" className="w-full" disabled={isLoading}>
                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
@@ -182,10 +265,13 @@ export default function Auth() {
                         placeholder="Enter your full name"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        className="pl-10"
-                        required
+                        className={`pl-10 ${validationErrors.fullName ? 'border-destructive' : ''}`}
+                        aria-invalid={!!validationErrors.fullName}
                       />
                     </div>
+                    {validationErrors.fullName && (
+                      <p className="text-sm text-destructive">{validationErrors.fullName}</p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="signup-email">Email</Label>
@@ -197,10 +283,13 @@ export default function Auth() {
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="pl-10"
-                        required
+                        className={`pl-10 ${validationErrors.email ? 'border-destructive' : ''}`}
+                        aria-invalid={!!validationErrors.email}
                       />
                     </div>
+                    {validationErrors.email && (
+                      <p className="text-sm text-destructive">{validationErrors.email}</p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="signup-password">Password</Label>
@@ -212,11 +301,16 @@ export default function Auth() {
                         placeholder="Create a password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className="pl-10"
-                        required
-                        minLength={6}
+                        className={`pl-10 ${validationErrors.password ? 'border-destructive' : ''}`}
+                        aria-invalid={!!validationErrors.password}
                       />
                     </div>
+                    {validationErrors.password && (
+                      <p className="text-sm text-destructive">{validationErrors.password}</p>
+                    )}
+                    <p className="text-xs text-muted-foreground">
+                      Password must be at least 8 characters with uppercase, lowercase, and number
+                    </p>
                   </div>
                   
                   <div className="flex items-center space-x-2">
@@ -243,10 +337,13 @@ export default function Auth() {
                           placeholder="Enter your company name"
                           value={vendorCompany}
                           onChange={(e) => setVendorCompany(e.target.value)}
-                          className="pl-10"
-                          required={isVendor}
+                          className={`pl-10 ${validationErrors.vendorCompany ? 'border-destructive' : ''}`}
+                          aria-invalid={!!validationErrors.vendorCompany}
                         />
                       </div>
+                      {validationErrors.vendorCompany && (
+                        <p className="text-sm text-destructive">{validationErrors.vendorCompany}</p>
+                      )}
                     </div>
                   )}
                   
