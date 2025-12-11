@@ -28,7 +28,7 @@ export const AffiliateTracker = ({ toolId, children }: AffiliateTrackerProps) =>
       try {
         const { data, error } = await supabase
           .from('affiliate_links')
-          .select('*')
+          .select('id, tool_id, affiliate_url, is_active')
           .eq('tool_id', toolId)
           .eq('is_active', true)
           .single();
@@ -93,7 +93,7 @@ export const useAffiliateTracker = (toolId: string) => {
       try {
         const { data, error } = await supabase
           .from('affiliate_links')
-          .select('*')
+          .select('id, tool_id, affiliate_url, is_active')
           .eq('tool_id', toolId)
           .eq('is_active', true)
           .single();
