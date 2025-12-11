@@ -63,6 +63,24 @@ export const AffiliateTracker = ({ toolId, children }: AffiliateTrackerProps) =>
         .single();
 
       if (affiliateLink) {
+        // Rate limiting: Check for recent click from this user (within last hour)
+        if (user?.id) {
+          const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+          const { data: recentClick } = await supabase
+            .from('affiliate_clicks')
+            .select('id')
+            .eq('affiliate_link_id', affiliateLink.id)
+            .eq('user_id', user.id)
+            .gte('created_at', oneHourAgo)
+            .limit(1)
+            .maybeSingle();
+
+          if (recentClick) {
+            // Skip tracking - user already clicked recently
+            return;
+          }
+        }
+
         // Track the click
         await supabase
           .from('affiliate_clicks')
@@ -126,6 +144,23 @@ export const useAffiliateTracker = (toolId: string) => {
         .single();
 
       if (affiliateLink) {
+        // Rate limiting: Check for recent click from this user (within last hour)
+        if (user?.id) {
+          const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+          const { data: recentClick } = await supabase
+            .from('affiliate_clicks')
+            .select('id')
+            .eq('affiliate_link_id', affiliateLink.id)
+            .eq('user_id', user.id)
+            .gte('created_at', oneHourAgo)
+            .limit(1)
+            .maybeSingle();
+
+          if (recentClick) {
+            return;
+          }
+        }
+
         await supabase
           .from('affiliate_clicks')
           .insert({
