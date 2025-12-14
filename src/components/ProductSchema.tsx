@@ -69,7 +69,7 @@ const ProductSchema = ({ tool }: ProductSchemaProps) => {
           "@type": "Organization",
           "name": "ToolsML Editorial Team"
         },
-        "datePublished": tool.founded,
+        "datePublished": `${tool.founded}-01-01`,
         "reviewBody": `${tool.description} Key features include: ${tool.features.slice(0, 3).join(', ')}. Strengths: ${tool.pros.join(', ')}.`
       }
     ],
