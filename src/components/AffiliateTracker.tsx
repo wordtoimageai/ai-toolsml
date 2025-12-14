@@ -37,11 +37,11 @@ export const AffiliateTracker = ({ toolId, children }: AffiliateTrackerProps) =>
   useEffect(() => {
     const fetchAffiliateLink = async () => {
       try {
+        // Use the public view which excludes sensitive commission_rate data
         const { data, error } = await supabase
-          .from('affiliate_links')
+          .from('affiliate_links_public')
           .select('id, tool_id, affiliate_url, is_active')
           .eq('tool_id', toolId)
-          .eq('is_active', true)
           .single();
 
         if (error) {
@@ -138,11 +138,11 @@ export const useAffiliateTracker = (toolId: string) => {
   useEffect(() => {
     const fetchAffiliateLink = async () => {
       try {
+        // Use the public view which excludes sensitive commission_rate data
         const { data, error } = await supabase
-          .from('affiliate_links')
+          .from('affiliate_links_public')
           .select('id, tool_id, affiliate_url, is_active')
           .eq('tool_id', toolId)
-          .eq('is_active', true)
           .single();
 
         if (error && error.code !== 'PGRST116') { // PGRST116 = no rows returned

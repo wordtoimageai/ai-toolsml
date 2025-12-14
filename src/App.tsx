@@ -37,6 +37,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const Auth = lazy(() => import("./pages/Auth"));
 const VendorDashboard = lazy(() => import("./components/VendorDashboard"));
 const UserPrivacyDashboard = lazy(() => import("./components/UserPrivacyDashboard"));
+const AffiliateAnalyticsDashboard = lazy(() => import("./components/AffiliateAnalyticsDashboard").then(m => ({ default: m.AffiliateAnalyticsDashboard })));
 const SiteMap = lazy(() => import("./pages/SiteMap"));
 
 const queryClient = new QueryClient();
@@ -96,6 +97,14 @@ const App = () => (
                     element={
                       <ProtectedRoute>
                         <UserPrivacyDashboard />
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route 
+                    path="/admin/affiliate-analytics" 
+                    element={
+                      <ProtectedRoute requireAdmin>
+                        <AffiliateAnalyticsDashboard />
                       </ProtectedRoute>
                     } 
                   />
