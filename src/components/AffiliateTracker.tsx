@@ -9,6 +9,17 @@ const getMinimalUserAgent = (): string => {
   return match ? `${match[1]}/${match[2]}` : 'Unknown';
 };
 
+// Get or create a session ID for anonymous rate limiting
+const getSessionId = (): string => {
+  const storageKey = 'affiliate_session_id';
+  let sessionId = sessionStorage.getItem(storageKey);
+  if (!sessionId) {
+    sessionId = `anon_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+    sessionStorage.setItem(storageKey, sessionId);
+  }
+  return sessionId;
+};
+
 interface AffiliateTrackerProps {
   toolId: string;
   children: (props: { 
@@ -63,9 +74,12 @@ export const AffiliateTracker = ({ toolId, children }: AffiliateTrackerProps) =>
         .single();
 
       if (affiliateLink) {
-        // Rate limiting: Check for recent click from this user (within last hour)
+        const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+        const sessionId = getSessionId();
+
+        // Rate limiting: Check for recent click from this user or session (within last hour)
         if (user?.id) {
-          const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+          // Authenticated user rate limiting
           const { data: recentClick } = await supabase
             .from('affiliate_clicks')
             .select('id')
@@ -76,8 +90,22 @@ export const AffiliateTracker = ({ toolId, children }: AffiliateTrackerProps) =>
             .maybeSingle();
 
           if (recentClick) {
-            // Skip tracking - user already clicked recently
-            return;
+            return; // Skip tracking - user already clicked recently
+          }
+        } else {
+          // Anonymous user rate limiting via session_id
+          const { data: recentClick } = await supabase
+            .from('affiliate_clicks')
+            .select('id')
+            .eq('affiliate_link_id', affiliateLink.id)
+            .eq('session_id', sessionId)
+            .is('user_id', null)
+            .gte('created_at', oneHourAgo)
+            .limit(1)
+            .maybeSingle();
+
+          if (recentClick) {
+            return; // Skip tracking - session already clicked recently
           }
         }
 
@@ -87,6 +115,7 @@ export const AffiliateTracker = ({ toolId, children }: AffiliateTrackerProps) =>
           .insert({
             affiliate_link_id: affiliateLink.id,
             user_id: user?.id || null,
+            session_id: sessionId,
             ip_address: null,
             user_agent: getMinimalUserAgent(),
             referrer: document.referrer || null
@@ -144,14 +173,32 @@ export const useAffiliateTracker = (toolId: string) => {
         .single();
 
       if (affiliateLink) {
-        // Rate limiting: Check for recent click from this user (within last hour)
+        const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+        const sessionId = getSessionId();
+
+        // Rate limiting: Check for recent click from this user or session (within last hour)
         if (user?.id) {
-          const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+          // Authenticated user rate limiting
           const { data: recentClick } = await supabase
             .from('affiliate_clicks')
             .select('id')
             .eq('affiliate_link_id', affiliateLink.id)
             .eq('user_id', user.id)
+            .gte('created_at', oneHourAgo)
+            .limit(1)
+            .maybeSingle();
+
+          if (recentClick) {
+            return;
+          }
+        } else {
+          // Anonymous user rate limiting via session_id
+          const { data: recentClick } = await supabase
+            .from('affiliate_clicks')
+            .select('id')
+            .eq('affiliate_link_id', affiliateLink.id)
+            .eq('session_id', sessionId)
+            .is('user_id', null)
             .gte('created_at', oneHourAgo)
             .limit(1)
             .maybeSingle();
@@ -166,6 +213,7 @@ export const useAffiliateTracker = (toolId: string) => {
           .insert({
             affiliate_link_id: affiliateLink.id,
             user_id: user?.id || null,
+            session_id: sessionId,
             ip_address: null,
             user_agent: getMinimalUserAgent(),
             referrer: document.referrer || null
