@@ -45,13 +45,17 @@ export const AffiliateTracker = ({ toolId, children }: AffiliateTrackerProps) =>
           .single();
 
         if (error) {
-          console.error('Error fetching affiliate link:', error);
+          if (import.meta.env.DEV) {
+            console.error('Error fetching affiliate link:', error);
+          }
           setAffiliateUrl(null);
         } else {
           setAffiliateUrl(data.affiliate_url);
         }
       } catch (error) {
-        console.error('Error fetching affiliate link:', error);
+        if (import.meta.env.DEV) {
+          console.error('Error fetching affiliate link:', error);
+        }
         setAffiliateUrl(null);
       } finally {
         setIsLoading(false);
@@ -122,7 +126,9 @@ export const AffiliateTracker = ({ toolId, children }: AffiliateTrackerProps) =>
           });
       }
     } catch (error) {
-      console.error('Error tracking affiliate click:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error tracking affiliate click:', error);
+      }
     }
   };
 
@@ -146,12 +152,16 @@ export const useAffiliateTracker = (toolId: string) => {
           .single();
 
         if (error && error.code !== 'PGRST116') { // PGRST116 = no rows returned
-          console.error('Error fetching affiliate link:', error);
+          if (import.meta.env.DEV) {
+            console.error('Error fetching affiliate link:', error);
+          }
         }
         
         setAffiliateUrl(data?.affiliate_url || null);
       } catch (error) {
-        console.error('Error fetching affiliate link:', error);
+        if (import.meta.env.DEV) {
+          console.error('Error fetching affiliate link:', error);
+        }
         setAffiliateUrl(null);
       } finally {
         setIsLoading(false);
@@ -220,7 +230,9 @@ export const useAffiliateTracker = (toolId: string) => {
           });
       }
     } catch (error) {
-      console.error('Error tracking affiliate click:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error tracking affiliate click:', error);
+      }
     }
   };
 
