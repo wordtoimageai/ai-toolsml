@@ -55,7 +55,9 @@ export const AffiliateAnalyticsDashboard = () => {
           fetchHourlyDistribution()
         ]);
       } catch (error) {
-        console.error('Error fetching affiliate analytics:', error);
+        if (import.meta.env.DEV) {
+          console.error('Error fetching affiliate analytics:', error);
+        }
       } finally {
         setLoading(false);
       }
@@ -73,7 +75,9 @@ export const AffiliateAnalyticsDashboard = () => {
       .gte('created_at', sevenDaysAgo);
 
     if (error) {
-      console.error('Error fetching stats:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error fetching stats:', error);
+      }
       return;
     }
 
@@ -99,7 +103,9 @@ export const AffiliateAnalyticsDashboard = () => {
       .gte('created_at', sevenDaysAgo);
 
     if (error || !clicks) {
-      console.error('Error fetching top links:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error fetching top links:', error);
+      }
       return;
     }
 
@@ -143,7 +149,9 @@ export const AffiliateAnalyticsDashboard = () => {
       .limit(20);
 
     if (error) {
-      console.error('Error fetching recent clicks:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error fetching recent clicks:', error);
+      }
       return;
     }
 
@@ -251,7 +259,9 @@ export const AffiliateAnalyticsDashboard = () => {
       .gte('created_at', oneDayAgo);
 
     if (error || !data) {
-      console.error('Error fetching hourly distribution:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error fetching hourly distribution:', error);
+      }
       return;
     }
 

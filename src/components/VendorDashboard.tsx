@@ -93,7 +93,9 @@ const VendorDashboard = () => {
         .order('created_at', { ascending: false });
 
       if (error) {
-        console.error('Error fetching submissions:', error);
+        if (import.meta.env.DEV) {
+          console.error('Error fetching submissions:', error);
+        }
         toast({
           title: 'Error',
           description: 'Failed to load your submissions.',
@@ -103,7 +105,9 @@ const VendorDashboard = () => {
         setSubmissions(data || []);
       }
     } catch (error) {
-      console.error('Error fetching submissions:', error);
+      if (import.meta.env.DEV) {
+        console.error('Error fetching submissions:', error);
+      }
     } finally {
       setLoading(false);
     }
