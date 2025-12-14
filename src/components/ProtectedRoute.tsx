@@ -7,6 +7,7 @@ interface ProtectedRouteProps {
   children: ReactNode;
   requireAuth?: boolean;
   requireVendor?: boolean;
+  requireAdmin?: boolean;
   redirectTo?: string;
 }
 
@@ -14,9 +15,10 @@ export const ProtectedRoute = ({
   children, 
   requireAuth = true, 
   requireVendor = false,
+  requireAdmin = false,
   redirectTo = '/auth' 
 }: ProtectedRouteProps) => {
-  const { isAuthenticated, isVendor, loading } = useAuth();
+  const { isAuthenticated, isVendor, isAdmin, loading } = useAuth();
 
   if (loading) {
     return <ToolsGridSkeleton />;
@@ -27,6 +29,10 @@ export const ProtectedRoute = ({
   }
 
   if (requireVendor && !isVendor) {
+    return <Navigate to="/" replace />;
+  }
+
+  if (requireAdmin && !isAdmin) {
     return <Navigate to="/" replace />;
   }
 
