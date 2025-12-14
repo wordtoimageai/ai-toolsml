@@ -53,6 +53,13 @@ export type Database = {
             referencedRelation: "affiliate_links"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "affiliate_clicks_affiliate_link_id_fkey"
+            columns: ["affiliate_link_id"]
+            isOneToOne: false
+            referencedRelation: "affiliate_links_public"
+            referencedColumns: ["id"]
+          },
         ]
       }
       affiliate_links: {
@@ -240,7 +247,39 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      affiliate_links_public: {
+        Row: {
+          affiliate_url: string | null
+          created_at: string | null
+          id: string | null
+          is_active: boolean | null
+          original_url: string | null
+          tool_id: string | null
+          tool_name: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          affiliate_url?: string | null
+          created_at?: string | null
+          id?: string | null
+          is_active?: boolean | null
+          original_url?: string | null
+          tool_id?: string | null
+          tool_name?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          affiliate_url?: string | null
+          created_at?: string | null
+          id?: string | null
+          is_active?: boolean | null
+          original_url?: string | null
+          tool_id?: string | null
+          tool_name?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       get_user_roles: {
