@@ -6,6 +6,7 @@ import CollectionPageSchema from '@/components/CollectionPageSchema';
 import AdvancedMetaTags from '@/components/AdvancedMetaTags';
 import PerformanceOptimizer from '@/components/PerformanceOptimizer';
 import { ContextualCTA } from '@/components/InternalLinks';
+import RelatedCategories from '@/components/RelatedCategories';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
@@ -314,6 +315,9 @@ const Category = () => {
             </div>
           </section>
         )}
+
+        {/* Related Categories Section */}
+        <RelatedCategories currentCategory={category} />
 
         {/* Bottom CTA */}
         {guide && (

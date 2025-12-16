@@ -20,6 +20,7 @@ import PerformanceOptimizer from "@/components/PerformanceOptimizer";
 import { CategoryLinks, PopularTags } from "@/components/InternalLinks";
 import HowItWorks from "@/components/HowItWorks";
 import AIToolCategories from "@/components/AIToolCategories";
+import PopularTools from "@/components/PopularTools";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import AITrends from "@/components/AITrends";
 import FAQ, { generateFAQSchema } from "@/components/FAQ";
@@ -101,6 +102,7 @@ const Index = () => {
         <WhyChooseUs />
         <CategoriesGrid />
         <AIToolCategories />
+        <PopularTools />
         <AITrends />
         <RecentlyViewed />
         <FeaturedTools />
