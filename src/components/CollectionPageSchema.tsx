@@ -23,12 +23,12 @@ const CollectionPageSchema = ({
     "@type": "CollectionPage",
     "name": `Best ${categoryName} AI Tools 2025`,
     "description": description,
-    "url": `https://ai-toolsml.lovable.app/category/${category}`,
+    "url": `https://toolsml.com/category/${category}`,
     "inLanguage": "en-US",
     "isPartOf": {
       "@type": "WebSite",
       "name": "ToolsML",
-      "url": "https://ai-toolsml.lovable.app"
+      "url": "https://toolsml.com"
     },
     "breadcrumb": {
       "@type": "BreadcrumbList",
@@ -37,19 +37,19 @@ const CollectionPageSchema = ({
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://ai-toolsml.lovable.app"
+          "item": "https://toolsml.com"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Categories",
-          "item": "https://ai-toolsml.lovable.app/categories"
+          "item": "https://toolsml.com/categories"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": categoryName,
-          "item": `https://ai-toolsml.lovable.app/category/${category}`
+          "item": `https://toolsml.com/category/${category}`
         }
       ]
     },
@@ -63,10 +63,10 @@ const CollectionPageSchema = ({
         "position": index + 1,
         "item": {
           "@type": "SoftwareApplication",
-          "@id": `https://ai-toolsml.lovable.app/tool/${tool.id}`,
+          "@id": `https://toolsml.com/tool/${tool.id}`,
           "name": tool.title,
           "description": tool.description,
-          "url": `https://ai-toolsml.lovable.app/tool/${tool.id}`,
+          "url": `https://toolsml.com/tool/${tool.id}`,
           "applicationCategory": categoryName,
           "operatingSystem": "Web",
           "aggregateRating": {

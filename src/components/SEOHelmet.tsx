@@ -18,13 +18,13 @@ export const SEOHelmet = ({
   description,
   keywords,
   image = '/favicon.png',
-  url = 'https://ai-toolsml.lovable.app',
+  url = 'https://toolsml.com',
   type = 'website',
   structuredData
 }: SEOHelmetProps) => {
   const fullTitle = title.includes('ToolsML') ? title : `${title} | ToolsML`;
-  const canonicalUrl = url.startsWith('http') ? url : `https://ai-toolsml.lovable.app${url}`;
-  const imageUrl = image.startsWith('http') ? image : `https://ai-toolsml.lovable.app${image}`;
+  const canonicalUrl = url.startsWith('http') ? url : `https://toolsml.com${url}`;
+  const imageUrl = image.startsWith('http') ? image : `https://toolsml.com${image}`;
 
   return (
     <Helmet>
