@@ -161,8 +161,6 @@ Sitemap: ${baseUrl}/sitemap-index.xml
 
 # Individual sitemaps
 Sitemap: ${baseUrl}/sitemap.xml
-Sitemap: ${baseUrl}/sitemap-images.xml
-Sitemap: ${baseUrl}/sitemap-news.xml
 ${categorySitemaps}
 
 # Crawl-delay for respectful crawling
@@ -408,9 +406,7 @@ export const generateSitemapIndex = (): string => {
   xml += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
   const sitemaps = [
-    { url: `${baseUrl}/sitemap.xml`, lastmod: currentDate },
-    { url: `${baseUrl}/sitemap-images.xml`, lastmod: currentDate },
-    { url: `${baseUrl}/sitemap-news.xml`, lastmod: currentDate }
+    { url: `${baseUrl}/sitemap.xml`, lastmod: currentDate }
   ];
   
   // Add category-specific sitemaps
