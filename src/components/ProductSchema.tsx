@@ -17,8 +17,9 @@ const ProductSchema = ({ tool }: ProductSchemaProps) => {
   const currentYear = new Date().getFullYear();
   const priceValidUntil = new Date(new Date().setFullYear(currentYear + 1)).toISOString().split('T')[0];
   
-  // Determine price - use "0" for Free/Freemium, otherwise indicate it's a paid product
+  // Determine price - use proper Offer structure for all pricing types
   const getOfferDetails = () => {
+    // For Free tools - price is 0
     if (tool.pricing === 'Free') {
       return {
         "@type": "Offer",
@@ -32,7 +33,10 @@ const ProductSchema = ({ tool }: ProductSchemaProps) => {
           "name": tool.company
         }
       };
-    } else if (tool.pricing === 'Freemium') {
+    }
+    
+    // For Freemium - price is 0 for base tier
+    if (tool.pricing === 'Freemium') {
       return {
         "@type": "Offer",
         "url": tool.website,
@@ -40,29 +44,28 @@ const ProductSchema = ({ tool }: ProductSchemaProps) => {
         "price": "0",
         "priceValidUntil": priceValidUntil,
         "availability": "https://schema.org/InStock",
-        "description": "Free tier available with premium options",
-        "seller": {
-          "@type": "Organization",
-          "name": tool.company
-        }
-      };
-    } else {
-      // For Paid/Subscription - use AggregateOffer to indicate variable pricing
-      return {
-        "@type": "AggregateOffer",
-        "url": tool.website,
-        "priceCurrency": "USD",
-        "lowPrice": "0",
-        "highPrice": "999",
-        "offerCount": "1",
-        "availability": "https://schema.org/InStock",
-        "description": `${tool.pricing} - Visit website for pricing details`,
         "seller": {
           "@type": "Organization",
           "name": tool.company
         }
       };
     }
+    
+    // For Paid/Subscription - omit price field, use category instead
+    // Google allows omitting price for software with variable pricing
+    return {
+      "@type": "Offer",
+      "url": tool.website,
+      "availability": "https://schema.org/InStock",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "USD"
+      },
+      "seller": {
+        "@type": "Organization",
+        "name": tool.company
+      }
+    };
   };
 
   const productSchema = {
