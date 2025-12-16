@@ -70,6 +70,7 @@ const Header = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <NavLink to="/">Home</NavLink>
+            <NavLink to="/browse">Browse Tools</NavLink>
             
             {/* Resources Dropdown */}
             <DropdownMenu>
@@ -224,6 +225,7 @@ const Header = () => {
           <div className="md:hidden py-4 border-t border-border/50 animate-fade-in">
             <div className="space-y-1">
               <Link to="/" className="block px-4 py-2.5 text-foreground hover:bg-muted/50 rounded-lg font-medium">Home</Link>
+              <Link to="/browse" className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Browse Tools</Link>
               <Link to="/about" className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">About</Link>
               <Link to="/blog" className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Blog</Link>
               <Link to="/submit" className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Submit Tool</Link>
