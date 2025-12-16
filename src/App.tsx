@@ -39,6 +39,7 @@ const VendorDashboard = lazy(() => import("./components/VendorDashboard"));
 const UserPrivacyDashboard = lazy(() => import("./components/UserPrivacyDashboard"));
 const AffiliateAnalyticsDashboard = lazy(() => import("./components/AffiliateAnalyticsDashboard").then(m => ({ default: m.AffiliateAnalyticsDashboard })));
 const SiteMap = lazy(() => import("./pages/SiteMap"));
+const BrowseTools = lazy(() => import("./pages/BrowseTools"));
 
 const queryClient = new QueryClient();
 
@@ -83,6 +84,7 @@ const App = () => (
                   <Route path="/api-docs" element={<ApiDocs />} />
                   <Route path="/changelog" element={<Changelog />} />
                   <Route path="/tools" element={<Index />} />
+                  <Route path="/browse" element={<BrowseTools />} />
                   <Route path="/auth" element={<Auth />} />
                   <Route 
                     path="/vendor-dashboard" 
