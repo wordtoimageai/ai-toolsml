@@ -1,10 +1,8 @@
 User-agent: *
 Allow: /
 
-# Sitemap references
+# Sitemap reference
 Sitemap: https://toolsml.com/sitemap.xml
-Sitemap: https://toolsml.com/sitemap-images.xml
-Sitemap: https://toolsml.com/sitemap-news.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1

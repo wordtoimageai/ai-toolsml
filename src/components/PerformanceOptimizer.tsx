@@ -123,7 +123,7 @@ const PerformanceOptimizer = ({
           <link key={url} rel="dns-prefetch" href={url} />
         ))
       ) : (
-        <link rel="dns-prefetch" href="//ai-toolsml.lovable.app" />
+        <link rel="dns-prefetch" href="//toolsml.com" />
       )}
 
       {/* Preload critical resources with high priority */}

@@ -49,24 +49,24 @@ export const EnhancedSEO = ({
     structuredDataArray.push({
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "@id": "https://ai-toolsml.lovable.app/#website",
-      "url": "https://ai-toolsml.lovable.app",
+      "@id": "https://toolsml.com/#website",
+      "url": "https://toolsml.com",
       "name": "ToolsML",
       "description": "Human-curated directory of AI tools with pricing, features, and reviews",
       "publisher": {
         "@type": "Organization",
         "name": "ToolsML",
-        "url": "https://ai-toolsml.lovable.app",
+        "url": "https://toolsml.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://ai-toolsml.lovable.app/favicon.png"
+          "url": "https://toolsml.com/favicon.png"
         }
       },
       "potentialAction": {
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://ai-toolsml.lovable.app/?search={search_term_string}"
+          "urlTemplate": "https://toolsml.com/?search={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       }
@@ -149,7 +149,7 @@ export const EnhancedSEO = ({
       {/* Performance and SEO hints */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="dns-prefetch" href="//ai-toolsml.lovable.app" />
+      <link rel="dns-prefetch" href="//toolsml.com" />
       
       {/* App-specific meta tags */}
       <meta name="application-name" content="ToolsML" />

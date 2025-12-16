@@ -10,14 +10,14 @@ const OrganizationSchema = () => {
     "@type": "Organization",
     "name": "ToolsML",
     "alternateName": "Tools ML",
-    "url": "https://ai-toolsml.lovable.app",
+    "url": "https://toolsml.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://ai-toolsml.lovable.app/og-image.jpg",
+      "url": "https://toolsml.com/og-image.jpg",
       "width": "1200",
       "height": "630"
     },
-    "image": "https://ai-toolsml.lovable.app/og-image.jpg",
+    "image": "https://toolsml.com/og-image.jpg",
     "description": "Your trusted guide to discovering and comparing the best AI tools across 200+ categories. We curate, review, and update 1000+ AI solutions weekly.",
     "slogan": "Discover, Compare, and Choose the Perfect AI Tools",
     "foundingDate": "2024",
@@ -82,7 +82,7 @@ const OrganizationSchema = () => {
     "@type": "WebSite",
     "name": "ToolsML - Best AI Tools Directory 2025",
     "alternateName": "ToolsML",
-    "url": "https://ai-toolsml.lovable.app",
+    "url": "https://toolsml.com",
     "description": "Discover, compare, and find the perfect AI tools for your needs. 1000+ curated AI solutions across 200+ categories, updated weekly.",
     "inLanguage": "en-US",
     "copyrightYear": "2024",
@@ -95,7 +95,7 @@ const OrganizationSchema = () => {
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://ai-toolsml.lovable.app/?search={search_term_string}"
+          "urlTemplate": "https://toolsml.com/?search={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       }
@@ -105,7 +105,7 @@ const OrganizationSchema = () => {
       "name": "ToolsML",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://ai-toolsml.lovable.app/og-image.jpg",
+        "url": "https://toolsml.com/og-image.jpg",
         "width": "1200",
         "height": "630"
       }
@@ -125,7 +125,7 @@ const OrganizationSchema = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://ai-toolsml.lovable.app"
+        "item": "https://toolsml.com"
       }
     ]
   };
