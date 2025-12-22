@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Tool } from '@/data/tools';
+import { Tool, getSchemaPrice } from '@/data/tools';
 import { generateOGImage } from '@/lib/seo-utils';
 
 interface ProductSchemaProps {
@@ -17,12 +17,18 @@ const ProductSchema = ({ tool }: ProductSchemaProps) => {
   const currentYear = new Date().getFullYear();
   const priceValidUntil = new Date(new Date().setFullYear(currentYear + 1)).toISOString().split('T')[0];
   
-  // Determine price - Google requires price field for valid Product snippets
+  // Get actual price from priceInfo or fallback to 0
+  const schemaPrice = getSchemaPrice(tool);
+  const priceCurrency = tool.priceInfo?.currency || 'USD';
+  const priceDescription = tool.priceInfo?.priceDescription;
+  
+  // Build offer details with actual pricing
   const getOfferDetails = () => {
-    const baseOffer = {
+    const baseOffer: Record<string, unknown> = {
       "@type": "Offer",
       "url": tool.website,
-      "priceCurrency": "USD",
+      "priceCurrency": priceCurrency,
+      "price": schemaPrice,
       "priceValidUntil": priceValidUntil,
       "availability": "https://schema.org/InStock",
       "seller": {
@@ -31,28 +37,12 @@ const ProductSchema = ({ tool }: ProductSchemaProps) => {
       }
     };
 
-    // For Free tools - price is 0
-    if (tool.pricing === 'Free') {
-      return {
-        ...baseOffer,
-        "price": "0"
-      };
+    // Add price description if available
+    if (priceDescription) {
+      baseOffer["description"] = priceDescription;
     }
-    
-    // For Freemium - price is 0 for base tier
-    if (tool.pricing === 'Freemium') {
-      return {
-        ...baseOffer,
-        "price": "0"
-      };
-    }
-    
-    // For Paid/Subscription - use price 0 as "starting from" price
-    // This satisfies Google's requirement for a valid price field
-    return {
-      ...baseOffer,
-      "price": "0"
-    };
+
+    return baseOffer;
   };
 
   const productSchema = {
