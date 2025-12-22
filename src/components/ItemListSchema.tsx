@@ -43,19 +43,10 @@ const ItemListSchema = ({
         "operatingSystem": "Web",
         "offers": {
           "@type": "Offer",
-          "price": tool.pricing === 'Free' ? "0" : tool.pricing === 'Freemium' ? "0" : undefined,
+          "price": "0",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock",
-          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
-          ...(tool.pricing !== 'Free' && tool.pricing !== 'Freemium' && {
-            "priceSpecification": {
-              "@type": "PriceSpecification",
-              "price": "0",
-              "priceCurrency": "USD",
-              "valueAddedTaxIncluded": false,
-              "description": "Starting price, visit website for full pricing"
-            }
-          })
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
         },
         "aggregateRating": {
           "@type": "AggregateRating",
