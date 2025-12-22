@@ -10,8 +10,39 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Edit, Trash2, ExternalLink, Clock, CheckCircle, XCircle } from 'lucide-react';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from '@/components/ui/dialog';
+import { AlertTriangle } from 'lucide-react';
 import { z } from 'zod';
+
+// PII detection patterns for security warnings
+const piiPatterns = {
+  email: /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g,
+  phone: /\+?[\d][\d\s()\-]{7,}/g,
+  apiKey: /(?:api[_-]?key|secret[_-]?key|password|token)[:\s=]["']?[\w\-]{10,}/gi,
+};
+
+// Detect PII in text content
+const detectPII = (text: string): string[] => {
+  const found: string[] = [];
+  if (piiPatterns.email.test(text)) found.push('email addresses');
+  // Reset lastIndex for global regex
+  piiPatterns.email.lastIndex = 0;
+  if (piiPatterns.phone.test(text)) found.push('phone numbers');
+  piiPatterns.phone.lastIndex = 0;
+  if (piiPatterns.apiKey.test(text)) found.push('API keys or passwords');
+  piiPatterns.apiKey.lastIndex = 0;
+  return found;
+};
+
+// Check all form fields for PII
+const checkFormForPII = (data: { tool_name: string; tool_description: string; features: string[] }): string[] => {
+  const allText = [
+    data.tool_name,
+    data.tool_description,
+    ...data.features
+  ].filter(Boolean).join(' ');
+  return detectPII(allText);
+};
 
 // Zod schema for tool submission validation
 const toolSubmissionSchema = z.object({
@@ -66,6 +97,8 @@ const VendorDashboard = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSubmissionForm, setShowSubmissionForm] = useState(false);
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+  const [piiWarnings, setPiiWarnings] = useState<string[]>([]);
+  const [showPiiWarning, setShowPiiWarning] = useState(false);
 
   // Form state
   const [formData, setFormData] = useState({
@@ -137,7 +170,7 @@ const VendorDashboard = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent, bypassPiiCheck = false) => {
     e.preventDefault();
     
     // Validate form data
@@ -148,6 +181,16 @@ const VendorDashboard = () => {
         variant: 'destructive',
       });
       return;
+    }
+
+    // Check for PII unless bypassed (user already confirmed)
+    if (!bypassPiiCheck) {
+      const detectedPII = checkFormForPII(formData);
+      if (detectedPII.length > 0) {
+        setPiiWarnings(detectedPII);
+        setShowPiiWarning(true);
+        return;
+      }
     }
 
     setIsSubmitting(true);
@@ -428,6 +471,51 @@ const VendorDashboard = () => {
                 </Button>
               </div>
             </form>
+          </DialogContent>
+        </Dialog>
+
+        {/* PII Warning Dialog */}
+        <Dialog open={showPiiWarning} onOpenChange={setShowPiiWarning}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2 text-amber-600">
+                <AlertTriangle className="h-5 w-5" />
+                Potential Personal Information Detected
+              </DialogTitle>
+              <DialogDescription>
+                We detected what may be personal or sensitive information in your submission:
+              </DialogDescription>
+            </DialogHeader>
+            <div className="py-4">
+              <ul className="list-disc pl-6 space-y-1 text-sm text-muted-foreground">
+                {piiWarnings.map((warning, i) => (
+                  <li key={i} className="capitalize">{warning}</li>
+                ))}
+              </ul>
+              <p className="mt-4 text-sm text-muted-foreground">
+                Once approved, your submission will be publicly visible. Please ensure you're not accidentally 
+                sharing contact details, API keys, or other sensitive information.
+              </p>
+            </div>
+            <DialogFooter className="flex gap-2 sm:gap-0">
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setShowPiiWarning(false);
+                }}
+              >
+                Review Submission
+              </Button>
+              <Button
+                onClick={(e) => {
+                  setShowPiiWarning(false);
+                  setPiiWarnings([]);
+                  handleSubmit(e as unknown as React.FormEvent, true);
+                }}
+              >
+                Submit Anyway
+              </Button>
+            </DialogFooter>
           </DialogContent>
         </Dialog>
       </div>
