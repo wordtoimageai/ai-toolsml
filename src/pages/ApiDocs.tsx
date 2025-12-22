@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Code, Key, Book, Zap } from 'lucide-react';
@@ -8,10 +8,12 @@ import { Code, Key, Book, Zap } from 'lucide-react';
 const ApiDocs = () => {
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="API Documentation - ToolsML"
-        description="Integrate ToolsML data into your applications with our comprehensive API documentation."
+      <AdvancedSEO 
+        title="API Documentation - ToolsML | Developer Integration"
+        description="Integrate ToolsML data into your applications with our comprehensive API documentation. Access 1000+ AI tools programmatically."
         keywords="ToolsML API, AI tools API, developer documentation, API integration"
+        url="/api-docs"
+        pageType="homepage"
       />
       <Header />
       

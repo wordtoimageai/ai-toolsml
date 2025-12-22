@@ -311,10 +311,20 @@ export const generateKeywords = (
 
 /**
  * Generate canonical URL with proper formatting
+ * Ensures consistent URLs without trailing slashes (except for root)
  */
 export const generateCanonicalUrl = (path: string): string => {
   const baseUrl = 'https://toolsml.com';
-  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  
+  // Handle empty or root path
+  if (!path || path === '/') {
+    return baseUrl;
+  }
+  
+  // Ensure path starts with / and remove trailing slashes
+  let cleanPath = path.startsWith('/') ? path : `/${path}`;
+  cleanPath = cleanPath.replace(/\/+$/, ''); // Remove trailing slashes
+  
   return `${baseUrl}${cleanPath}`;
 };
 

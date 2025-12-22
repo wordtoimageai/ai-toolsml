@@ -27,7 +27,7 @@ export const AdvancedSEO = ({
   description,
   keywords,
   image,
-  url = window.location.href,
+  url,
   tool,
   category,
   pageType = 'homepage'
@@ -51,9 +51,25 @@ export const AdvancedSEO = ({
   
   const seoKeywords = keywords || generateKeywords(tool?.title, tool?.category, tool?.tags);
   
-  // Generate proper URLs
-  const pathOnly = url.includes('http') ? new URL(url).pathname : url;
-  const canonicalUrl = generateCanonicalUrl(pathOnly);
+  // Generate proper canonical URL - use provided path or derive from tool/category
+  const getCanonicalPath = (): string => {
+    if (url) {
+      // If URL is already full, extract path; otherwise use as-is
+      if (url.includes('http')) {
+        try {
+          return new URL(url).pathname;
+        } catch {
+          return url;
+        }
+      }
+      return url;
+    }
+    if (tool) return `/tool/${tool.id}`;
+    if (category) return `/category/${category}`;
+    return '/';
+  };
+  
+  const canonicalUrl = generateCanonicalUrl(getCanonicalPath());
   
   // Generate dynamic Open Graph image based on tool data
   const ogImage = image || (tool ? generateOGImage(tool.title, tool.category) : generateOGImage());

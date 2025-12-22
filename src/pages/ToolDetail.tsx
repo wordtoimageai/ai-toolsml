@@ -77,7 +77,7 @@ const ToolDetail = () => {
     <div className="min-h-screen">
       <AdvancedSEO 
         tool={tool}
-        url={window.location.href}
+        url={`/tool/${tool.id}`}
         pageType="tool"
       />
       <ProductSchema tool={tool} />

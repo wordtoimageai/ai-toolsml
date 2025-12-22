@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Clock, Play, BookOpen } from 'lucide-react';
@@ -80,11 +80,12 @@ const Tutorials = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="AI Tools Tutorials - Learn How to Use AI Effectively"
-        description="Step-by-step tutorials on how to use AI tools effectively. From beginner guides to advanced techniques."
+      <AdvancedSEO 
+        title="AI Tools Tutorials - Learn How to Use AI Effectively | ToolsML"
+        description="Step-by-step tutorials on how to use AI tools effectively. From beginner guides to advanced techniques for AI mastery."
         keywords="AI tutorials, how to use AI tools, AI guides, artificial intelligence learning"
         url="/tutorials"
+        pageType="homepage"
       />
       <Header />
       

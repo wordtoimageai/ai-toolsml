@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SEO from "@/components/SEO";
+import AdvancedSEO from "@/components/AdvancedSEO";
 import ToolCard from "@/components/ToolCard";
 import Pagination from "@/components/Pagination";
 import { ToolsGridSkeleton } from "@/components/LoadingStates";
@@ -157,11 +157,12 @@ const BrowseTools = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEO 
+      <AdvancedSEO 
         title={seoTitle}
         description={seoDescription}
         keywords="AI tools directory, browse AI tools, AI software, machine learning tools, artificial intelligence applications"
-        url="https://toolsml.com/browse"
+        url="/browse"
+        pageType="homepage"
       />
       <ItemListSchema 
         items={paginatedTools}

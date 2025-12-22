@@ -3,7 +3,7 @@ import { useFavorites } from '@/hooks/useFavorites';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -26,9 +26,11 @@ const Favorites = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="My Favorite AI Tools"
-        description="Your curated collection of favorite AI tools."
+      <AdvancedSEO 
+        title="My Favorite AI Tools - ToolsML"
+        description="Your curated collection of favorite AI tools. Save and organize the best AI solutions for easy access."
+        url="/favorites"
+        pageType="homepage"
       />
       <Header />
       

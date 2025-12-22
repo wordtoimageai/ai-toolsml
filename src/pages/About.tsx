@@ -10,7 +10,7 @@ const About = () => {
       <AdvancedSEO 
         title="About ToolsML - Your Trusted AI Tools Directory"
         description="Learn about ToolsML's mission to help professionals discover and compare the best AI tools available. Join 50K+ users finding perfect AI solutions."
-        url={window.location.href}
+        url="/about"
         pageType="homepage"
       />
       <Header />

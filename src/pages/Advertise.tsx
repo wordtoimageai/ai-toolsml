@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -79,10 +79,12 @@ const stats = [
 const Advertise = () => {
   return (
     <div className="min-h-screen">
-      <SEO 
+      <AdvancedSEO 
         title="Advertise with ToolsML - Reach AI Tool Users"
         description="Promote your AI tool to thousands of professionals and decision-makers. Multiple advertising options available."
         keywords="advertise AI tools, AI tool marketing, sponsored content, banner ads"
+        url="/advertise"
+        pageType="homepage"
       />
       <Header />
       
