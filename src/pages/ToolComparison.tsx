@@ -186,8 +186,8 @@ const ToolComparison = () => {
                               <span className="font-semibold">{tool.rating}</span>
                             </div>
                           )}
-                          {!['features', 'integrations', 'useCases', 'rating'].includes(category.key) && (
-                            <span>{tool[category.key as keyof typeof tool] || 'N/A'}</span>
+                          {!['features', 'integrations', 'useCases', 'rating', 'priceInfo'].includes(category.key) && (
+                            <span>{String(tool[category.key as keyof typeof tool] || 'N/A')}</span>
                           )}
                         </td>
                       ))}

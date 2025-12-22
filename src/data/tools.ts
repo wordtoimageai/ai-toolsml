@@ -1,3 +1,10 @@
+export interface PriceInfo {
+  startingPrice: number;  // 0 for free, starting price for paid
+  currency: string;       // USD, EUR, etc.
+  billingCycle?: 'monthly' | 'yearly' | 'one-time' | 'usage-based';
+  priceDescription?: string;  // e.g., "per user/month", "starting from"
+}
+
 export interface Tool {
   id: string;
   icon: string;
@@ -7,6 +14,7 @@ export interface Tool {
   tags: string[];
   category: string;
   pricing: 'Free' | 'Freemium' | 'Paid' | 'Subscription';
+  priceInfo?: PriceInfo;  // Optional: actual pricing data (fallback to 0 for schema)
   website: string;
   features: string[];
   pros: string[];
@@ -16,6 +24,15 @@ export interface Tool {
   founded: string;
   company: string;
 }
+
+// Helper function to get price value for schemas
+export const getSchemaPrice = (tool: Tool): string => {
+  if (tool.priceInfo) {
+    return tool.priceInfo.startingPrice.toString();
+  }
+  // Fallback: Free/Freemium = 0, others = 0 (starting price)
+  return "0";
+};
 
 export const tools: Tool[] = [
   {
@@ -27,6 +44,7 @@ export const tools: Tool[] = [
     tags: ['Writing', 'Conversation', 'Free'],
     category: 'writing',
     pricing: 'Freemium',
+    priceInfo: { startingPrice: 0, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Free tier available, Plus $20/mo' },
     website: 'https://chat.openai.com',
     features: [
       'Natural language conversation',
@@ -61,6 +79,7 @@ export const tools: Tool[] = [
     tags: ['Image Generation', 'Art', 'Paid'],
     category: 'design',
     pricing: 'Subscription',
+    priceInfo: { startingPrice: 10, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Basic $10/month, Standard $30/month, Pro $60/month' },
     website: 'https://midjourney.com',
     features: [
       'High-quality image generation',
@@ -95,6 +114,7 @@ export const tools: Tool[] = [
     tags: ['Coding', 'Productivity', 'Subscription'],
     category: 'coding',
     pricing: 'Subscription',
+    priceInfo: { startingPrice: 10, currency: 'USD', billingCycle: 'monthly', priceDescription: '$10/month for individuals, $19/user/month for business' },
     website: 'https://github.com/features/copilot',
     features: [
       'Intelligent code completion',
@@ -129,6 +149,7 @@ export const tools: Tool[] = [
     tags: ['Marketing', 'Copywriting', 'Business'],
     category: 'marketing',
     pricing: 'Subscription',
+    priceInfo: { startingPrice: 49, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Creator $49/month, Pro $69/month' },
     website: 'https://jasper.ai',
     features: [
       'Marketing copy templates',
@@ -197,6 +218,7 @@ export const tools: Tool[] = [
     tags: ['Research', 'Search', 'Education'],
     category: 'research',
     pricing: 'Freemium',
+    priceInfo: { startingPrice: 0, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Free tier available, Pro $20/month' },
     website: 'https://perplexity.ai',
     features: [
       'Real-time web search',
@@ -231,6 +253,7 @@ export const tools: Tool[] = [
     tags: ['Assistant', 'Analysis', 'Writing'],
     category: 'writing',
     pricing: 'Freemium',
+    priceInfo: { startingPrice: 0, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Free tier available, Pro $20/month' },
     website: 'https://claude.ai',
     features: [
       'Long-form document analysis',
@@ -300,6 +323,7 @@ export const tools: Tool[] = [
     tags: ['Productivity', 'Writing', 'Organization'],
     category: 'productivity',
     pricing: 'Freemium',
+    priceInfo: { startingPrice: 0, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Free plan available, Plus $12/month, AI add-on $10/member/month' },
     website: 'https://notion.so',
     features: [
       'AI-powered Q&A for your workspace',
@@ -847,6 +871,7 @@ export const tools: Tool[] = [
     tags: ['Screen Recording', 'Video Messaging', 'Communication'],
     category: 'productivity',
     pricing: 'Freemium',
+    priceInfo: { startingPrice: 0, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Free tier available, Business $12.50/user/month' },
     website: 'https://loom.com',
     features: [
       'Screen and camera recording',
@@ -881,6 +906,7 @@ export const tools: Tool[] = [
     tags: ['Design', 'Collaboration', 'Prototyping'],
     category: 'design',
     pricing: 'Freemium',
+    priceInfo: { startingPrice: 0, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Free for individuals, Professional $15/editor/month' },
     website: 'https://figma.com',
     features: [
       'Real-time collaborative design',

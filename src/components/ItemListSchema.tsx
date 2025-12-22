@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Tool } from '@/data/tools';
+import { Tool, getSchemaPrice } from '@/data/tools';
 
 interface ItemListSchemaProps {
   items: Tool[];
@@ -43,10 +43,11 @@ const ItemListSchema = ({
         "operatingSystem": "Web",
         "offers": {
           "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
+          "price": getSchemaPrice(tool),
+          "priceCurrency": tool.priceInfo?.currency || "USD",
           "availability": "https://schema.org/InStock",
-          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
+          ...(tool.priceInfo?.priceDescription && { "description": tool.priceInfo.priceDescription })
         },
         "aggregateRating": {
           "@type": "AggregateRating",
