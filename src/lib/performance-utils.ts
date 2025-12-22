@@ -14,8 +14,8 @@ export const preloadCriticalResources = () => {
   fontLink.crossOrigin = 'anonymous';
   document.head.appendChild(fontLink);
 
-  // Preload hero images
-  const heroImages = ['/hero-bg.jpg', '/og-image.jpg'];
+  // Preload hero images (only existing images)
+  const heroImages = ['/og-image.jpg'];
   heroImages.forEach(src => {
     const link = document.createElement('link');
     link.rel = 'preload';

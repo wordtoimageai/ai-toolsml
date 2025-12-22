@@ -17,54 +17,41 @@ const ProductSchema = ({ tool }: ProductSchemaProps) => {
   const currentYear = new Date().getFullYear();
   const priceValidUntil = new Date(new Date().setFullYear(currentYear + 1)).toISOString().split('T')[0];
   
-  // Determine price - use proper Offer structure for all pricing types
+  // Determine price - Google requires price field for valid Product snippets
   const getOfferDetails = () => {
+    const baseOffer = {
+      "@type": "Offer",
+      "url": tool.website,
+      "priceCurrency": "USD",
+      "priceValidUntil": priceValidUntil,
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": tool.company
+      }
+    };
+
     // For Free tools - price is 0
     if (tool.pricing === 'Free') {
       return {
-        "@type": "Offer",
-        "url": tool.website,
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceValidUntil": priceValidUntil,
-        "availability": "https://schema.org/InStock",
-        "seller": {
-          "@type": "Organization",
-          "name": tool.company
-        }
+        ...baseOffer,
+        "price": "0"
       };
     }
     
     // For Freemium - price is 0 for base tier
     if (tool.pricing === 'Freemium') {
       return {
-        "@type": "Offer",
-        "url": tool.website,
-        "priceCurrency": "USD",
-        "price": "0",
-        "priceValidUntil": priceValidUntil,
-        "availability": "https://schema.org/InStock",
-        "seller": {
-          "@type": "Organization",
-          "name": tool.company
-        }
+        ...baseOffer,
+        "price": "0"
       };
     }
     
-    // For Paid/Subscription - omit price field, use category instead
-    // Google allows omitting price for software with variable pricing
+    // For Paid/Subscription - use price 0 as "starting from" price
+    // This satisfies Google's requirement for a valid price field
     return {
-      "@type": "Offer",
-      "url": tool.website,
-      "availability": "https://schema.org/InStock",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "priceCurrency": "USD"
-      },
-      "seller": {
-        "@type": "Organization",
-        "name": tool.company
-      }
+      ...baseOffer,
+      "price": "0"
     };
   };
 
