@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -36,9 +36,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="Contact Us - ToolsML"
-        description="Get in touch with the ToolsML team. We're here to help with questions, feedback, or tool submissions."
+      <AdvancedSEO 
+        title="Contact Us - ToolsML | Get in Touch"
+        description="Get in touch with the ToolsML team. We're here to help with questions, feedback, or tool submissions. Response within 24 hours."
+        url="/contact"
+        pageType="homepage"
       />
       <Header />
       

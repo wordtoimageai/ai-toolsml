@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Plus, Bug, Zap, Palette } from 'lucide-react';
 
@@ -134,10 +134,12 @@ const Changelog = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO 
+      <AdvancedSEO 
         title="Changelog - ToolsML Updates & Releases"
-        description="Stay updated with the latest ToolsML features, improvements, and bug fixes."
+        description="Stay updated with the latest ToolsML features, improvements, and bug fixes. See our development history."
         keywords="ToolsML changelog, updates, new features, bug fixes, releases"
+        url="/changelog"
+        pageType="homepage"
       />
       <Header />
       

@@ -8,7 +8,7 @@ const Terms = () => {
       <AdvancedSEO 
         title="Terms of Service - ToolsML | User Agreement"
         description="Read ToolsML's terms of service and user agreement. Understand your rights and responsibilities when using our AI tools directory."
-        url={window.location.href}
+        url="/terms"
         pageType="homepage"
       />
       <Header />

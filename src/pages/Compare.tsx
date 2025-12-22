@@ -2,7 +2,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { getToolById } from '@/data/tools';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Star, ExternalLink } from 'lucide-react';
@@ -28,7 +28,7 @@ const Compare = () => {
   if (tools.length === 0) {
     return (
       <div className="min-h-screen">
-        <SEO title="Compare AI Tools" />
+        <AdvancedSEO title="Compare AI Tools - ToolsML" url="/compare" pageType="homepage" />
         <Header />
         
         <main className="pt-20">
@@ -57,10 +57,11 @@ const Compare = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO 
-        title={`Compare ${tools.map(t => t.title).join(' vs ')}`}
-        description={`Side-by-side comparison of ${tools.map(t => t.title).join(', ')}`}
-        url="/comparison"
+      <AdvancedSEO 
+        title={`Compare ${tools.map(t => t.title).join(' vs ')} - AI Tools | ToolsML`}
+        description={`Side-by-side comparison of ${tools.map(t => t.title).join(', ')}. Compare features, pricing, and reviews.`}
+        url="/compare"
+        pageType="homepage"
       />
       <Header />
       

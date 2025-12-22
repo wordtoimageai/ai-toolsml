@@ -8,7 +8,7 @@ const Privacy = () => {
       <AdvancedSEO 
         title="Privacy Policy - ToolsML | Data Protection & Security"
         description="Learn how ToolsML protects your privacy and handles your personal information. Transparent data practices and user rights."
-        url={window.location.href}
+        url="/privacy"
         pageType="homepage"
       />
       <Header />

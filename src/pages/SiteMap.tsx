@@ -65,7 +65,7 @@ const SiteMap = () => {
         title="Site Map - ToolsML Website Structure"
         description="Comprehensive overview of ToolsML website structure, features, and implementation status"
         pageType="homepage"
-        url="https://toolsml.com/site-map"
+        url="/site-map"
       />
       <Header />
       <main className="container mx-auto px-4 py-12">

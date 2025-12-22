@@ -20,13 +20,15 @@ const Tag = () => {
     tool.tags.some(t => t.toLowerCase() === decodedTag.toLowerCase())
   );
 
+  const canonicalUrl = `/tag/${encodeURIComponent(decodedTag.toLowerCase().replace(/\s+/g, '-'))}`;
+
   return (
     <div className="min-h-screen">
       <AdvancedSEO 
-        title={`${decodedTag} AI Tools - Discover ${filteredTools.length}+ Solutions`}
-        description={`Discover the best AI tools tagged with "${decodedTag}". Find cutting-edge solutions for your needs. Browse ${filteredTools.length} tools.`}
-        url={`/tag/${encodeURIComponent(tag)}`}
-        pageType="homepage"
+        title={`${decodedTag} AI Tools - Discover ${filteredTools.length}+ Solutions | ToolsML`}
+        description={`Discover the best AI tools tagged with "${decodedTag}". Find ${filteredTools.length} cutting-edge AI solutions for ${decodedTag.toLowerCase()}. Compare features, pricing & reviews.`}
+        url={canonicalUrl}
+        pageType="category"
       />
       <Header />
       

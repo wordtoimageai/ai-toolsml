@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -42,10 +42,12 @@ const blogPosts = [
 const Blog = () => {
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="AI Tools Blog - Latest Insights & Trends"
-        description="Stay updated with the latest AI tools, trends, and insights. Expert reviews, guides, and industry analysis."
+      <AdvancedSEO 
+        title="AI Tools Blog - Latest Insights & Trends | ToolsML"
+        description="Stay updated with the latest AI tools, trends, and insights. Expert reviews, guides, and industry analysis from ToolsML."
         keywords="AI tools blog, artificial intelligence news, AI trends, tech insights"
+        url="/blog"
+        pageType="blog"
       />
       <Header />
       

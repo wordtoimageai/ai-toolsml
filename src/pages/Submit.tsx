@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import SEO from '@/components/SEO';
+import AdvancedSEO from '@/components/AdvancedSEO';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -74,9 +74,11 @@ const Submit = () => {
 
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="Submit AI Tool"
-        description="Submit your AI tool to be featured in our directory. Share innovative AI solutions with our community."
+      <AdvancedSEO 
+        title="Submit AI Tool - ToolsML | Get Featured"
+        description="Submit your AI tool to be featured in our directory. Share innovative AI solutions with our community of 50K+ users."
+        url="/submit"
+        pageType="homepage"
       />
       <Header />
       
