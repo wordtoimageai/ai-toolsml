@@ -120,7 +120,23 @@
     <meta name="keywords" content="AI tools, artificial intelligence, machine learning, productivity, automation, AI directory, AI software, best AI tools, AI comparison, AI reviews" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#667eea" />
-    <!-- Canonical URL set dynamically by React Helmet per page -->
+    
+    <!-- Canonical URL - Set dynamically based on current URL, React Helmet will override per-page -->
+    <link rel="canonical" href="https://toolsml.com/" data-rh="true" id="canonical-link" />
+    <script>
+      // Set canonical URL immediately before React renders for SEO crawlers
+      (function() {
+        var canonical = document.getElementById('canonical-link');
+        if (canonical) {
+          var path = window.location.pathname;
+          // Remove trailing slashes except for root
+          if (path !== '/' && path.endsWith('/')) {
+            path = path.slice(0, -1);
+          }
+          canonical.href = 'https://toolsml.com' + path;
+        }
+      })();
+    </script>
 
     <!-- Cache Control Headers -->
     <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
