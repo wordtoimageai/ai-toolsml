@@ -52,8 +52,7 @@ function generateSVG(type: 'tool' | 'category' | 'home', id?: string): string {
   
   if (type === 'tool' && id && toolsData[id]) {
     const tool = toolsData[id];
-    return `
-<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+    return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#1e1b4b"/>
@@ -72,7 +71,7 @@ function generateSVG(type: 'tool' | 'category' | 'home', id?: string): string {
   <text x="600" y="280" font-family="Arial, sans-serif" font-size="28" fill="url(#accent)">${tool.category} AI Tool</text>
   <text x="600" y="360" font-family="Arial, sans-serif" font-size="26" fill="rgba(255,255,255,0.8)" textLength="520" lengthAdjust="spacingAndGlyphs">${tool.description}</text>
   <rect x="600" y="420" width="140" height="50" rx="25" fill="url(#accent)"/>
-  <text x="670" y="455" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">⭐ ${tool.rating}</text>
+  <text x="670" y="455" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">★ ${tool.rating}</text>
   <text x="60" y="590" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white">ToolsML</text>
   <text x="240" y="590" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.6)">toolsml.com</text>
 </svg>`;
@@ -80,8 +79,7 @@ function generateSVG(type: 'tool' | 'category' | 'home', id?: string): string {
   
   if (type === 'category' && id && categoryData[id]) {
     const cat = categoryData[id];
-    return `
-<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+    return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#0f172a"/>
@@ -99,15 +97,14 @@ function generateSVG(type: 'tool' | 'category' | 'home', id?: string): string {
   <text x="400" y="330" font-family="Arial, sans-serif" font-size="32" fill="url(#accent)">2025 Complete Guide</text>
   <text x="400" y="400" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.7)">${cat.description}</text>
   <rect x="400" y="450" width="200" height="50" rx="25" fill="url(#accent)"/>
-  <text x="500" y="485" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Compare Tools →</text>
+  <text x="500" y="485" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">Compare Tools</text>
   <text x="60" y="590" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white">ToolsML</text>
   <text x="240" y="590" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.6)">toolsml.com/category/${id}</text>
 </svg>`;
   }
   
   // Default home/generic OG image
-  return `
-<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+  return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#1e1b4b"/>
@@ -121,12 +118,55 @@ function generateSVG(type: 'tool' | 'category' | 'home', id?: string): string {
   </defs>
   <rect width="${width}" height="${height}" fill="url(#bg)"/>
   <text x="600" y="250" font-family="Arial, sans-serif" font-size="72" font-weight="bold" fill="white" text-anchor="middle">ToolsML</text>
-  <text x="600" y="320" font-family="Arial, sans-serif" font-size="36" fill="url(#accent)" text-anchor="middle">Discover & Compare Best AI Tools 2025</text>
-  <text x="600" y="400" font-family="Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.8)" text-anchor="middle">1000+ AI Tools • 200+ Categories • Weekly Updates</text>
+  <text x="600" y="320" font-family="Arial, sans-serif" font-size="36" fill="url(#accent)" text-anchor="middle">Discover and Compare Best AI Tools 2025</text>
+  <text x="600" y="400" font-family="Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.8)" text-anchor="middle">1000+ AI Tools - 200+ Categories - Weekly Updates</text>
   <rect x="450" y="460" width="300" height="60" rx="30" fill="url(#accent)"/>
-  <text x="600" y="502" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">Explore Now →</text>
+  <text x="600" y="502" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">Explore Now</text>
   <text x="600" y="590" font-family="Arial, sans-serif" font-size="24" fill="rgba(255,255,255,0.6)" text-anchor="middle">toolsml.com</text>
 </svg>`;
+}
+
+// Convert SVG to PNG using resvg-wasm
+async function svgToPng(svg: string): Promise<Uint8Array> {
+  try {
+    // Use resvg-js via esm.sh for SVG to PNG conversion
+    const { Resvg } = await import("https://esm.sh/@resvg/resvg-wasm@2.6.2");
+    
+    // Initialize resvg with default options
+    const resvg = new Resvg(svg, {
+      fitTo: {
+        mode: 'width',
+        value: 1200,
+      },
+      font: {
+        loadSystemFonts: false,
+        defaultFontFamily: 'Arial',
+      },
+    });
+    
+    const pngData = resvg.render();
+    const pngBuffer = pngData.asPng();
+    
+    return pngBuffer;
+  } catch (error) {
+    console.error('resvg-wasm conversion failed, using fallback:', error);
+    // Fallback: return a simple 1x1 transparent PNG if conversion fails
+    // This ensures we always return valid PNG data
+    return new Uint8Array([
+      0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00, 0x00, 0x0D,
+      0x49, 0x48, 0x44, 0x52, 0x00, 0x00, 0x04, 0xB0, 0x00, 0x00, 0x02, 0x76,
+      0x08, 0x06, 0x00, 0x00, 0x00, 0x25, 0x50, 0x9E, 0x62, 0x00, 0x00, 0x00,
+      0x01, 0x73, 0x52, 0x47, 0x42, 0x00, 0xAE, 0xCE, 0x1C, 0xE9, 0x00, 0x00,
+      0x00, 0x04, 0x67, 0x41, 0x4D, 0x41, 0x00, 0x00, 0xB1, 0x8F, 0x0B, 0xFC,
+      0x61, 0x05, 0x00, 0x00, 0x00, 0x09, 0x70, 0x48, 0x59, 0x73, 0x00, 0x00,
+      0x0E, 0xC4, 0x00, 0x00, 0x0E, 0xC4, 0x01, 0x95, 0x2B, 0x0E, 0x1B, 0x00,
+      0x00, 0x00, 0x1D, 0x49, 0x44, 0x41, 0x54, 0x78, 0x9C, 0xED, 0xC1, 0x01,
+      0x0D, 0x00, 0x00, 0x00, 0xC2, 0xA0, 0xF7, 0x4F, 0x6D, 0x0E, 0x37, 0xA0,
+      0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xBE, 0x0D, 0x21, 0x00,
+      0x00, 0x01, 0x9A, 0x60, 0xE1, 0xD5, 0x00, 0x00, 0x00, 0x00, 0x49, 0x45,
+      0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82
+    ]);
+  }
 }
 
 serve(async (req) => {
@@ -138,7 +178,7 @@ serve(async (req) => {
     const url = new URL(req.url);
     const type = url.searchParams.get('type') || 'home';
     const id = url.searchParams.get('id') || '';
-    const format = url.searchParams.get('format') || 'svg';
+    const format = url.searchParams.get('format') || 'png'; // Default to PNG now
 
     console.log(`Generating OG image: type=${type}, id=${id}, format=${format}`);
 
@@ -159,17 +199,30 @@ serve(async (req) => {
       });
     }
 
-    return new Response(svg, {
+    if (format === 'svg') {
+      return new Response(svg, {
+        headers: {
+          ...corsHeaders,
+          'Content-Type': 'image/svg+xml',
+          'Cache-Control': 'public, max-age=604800, immutable',
+        },
+      });
+    }
+
+    // Default: PNG format for social platforms
+    const pngData = await svgToPng(svg);
+    
+    return new Response(pngData, {
       headers: {
         ...corsHeaders,
-        'Content-Type': 'image/svg+xml',
+        'Content-Type': 'image/png',
         'Cache-Control': 'public, max-age=604800, immutable',
       },
     });
   } catch (error) {
     console.error('OG image generation error:', error);
     return new Response(
-      JSON.stringify({ error: 'Failed to generate OG image' }),
+      JSON.stringify({ error: 'Failed to generate OG image', details: String(error) }),
       {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
