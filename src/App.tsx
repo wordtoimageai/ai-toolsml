@@ -13,6 +13,7 @@ import CompareBar from "./components/CompareBar";
 import PrivacyConsentBanner from "./components/PrivacyConsentBanner";
 import PreconnectLinks from "./components/PreconnectLinks";
 import PrerenderReady from "./components/PrerenderReady";
+import PrerenderMetaTags from "./components/PrerenderMetaTags";
 
 // Lazy load components for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -65,6 +66,7 @@ const App = () => (
             <Sonner />
             <BrowserRouter>
               <PrerenderReady />
+              <PrerenderMetaTags />
               <CompareBar />
               <PrivacyConsentBanner />
               <Suspense fallback={<PageSkeleton />}>
