@@ -31,9 +31,13 @@ export const ProFeatureGate = ({
     );
   }
 
-  // Check if user has required subscription
-  const hasAccess = isAuthenticated && (
-    (requiredTier === 'pro' && (profile?.subscription_tier === 'pro' || profile?.subscription_tier === 'enterprise')) ||
+  // Check subscription expiration to match server-side RLS validation
+  const isSubscriptionActive = !profile?.subscription_expires_at || 
+    new Date(profile.subscription_expires_at) > new Date();
+
+  // Check if user has required subscription AND it's not expired
+  const hasAccess = isAuthenticated && isSubscriptionActive && (
+    (requiredTier === 'pro' && ['pro', 'enterprise'].includes(profile?.subscription_tier || '')) ||
     (requiredTier === 'enterprise' && profile?.subscription_tier === 'enterprise')
   );
 

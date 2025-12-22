@@ -135,7 +135,13 @@ export const useAuth = (): AuthState & {
   };
 
   const isAuthenticated = !!user;
-  const isPro = profile?.subscription_tier === 'pro' || profile?.subscription_tier === 'enterprise';
+  
+  // Check subscription tier AND expiration to match server-side RLS validation
+  const isSubscriptionActive = !profile?.subscription_expires_at || 
+    new Date(profile.subscription_expires_at) > new Date();
+  const isPro = profile?.subscription_tier && 
+    ['pro', 'enterprise'].includes(profile.subscription_tier) && 
+    isSubscriptionActive;
   // Use roles array as source of truth, with is_vendor as fallback for backward compatibility
   const isVendor = roles.includes('vendor') || profile?.is_vendor || false;
   const isAdmin = roles.includes('admin');
