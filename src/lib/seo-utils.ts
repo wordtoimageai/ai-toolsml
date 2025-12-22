@@ -329,23 +329,26 @@ export const generateCanonicalUrl = (path: string): string => {
 };
 
 /**
- * Generate Open Graph image URL for tools
+ * Generate Open Graph image URL for tools using dynamic edge function
+ * Falls back to static images if tool/category not recognized
  */
 export const generateOGImage = (toolName?: string, category?: string): string => {
   const baseUrl = 'https://toolsml.com';
+  const supabaseUrl = 'https://kpynatdltoakbpwbjxqm.supabase.co';
   
   if (toolName) {
-    // Tool-specific OG image
-    return `${baseUrl}/og-images/tool-${toolName.toLowerCase().replace(/\s+/g, '-')}.jpg`;
+    // Generate dynamic OG image for tools via edge function
+    const toolId = toolName.toLowerCase().replace(/\s+/g, '-');
+    return `${supabaseUrl}/functions/v1/og-image?type=tool&id=${encodeURIComponent(toolId)}`;
   }
   
   if (category) {
-    // Category-specific OG image
-    return `${baseUrl}/og-images/category-${category}.jpg`;
+    // Generate dynamic OG image for categories via edge function
+    return `${supabaseUrl}/functions/v1/og-image?type=category&id=${encodeURIComponent(category.toLowerCase())}`;
   }
   
-  // Default OG image
-  return `${baseUrl}/og-image.jpg`;
+  // Default OG image - use edge function for consistent branding
+  return `${supabaseUrl}/functions/v1/og-image?type=home`;
 };
 
 /**
