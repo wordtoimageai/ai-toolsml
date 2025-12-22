@@ -333,22 +333,21 @@ export const generateCanonicalUrl = (path: string): string => {
  * Falls back to static images if tool/category not recognized
  */
 export const generateOGImage = (toolName?: string, category?: string): string => {
-  const baseUrl = 'https://toolsml.com';
   const supabaseUrl = 'https://kpynatdltoakbpwbjxqm.supabase.co';
   
   if (toolName) {
-    // Generate dynamic OG image for tools via edge function
+    // Generate dynamic PNG OG image for tools via edge function (better social platform compatibility)
     const toolId = toolName.toLowerCase().replace(/\s+/g, '-');
-    return `${supabaseUrl}/functions/v1/og-image?type=tool&id=${encodeURIComponent(toolId)}`;
+    return `${supabaseUrl}/functions/v1/og-image?type=tool&id=${encodeURIComponent(toolId)}&format=png`;
   }
   
   if (category) {
-    // Generate dynamic OG image for categories via edge function
-    return `${supabaseUrl}/functions/v1/og-image?type=category&id=${encodeURIComponent(category.toLowerCase())}`;
+    // Generate dynamic PNG OG image for categories via edge function
+    return `${supabaseUrl}/functions/v1/og-image?type=category&id=${encodeURIComponent(category.toLowerCase())}&format=png`;
   }
   
-  // Default OG image - use edge function for consistent branding
-  return `${supabaseUrl}/functions/v1/og-image?type=home`;
+  // Default PNG OG image - use edge function for consistent branding
+  return `${supabaseUrl}/functions/v1/og-image?type=home&format=png`;
 };
 
 /**
