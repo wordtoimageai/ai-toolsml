@@ -1,8 +1,77 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
+      "src": "/favicon.png",
+      "dest": "/favicon.png"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/favicon.ico"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/manifest.json"
+    },
+    {
+      "src": "/og-image.jpg",
+      "dest": "/og-image.jpg"
+    },
+    {
+      "src": "/llms.txt",
+      "dest": "/llms.txt"
+    },
+    {
+      "src": "/sw.js",
+      "dest": "/sw.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "^/$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "^/(about|browse|categories|compare|contact|favorites|submit|privacy|terms|changelog|blog|tutorials|api-docs|advertise|auth|sitemap)$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "^/tool/(.+)$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "^/category/(.+)$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "^/tag/(.+)$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "^/blog/(.+)$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "^/tutorials/(.+)$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/404?path=$1",
+      "status": 404
     }
   ],
   "headers": [
@@ -35,6 +104,18 @@
         { "key": "X-XSS-Protection", "value": "1; mode=block" }
       ]
     }
+  ],
+  "functions": {
+    "api/prerender.ts": {
+      "memory": 1024,
+      "maxDuration": 30
+    },
+    "api/404.ts": {
+      "memory": 128,
+      "maxDuration": 5
+    }
+  }
+}
   ],
   "functions": {
     "api/prerender.ts": {
