@@ -17,7 +17,7 @@ import OrganizationSchema from "@/components/OrganizationSchema";
 import ItemListSchema from "@/components/ItemListSchema";
 import AdvancedMetaTags from "@/components/AdvancedMetaTags";
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
-import { CategoryLinks, PopularTags } from "@/components/InternalLinks";
+import { CategoryLinks, PopularTags, QuickNavigation, ToolsByCategoryPreview } from "@/components/InternalLinks";
 import HowItWorks from "@/components/HowItWorks";
 import AIToolCategories from "@/components/AIToolCategories";
 import PopularTools from "@/components/PopularTools";
@@ -114,8 +114,14 @@ const Index = () => {
         />
         <section className="py-12 bg-muted/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ToolsByCategoryPreview className="mb-12" />
             <CategoryLinks className="mb-12" />
             <PopularTags tags={popularTags} />
+          </div>
+        </section>
+        <section className="py-12 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <QuickNavigation />
           </div>
         </section>
         <TrustSignals />

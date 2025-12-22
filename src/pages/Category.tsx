@@ -5,7 +5,7 @@ import AdvancedSEO from '@/components/AdvancedSEO';
 import CollectionPageSchema from '@/components/CollectionPageSchema';
 import AdvancedMetaTags from '@/components/AdvancedMetaTags';
 import PerformanceOptimizer from '@/components/PerformanceOptimizer';
-import { ContextualCTA } from '@/components/InternalLinks';
+import { ContextualCTA, PopularTags, FeaturedToolsLinks } from '@/components/InternalLinks';
 import RelatedCategories from '@/components/RelatedCategories';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -318,6 +318,20 @@ const Category = () => {
 
         {/* Related Categories Section */}
         <RelatedCategories currentCategory={category} />
+
+        {/* Popular Tags */}
+        <section className="py-12 bg-background">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <PopularTags maxItems={15} />
+          </div>
+        </section>
+
+        {/* Featured Tools */}
+        <section className="py-12 bg-muted/30">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <FeaturedToolsLinks maxItems={8} />
+          </div>
+        </section>
 
         {/* Bottom CTA */}
         {guide && (

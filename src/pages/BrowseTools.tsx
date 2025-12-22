@@ -8,6 +8,7 @@ import Pagination from "@/components/Pagination";
 import { ToolsGridSkeleton } from "@/components/LoadingStates";
 import ItemListSchema from "@/components/ItemListSchema";
 import Breadcrumb from "@/components/Breadcrumb";
+import { PopularTags, FeaturedToolsLinks, CategoryLinks, ContextualCTA } from "@/components/InternalLinks";
 import { getAllTools, searchTools } from "@/data/tools";
 import { useUrlState } from "@/hooks/useUrlState";
 import { usePrivacyAnalytics } from "@/hooks/usePrivacyAnalytics";
@@ -336,18 +337,22 @@ const BrowseTools = () => {
 
           {/* Category Quick Links for SEO */}
           <section className="mt-16 pt-12 border-t border-border">
-            <h2 className="text-2xl font-bold mb-6 text-center">Browse by Category</h2>
-            <div className="flex flex-wrap justify-center gap-3">
-              {categories.filter(c => c.id !== "all").map((cat) => (
-                <Link
-                  key={cat.id}
-                  to={`/category/${cat.id}`}
-                  className="px-4 py-2 bg-muted hover:bg-muted/80 rounded-full text-sm font-medium transition-colors"
-                >
-                  {cat.label} AI Tools
-                </Link>
-              ))}
-            </div>
+            <CategoryLinks showAll={true} className="mb-12" />
+          </section>
+
+          {/* Popular Tags */}
+          <section className="mt-12">
+            <PopularTags maxItems={25} />
+          </section>
+
+          {/* Featured Tools */}
+          <section className="mt-12">
+            <FeaturedToolsLinks maxItems={8} />
+          </section>
+
+          {/* CTA */}
+          <section className="mt-12">
+            <ContextualCTA context="homepage" />
           </section>
         </div>
       </main>

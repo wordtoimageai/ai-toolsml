@@ -13,7 +13,7 @@ import AdvancedSEO from "@/components/AdvancedSEO";
 import ProductSchema from "@/components/ProductSchema";
 import AdvancedMetaTags from "@/components/AdvancedMetaTags";
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
-import { RelatedTools, ContextualCTA } from "@/components/InternalLinks";
+import { RelatedTools, ContextualCTA, CategoryLinks, PopularTags } from "@/components/InternalLinks";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import UserReviews from "@/components/UserReviews";
@@ -266,7 +266,12 @@ const ToolDetail = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground">Category</h4>
-                  <p className="text-muted-foreground capitalize">{tool.category}</p>
+                  <Link 
+                    to={`/category/${tool.category}`}
+                    className="text-primary hover:underline capitalize"
+                  >
+                    {tool.category} Tools
+                  </Link>
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground">Company</h4>
@@ -275,6 +280,18 @@ const ToolDetail = () => {
                 <div>
                   <h4 className="font-semibold text-foreground">Founded</h4>
                   <p className="text-muted-foreground">{tool.founded}</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-foreground">Tags</h4>
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {tool.tags.slice(0, 4).map(tag => (
+                      <Link key={tag} to={`/tag/${encodeURIComponent(tag)}`}>
+                        <Badge variant="outline" className="text-xs hover:bg-primary hover:text-primary-foreground transition-colors">
+                          {tag}
+                        </Badge>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -356,6 +373,16 @@ const ToolDetail = () => {
             title={`${tool.title} - Frequently Asked Questions`}
             description={`Common questions about ${tool.title}, its features, pricing, and use cases`}
           />
+        </div>
+
+        {/* Explore Categories */}
+        <div className="mt-16">
+          <CategoryLinks currentCategory={tool.category} />
+        </div>
+
+        {/* Popular Tags */}
+        <div className="mt-12">
+          <PopularTags maxItems={12} />
         </div>
       </div>
       </div>
