@@ -396,7 +396,7 @@ export const generateCategorySitemapXML = (categoryValue: string): string => {
 };
 
 /**
- * Generate sitemap index file
+ * Generate sitemap index file with all sitemap references
  */
 export const generateSitemapIndex = (): string => {
   const baseUrl = 'https://toolsml.com';
@@ -405,26 +405,67 @@ export const generateSitemapIndex = (): string => {
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
   
-  const sitemaps = [
-    { url: `${baseUrl}/sitemap.xml`, lastmod: currentDate }
-  ];
+  // Main sitemap
+  xml += '  <sitemap>\n';
+  xml += `    <loc>${baseUrl}/sitemap.xml</loc>\n`;
+  xml += `    <lastmod>${currentDate}</lastmod>\n`;
+  xml += '  </sitemap>\n';
   
-  // Add category-specific sitemaps
+  // Image sitemap
+  xml += '  <sitemap>\n';
+  xml += `    <loc>${baseUrl}/sitemap-images.xml</loc>\n`;
+  xml += `    <lastmod>${currentDate}</lastmod>\n`;
+  xml += '  </sitemap>\n';
+  
+  // News sitemap
+  xml += '  <sitemap>\n';
+  xml += `    <loc>${baseUrl}/sitemap-news.xml</loc>\n`;
+  xml += `    <lastmod>${currentDate}</lastmod>\n`;
+  xml += '  </sitemap>\n';
+  
+  // Video sitemap
+  xml += '  <sitemap>\n';
+  xml += `    <loc>${baseUrl}/sitemap-video.xml</loc>\n`;
+  xml += `    <lastmod>${currentDate}</lastmod>\n`;
+  xml += '  </sitemap>\n';
+  
+  // Category-specific sitemaps
   CATEGORIES.forEach(category => {
-    sitemaps.push({
-      url: `${baseUrl}/sitemap-${category.value}.xml`,
-      lastmod: currentDate
-    });
-  });
-  
-  sitemaps.forEach(sitemap => {
     xml += '  <sitemap>\n';
-    xml += `    <loc>${sitemap.url}</loc>\n`;
-    xml += `    <lastmod>${sitemap.lastmod}</lastmod>\n`;
+    xml += `    <loc>${baseUrl}/sitemap-${category.value}.xml</loc>\n`;
+    xml += `    <lastmod>${currentDate}</lastmod>\n`;
     xml += '  </sitemap>\n';
   });
   
   xml += '</sitemapindex>';
+  
+  return xml;
+};
+
+/**
+ * Generate video sitemap for video-related tools
+ */
+export const generateVideoSitemapXML = (): string => {
+  const videoTools = tools.filter(tool => tool.category === 'video');
+  
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n';
+  xml += '        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">\n';
+  
+  const baseUrl = 'https://toolsml.com';
+  
+  videoTools.forEach(tool => {
+    xml += '  <url>\n';
+    xml += `    <loc>${baseUrl}/tool/${tool.id}</loc>\n`;
+    xml += '    <video:video>\n';
+    xml += `      <video:thumbnail_loc>${baseUrl}/og-image.jpg</video:thumbnail_loc>\n`;
+    xml += `      <video:title>${tool.title} Tutorial and Review</video:title>\n`;
+    xml += `      <video:description>${tool.description}</video:description>\n`;
+    xml += '    </video:video>\n';
+    xml += '  </url>\n';
+  });
+  
+  xml += '</urlset>';
   
   return xml;
 };
