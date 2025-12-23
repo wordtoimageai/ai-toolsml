@@ -113,30 +113,17 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
     <link rel="manifest" href="/manifest.json">
     
-    <!-- SEO Meta Tags - Default fallbacks, Helmet will override per-page -->
-    <title data-rh="true">ToolsML — Discover & Compare the Best AI Tools (Curated Weekly)</title>
-    <meta data-rh="true" name="description" content="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases." />
+    <!-- SEO Meta Tags - Defaults for crawlers, React Helmet adds page-specific overrides -->
+    <title>ToolsML — Discover & Compare the Best AI Tools (Curated Weekly)</title>
+    <meta name="description" content="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases." />
     <meta name="author" content="ToolsML Editorial Team" />
     <meta name="keywords" content="AI tools, artificial intelligence, machine learning, productivity, automation, AI directory, AI software, best AI tools, AI comparison, AI reviews" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#667eea" />
     
-    <!-- Canonical URL - Set dynamically based on current URL, React Helmet will override per-page -->
-    <link rel="canonical" href="https://toolsml.com/" data-rh="true" id="canonical-link" />
-    <script>
-      // Set canonical URL immediately before React renders for SEO crawlers
-      (function() {
-        var canonical = document.getElementById('canonical-link');
-        if (canonical) {
-          var path = window.location.pathname;
-          // Remove trailing slashes except for root
-          if (path !== '/' && path.endsWith('/')) {
-            path = path.slice(0, -1);
-          }
-          canonical.href = 'https://toolsml.com' + path;
-        }
-      })();
-    </script>
+    <!-- Canonical URL - Managed exclusively by React Helmet for each page -->
+    <!-- DO NOT set a default canonical here as it confuses crawlers -->
+    <!-- React Helmet will set the correct canonical URL per page -->
     
     <!-- Prerender hints for SEO crawlers -->
     <meta name="fragment" content="!">
@@ -146,21 +133,20 @@
     <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
 
     <!-- Open Graph Meta Tags - Helmet overrides per-page -->
-    <meta data-rh="true" property="og:title" content="ToolsML — Discover & Compare the Best AI Tools (Curated Weekly)" />
-    <meta data-rh="true" property="og:description" content="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases." />
-    <meta data-rh="true" property="og:type" content="website" />
-    <meta data-rh="true" property="og:url" content="https://toolsml.com/" />
+    <meta property="og:title" content="ToolsML — Discover & Compare the Best AI Tools (Curated Weekly)" />
+    <meta property="og:description" content="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases." />
+    <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ToolsML" />
-    <meta data-rh="true" property="og:image" content="https://toolsml.com/og-image.jpg" />
+    <meta property="og:image" content="https://toolsml.com/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
 
     <!-- Twitter Meta Tags - Helmet overrides per-page -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta data-rh="true" name="twitter:title" content="ToolsML — Discover & Compare the Best AI Tools (Curated Weekly)" />
-    <meta data-rh="true" name="twitter:description" content="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases." />
-    <meta data-rh="true" name="twitter:image" content="https://toolsml.com/og-image.jpg" />
+    <meta name="twitter:title" content="ToolsML — Discover & Compare the Best AI Tools (Curated Weekly)" />
+    <meta name="twitter:description" content="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases." />
+    <meta name="twitter:image" content="https://toolsml.com/og-image.jpg" />
     <meta name="twitter:site" content="@toolsml" />
     <meta name="twitter:creator" content="@toolsml" />
     
