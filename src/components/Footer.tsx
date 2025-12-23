@@ -130,9 +130,10 @@ const Footer = () => {
           <p className="text-gray-400 text-sm">
             &copy; 2025 ToolsML. All rights reserved. Built with ❤️ for the AI community.
           </p>
-          <div className="flex gap-6 text-gray-400 text-sm">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-gray-400 text-sm">
             <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link to="/unsubscribe" className="hover:text-white transition-colors">Unsubscribe</Link>
             <Link to="/site-map" className="hover:text-white transition-colors">Sitemap</Link>
           </div>
         </div>
