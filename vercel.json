@@ -1,4 +1,17 @@
 {
+  "rewrites": [
+    {
+      "source": "/((?!api|assets|favicon|og-image|sitemap|robots|manifest|sw|llms).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|slackbot|applebot|pinterest|redditbot|semrushbot|ahrefsbot|mj12bot|petalbot).*"
+        }
+      ],
+      "destination": "/api/prerender?path=/$1"
+    }
+  ],
   "routes": [
     {
       "src": "/assets/(.*)",
