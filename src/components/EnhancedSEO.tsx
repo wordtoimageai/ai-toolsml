@@ -32,13 +32,16 @@ export const EnhancedSEO = ({
   pageType = 'homepage',
   customTitle,
   customDescription,
-  url = window.location.href
+  url
 }: EnhancedSEOProps) => {
+  // Derive URL from tool/category if not provided - never use window.location for SSR compatibility
+  const derivedUrl = url || (tool ? `/tool/${tool.id}` : category ? `/category/${category}` : '/');
+  
   // Generate optimized SEO content
   const title = customTitle || generateSEOTitle(tool?.title, category);
   const description = customDescription || generateMetaDescription(tool?.title, category, tool?.description);
   const keywords = generateKeywords(tool?.title, category, tool?.tags);
-  const canonicalUrl = generateCanonicalUrl(url);
+  const canonicalUrl = generateCanonicalUrl(derivedUrl);
   const ogImage = generateOGImage(tool?.title, category);
 
   // Generate structured data based on page type
