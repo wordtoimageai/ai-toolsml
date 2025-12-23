@@ -6,28 +6,72 @@ const corsHeaders = {
   'Access-Control-Allow-Methods': 'GET, OPTIONS',
 };
 
-// Tool data for dynamic OG images
+// Tool data for dynamic OG images - Comprehensive list of all AI tools
 const toolsData: Record<string, { title: string; description: string; category: string; icon: string; rating: string }> = {
+  // Writing Tools
   'chatgpt': { title: 'ChatGPT', description: 'Advanced conversational AI for writing, coding & analysis', category: 'Writing', icon: '✍️', rating: '4.8' },
-  'midjourney': { title: 'Midjourney', description: 'Create stunning AI-generated images from text', category: 'Design', icon: '🎨', rating: '4.7' },
-  'github-copilot': { title: 'GitHub Copilot', description: 'AI-powered code completion for developers', category: 'Coding', icon: '💻', rating: '4.6' },
   'claude': { title: 'Claude', description: 'Helpful, harmless, and honest AI assistant', category: 'Writing', icon: '🤖', rating: '4.7' },
   'jasper-ai': { title: 'Jasper AI', description: 'AI marketing copywriting platform', category: 'Marketing', icon: '📈', rating: '4.5' },
-  'perplexity': { title: 'Perplexity', description: 'AI research assistant with source citations', category: 'Research', icon: '🔬', rating: '4.6' },
+  'grammarly': { title: 'Grammarly', description: 'AI-powered writing assistant', category: 'Writing', icon: '📖', rating: '4.6' },
+  'copy-ai': { title: 'Copy.ai', description: 'AI copywriting for marketing content', category: 'Marketing', icon: '✏️', rating: '4.4' },
+  'writesonic': { title: 'Writesonic', description: 'AI writing platform for content creation', category: 'Writing', icon: '📝', rating: '4.3' },
+  'rytr': { title: 'Rytr', description: 'AI writing assistant for blogs & emails', category: 'Writing', icon: '✨', rating: '4.2' },
+  'wordtune': { title: 'Wordtune', description: 'AI-powered rewriting and editing', category: 'Writing', icon: '🔄', rating: '4.4' },
+  'quillbot': { title: 'QuillBot', description: 'AI paraphrasing and summarizing tool', category: 'Writing', icon: '🪶', rating: '4.3' },
+  
+  // Design Tools
+  'midjourney': { title: 'Midjourney', description: 'Create stunning AI-generated images from text', category: 'Design', icon: '🎨', rating: '4.7' },
   'stable-diffusion': { title: 'Stable Diffusion', description: 'Open-source AI image generation', category: 'Design', icon: '🖼️', rating: '4.5' },
-  'notion-ai': { title: 'Notion AI', description: 'AI-powered workspace for productivity', category: 'Productivity', icon: '📝', rating: '4.4' },
+  'adobe-firefly': { title: 'Adobe Firefly', description: 'Adobe\'s generative AI for creatives', category: 'Design', icon: '🔥', rating: '4.5' },
+  'figma': { title: 'Figma', description: 'Collaborative design with AI features', category: 'Design', icon: '🎨', rating: '4.8' },
+  'canva': { title: 'Canva', description: 'AI-powered design platform for everyone', category: 'Design', icon: '🎨', rating: '4.6' },
+  'dall-e': { title: 'DALL-E', description: 'OpenAI image generation from text prompts', category: 'Design', icon: '🖼️', rating: '4.6' },
+  'remove-bg': { title: 'Remove.bg', description: 'AI background removal in seconds', category: 'Design', icon: '✂️', rating: '4.5' },
+  'leonardo-ai': { title: 'Leonardo AI', description: 'AI art generation for game assets', category: 'Design', icon: '🎮', rating: '4.4' },
+  
+  // Coding Tools
+  'github-copilot': { title: 'GitHub Copilot', description: 'AI-powered code completion for developers', category: 'Coding', icon: '💻', rating: '4.6' },
+  'deepseek': { title: 'DeepSeek', description: 'Advanced AI for code and reasoning', category: 'Coding', icon: '🧠', rating: '4.5' },
+  'tabnine': { title: 'Tabnine', description: 'AI code completion for all IDEs', category: 'Coding', icon: '⌨️', rating: '4.4' },
+  'cursor': { title: 'Cursor', description: 'AI-first code editor built for pair programming', category: 'Coding', icon: '🖱️', rating: '4.6' },
+  'replit': { title: 'Replit', description: 'Collaborative coding with AI assistant', category: 'Coding', icon: '💡', rating: '4.3' },
+  'codewhisperer': { title: 'CodeWhisperer', description: 'Amazon AI coding companion', category: 'Coding', icon: '🔮', rating: '4.3' },
+  
+  // Video Tools
   'synthesia': { title: 'Synthesia', description: 'Create AI avatar videos in 140+ languages', category: 'Video', icon: '👨‍💼', rating: '4.5' },
   'runway-ml': { title: 'Runway ML', description: 'Creative AI toolkit for video & images', category: 'Video', icon: '🎬', rating: '4.6' },
-  'elevenlabs': { title: 'ElevenLabs', description: 'AI voice generation and cloning', category: 'Audio', icon: '🔊', rating: '4.7' },
-  'adobe-firefly': { title: 'Adobe Firefly', description: 'Adobe\'s generative AI for creatives', category: 'Design', icon: '🔥', rating: '4.5' },
-  'zapier': { title: 'Zapier', description: 'Automate workflows with AI assistance', category: 'Automation', icon: '⚡', rating: '4.6' },
-  'figma': { title: 'Figma', description: 'Collaborative design with AI features', category: 'Design', icon: '🎨', rating: '4.8' },
-  'deepseek': { title: 'DeepSeek', description: 'Advanced AI for code and reasoning', category: 'Coding', icon: '🧠', rating: '4.5' },
-  'copy-ai': { title: 'Copy.ai', description: 'AI copywriting for marketing content', category: 'Marketing', icon: '✏️', rating: '4.4' },
-  'grammarly': { title: 'Grammarly', description: 'AI-powered writing assistant', category: 'Writing', icon: '📖', rating: '4.6' },
   'descript': { title: 'Descript', description: 'AI video & podcast editing', category: 'Video', icon: '🎥', rating: '4.5' },
+  'heygen': { title: 'HeyGen', description: 'AI video generation with avatars', category: 'Video', icon: '👤', rating: '4.4' },
+  'pictory': { title: 'Pictory', description: 'Turn text into engaging videos', category: 'Video', icon: '📹', rating: '4.3' },
+  'invideo': { title: 'InVideo', description: 'AI-powered video creation platform', category: 'Video', icon: '🎞️', rating: '4.2' },
+  
+  // Audio Tools
+  'elevenlabs': { title: 'ElevenLabs', description: 'AI voice generation and cloning', category: 'Audio', icon: '🔊', rating: '4.7' },
   'mubert': { title: 'Mubert', description: 'AI music generation', category: 'Audio', icon: '🎵', rating: '4.3' },
-  'otter-ai': { title: 'Otter.ai', description: 'AI meeting transcription', category: 'Productivity', icon: '🎙️', rating: '4.5' }
+  'murf': { title: 'Murf', description: 'AI voiceover and text-to-speech', category: 'Audio', icon: '🎤', rating: '4.4' },
+  'speechify': { title: 'Speechify', description: 'Text-to-speech with natural voices', category: 'Audio', icon: '📢', rating: '4.5' },
+  'resemble-ai': { title: 'Resemble AI', description: 'Custom AI voice generation', category: 'Audio', icon: '🎙️', rating: '4.3' },
+  
+  // Productivity Tools
+  'notion-ai': { title: 'Notion AI', description: 'AI-powered workspace for productivity', category: 'Productivity', icon: '📝', rating: '4.4' },
+  'otter-ai': { title: 'Otter.ai', description: 'AI meeting transcription', category: 'Productivity', icon: '🎙️', rating: '4.5' },
+  'zapier': { title: 'Zapier', description: 'Automate workflows with AI assistance', category: 'Automation', icon: '⚡', rating: '4.6' },
+  'motion': { title: 'Motion', description: 'AI-powered calendar and task manager', category: 'Productivity', icon: '📅', rating: '4.4' },
+  'mem': { title: 'Mem', description: 'AI-powered note-taking app', category: 'Productivity', icon: '🧠', rating: '4.3' },
+  'taskade': { title: 'Taskade', description: 'AI-powered project management', category: 'Productivity', icon: '✅', rating: '4.2' },
+  
+  // Research & Data Tools
+  'perplexity': { title: 'Perplexity', description: 'AI research assistant with source citations', category: 'Research', icon: '🔬', rating: '4.6' },
+  'consensus': { title: 'Consensus', description: 'AI-powered scientific research', category: 'Research', icon: '📚', rating: '4.4' },
+  'elicit': { title: 'Elicit', description: 'AI research assistant for papers', category: 'Research', icon: '📖', rating: '4.3' },
+  'julius-ai': { title: 'Julius AI', description: 'AI data analysis and visualization', category: 'Data', icon: '📊', rating: '4.5' },
+  
+  // Marketing & Sales
+  'hubspot-ai': { title: 'HubSpot AI', description: 'AI-powered CRM and marketing', category: 'Marketing', icon: '🎯', rating: '4.5' },
+  'surfer-seo': { title: 'Surfer SEO', description: 'AI-powered SEO content optimization', category: 'SEO', icon: '🔍', rating: '4.5' },
+  'semrush': { title: 'Semrush', description: 'AI marketing and SEO toolkit', category: 'SEO', icon: '📈', rating: '4.6' },
+  'drift': { title: 'Drift', description: 'AI conversational marketing', category: 'Sales', icon: '💬', rating: '4.3' },
+  'gong': { title: 'Gong', description: 'AI revenue intelligence platform', category: 'Sales', icon: '📞', rating: '4.5' }
 };
 
 const categoryData: Record<string, { title: string; description: string; icon: string; color: string }> = {
