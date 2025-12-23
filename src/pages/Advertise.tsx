@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AdvancedSEO from '@/components/AdvancedSEO';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -80,15 +81,18 @@ const Advertise = () => {
   return (
     <div className="min-h-screen">
       <AdvancedSEO 
-        title="Advertise with ToolsML - Reach AI Tool Users"
-        description="Promote your AI tool to thousands of professionals and decision-makers. Multiple advertising options available."
-        keywords="advertise AI tools, AI tool marketing, sponsored content, banner ads"
+        title="Advertise on ToolsML - Reach AI Tool Buyers"
+        description="Advertise your AI tool on ToolsML and reach thousands of engaged users actively searching for AI solutions. Sponsored listings, display ads, and newsletter sponsorships available."
+        keywords="advertise AI tools, AI tool marketing, sponsored content, banner ads, AI advertising"
         url="/advertise"
         pageType="homepage"
       />
       <Header />
       
       <main className="pt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <Breadcrumb items={[{ label: 'Advertise with Us' }]} />
+        </div>
         <section className="hero-gradient py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="text-6xl mb-4">📢</div>

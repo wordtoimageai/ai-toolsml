@@ -1,35 +1,28 @@
 import { Link } from "react-router-dom";
 import { tools } from "@/data/tools";
 
-// Get all unique categories
-const getCategories = () => {
-  const categories = [...new Set(tools.map(tool => tool.category))];
-  const categoryNames: Record<string, string> = {
-    writing: 'Writing & Content',
-    design: 'Design & Creative',
-    coding: 'Development',
-    marketing: 'Marketing',
-    productivity: 'Productivity',
-    video: 'Video',
-    audio: 'Audio',
-    research: 'Research',
-    data: 'Data & Analytics',
-    automation: 'Automation',
-    sales: 'Sales & CRM',
-    social: 'Social Media',
-    seo: 'SEO & Content'
-  };
-  return categories.map(cat => ({
-    id: cat,
-    name: categoryNames[cat] || cat.charAt(0).toUpperCase() + cat.slice(1)
-  }));
-};
+// All categories for comprehensive internal linking
+const allCategories = [
+  { id: 'writing', name: 'AI Writing Tools', emoji: '✍️' },
+  { id: 'design', name: 'AI Design Tools', emoji: '🎨' },
+  { id: 'video', name: 'AI Video Tools', emoji: '🎬' },
+  { id: 'coding', name: 'AI Coding Tools', emoji: '💻' },
+  { id: 'audio', name: 'AI Audio Tools', emoji: '🎵' },
+  { id: 'marketing', name: 'AI Marketing Tools', emoji: '📈' },
+  { id: 'productivity', name: 'Productivity Tools', emoji: '⚡' },
+  { id: 'seo', name: 'SEO Tools', emoji: '🔍' },
+  { id: 'automation', name: 'Automation Tools', emoji: '🤖' },
+  { id: 'data', name: 'Data Tools', emoji: '📊' },
+  { id: 'research', name: 'Research Tools', emoji: '🔬' },
+  { id: 'sales', name: 'Sales Tools', emoji: '💰' },
+  { id: 'social', name: 'Social Media Tools', emoji: '📱' },
+];
 
 // Get top tools by rating
 const getTopTools = () => {
   return [...tools]
     .sort((a, b) => b.rating - a.rating)
-    .slice(0, 8);
+    .slice(0, 12);
 };
 
 // Get popular tags
@@ -42,40 +35,46 @@ const getPopularTags = () => {
   });
   return Object.entries(tagCounts)
     .sort(([, a], [, b]) => b - a)
-    .slice(0, 8)
+    .slice(0, 10)
     .map(([tag]) => tag);
 };
 
 const Footer = () => {
-  const categories = getCategories();
   const topTools = getTopTools();
   const popularTags = getPopularTags();
 
   return (
     <footer className="bg-gray-900 text-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
-          {/* Brand */}
-          <div className="lg:col-span-2 space-y-4">
+        {/* Main Footer Grid - 5 Columns for extensive internal linking */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+          
+          {/* Brand Column */}
+          <div className="lg:col-span-1 space-y-4">
             <h3 className="text-2xl font-black text-gradient">ToolsML</h3>
-            <p className="text-gray-400 leading-relaxed">
-              Your trusted directory for discovering the best AI tools across all industries and use cases.
+            <p className="text-gray-400 leading-relaxed text-sm">
+              Discover and compare 500+ AI tools for every task. Human-curated directory updated weekly.
             </p>
-            <div className="flex gap-4">
-              <Link to="/about" className="text-gray-400 hover:text-white text-sm">About</Link>
-              <Link to="/contact" className="text-gray-400 hover:text-white text-sm">Contact</Link>
-              <Link to="/advertise" className="text-gray-400 hover:text-white text-sm">Advertise</Link>
+            <div className="flex flex-col gap-2">
+              <Link to="/about" className="text-gray-400 hover:text-white text-sm transition-colors">About Us</Link>
+              <Link to="/contact" className="text-gray-400 hover:text-white text-sm transition-colors">Contact</Link>
+              <Link to="/advertise" className="text-gray-400 hover:text-white text-sm transition-colors">Advertise</Link>
+              <Link to="/submit" className="text-gray-400 hover:text-white text-sm transition-colors">Submit Tool</Link>
             </div>
           </div>
 
-          {/* Categories */}
+          {/* All Categories - Critical for SEO */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Categories</h4>
+            <h4 className="text-lg font-semibold mb-4">Browse by Category</h4>
             <ul className="space-y-2 text-gray-400">
-              {categories.slice(0, 8).map((cat) => (
+              {allCategories.map((cat) => (
                 <li key={cat.id}>
-                  <Link to={`/category/${cat.id}`} className="hover:text-white transition-colors text-sm">
-                    {cat.name}
+                  <Link 
+                    to={`/category/${cat.id}`} 
+                    className="hover:text-white transition-colors text-sm flex items-center gap-2"
+                  >
+                    <span>{cat.emoji}</span>
+                    <span>{cat.name}</span>
                   </Link>
                 </li>
               ))}
@@ -84,9 +83,9 @@ const Footer = () => {
 
           {/* Top Tools */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Top Tools</h4>
+            <h4 className="text-lg font-semibold mb-4">Popular AI Tools</h4>
             <ul className="space-y-2 text-gray-400">
-              {topTools.slice(0, 8).map((tool) => (
+              {topTools.map((tool) => (
                 <li key={tool.id}>
                   <Link to={`/tool/${tool.id}`} className="hover:text-white transition-colors text-sm">
                     {tool.title}
@@ -110,7 +109,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Resources & Quick Links */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Resources</h4>
             <ul className="space-y-2 text-gray-400">
@@ -120,7 +119,7 @@ const Footer = () => {
               <li><Link to="/tutorials" className="hover:text-white transition-colors text-sm">Tutorials</Link></li>
               <li><Link to="/api-docs" className="hover:text-white transition-colors text-sm">API Documentation</Link></li>
               <li><Link to="/changelog" className="hover:text-white transition-colors text-sm">Changelog</Link></li>
-              <li><Link to="/submit" className="hover:text-white transition-colors text-sm">Submit a Tool</Link></li>
+              <li><Link to="/favorites" className="hover:text-white transition-colors text-sm">My Favorites</Link></li>
               <li><Link to="/site-map" className="hover:text-white transition-colors text-sm">Site Map</Link></li>
             </ul>
           </div>

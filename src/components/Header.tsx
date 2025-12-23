@@ -68,10 +68,59 @@ const Header = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/browse">Browse Tools</NavLink>
             
+            {/* Categories Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 outline-none">
+                Categories
+                <ChevronDown className="w-3.5 h-3.5" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56 grid grid-cols-1 gap-0">
+                <DropdownMenuItem asChild>
+                  <Link to="/category/writing" className="w-full">✍️ Writing Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/design" className="w-full">🎨 Design Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/video" className="w-full">🎬 Video Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/coding" className="w-full">💻 Coding Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/audio" className="w-full">🎵 Audio Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/marketing" className="w-full">📈 Marketing Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/productivity" className="w-full">⚡ Productivity Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/seo" className="w-full">🔍 SEO Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/automation" className="w-full">🤖 Automation Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/data" className="w-full">📊 Data Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/research" className="w-full">🔬 Research Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/sales" className="w-full">💰 Sales Tools</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/category/social" className="w-full">📱 Social Media Tools</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {/* Resources Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 outline-none">

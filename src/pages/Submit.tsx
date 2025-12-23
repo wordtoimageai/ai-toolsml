@@ -5,6 +5,7 @@ import * as z from 'zod';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AdvancedSEO from '@/components/AdvancedSEO';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -75,14 +76,17 @@ const Submit = () => {
   return (
     <div className="min-h-screen">
       <AdvancedSEO 
-        title="Submit AI Tool - ToolsML | Get Featured"
-        description="Submit your AI tool to be featured in our directory. Share innovative AI solutions with our community of 50K+ users."
+        title="Submit Your AI Tool - Get Listed on ToolsML"
+        description="Submit your AI tool to ToolsML's curated directory. Reach thousands of potential users searching for AI solutions. Free submission for all tools."
         url="/submit"
         pageType="homepage"
       />
       <Header />
       
       <main className="pt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <Breadcrumb items={[{ label: 'Submit Your AI Tool' }]} />
+        </div>
         <section className="hero-gradient py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="text-6xl mb-4">🚀</div>
