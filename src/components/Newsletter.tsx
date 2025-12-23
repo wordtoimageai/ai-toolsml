@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -6,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
   const { toast } = useToast();
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -23,9 +25,21 @@ const Newsletter = () => {
     
     setTimeout(() => {
       setIsSubscribing(false);
+      setIsSubscribed(true);
+      
+      // Generate unsubscribe link with encoded email
+      const unsubscribeUrl = `/unsubscribe?email=${encodeURIComponent(email)}`;
+      
       toast({
         title: "Successfully subscribed!",
-        description: `Thank you for subscribing with: ${email}`,
+        description: (
+          <div className="space-y-2">
+            <p>Thank you for subscribing with: {email}</p>
+            <p className="text-xs text-muted-foreground">
+              You can <Link to={unsubscribeUrl} className="underline hover:text-primary">unsubscribe</Link> at any time.
+            </p>
+          </div>
+        ),
       });
       setEmail("");
     }, 1500);
@@ -60,6 +74,11 @@ const Newsletter = () => {
             {isSubscribing ? "Subscribing..." : "Subscribe"}
           </Button>
         </form>
+        
+        {/* Unsubscribe link */}
+        <p className="mt-4 text-xs text-muted-foreground">
+          We respect your privacy. <Link to="/unsubscribe" className="underline hover:text-primary">Unsubscribe</Link> at any time.
+        </p>
       </div>
     </section>
   );
