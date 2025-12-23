@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AdvancedSEO from '@/components/AdvancedSEO';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -37,14 +38,17 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <AdvancedSEO 
-        title="Contact Us - ToolsML | Get in Touch"
-        description="Get in touch with the ToolsML team. We're here to help with questions, feedback, or tool submissions. Response within 24 hours."
+        title="Contact Us - Get in Touch with ToolsML"
+        description="Have questions or suggestions? Contact ToolsML team for support, partnerships, or tool submissions. We're here to help you discover the best AI tools."
         url="/contact"
         pageType="homepage"
       />
       <Header />
       
       <main className="pt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <Breadcrumb items={[{ label: 'Contact Us' }]} />
+        </div>
         <section className="hero-gradient py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="text-6xl mb-4">💬</div>

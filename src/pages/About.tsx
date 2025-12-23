@@ -1,6 +1,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AdvancedSEO from '@/components/AdvancedSEO';
+import Breadcrumb from '@/components/Breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -8,14 +9,17 @@ const About = () => {
   return (
     <div className="min-h-screen">
       <AdvancedSEO 
-        title="About ToolsML - Your Trusted AI Tools Directory"
-        description="Learn about ToolsML's mission to help professionals discover and compare the best AI tools available. Join 50K+ users finding perfect AI solutions."
+        title="About ToolsML - AI Tool Discovery Platform"
+        description="Learn about ToolsML, the leading platform for discovering and comparing AI tools. Our mission is to help you find the perfect AI solutions for your needs with curated, weekly-updated listings."
         url="/about"
         pageType="homepage"
       />
       <Header />
       
       <main className="pt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <Breadcrumb items={[{ label: 'About ToolsML' }]} />
+        </div>
         <section className="hero-gradient py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="text-6xl mb-4">🤖</div>
