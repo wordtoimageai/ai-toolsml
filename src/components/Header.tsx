@@ -271,14 +271,57 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border/50 animate-fade-in">
+          <div className="md:hidden py-4 border-t border-border/50 animate-fade-in max-h-[80vh] overflow-y-auto">
             <div className="space-y-1">
-              <Link to="/" className="block px-4 py-2.5 text-foreground hover:bg-muted/50 rounded-lg font-medium">Home</Link>
-              <Link to="/browse" className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Browse Tools</Link>
-              <Link to="/about" className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">About</Link>
-              <Link to="/blog" className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Blog</Link>
-              <Link to="/submit" className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Submit Tool</Link>
-              <Link to="/favorites" className="flex items-center justify-between px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">
+              <Link to="/" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2.5 text-foreground hover:bg-muted/50 rounded-lg font-medium">Home</Link>
+              <Link to="/browse" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Browse Tools</Link>
+              
+              {/* Categories Section */}
+              <div className="px-4 pt-3 pb-1">
+                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Categories</span>
+              </div>
+              <div className="grid grid-cols-2 gap-1 px-2">
+                <Link to="/category/writing" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">✍️ Writing</Link>
+                <Link to="/category/design" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">🎨 Design</Link>
+                <Link to="/category/video" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">🎬 Video</Link>
+                <Link to="/category/coding" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">💻 Coding</Link>
+                <Link to="/category/audio" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">🎵 Audio</Link>
+                <Link to="/category/marketing" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">📈 Marketing</Link>
+                <Link to="/category/productivity" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">⚡ Productivity</Link>
+                <Link to="/category/seo" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">🔍 SEO</Link>
+                <Link to="/category/automation" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">🤖 Automation</Link>
+                <Link to="/category/data" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">📊 Data</Link>
+                <Link to="/category/research" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">🔬 Research</Link>
+                <Link to="/category/sales" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg">💰 Sales</Link>
+                <Link to="/category/social" onClick={() => setIsMenuOpen(false)} className="px-2 py-2 text-sm text-muted-foreground hover:bg-muted/50 rounded-lg col-span-2">📱 Social Media</Link>
+              </div>
+
+              <div className="border-t border-border/50 my-2" />
+
+              {/* Resources Section */}
+              <div className="px-4 pt-2 pb-1">
+                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Resources</span>
+              </div>
+              <Link to="/blog" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Blog</Link>
+              <Link to="/tutorials" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Tutorials</Link>
+              <Link to="/api-docs" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">API Docs</Link>
+              <Link to="/changelog" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Changelog</Link>
+
+              <div className="border-t border-border/50 my-2" />
+
+              {/* Company Section */}
+              <div className="px-4 pt-2 pb-1">
+                <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Company</span>
+              </div>
+              <Link to="/about" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">About Us</Link>
+              <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Contact</Link>
+              <Link to="/advertise" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Advertise</Link>
+              <Link to="/submit" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">Submit Tool</Link>
+
+              <div className="border-t border-border/50 my-2" />
+
+              {/* User Actions */}
+              <Link to="/favorites" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-between px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">
                 <span className="flex items-center gap-2">
                   <Heart className="w-4 h-4" />
                   Favorites
@@ -286,7 +329,7 @@ const Header = () => {
                 {favoriteCount > 0 && <Badge variant="secondary" className="text-xs">{favoriteCount}</Badge>}
               </Link>
               {compareCount > 0 && (
-                <Link to="/compare" className="flex items-center justify-between px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">
+                <Link to="/compare" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-between px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">
                   <span className="flex items-center gap-2">
                     <Scale className="w-4 h-4" />
                     Compare
@@ -300,13 +343,13 @@ const Header = () => {
               {isAuthenticated ? (
                 <>
                   {isVendor && (
-                    <Link to="/vendor-dashboard" className="flex items-center gap-2 px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">
+                    <Link to="/vendor-dashboard" onClick={() => setIsMenuOpen(false)} className="flex items-center gap-2 px-4 py-2.5 text-muted-foreground hover:bg-muted/50 rounded-lg">
                       <Settings className="w-4 h-4" />
                       Vendor Dashboard
                     </Link>
                   )}
                   <button 
-                    onClick={signOut}
+                    onClick={() => { signOut(); setIsMenuOpen(false); }}
                     className="flex items-center gap-2 w-full text-left px-4 py-2.5 text-destructive hover:bg-destructive/10 rounded-lg"
                   >
                     <LogOut className="w-4 h-4" />
@@ -314,7 +357,7 @@ const Header = () => {
                   </button>
                 </>
               ) : (
-                <Link to="/auth" className="block px-4 py-2.5 text-primary font-medium hover:bg-primary/10 rounded-lg">Sign In</Link>
+                <Link to="/auth" onClick={() => setIsMenuOpen(false)} className="block px-4 py-2.5 text-primary font-medium hover:bg-primary/10 rounded-lg">Sign In</Link>
               )}
             </div>
           </div>
