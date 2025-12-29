@@ -1,12 +1,34 @@
 {
   "rewrites": [
     {
-      "source": "/((?!api|assets|favicon|og-image|sitemap|robots|manifest|sw|llms).*)",
+      "source": "/",
       "has": [
         {
           "type": "header",
           "key": "user-agent",
-          "value": ".*(googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|slackbot|applebot|pinterest|redditbot|semrushbot|ahrefsbot|mj12bot|petalbot).*"
+          "value": ".*(googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|slackbot|applebot|pinterest|redditbot|semrushbot|ahrefsbot|mj12bot|petalbot|screaming frog|dotbot|rogerbot).*"
+        }
+      ],
+      "destination": "/api/prerender?path=/"
+    },
+    {
+      "source": "/(tool|category|tag|blog|tutorials)/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|slackbot|applebot|pinterest|redditbot|semrushbot|ahrefsbot|mj12bot|petalbot|screaming frog|dotbot|rogerbot).*"
+        }
+      ],
+      "destination": "/api/prerender?path=/$1/:path*"
+    },
+    {
+      "source": "/(about|browse|compare|contact|favorites|submit|privacy|terms|changelog|api-docs|advertise|site-map)",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|slackbot|applebot|pinterest|redditbot|semrushbot|ahrefsbot|mj12bot|petalbot|screaming frog|dotbot|rogerbot).*"
         }
       ],
       "destination": "/api/prerender?path=/$1"
@@ -58,7 +80,7 @@
       "dest": "/index.html"
     },
     {
-      "src": "^/(about|browse|categories|compare|contact|favorites|submit|privacy|terms|changelog|blog|tutorials|api-docs|advertise|auth|sitemap)$",
+      "src": "^/(about|browse|categories|compare|contact|favorites|submit|privacy|terms|changelog|blog|tutorials|api-docs|advertise|auth|sitemap|site-map)$",
       "dest": "/index.html"
     },
     {
