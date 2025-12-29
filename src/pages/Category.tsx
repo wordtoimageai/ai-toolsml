@@ -7,6 +7,7 @@ import AdvancedMetaTags from '@/components/AdvancedMetaTags';
 import PerformanceOptimizer from '@/components/PerformanceOptimizer';
 import { ContextualCTA, PopularTags, FeaturedToolsLinks } from '@/components/InternalLinks';
 import RelatedCategories from '@/components/RelatedCategories';
+import { TrendingTools, CategoryQuickLinks, ToolCrossLinks } from '@/components/EnhancedInternalLinks';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
@@ -319,12 +320,21 @@ const Category = () => {
         {/* Related Categories Section */}
         <RelatedCategories currentCategory={category} />
 
+        {/* Cross-links to related category tools */}
+        <ToolCrossLinks currentCategory={category} />
+
+        {/* Trending Tools */}
+        <TrendingTools maxItems={6} />
+
         {/* Popular Tags */}
         <section className="py-12 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <PopularTags maxItems={15} />
           </div>
         </section>
+
+        {/* Category Quick Links */}
+        <CategoryQuickLinks />
 
         {/* Featured Tools */}
         <section className="py-12 bg-muted/30">

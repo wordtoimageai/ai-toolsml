@@ -14,6 +14,7 @@ import ProductSchema from "@/components/ProductSchema";
 import AdvancedMetaTags from "@/components/AdvancedMetaTags";
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
 import { RelatedTools, ContextualCTA, CategoryLinks, PopularTags } from "@/components/InternalLinks";
+import { AlternativeTools, TrendingTools, ToolCrossLinks } from "@/components/EnhancedInternalLinks";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import UserReviews from "@/components/UserReviews";
@@ -339,6 +340,12 @@ const ToolDetail = () => {
           </div>
         </div>
 
+        {/* Alternative Tools - Strong internal linking */}
+        <AlternativeTools 
+          currentTool={tool}
+          maxItems={4}
+        />
+
         {/* Tool Recommendations */}
         <div className="mt-16">
           <ToolRecommendations 
@@ -348,6 +355,9 @@ const ToolDetail = () => {
             showPersonalized={false}
           />
         </div>
+
+        {/* Cross-links to related categories */}
+        <ToolCrossLinks currentCategory={tool.category} />
 
         {/* Related Tools with Strategic Internal Linking */}
         <div className="mt-16">
@@ -365,6 +375,9 @@ const ToolDetail = () => {
             currentCategory={tool.category}
           />
         </div>
+
+        {/* Trending Tools */}
+        <TrendingTools excludeToolId={tool.id} maxItems={6} />
 
         {/* FAQ Section */}
         <div className="mt-16">
