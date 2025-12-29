@@ -52,6 +52,7 @@ export const AdvancedSEO = ({
   const seoKeywords = keywords || generateKeywords(tool?.title, tool?.category, tool?.tags);
   
   // Generate proper canonical URL - use provided path or derive from tool/category
+  // IMPORTANT: Never use window.location for SSR/crawler compatibility
   const getCanonicalPath = (): string => {
     if (url) {
       // If URL is already full, extract path; otherwise use as-is
@@ -69,12 +70,13 @@ export const AdvancedSEO = ({
     return '/';
   };
   
-  const canonicalUrl = generateCanonicalUrl(getCanonicalPath());
+  const cleanPath = getCanonicalPath();
+  // Use explicit base URL with proper path handling - never rely on runtime detection
+  const canonicalUrl = `https://toolsml.com${cleanPath === '/' ? '' : (cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`)}`;
   
   // Generate dynamic Open Graph image based on tool data
   const ogImage = image || (tool ? generateOGImage(tool.title, tool.category) : generateOGImage());
   const fullImageUrl = ogImage.startsWith('http') ? ogImage : `https://toolsml.com${ogImage}`;
-  
   // Generate structured data
   const generateStructuredData = () => {
     if (tool) {

@@ -34,14 +34,18 @@ export const EnhancedSEO = ({
   customDescription,
   url
 }: EnhancedSEOProps) => {
-  // Derive URL from tool/category if not provided - never use window.location for SSR compatibility
-  const derivedUrl = url || (tool ? `/tool/${tool.id}` : category ? `/category/${category}` : '/');
+  // Derive URL from tool/category if not provided - NEVER use window.location for SSR/crawler compatibility
+  const derivedPath = url || (tool ? `/tool/${tool.id}` : category ? `/category/${category}` : '/');
+  
+  // Ensure clean path without double slashes
+  const cleanPath = derivedPath.startsWith('/') ? derivedPath : `/${derivedPath}`;
   
   // Generate optimized SEO content
   const title = customTitle || generateSEOTitle(tool?.title, category);
   const description = customDescription || generateMetaDescription(tool?.title, category, tool?.description);
   const keywords = generateKeywords(tool?.title, category, tool?.tags);
-  const canonicalUrl = generateCanonicalUrl(derivedUrl);
+  // Use explicit base URL - never rely on runtime detection
+  const canonicalUrl = `https://toolsml.com${cleanPath === '/' ? '' : cleanPath}`;
   const ogImage = generateOGImage(tool?.title, category);
 
   // Generate structured data based on page type
