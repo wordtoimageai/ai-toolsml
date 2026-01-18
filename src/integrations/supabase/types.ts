@@ -176,6 +176,33 @@ export type Database = {
         }
         Relationships: []
       }
+      sitemap_regeneration_log: {
+        Row: {
+          details: Json | null
+          id: string
+          regenerated_at: string | null
+          status: string
+          trigger_source: string
+          urls_count: number | null
+        }
+        Insert: {
+          details?: Json | null
+          id?: string
+          regenerated_at?: string | null
+          status?: string
+          trigger_source?: string
+          urls_count?: number | null
+        }
+        Update: {
+          details?: Json | null
+          id?: string
+          regenerated_at?: string | null
+          status?: string
+          trigger_source?: string
+          urls_count?: number | null
+        }
+        Relationships: []
+      }
       tool_submissions: {
         Row: {
           category: string
