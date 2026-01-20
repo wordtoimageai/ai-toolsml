@@ -109,8 +109,25 @@ export const usePrivacyAnalytics = () => {
   }, [isAuthenticated, privacyPreferences]);
 
   const trackEvent = useCallback(async ({ event_type, event_data, tool_id }: PrivacyAwareAnalyticsEvent) => {
+    // Only track events for authenticated users (RLS policy requires user_id = auth.uid())
+    if (!isAuthenticated || !user?.id) {
+      if (import.meta.env.DEV) {
+        console.log('[Privacy] Analytics tracking skipped: user not authenticated');
+      }
+      return;
+    }
+
     if (!shouldTrack()) {
       console.log('[Privacy] Analytics tracking blocked by user preferences');
+      return;
+    }
+
+    // Validate event_type against allowed values (server enforces CHECK constraint)
+    const validEventTypes = ['page_view', 'tool_view', 'tool_visit', 'search', 'conversion', 'feature_usage'];
+    if (!validEventTypes.includes(event_type)) {
+      if (import.meta.env.DEV) {
+        console.warn('[Privacy] Invalid event type:', event_type);
+      }
       return;
     }
 
@@ -122,7 +139,7 @@ export const usePrivacyAnalytics = () => {
         event_type,
         event_data: sanitizedData,
         tool_id,
-        user_id: isAuthenticated ? user?.id : null,
+        user_id: user.id, // Required: must match auth.uid()
         session_id: getSessionId(),
         user_agent: getMinimalUserAgent(),
         ip_address: null, // We don't collect IP addresses for privacy
