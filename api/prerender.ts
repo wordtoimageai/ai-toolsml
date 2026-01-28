@@ -10,82 +10,82 @@ const BOT_USER_AGENTS = [
 ];
 
 // Complete tool metadata for all tools - synced from src/data/tools.ts
-const toolsMetadata: Record<string, { title: string; description: string; category: string; rating: string; company: string }> = {
+const toolsMetadata: Record<string, { title: string; description: string; category: string; rating: string; company: string; website: string }> = {
   // Writing & Content Tools
-  'chatgpt': { title: 'ChatGPT', description: 'Advanced conversational AI for writing, coding, analysis, and creative tasks by OpenAI.', category: 'Writing', rating: '4.8', company: 'OpenAI' },
-  'claude': { title: 'Claude', description: 'Anthropic AI assistant for helpful, harmless conversations and analysis.', category: 'Writing', rating: '4.6', company: 'Anthropic' },
-  'jasper-ai': { title: 'Jasper AI', description: 'AI marketing copywriting platform for high-converting business content.', category: 'Marketing', rating: '4.5', company: 'Jasper AI' },
-  'copy-ai': { title: 'Copy.ai', description: 'AI copywriting tool for marketing content and social media.', category: 'Writing', rating: '4.4', company: 'Copy.ai' },
-  'grammarly': { title: 'Grammarly', description: 'AI-powered writing assistant for grammar and style improvement.', category: 'Writing', rating: '4.7', company: 'Grammarly' },
-  'writesonic': { title: 'Writesonic', description: 'AI content writer for articles, ads, and marketing copy.', category: 'Writing', rating: '4.3', company: 'Writesonic' },
+  'chatgpt': { title: 'ChatGPT', description: 'Advanced conversational AI for writing, coding, analysis, and creative tasks by OpenAI.', category: 'Writing', rating: '4.8', company: 'OpenAI', website: 'https://chat.openai.com' },
+  'claude': { title: 'Claude', description: 'Anthropic AI assistant for helpful, harmless conversations and analysis.', category: 'Writing', rating: '4.6', company: 'Anthropic', website: 'https://claude.ai' },
+  'jasper-ai': { title: 'Jasper AI', description: 'AI marketing copywriting platform for high-converting business content.', category: 'Marketing', rating: '4.5', company: 'Jasper AI', website: 'https://jasper.ai' },
+  'copy-ai': { title: 'Copy.ai', description: 'AI copywriting tool for marketing content and social media.', category: 'Writing', rating: '4.4', company: 'Copy.ai', website: 'https://copy.ai' },
+  'grammarly': { title: 'Grammarly', description: 'AI-powered writing assistant for grammar and style improvement.', category: 'Writing', rating: '4.7', company: 'Grammarly', website: 'https://grammarly.com' },
+  'writesonic': { title: 'Writesonic', description: 'AI content writer for articles, ads, and marketing copy.', category: 'Writing', rating: '4.3', company: 'Writesonic', website: 'https://writesonic.com' },
   
   // Design & Creative Tools
-  'midjourney': { title: 'Midjourney', description: 'Create stunning AI-generated images from text prompts with unique artistic styles.', category: 'Design', rating: '4.7', company: 'Midjourney Inc.' },
-  'stable-diffusion': { title: 'Stable Diffusion', description: 'Open-source text-to-image AI for creating detailed art and images.', category: 'Design', rating: '4.5', company: 'Stability AI' },
-  'dalle': { title: 'DALL-E', description: 'OpenAI image generator creating art from text descriptions.', category: 'Design', rating: '4.6', company: 'OpenAI' },
-  'dalle-3': { title: 'DALL-E 3', description: 'Latest OpenAI image generator with enhanced quality.', category: 'Design', rating: '4.6', company: 'OpenAI' },
-  'adobe-firefly': { title: 'Adobe Firefly', description: 'Adobe generative AI for images, text effects, and creative content.', category: 'Design', rating: '4.4', company: 'Adobe' },
-  'figma': { title: 'Figma', description: 'Collaborative design tool with AI features for prototyping.', category: 'Design', rating: '4.7', company: 'Figma' },
-  'canva': { title: 'Canva', description: 'Design platform with AI-powered creative tools.', category: 'Design', rating: '4.7', company: 'Canva' },
-  'canva-ai': { title: 'Canva AI', description: 'Design platform with AI-powered creative tools and templates.', category: 'Design', rating: '4.7', company: 'Canva' },
-  'leonardo-ai': { title: 'Leonardo AI', description: 'AI art generator for game assets and creative imagery.', category: 'Design', rating: '4.5', company: 'Leonardo.Ai' },
+  'midjourney': { title: 'Midjourney', description: 'Create stunning AI-generated images from text prompts with unique artistic styles.', category: 'Design', rating: '4.7', company: 'Midjourney Inc.', website: 'https://midjourney.com' },
+  'stable-diffusion': { title: 'Stable Diffusion', description: 'Open-source text-to-image AI for creating detailed art and images.', category: 'Design', rating: '4.5', company: 'Stability AI', website: 'https://stability.ai' },
+  'dalle': { title: 'DALL-E', description: 'OpenAI image generator creating art from text descriptions.', category: 'Design', rating: '4.6', company: 'OpenAI', website: 'https://openai.com/dall-e-3' },
+  'dalle-3': { title: 'DALL-E 3', description: 'Latest OpenAI image generator with enhanced quality.', category: 'Design', rating: '4.6', company: 'OpenAI', website: 'https://openai.com/dall-e-3' },
+  'adobe-firefly': { title: 'Adobe Firefly', description: 'Adobe generative AI for images, text effects, and creative content.', category: 'Design', rating: '4.4', company: 'Adobe', website: 'https://firefly.adobe.com' },
+  'figma': { title: 'Figma', description: 'Collaborative design tool with AI features for prototyping.', category: 'Design', rating: '4.7', company: 'Figma', website: 'https://figma.com' },
+  'canva': { title: 'Canva', description: 'Design platform with AI-powered creative tools.', category: 'Design', rating: '4.7', company: 'Canva', website: 'https://canva.com' },
+  'canva-ai': { title: 'Canva AI', description: 'Design platform with AI-powered creative tools and templates.', category: 'Design', rating: '4.7', company: 'Canva', website: 'https://canva.com' },
+  'leonardo-ai': { title: 'Leonardo AI', description: 'AI art generator for game assets and creative imagery.', category: 'Design', rating: '4.5', company: 'Leonardo.Ai', website: 'https://leonardo.ai' },
   
   // Coding & Development Tools
-  'github-copilot': { title: 'GitHub Copilot', description: 'AI pair programmer that helps write code faster with intelligent suggestions.', category: 'Coding', rating: '4.6', company: 'GitHub/Microsoft' },
-  'cursor': { title: 'Cursor', description: 'AI-first code editor with intelligent coding assistance.', category: 'Coding', rating: '4.7', company: 'Cursor' },
-  'replit-ghostwriter': { title: 'Replit Ghostwriter', description: 'AI coding assistant integrated into Replit IDE.', category: 'Coding', rating: '4.3', company: 'Replit' },
-  'deepseek': { title: 'DeepSeek', description: 'Advanced AI model for code generation and complex reasoning.', category: 'Coding', rating: '4.5', company: 'DeepSeek' },
-  'codesignal': { title: 'CodeSignal', description: 'AI-powered technical assessment and developer skill evaluation platform.', category: 'Coding', rating: '4.2', company: 'CodeSignal' },
-  'codium-ai': { title: 'CodiumAI', description: 'AI-powered code integrity and test generation for developers.', category: 'Coding', rating: '4.1', company: 'CodiumAI' },
+  'github-copilot': { title: 'GitHub Copilot', description: 'AI pair programmer that helps write code faster with intelligent suggestions.', category: 'Coding', rating: '4.6', company: 'GitHub/Microsoft', website: 'https://github.com/features/copilot' },
+  'cursor': { title: 'Cursor', description: 'AI-first code editor with intelligent coding assistance.', category: 'Coding', rating: '4.7', company: 'Cursor', website: 'https://cursor.sh' },
+  'replit-ghostwriter': { title: 'Replit Ghostwriter', description: 'AI coding assistant integrated into Replit IDE.', category: 'Coding', rating: '4.3', company: 'Replit', website: 'https://replit.com' },
+  'deepseek': { title: 'DeepSeek', description: 'Advanced AI model for code generation and complex reasoning.', category: 'Coding', rating: '4.5', company: 'DeepSeek', website: 'https://deepseek.com' },
+  'codesignal': { title: 'CodeSignal', description: 'AI-powered technical assessment and developer skill evaluation platform.', category: 'Coding', rating: '4.2', company: 'CodeSignal', website: 'https://codesignal.com' },
+  'codium-ai': { title: 'CodiumAI', description: 'AI-powered code integrity and test generation for developers.', category: 'Coding', rating: '4.1', company: 'CodiumAI', website: 'https://codium.ai' },
   
   // Productivity Tools
-  'notion-ai': { title: 'Notion AI', description: 'AI writing assistant integrated into Notion for drafting and editing.', category: 'Productivity', rating: '4.6', company: 'Notion Labs' },
-  'otter-ai': { title: 'Otter.ai', description: 'AI meeting assistant for transcription and note-taking.', category: 'Productivity', rating: '4.5', company: 'Otter.ai' },
-  'reclaim-ai': { title: 'Reclaim AI', description: 'Automated scheduling and calendar management for deep work.', category: 'Productivity', rating: '4.4', company: 'Reclaim.ai' },
-  'clickup-ai': { title: 'ClickUp', description: 'All-in-one project management with AI-powered automation.', category: 'Productivity', rating: '4.3', company: 'ClickUp' },
-  'beautiful-ai': { title: 'Beautiful.ai', description: 'AI-powered presentation maker with smart design.', category: 'Productivity', rating: '4.5', company: 'Beautiful.ai' },
-  'loom': { title: 'Loom', description: 'AI-enhanced screen recording and video messaging for async communication.', category: 'Productivity', rating: '4.6', company: 'Loom' },
-  'fireflies-ai': { title: 'Fireflies.ai', description: 'AI meeting assistant for transcription, analysis, and conversation intelligence.', category: 'Productivity', rating: '4.3', company: 'Fireflies.ai' },
+  'notion-ai': { title: 'Notion AI', description: 'AI writing assistant integrated into Notion for drafting and editing.', category: 'Productivity', rating: '4.6', company: 'Notion Labs', website: 'https://notion.so' },
+  'otter-ai': { title: 'Otter.ai', description: 'AI meeting assistant for transcription and note-taking.', category: 'Productivity', rating: '4.5', company: 'Otter.ai', website: 'https://otter.ai' },
+  'reclaim-ai': { title: 'Reclaim AI', description: 'Automated scheduling and calendar management for deep work.', category: 'Productivity', rating: '4.4', company: 'Reclaim.ai', website: 'https://reclaim.ai' },
+  'clickup-ai': { title: 'ClickUp', description: 'All-in-one project management with AI-powered automation.', category: 'Productivity', rating: '4.3', company: 'ClickUp', website: 'https://clickup.com' },
+  'beautiful-ai': { title: 'Beautiful.ai', description: 'AI-powered presentation maker with smart design.', category: 'Productivity', rating: '4.5', company: 'Beautiful.ai', website: 'https://beautiful.ai' },
+  'loom': { title: 'Loom', description: 'AI-enhanced screen recording and video messaging for async communication.', category: 'Productivity', rating: '4.6', company: 'Loom', website: 'https://loom.com' },
+  'fireflies-ai': { title: 'Fireflies.ai', description: 'AI meeting assistant for transcription, analysis, and conversation intelligence.', category: 'Productivity', rating: '4.3', company: 'Fireflies.ai', website: 'https://fireflies.ai' },
   
   // Video Tools
-  'synthesia': { title: 'Synthesia', description: 'Create AI-generated videos with virtual presenters from text.', category: 'Video', rating: '4.5', company: 'Synthesia' },
-  'runway-ml': { title: 'Runway ML', description: 'Creative AI toolkit for video editing and multimodal AI tools.', category: 'Video', rating: '4.6', company: 'Runway AI' },
-  'descript': { title: 'Descript', description: 'AI-powered audio and video editing with text-based editing.', category: 'Video', rating: '4.7', company: 'Descript' },
-  'luma-ai': { title: 'Luma AI', description: '3D capture and generation using neural radiance fields.', category: 'Video', rating: '4.4', company: 'Luma AI' },
+  'synthesia': { title: 'Synthesia', description: 'Create AI-generated videos with virtual presenters from text.', category: 'Video', rating: '4.5', company: 'Synthesia', website: 'https://synthesia.io' },
+  'runway-ml': { title: 'Runway ML', description: 'Creative AI toolkit for video editing and multimodal AI tools.', category: 'Video', rating: '4.6', company: 'Runway AI', website: 'https://runwayml.com' },
+  'descript': { title: 'Descript', description: 'AI-powered audio and video editing with text-based editing.', category: 'Video', rating: '4.7', company: 'Descript', website: 'https://descript.com' },
+  'luma-ai': { title: 'Luma AI', description: '3D capture and generation using neural radiance fields.', category: 'Video', rating: '4.4', company: 'Luma AI', website: 'https://lumalabs.ai' },
   
   // Audio Tools
-  'elevenlabs': { title: 'ElevenLabs', description: 'AI voice generator for natural speech synthesis and voice cloning.', category: 'Audio', rating: '4.8', company: 'ElevenLabs' },
-  'murf-ai': { title: 'Murf AI', description: 'Professional AI voiceover generator for content creators.', category: 'Audio', rating: '4.4', company: 'Murf AI' },
-  'mubert': { title: 'Mubert', description: 'Generate royalty-free music and soundtracks using AI.', category: 'Audio', rating: '4.3', company: 'Mubert' },
+  'elevenlabs': { title: 'ElevenLabs', description: 'AI voice generator for natural speech synthesis and voice cloning.', category: 'Audio', rating: '4.8', company: 'ElevenLabs', website: 'https://elevenlabs.io' },
+  'murf-ai': { title: 'Murf AI', description: 'Professional AI voiceover generator for content creators.', category: 'Audio', rating: '4.4', company: 'Murf AI', website: 'https://murf.ai' },
+  'mubert': { title: 'Mubert', description: 'Generate royalty-free music and soundtracks using AI.', category: 'Audio', rating: '4.3', company: 'Mubert', website: 'https://mubert.com' },
   
   // Research Tools
-  'perplexity': { title: 'Perplexity', description: 'AI-powered search engine with accurate, cited answers in real-time.', category: 'Research', rating: '4.6', company: 'Perplexity AI' },
-  'arc-search': { title: 'Arc Search', description: 'Mobile AI search engine with intelligent browsing features.', category: 'Research', rating: '4.5', company: 'The Browser Company' },
+  'perplexity': { title: 'Perplexity', description: 'AI-powered search engine with accurate, cited answers in real-time.', category: 'Research', rating: '4.6', company: 'Perplexity AI', website: 'https://perplexity.ai' },
+  'arc-search': { title: 'Arc Search', description: 'Mobile AI search engine with intelligent browsing features.', category: 'Research', rating: '4.5', company: 'The Browser Company', website: 'https://arc.net' },
   
   // Data & Analytics Tools
-  'google-trends': { title: 'Google Trends', description: 'Analyze real-time search data trends and market insights.', category: 'Data', rating: '4.4', company: 'Google' },
-  'semrush-market-explorer': { title: 'Semrush Market Explorer', description: 'Comprehensive market research and competitor analysis platform.', category: 'Data', rating: '4.5', company: 'Semrush' },
+  'google-trends': { title: 'Google Trends', description: 'Analyze real-time search data trends and market insights.', category: 'Data', rating: '4.4', company: 'Google', website: 'https://trends.google.com' },
+  'semrush-market-explorer': { title: 'Semrush Market Explorer', description: 'Comprehensive market research and competitor analysis platform.', category: 'Data', rating: '4.5', company: 'Semrush', website: 'https://semrush.com' },
   
   // Marketing Tools
-  'hubspot-email-writer': { title: 'HubSpot Email Writer', description: 'AI-powered email copywriting integrated with CRM and marketing automation.', category: 'Marketing', rating: '4.3', company: 'HubSpot' },
-  'albert-ai': { title: 'Albert.ai', description: 'Self-optimizing digital advertising platform that autonomously manages ad campaigns.', category: 'Marketing', rating: '4.6', company: 'Albert Technologies' },
+  'hubspot-email-writer': { title: 'HubSpot Email Writer', description: 'AI-powered email copywriting integrated with CRM and marketing automation.', category: 'Marketing', rating: '4.3', company: 'HubSpot', website: 'https://hubspot.com' },
+  'albert-ai': { title: 'Albert.ai', description: 'Self-optimizing digital advertising platform that autonomously manages ad campaigns.', category: 'Marketing', rating: '4.6', company: 'Albert Technologies', website: 'https://albert.ai' },
   
   // Social Media Tools
-  'sprout-social': { title: 'Sprout Social', description: 'AI-powered social media management with sentiment analysis and optimization.', category: 'Social', rating: '4.4', company: 'Sprout Social' },
+  'sprout-social': { title: 'Sprout Social', description: 'AI-powered social media management with sentiment analysis and optimization.', category: 'Social', rating: '4.4', company: 'Sprout Social', website: 'https://sproutsocial.com' },
   
   // Sales Tools
-  'hubspot-ai': { title: 'HubSpot AI', description: 'CRM with AI-powered sales and marketing automation.', category: 'Sales', rating: '4.3', company: 'HubSpot' },
-  'gong': { title: 'Gong', description: 'Revenue AI platform for sales call analysis and insights.', category: 'Sales', rating: '4.6', company: 'Gong' },
-  'reply-io': { title: 'Reply.io', description: 'AI-powered sales outreach automation with personalized email sequences.', category: 'Sales', rating: '4.2', company: 'Reply' },
+  'hubspot-ai': { title: 'HubSpot AI', description: 'CRM with AI-powered sales and marketing automation.', category: 'Sales', rating: '4.3', company: 'HubSpot', website: 'https://hubspot.com' },
+  'gong': { title: 'Gong', description: 'Revenue AI platform for sales call analysis and insights.', category: 'Sales', rating: '4.6', company: 'Gong', website: 'https://gong.io' },
+  'reply-io': { title: 'Reply.io', description: 'AI-powered sales outreach automation with personalized email sequences.', category: 'Sales', rating: '4.2', company: 'Reply', website: 'https://reply.io' },
   
   // SEO Tools
-  'surfer-seo': { title: 'Surfer SEO', description: 'AI SEO tool for content optimization and keyword research.', category: 'SEO', rating: '4.6', company: 'Surfer' },
-  'semrush': { title: 'Semrush', description: 'All-in-one SEO and digital marketing platform with AI features.', category: 'SEO', rating: '4.5', company: 'Semrush' },
-  'marketmuse': { title: 'MarketMuse', description: 'AI-powered content strategy and SEO optimization platform.', category: 'SEO', rating: '4.3', company: 'MarketMuse' },
+  'surfer-seo': { title: 'Surfer SEO', description: 'AI SEO tool for content optimization and keyword research.', category: 'SEO', rating: '4.6', company: 'Surfer', website: 'https://surferseo.com' },
+  'semrush': { title: 'Semrush', description: 'All-in-one SEO and digital marketing platform with AI features.', category: 'SEO', rating: '4.5', company: 'Semrush', website: 'https://semrush.com' },
+  'marketmuse': { title: 'MarketMuse', description: 'AI-powered content strategy and SEO optimization platform.', category: 'SEO', rating: '4.3', company: 'MarketMuse', website: 'https://marketmuse.com' },
   
   // Automation Tools
-  'zapier': { title: 'Zapier', description: 'Automation platform connecting apps with AI-powered workflows.', category: 'Automation', rating: '4.5', company: 'Zapier' },
-  'wix-adi': { title: 'Wix ADI', description: 'AI-powered website builder that creates custom sites based on your needs.', category: 'Automation', rating: '4.2', company: 'Wix.com' }
+  'zapier': { title: 'Zapier', description: 'Automation platform connecting apps with AI-powered workflows.', category: 'Automation', rating: '4.5', company: 'Zapier', website: 'https://zapier.com' },
+  'wix-adi': { title: 'Wix ADI', description: 'AI-powered website builder that creates custom sites based on your needs.', category: 'Automation', rating: '4.2', company: 'Wix.com', website: 'https://wix.com' }
 };
 
 // Page metadata for static pages
@@ -258,17 +258,28 @@ function generateToolContent(toolId: string): string {
   const tool = toolsMetadata[toolId];
   if (!tool) return '';
   
+  // Get related tools from same category
+  const relatedTools = Object.entries(toolsMetadata)
+    .filter(([id, t]) => t.category === tool.category && id !== toolId)
+    .slice(0, 5)
+    .map(([id, t]) => `<a href="/tool/${id}">${t.title}</a>`)
+    .join(' | ');
+  
   return `
     <article itemscope itemtype="https://schema.org/SoftwareApplication">
       <h1 itemprop="name">${escapeHtml(tool.title)}</h1>
       <p itemprop="description">${escapeHtml(tool.description)}</p>
       <div class="tool-meta">
-        <span itemprop="applicationCategory">Category: ${escapeHtml(tool.category)}</span>
+        <span itemprop="applicationCategory">Category: <a href="/category/${tool.category.toLowerCase()}">${escapeHtml(tool.category)}</a></span>
         <span>Company: <span itemprop="author">${escapeHtml(tool.company)}</span></span>
         <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
           Rating: <span itemprop="ratingValue">${tool.rating}</span>/5
         </div>
       </div>
+      <div class="tool-actions">
+        <a href="${tool.website}" rel="noopener noreferrer" target="_blank" itemprop="url">Visit ${escapeHtml(tool.title)} Official Website →</a>
+      </div>
+      ${relatedTools ? `<nav aria-label="Related Tools"><h2>Related ${tool.category} Tools</h2><p>${relatedTools}</p></nav>` : ''}
     </article>
   `;
 }

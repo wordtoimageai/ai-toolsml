@@ -1,4 +1,6 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/",
@@ -12,7 +14,7 @@
       "destination": "/api/prerender?path=/"
     },
     {
-      "source": "/(tool|category|tag|blog|tutorials)/:path*",
+      "source": "/tool/:slug",
       "has": [
         {
           "type": "header",
@@ -20,7 +22,51 @@
           "value": "(?i).*(googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|slackbot|applebot|pinterest|redditbot|semrushbot|ahrefsbot|mj12bot|petalbot|screaming frog|dotbot|rogerbot|sogou|exabot|facebot|ia_archiver|embedly|quora|showyoubot|outbrain|flipboard|tumblr|bitlybot|skypeuripreview|nuzzel|qwantify|chrome-lighthouse|headlesschrome|prerendercloud|rendertron).*"
         }
       ],
-      "destination": "/api/prerender?path=/$1/:path*"
+      "destination": "/api/prerender?path=/tool/:slug"
+    },
+    {
+      "source": "/category/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|slackbot|applebot|pinterest|redditbot|semrushbot|ahrefsbot|mj12bot|petalbot|screaming frog|dotbot|rogerbot|sogou|exabot|facebot|ia_archiver|embedly|quora|showyoubot|outbrain|flipboard|tumblr|bitlybot|skypeuripreview|nuzzel|qwantify|chrome-lighthouse|headlesschrome|prerendercloud|rendertron).*"
+        }
+      ],
+      "destination": "/api/prerender?path=/category/:slug"
+    },
+    {
+      "source": "/tag/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|slackbot|applebot|pinterest|redditbot|semrushbot|ahrefsbot|mj12bot|petalbot|screaming frog|dotbot|rogerbot|sogou|exabot|facebot|ia_archiver|embedly|quora|showyoubot|outbrain|flipboard|tumblr|bitlybot|skypeuripreview|nuzzel|qwantify|chrome-lighthouse|headlesschrome|prerendercloud|rendertron).*"
+        }
+      ],
+      "destination": "/api/prerender?path=/tag/:slug"
+    },
+    {
+      "source": "/blog/:slug*",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|slackbot|applebot|pinterest|redditbot|semrushbot|ahrefsbot|mj12bot|petalbot|screaming frog|dotbot|rogerbot|sogou|exabot|facebot|ia_archiver|embedly|quora|showyoubot|outbrain|flipboard|tumblr|bitlybot|skypeuripreview|nuzzel|qwantify|chrome-lighthouse|headlesschrome|prerendercloud|rendertron).*"
+        }
+      ],
+      "destination": "/api/prerender?path=/blog/:slug*"
+    },
+    {
+      "source": "/tutorials/:slug*",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": "(?i).*(googlebot|bingbot|slurp|duckduckbot|baiduspider|yandexbot|facebookexternalhit|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|slackbot|applebot|pinterest|redditbot|semrushbot|ahrefsbot|mj12bot|petalbot|screaming frog|dotbot|rogerbot|sogou|exabot|facebot|ia_archiver|embedly|quora|showyoubot|outbrain|flipboard|tumblr|bitlybot|skypeuripreview|nuzzel|qwantify|chrome-lighthouse|headlesschrome|prerendercloud|rendertron).*"
+        }
+      ],
+      "destination": "/api/prerender?path=/tutorials/:slug*"
     },
     {
       "source": "/(about|browse|compare|contact|favorites|submit|privacy|terms|changelog|api-docs|advertise|site-map)",
