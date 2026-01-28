@@ -17,7 +17,7 @@ import OrganizationSchema from "@/components/OrganizationSchema";
 import ItemListSchema from "@/components/ItemListSchema";
 import AdvancedMetaTags from "@/components/AdvancedMetaTags";
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
-import { CategoryLinks, PopularTags, QuickNavigation, ToolsByCategoryPreview } from "@/components/InternalLinks";
+import { CategoryLinks, PopularTags, QuickNavigation, ToolsByCategoryPreview, AllToolsLinksSection } from "@/components/InternalLinks";
 import HowItWorks from "@/components/HowItWorks";
 import AIToolCategories from "@/components/AIToolCategories";
 import PopularTools from "@/components/PopularTools";
@@ -112,6 +112,15 @@ const Index = () => {
         <section className="py-12 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <QuickNavigation />
+          </div>
+        </section>
+        {/* Comprehensive Internal Links Section - All Tools, Categories, Tags */}
+        <section className="py-12 bg-muted/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-foreground mb-8 text-center">
+              Complete AI Tools Directory
+            </h2>
+            <AllToolsLinksSection />
           </div>
         </section>
         <TrustSignals />

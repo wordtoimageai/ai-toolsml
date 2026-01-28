@@ -274,28 +274,46 @@ function generateToolContent(toolId: string): string {
 }
 
 function generateInternalLinks(): string {
+  // ALL categories
   const categoryLinks = categories.map(cat => {
     const catName = cat.charAt(0).toUpperCase() + cat.slice(1);
     return `<a href="/category/${cat}">${catName} AI Tools</a>`;
   }).join(' | ');
 
-  const toolLinks = Object.entries(toolsMetadata).slice(0, 15).map(([id, tool]) => 
+  // ALL tools (no slice - include every tool)
+  const toolLinks = Object.entries(toolsMetadata).map(([id, tool]) => 
     `<a href="/tool/${id}">${tool.title}</a>`
   ).join(' | ');
 
-  const tagLinks = tags.slice(0, 12).map(tag => {
+  // ALL tags
+  const tagLinks = tags.map(tag => {
     const tagName = tag.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
     return `<a href="/tag/${tag}">${tagName}</a>`;
   }).join(' | ');
 
+  // Group tools by category for better SEO structure
+  const toolsByCategory = categories.map(cat => {
+    const catName = cat.charAt(0).toUpperCase() + cat.slice(1);
+    const catTools = Object.entries(toolsMetadata)
+      .filter(([, tool]) => tool.category.toLowerCase() === cat)
+      .map(([id, tool]) => `<a href="/tool/${id}">${tool.title}</a>`)
+      .join(' | ');
+    return catTools ? `<section><h3>${catName} Tools</h3><p>${catTools}</p></section>` : '';
+  }).filter(Boolean).join('');
+
   return `
     <nav aria-label="Categories"><h2>AI Tool Categories</h2><p>${categoryLinks}</p></nav>
-    <nav aria-label="Popular Tools"><h2>Popular AI Tools</h2><p>${toolLinks}</p></nav>
-    <nav aria-label="Popular Tags"><h2>Browse by Tag</h2><p>${tagLinks}</p></nav>
+    <nav aria-label="All Tools"><h2>Complete AI Tools Directory</h2>${toolsByCategory}</nav>
+    <nav aria-label="All Tools List"><h2>All AI Tools</h2><p>${toolLinks}</p></nav>
+    <nav aria-label="All Tags"><h2>Browse by Tag</h2><p>${tagLinks}</p></nav>
     <nav aria-label="Resources">
       <a href="/browse">Browse All Tools</a> | <a href="/compare">Compare Tools</a> | 
       <a href="/blog">Blog</a> | <a href="/tutorials">Tutorials</a> | 
-      <a href="/about">About</a> | <a href="/contact">Contact</a> | <a href="/site-map">Site Map</a>
+      <a href="/about">About</a> | <a href="/contact">Contact</a> | 
+      <a href="/advertise">Advertise</a> | <a href="/submit">Submit Tool</a> | 
+      <a href="/favorites">Favorites</a> | <a href="/api-docs">API Docs</a> | 
+      <a href="/changelog">Changelog</a> | <a href="/site-map">Site Map</a> |
+      <a href="/privacy">Privacy</a> | <a href="/terms">Terms</a>
     </nav>
   `;
 }
