@@ -51,9 +51,9 @@ const Hero = () => {
             <span className="text-sm text-primary-foreground/80">Updated Weekly</span>
           </div>
 
-          {/* Main Title */}
+          {/* Main Title - LCP Element with priority rendering */}
           <div className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            <h1 className="hero-title max-w-4xl mx-auto">
+            <h1 className="hero-title max-w-4xl mx-auto" data-lcp="true">
               Find the Perfect AI Tool
               <br />
               <span className="italic">for Every Task</span>

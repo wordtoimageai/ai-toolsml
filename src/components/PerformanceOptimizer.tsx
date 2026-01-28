@@ -96,35 +96,22 @@ const PerformanceOptimizer = ({
 
   return (
     <Helmet>
-      {/* Critical inline CSS for above-the-fold content */}
+      {/* LCP Optimization: Critical inline CSS for hero section */}
       <style>{`
-        .hero-gradient{background:linear-gradient(135deg,hsl(235,47%,55%),hsl(252,35%,45%));min-height:100vh}
-        .hero-title{line-height:1.2;letter-spacing:-0.02em;font-weight:700}
-        .hero-subtitle{line-height:1.6}
-        .animate-fade-in{animation:fadeIn 0.6s ease-in}
-        @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        [data-lcp]{content-visibility:auto;contain-intrinsic-size:auto 400px}
+        .hero-gradient{contain:layout style paint}
+        .hero-title{text-rendering:optimizeLegibility;font-display:swap}
       `}</style>
 
-      {/* Preconnect to critical origins - avoid duplicates */}
-      {preconnect.length > 0 ? (
-        preconnect.map((url) => (
-          <link key={url} rel="preconnect" href={url} crossOrigin="anonymous" />
-        ))
-      ) : (
-        <>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        </>
-      )}
+      {/* Preconnect to critical origins - only if custom ones provided */}
+      {preconnect.length > 0 && preconnect.map((url) => (
+        <link key={url} rel="preconnect" href={url} crossOrigin="anonymous" />
+      ))}
 
       {/* DNS Prefetch for third-party domains */}
-      {dnsPrefetch.length > 0 ? (
-        dnsPrefetch.map((url) => (
-          <link key={url} rel="dns-prefetch" href={url} />
-        ))
-      ) : (
-        <link rel="dns-prefetch" href="//toolsml.com" />
-      )}
+      {dnsPrefetch.map((url) => (
+        <link key={url} rel="dns-prefetch" href={url} />
+      ))}
 
       {/* Preload critical resources with high priority */}
       {preload.map((resource, index) => (
@@ -135,11 +122,12 @@ const PerformanceOptimizer = ({
           as={resource.as}
           type={resource.type}
           crossOrigin={resource.crossorigin}
-          fetchPriority="high"
+          // @ts-ignore - fetchPriority is valid HTML attribute
+          fetchpriority="high"
         />
       ))}
 
-      {/* Prefetch next-page resources */}
+      {/* Prefetch next-page resources (low priority) */}
       {prefetch.map((resource, index) => (
         <link
           key={`${resource.href}-${index}`}
@@ -149,27 +137,17 @@ const PerformanceOptimizer = ({
         />
       ))}
 
-      {/* Preload critical images with high priority */}
+      {/* Preload critical images with high priority for LCP */}
       {criticalImages.map((imageUrl) => (
         <link
           key={imageUrl}
           rel="preload"
           href={imageUrl}
           as="image"
-          fetchPriority="high"
+          // @ts-ignore - fetchPriority is valid HTML attribute
+          fetchpriority="high"
         />
       ))}
-      
-      {/* Optimize font loading with font-display swap */}
-      <link 
-        rel="preload" 
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" 
-        as="style"
-      />
-      <noscript>{`<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />`}</noscript>
-      
-      {/* Module preload for critical JS */}
-      <link rel="modulepreload" href="/src/main.tsx" />
     </Helmet>
   );
 };
