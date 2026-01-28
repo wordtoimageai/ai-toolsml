@@ -9,39 +9,22 @@ let clsEntries: PerformanceEntry[] = [];
 
 /**
  * Preload critical resources for faster LCP
+ * Note: Fonts are already loaded in index.html, so we only handle dynamic resources here
  */
 export const preloadCriticalResources = () => {
-  // Preload critical fonts with display swap
-  const fontPreloadLink = document.createElement('link');
-  fontPreloadLink.rel = 'preload';
-  fontPreloadLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap';
-  fontPreloadLink.as = 'style';
-  fontPreloadLink.crossOrigin = 'anonymous';
-  document.head.appendChild(fontPreloadLink);
-
-  // Preload LCP candidate images
-  const lcpImages = ['/og-image.jpg', '/favicon.png'];
-  lcpImages.forEach(src => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.href = src;
-    link.as = 'image';
-    link.fetchPriority = 'high';
-    document.head.appendChild(link);
-  });
-
-  // DNS prefetch for external resources
+  // DNS prefetch for external resources that aren't already in index.html
   const dnsPrefetchDomains = [
-    'https://fonts.googleapis.com',
-    'https://fonts.gstatic.com',
     'https://www.google-analytics.com'
   ];
   
   dnsPrefetchDomains.forEach(domain => {
-    const link = document.createElement('link');
-    link.rel = 'dns-prefetch';
-    link.href = domain;
-    document.head.appendChild(link);
+    // Check if already added
+    if (!document.querySelector(`link[rel="dns-prefetch"][href="${domain}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'dns-prefetch';
+      link.href = domain;
+      document.head.appendChild(link);
+    }
   });
 };
 

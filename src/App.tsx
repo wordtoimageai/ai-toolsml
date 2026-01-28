@@ -15,8 +15,10 @@ import PreconnectLinks from "./components/PreconnectLinks";
 import PrerenderReady from "./components/PrerenderReady";
 import PrerenderMetaTags from "./components/PrerenderMetaTags";
 
-// Lazy load components for better performance
-const Index = lazy(() => import("./pages/Index"));
+// Import Index directly (not lazy) since it's the main entry point for LCP optimization
+import Index from "./pages/Index";
+
+// Lazy load other pages for better performance
 const ToolDetail = lazy(() => import("./pages/ToolDetail"));
 const Category = lazy(() => import("./pages/Category"));
 const Favorites = lazy(() => import("./pages/Favorites"));
