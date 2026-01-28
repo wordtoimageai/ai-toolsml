@@ -4,104 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Critical Resource Hints for Performance -->
+    <!-- LCP Optimization: Critical Resource Hints (ordered by priority) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     
-    <!-- Async font loading with font-display swap for optimal LCP -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
-    <script>
-      // Async font loading polyfill for older browsers
-      !function(e){"use strict";var t=function(t,n,o){var r,a=e.document,i=a.createElement("link");if(n)r=n;else{var d=(a.body||a.getElementsByTagName("head")[0]).childNodes;r=d[d.length-1]}var l=a.styleSheets;if(o)for(var s in o)o.hasOwnProperty(s)&&i.setAttribute(s,o[s]);i.rel="stylesheet",i.href=t,i.media="only x",function e(t){if(a.body)return t();setTimeout(function(){e(t)})}(function(){r.parentNode.insertBefore(i,n?r:r.nextSibling)});var f=function(e){for(var t=i.href,n=l.length;n--;)if(l[n].href===t)return e();setTimeout(function(){f(e)})};return i.addEventListener&&i.addEventListener("load",function(){this.media="all"}),i.onloadcssdefined=f,f(function(){i.media!=="all"&&(i.media="all")}),i};"undefined"!=typeof exports?exports.loadCSS=t:e.loadCSS=t}("undefined"!=typeof global?global:this);
-    </script>
+    <!-- LCP Optimization: Preload critical fonts with font-display: swap -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&display=swap" as="style" fetchpriority="high">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"></noscript>
     
-    <!-- Let Vite handle asset loading and MIME types -->
+    <!-- Preconnect to analytics (defer loading) -->
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
     
-    <!-- Critical CSS inline to prevent render blocking -->
+    <!-- LCP Optimization: Inline Critical CSS for immediate render -->
     <style>
-      /* Critical above-the-fold styles */
-      body { 
-        margin: 0; 
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background-color: hsl(0 0% 100%);
-        color: hsl(222.2 84% 4.9%);
-      }
-      .loading-screen { 
-        display: flex; 
-        align-items: center; 
-        justify-content: center; 
-        height: 100vh; 
-        background: linear-gradient(135deg, hsl(235 47% 55%) 0%, hsl(252 35% 45%) 100%);
-      }
-      .loading-spinner { 
-        width: 40px; 
-        height: 40px; 
-        border: 3px solid rgba(255,255,255,0.3); 
-        border-radius: 50%; 
-        border-top-color: white; 
-        animation: spin 1s ease-in-out infinite; 
-      }
-      @keyframes spin { to { transform: rotate(360deg); } }
+      /* Critical above-the-fold styles - inline for fastest FCP/LCP */
+      *,*::before,*::after{box-sizing:border-box}
+      body{margin:0;font-family:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:hsl(0 0% 99%);color:hsl(240 10% 10%);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+      
+      /* Font-display swap fallback */
+      @font-face{font-family:'Outfit';font-style:normal;font-weight:700 900;font-display:swap;src:local('Outfit')}
+      
+      /* Loading screen with minimal styles */
+      .loading-screen{display:flex;align-items:center;justify-content:center;height:100vh;background:linear-gradient(165deg,hsl(252,68%,58%) 0%,hsl(280,75%,45%) 50%,hsl(320,70%,40%) 100%)}
+      .loading-spinner{width:40px;height:40px;border:3px solid rgba(255,255,255,0.3);border-radius:50%;border-top-color:white;animation:spin 1s ease-in-out infinite}
+      @keyframes spin{to{transform:rotate(360deg)}}
       
       /* Critical Header Styles */
-      .nav-glass {
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      }
-      .text-gradient {
-        background: linear-gradient(135deg, hsl(235 47% 55%), hsl(252 35% 45%));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+      .nav-glass{background-color:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.2)}
+      .text-gradient{background:linear-gradient(135deg,hsl(252,68%,58%),hsl(280,75%,55%));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
       
-      /* Critical Hero Styles */
-      .hero-gradient {
-        background: linear-gradient(135deg, hsl(235 47% 55%) 0%, hsl(252 35% 45%) 100%);
-      }
-      .hero-title {
-        font-size: 3rem;
-        font-weight: 900;
-        color: white;
-        margin-bottom: 1.5rem;
-        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        line-height: 1.1;
-      }
-      @media (min-width: 768px) {
-        .hero-title {
-          font-size: 4rem;
-        }
-      }
-      .hero-subtitle {
-        font-size: 1.25rem;
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 3rem;
-        max-width: 42rem;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      @media (min-width: 768px) {
-        .hero-subtitle {
-          font-size: 1.5rem;
-        }
-      }
+      /* Critical Hero Styles - LCP elements */
+      .hero-gradient{background:linear-gradient(165deg,hsl(252,68%,58%) 0%,hsl(280,75%,45%) 50%,hsl(320,70%,40%) 100%);contain:layout style paint}
+      /* LCP Element: Hero Title - highest priority rendering */
+      .hero-title{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;color:white;margin-bottom:1.5rem;text-shadow:0 4px 8px rgba(0,0,0,0.3);line-height:1.1;letter-spacing:-0.02em;text-rendering:optimizeLegibility;content-visibility:auto}
+      .hero-subtitle{font-size:clamp(1.125rem,2vw,1.5rem);color:rgba(255,255,255,0.9);margin-bottom:3rem;max-width:42rem;margin-left:auto;margin-right:auto;line-height:1.6}
       
-      /* Critical Layout Classes */
-      .fixed { position: fixed; }
-      .top-0 { top: 0; }
-      .w-full { width: 100%; }
-      .z-50 { z-index: 50; }
-      .min-h-screen { min-height: 100vh; }
-      .flex { display: flex; }
-      .items-center { align-items: center; }
-      .justify-center { justify-content: center; }
-      .pt-16 { padding-top: 4rem; }
-      .text-center { text-align: center; }
+      /* Critical Layout Classes for LCP path */
+      .fixed{position:fixed}.top-0{top:0}.w-full{width:100%}.z-50{z-index:50}.min-h-screen{min-height:100vh}.flex{display:flex}.items-center{align-items:center}.justify-center{justify-content:center}.pt-16,.pt-20{padding-top:5rem}.text-center{text-align:center}
+      .max-w-6xl{max-width:72rem;margin-left:auto;margin-right:auto}.px-4{padding-left:1rem;padding-right:1rem}
+      
+      /* API Docs page critical styles */
+      .search-container{background:hsl(0 0% 100%);border-radius:0.75rem;border:1px solid hsl(240 6% 90%);padding:1.5rem}
+      
+      /* Prevent layout shift */
+      img,video{height:auto;max-width:100%}
+      [data-lcp]{content-visibility:auto;contain-intrinsic-size:auto 400px}
     </style>
     
     <!-- Let Vite handle CSS loading with proper MIME types -->
@@ -149,38 +100,45 @@
     <meta name="twitter:image" content="https://toolsml.com/og-image.jpg" />
     <meta name="twitter:site" content="@toolsml" />
     <meta name="twitter:creator" content="@toolsml" />
-    
-    <!-- Google tag (gtag.js) - Defer to prevent render blocking -->
-    <link rel="preconnect" href="https://www.google-analytics.com">
-    <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-BWC5XNH86E"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-BWC5XNH86E', {
-        'send_page_view': false  // Prevent automatic page view, let app control
-      });
-    </script>
   </head>
 
   <body>
     <div id="root">
       <!-- Fallback loading screen while JavaScript loads -->
-      <div class="loading-screen">
+      <div class="loading-screen" aria-label="Loading ToolsML">
         <div class="loading-spinner"></div>
       </div>
     </div>
     
-    <!-- Main application script with performance optimizations -->
+    <!-- Main application script - module for tree-shaking -->
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Service Worker for caching (optional but recommended) -->
-    <script>
+    <!-- Defer non-critical scripts: Analytics & Service Worker -->
+    <script defer>
+      // Load analytics after LCP (requestIdleCallback for non-blocking)
+      function loadAnalytics() {
+        if (window.__analyticsLoaded) return;
+        window.__analyticsLoaded = true;
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-BWC5XNH86E';
+        s.async = true;
+        document.head.appendChild(s);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-BWC5XNH86E', { 'send_page_view': false });
+      }
+      // Use requestIdleCallback or setTimeout fallback
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadAnalytics, { timeout: 3000 });
+      } else {
+        setTimeout(loadAnalytics, 2000);
+      }
+      // Service Worker registration after load
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(() => {
-            // Service worker registration failed, but app will still work
-          });
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').catch(function() {});
         });
       }
     </script>

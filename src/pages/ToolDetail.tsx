@@ -107,8 +107,8 @@ const ToolDetail = () => {
       <Header />
       
       <div className="pt-20">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-primary/10 to-primary/5 border-b">
+      {/* Header - LCP optimized with contain for better rendering */}
+      <div className="bg-gradient-to-r from-primary/10 to-primary/5 border-b" style={{ contain: 'layout style' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Button 
             variant="ghost" 
@@ -120,15 +120,21 @@ const ToolDetail = () => {
           </Button>
           
           <div className="flex flex-col md:flex-row md:items-start gap-6">
+            {/* Tool Icon - LCP element with priority rendering */}
             <div className="flex-shrink-0">
-              <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center text-3xl text-primary-foreground">
+              <div 
+                className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center text-3xl text-primary-foreground"
+                data-lcp="true"
+                style={{ contain: 'layout style paint' }}
+              >
                 {tool.icon}
               </div>
             </div>
             
             <div className="flex-1">
+              {/* Tool Title - LCP element */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
-                <h1 className="text-4xl font-black text-foreground">{tool.title}</h1>
+                <h1 className="text-4xl font-black text-foreground" data-lcp="true">{tool.title}</h1>
                 <Badge className={pricingColor[tool.pricing]}>
                   {tool.pricing}
                 </Badge>

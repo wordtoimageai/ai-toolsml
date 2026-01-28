@@ -4,6 +4,7 @@ import AdvancedSEO from '@/components/AdvancedSEO';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Code, Key, Book, Zap } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const ApiDocs = () => {
   return (
@@ -15,13 +16,19 @@ const ApiDocs = () => {
         url="/api-docs"
         pageType="homepage"
       />
+      {/* LCP Optimization: Preload critical resources */}
+      <Helmet>
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&display=swap" />
+      </Helmet>
       <Header />
       
       <main className="pt-20">
-        <section className="hero-gradient py-20">
+        {/* Hero Section - LCP optimized */}
+        <section className="hero-gradient py-20" style={{ contain: 'layout style paint' }}>
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="text-6xl mb-4">🔧</div>
-            <h1 className="hero-title">
+            {/* LCP Element: Icon + Title */}
+            <div className="text-6xl mb-4" role="img" aria-label="Tools icon" data-lcp="true">🔧</div>
+            <h1 className="hero-title" data-lcp="true">
               API Documentation
             </h1>
             <p className="hero-subtitle">

@@ -3,22 +3,15 @@ import { Helmet } from 'react-helmet-async';
 /**
  * Preconnect links for performance optimization
  * Establishes early connections to external domains
+ * Note: Primary preconnects are in index.html for earliest possible execution
  */
 const PreconnectLinks = () => {
   return (
     <Helmet>
-      {/* Supabase */}
-      <link rel="preconnect" href="https://feiowwunorclgnwngoar.supabase.co" />
-      <link rel="dns-prefetch" href="https://feiowwunorclgnwngoar.supabase.co" />
-      
-      {/* Google Fonts (if used) */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-      
-      {/* CDN domains for assets */}
-      <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-      <link rel="dns-prefetch" href="https://unpkg.com" />
+      {/* Additional preconnects handled via React Helmet */}
+      {/* Primary fonts preconnect is in index.html for LCP optimization */}
+      <link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
+      <link rel="dns-prefetch" href="//unpkg.com" />
     </Helmet>
   );
 };
