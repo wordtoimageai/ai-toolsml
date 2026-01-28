@@ -18,7 +18,7 @@ import PrerenderMetaTags from "./components/PrerenderMetaTags";
 // Import Index directly (not lazy) since it's the main entry point for LCP optimization
 import Index from "./pages/Index";
 
-// Lazy load other pages for better performance
+// Lazy load pages for better code-splitting and performance
 const ToolDetail = lazy(() => import("./pages/ToolDetail"));
 const Category = lazy(() => import("./pages/Category"));
 const Favorites = lazy(() => import("./pages/Favorites"));
