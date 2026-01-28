@@ -62,19 +62,9 @@ const Index = () => {
         tags={['AI tools', 'artificial intelligence', 'machine learning', 'productivity']}
       />
       <PerformanceOptimizer
-        preconnect={[
-          'https://fonts.googleapis.com',
-          'https://fonts.gstatic.com',
-          'https://www.googletagmanager.com',
-          'https://www.google-analytics.com'
-        ]}
         dnsPrefetch={[
           '//toolsml.com'
         ]}
-        preload={[
-          { href: '/og-image.jpg', as: 'image' }
-        ]}
-        criticalImages={['/og-image.jpg']}
       />
       <Helmet>
         <script type="application/ld+json">
