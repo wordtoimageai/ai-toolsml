@@ -641,3 +641,115 @@ export const ToolsByCategoryPreview = ({ className }: { className?: string }) =>
     </div>
   );
 };
+
+/**
+ * AllToolsLinksSection - Comprehensive internal linking
+ * Links to ALL tools, categories, and tags to eliminate orphan pages
+ */
+export const AllToolsLinksSection = ({ className }: { className?: string }) => {
+  const categories = getAllCategories();
+  const allTags = getPopularTagsData();
+  
+  // Group tools by category
+  const toolsByCategory = categories.map(cat => ({
+    ...cat,
+    tools: allToolsData.filter(t => t.category === cat.id)
+  })).filter(cat => cat.tools.length > 0);
+
+  return (
+    <section className={className}>
+      <div className="space-y-8">
+        {/* All Categories */}
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+            <Sparkles className="h-5 w-5" />
+            All AI Tool Categories
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <Link key={cat.id} to={`/category/${cat.id}`}>
+                <Badge 
+                  variant="outline" 
+                  className="hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
+                >
+                  {cat.icon} {cat.name}
+                </Badge>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* All Tools by Category */}
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+            <Star className="h-5 w-5" />
+            Complete AI Tools Directory
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {toolsByCategory.map((category) => (
+              <div key={category.id} className="space-y-2">
+                <Link 
+                  to={`/category/${category.id}`}
+                  className="text-sm font-medium text-foreground hover:text-primary flex items-center gap-2"
+                >
+                  {category.icon} {category.name} Tools ({category.tools.length})
+                </Link>
+                <ul className="space-y-1 pl-6">
+                  {category.tools.map((tool) => (
+                    <li key={tool.id}>
+                      <Link
+                        to={`/tool/${tool.id}`}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {tool.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* All Tags */}
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+            <Tag className="h-5 w-5" />
+            Browse by Tag
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {allTags.map((tag) => (
+              <Link key={tag.name} to={`/tag/${encodeURIComponent(tag.name)}`}>
+                <Badge 
+                  variant="secondary" 
+                  className="hover:bg-primary hover:text-primary-foreground transition-colors cursor-pointer"
+                >
+                  {tag.name} ({tag.count})
+                </Badge>
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Resources & Static Pages */}
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-4">Resources</h3>
+          <div className="flex flex-wrap gap-4">
+            <Link to="/browse" className="text-sm text-muted-foreground hover:text-primary transition-colors">Browse All Tools</Link>
+            <Link to="/compare" className="text-sm text-muted-foreground hover:text-primary transition-colors">Compare Tools</Link>
+            <Link to="/favorites" className="text-sm text-muted-foreground hover:text-primary transition-colors">My Favorites</Link>
+            <Link to="/submit" className="text-sm text-muted-foreground hover:text-primary transition-colors">Submit Tool</Link>
+            <Link to="/blog" className="text-sm text-muted-foreground hover:text-primary transition-colors">Blog</Link>
+            <Link to="/tutorials" className="text-sm text-muted-foreground hover:text-primary transition-colors">Tutorials</Link>
+            <Link to="/api-docs" className="text-sm text-muted-foreground hover:text-primary transition-colors">API Docs</Link>
+            <Link to="/changelog" className="text-sm text-muted-foreground hover:text-primary transition-colors">Changelog</Link>
+            <Link to="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About</Link>
+            <Link to="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</Link>
+            <Link to="/advertise" className="text-sm text-muted-foreground hover:text-primary transition-colors">Advertise</Link>
+            <Link to="/site-map" className="text-sm text-muted-foreground hover:text-primary transition-colors">Site Map</Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};

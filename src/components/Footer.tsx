@@ -25,8 +25,8 @@ const getTopTools = () => {
     .slice(0, 12);
 };
 
-// Get popular tags
-const getPopularTags = () => {
+// Get ALL tags (no slicing - includes every tag for comprehensive internal linking)
+const getAllTags = () => {
   const tagCounts: Record<string, number> = {};
   tools.forEach(tool => {
     tool.tags.forEach(tag => {
@@ -35,13 +35,12 @@ const getPopularTags = () => {
   });
   return Object.entries(tagCounts)
     .sort(([, a], [, b]) => b - a)
-    .slice(0, 10)
     .map(([tag]) => tag);
 };
 
 const Footer = () => {
   const topTools = getTopTools();
-  const popularTags = getPopularTags();
+  const allTags = getAllTags();
 
   return (
     <footer className="bg-gray-900 text-white py-16">
@@ -95,18 +94,20 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Popular Tags */}
+          {/* All Tags - Comprehensive for SEO */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Popular Tags</h4>
-            <ul className="space-y-2 text-gray-400">
-              {popularTags.map((tag) => (
-                <li key={tag}>
-                  <Link to={`/tag/${encodeURIComponent(tag)}`} className="hover:text-white transition-colors text-sm">
-                    {tag}
-                  </Link>
-                </li>
+            <h4 className="text-lg font-semibold mb-4">Browse by Tag</h4>
+            <div className="flex flex-wrap gap-2">
+              {allTags.map((tag) => (
+                <Link 
+                  key={tag} 
+                  to={`/tag/${encodeURIComponent(tag)}`} 
+                  className="text-xs text-gray-400 hover:text-white transition-colors bg-gray-800 px-2 py-1 rounded"
+                >
+                  {tag}
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
 
           {/* Resources & Quick Links */}
