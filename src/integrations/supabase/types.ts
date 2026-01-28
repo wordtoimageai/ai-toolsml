@@ -340,6 +340,45 @@ export type Database = {
         }
         Relationships: []
       }
+      tool_submissions_public: {
+        Row: {
+          category: string | null
+          created_at: string | null
+          id: string | null
+          pricing_model: string | null
+          status: string | null
+          tool_description: string | null
+          tool_logo_url: string | null
+          tool_name: string | null
+          tool_url: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string | null
+          id?: string | null
+          pricing_model?: string | null
+          status?: string | null
+          tool_description?: string | null
+          tool_logo_url?: string | null
+          tool_name?: string | null
+          tool_url?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string | null
+          id?: string | null
+          pricing_model?: string | null
+          status?: string | null
+          tool_description?: string | null
+          tool_logo_url?: string | null
+          tool_name?: string | null
+          tool_url?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       get_user_roles: {
