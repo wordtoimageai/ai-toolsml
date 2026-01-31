@@ -183,8 +183,18 @@ const categoryDescriptions: Record<string, string> = {
   'seo': 'Discover AI SEO tools for keyword research and optimization. Surfer SEO, MarketMuse, Semrush reviews.'
 };
 
-// Popular tags
-const tags = ['free', 'writing', 'image-generation', 'coding', 'chatbot', 'productivity', 'marketing', 'video', 'audio', 'research', 'conversation', 'art', 'subscription', 'paid', 'text-to-speech', 'video-editing', 'voice-cloning', 'seo', 'design', 'collaboration'];
+// Popular tags - comprehensive list including case variations
+const tags = [
+  // Lowercase versions (URL-encoded)
+  'free', 'writing', 'image-generation', 'coding', 'chatbot', 
+  'productivity', 'marketing', 'video', 'audio', 'research',
+  'conversation', 'art', 'subscription', 'paid', 'text-to-speech',
+  'video-editing', 'voice-cloning', 'seo', 'design', 'collaboration',
+  'automation', 'assistant', 'analysis', 'open-source', 'business',
+  // Additional variations for URL matching
+  'ai-writing', 'ai-design', 'ai-coding', 'ai-video', 'ai-audio',
+  'text-generation', 'image-editing', 'content-creation', 'data-analysis'
+];
 
 function escapeHtml(str: string): string {
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
