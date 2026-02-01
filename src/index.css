@@ -190,7 +190,7 @@ All colors MUST be HSL.
 
   /* Premium Card Styles */
   .tool-card {
-    @apply bg-card rounded-2xl transition-all duration-300 border border-border/60;
+    @apply bg-card rounded-2xl transition-all duration-300 border-2 border-border;
     background: var(--gradient-card);
     box-shadow: var(--shadow-card);
   }
@@ -198,7 +198,7 @@ All colors MUST be HSL.
   .tool-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-card-hover);
-    border-color: hsl(var(--primary) / 0.2);
+    @apply border-primary/40;
   }
 
   /* Premium Button Variants */

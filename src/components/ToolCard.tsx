@@ -48,7 +48,7 @@ const ToolCard = ({ tool, onVisit }: ToolCardProps) => {
   };
 
   return (
-    <article className="tool-card animate-fade-in group relative" role="article" aria-labelledby={`tool-title-${tool.id}`}>
+    <article className="tool-card animate-fade-in group relative p-6" role="article" aria-labelledby={`tool-title-${tool.id}`}>
       {/* Actions in top right */}
       <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity" role="group" aria-label="Tool actions">
         <Button
@@ -75,7 +75,7 @@ const ToolCard = ({ tool, onVisit }: ToolCardProps) => {
         <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center text-white text-2xl mr-4 group-hover:scale-110 transition-transform duration-300">
           {tool.icon}
         </div>
-        <h3 id={`tool-title-${tool.id}`} className="text-xl font-bold text-card-foreground">{tool.title}</h3>
+        <h3 id={`tool-title-${tool.id}`} className="text-xl font-semibold text-card-foreground font-sans">{tool.title}</h3>
       </div>
       
       <p className="text-muted-foreground mb-6 leading-relaxed">
