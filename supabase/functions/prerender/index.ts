@@ -1,4 +1,4 @@
-// Prerender Edge Function v2.0 - Updated 2025-01-28
+// Prerender Edge Function v2.0 - Updated
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
@@ -86,10 +86,12 @@ const toolsMetadata: Record<string, { title: string; description: string; catego
   'wix-adi': { title: 'Wix ADI', description: 'AI-powered website builder that creates custom sites based on your needs.', category: 'Automation', rating: '4.2', company: 'Wix.com', website: 'https://wix.com' }
 };
 
+const currentYear = new Date().getFullYear();
+
 // Page metadata for static pages
 const pageMetadata: Record<string, { title: string; description: string; h1: string }> = {
   '/': {
-    title: 'ToolsML - Discover Best AI Tools 2025 | 1000+ Curated Solutions',
+    title: `ToolsML - Discover Best AI Tools ${currentYear} | 1000+ Curated Solutions`,
     description: 'Find perfect AI tools from 1000+ options across 200+ categories. Compare features, pricing, and reviews. Human-curated directory updated weekly.',
     h1: 'Find the Perfect AI Tool for Every Task'
   },
@@ -142,6 +144,11 @@ const pageMetadata: Record<string, { title: string; description: string; h1: str
     title: 'Compare AI Tools Side by Side | ToolsML',
     description: 'Compare AI tools features, pricing, and reviews to make informed decisions.',
     h1: 'Compare AI Tools'
+  },
+  '/comparison': {
+    title: 'Tool Comparison - Compare AI Tools Side by Side | ToolsML',
+    description: 'Compare multiple AI tools side-by-side to find the perfect fit for your needs.',
+    h1: 'AI Tool Comparison'
   },
   '/favorites': {
     title: 'My Favorite AI Tools | ToolsML',
@@ -213,7 +220,7 @@ function getMetadata(path: string): { title: string; description: string; h1: st
     const tool = toolsMetadata[toolId];
     if (tool) {
       return {
-        title: `${tool.title} Review 2025 - Features, Pricing & Alternatives | ToolsML`,
+        title: `${tool.title} Review ${currentYear} - Features, Pricing & Alternatives | ToolsML`,
         description: `${tool.title} by ${tool.company}: ${tool.description} Rating: ${tool.rating}/5. Compare with alternatives and read user reviews.`,
         h1: `${tool.title} - AI ${tool.category} Tool Review`,
         canonical: `https://toolsml.com/tool/${toolId}`
@@ -227,9 +234,9 @@ function getMetadata(path: string): { title: string; description: string; h1: st
     const cat = categoryMatch[1];
     const catName = cat.charAt(0).toUpperCase() + cat.slice(1);
     return {
-      title: `Best ${catName} AI Tools 2025 - Top Rated & Compared | ToolsML`,
+      title: `Best ${catName} AI Tools ${currentYear} - Top Rated & Compared | ToolsML`,
       description: categoryDescriptions[cat] || `Discover the best ${catName.toLowerCase()} AI tools with ratings, reviews, and feature comparisons.`,
-      h1: `Best AI ${catName} Tools 2025`,
+      h1: `Best AI ${catName} Tools ${currentYear}`,
       canonical: `https://toolsml.com/category/${cat}`
     };
   }
@@ -240,7 +247,7 @@ function getMetadata(path: string): { title: string; description: string; h1: st
     const tag = tagMatch[1];
     const tagName = tag.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
     return {
-      title: `${tagName} AI Tools - Browse & Compare 2025 | ToolsML`,
+      title: `${tagName} AI Tools - Browse & Compare ${currentYear} | ToolsML`,
       description: `Find the best ${tagName.toLowerCase()} AI tools. Compare features, pricing, and user reviews to find your perfect tool.`,
       h1: `${tagName} AI Tools`,
       canonical: `https://toolsml.com/tag/${tag}`
@@ -249,7 +256,7 @@ function getMetadata(path: string): { title: string; description: string; h1: st
 
   // Default
   return {
-    title: 'ToolsML - Discover & Compare the Best AI Tools 2025',
+    title: `ToolsML - Discover & Compare the Best AI Tools ${currentYear}`,
     description: 'Find and compare 1000+ AI tools for writing, design, video, code, and more. Human-curated directory with ratings and reviews.',
     h1: 'Discover the Best AI Tools',
     canonical: `https://toolsml.com${path}`
@@ -444,7 +451,7 @@ function generateHTML(path: string): string {
   </main>
   <footer>
     ${internalLinks}
-    <p>&copy; ${new Date().getFullYear()} ToolsML. All rights reserved. Your trusted AI tools directory.</p>
+    <p>&copy; ${currentYear} ToolsML. All rights reserved. Your trusted AI tools directory.</p>
     <nav aria-label="Footer links">
       <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a> | 
       <a href="/site-map">Site Map</a> | <a href="/contact">Contact</a>
