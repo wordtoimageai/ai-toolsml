@@ -12,7 +12,7 @@ type ToolMeta = { t: string; d: string; c: string; r: string; co: string; w: str
 const T: Record<string, ToolMeta> = {
   'chatgpt': { t: 'ChatGPT', d: 'Advanced conversational AI for writing, coding, analysis by OpenAI.', c: 'Writing', r: '4.8', co: 'OpenAI', w: 'https://chat.openai.com' },
   'claude': { t: 'Claude', d: 'Anthropic AI assistant for helpful conversations and analysis.', c: 'Writing', r: '4.6', co: 'Anthropic', w: 'https://claude.ai' },
-  'jasper-ai': { t: 'Jasper AI', d: 'AI marketing copywriting platform for business content.', c: 'Marketing', r: '4.5', co: 'Jasper AI', w: 'https://jasper.ai' },
+  'jasper-ai': { t: 'Jasper AI', d: 'AI marketing copywriting platform for business content generation. Create blog posts, ads, social media copy 10x faster.', c: 'Marketing', r: '4.5', co: 'Jasper AI', w: 'https://jasper.ai' },
   'copy-ai': { t: 'Copy.ai', d: 'AI copywriting tool for marketing content and social media.', c: 'Writing', r: '4.4', co: 'Copy.ai', w: 'https://copy.ai' },
   'grammarly': { t: 'Grammarly', d: 'AI-powered writing assistant for grammar and style.', c: 'Writing', r: '4.7', co: 'Grammarly', w: 'https://grammarly.com' },
   'writesonic': { t: 'Writesonic', d: 'AI content writer for articles, ads, and marketing copy.', c: 'Writing', r: '4.3', co: 'Writesonic', w: 'https://writesonic.com' },
@@ -40,7 +40,7 @@ const T: Record<string, ToolMeta> = {
   'fireflies-ai': { t: 'Fireflies.ai', d: 'AI meeting transcription and analysis.', c: 'Productivity', r: '4.3', co: 'Fireflies.ai', w: 'https://fireflies.ai' },
   'synthesia': { t: 'Synthesia', d: 'AI video generation with virtual presenters.', c: 'Video', r: '4.5', co: 'Synthesia', w: 'https://synthesia.io' },
   'runway-ml': { t: 'Runway ML', d: 'Creative AI toolkit for video editing.', c: 'Video', r: '4.6', co: 'Runway AI', w: 'https://runwayml.com' },
-  'descript': { t: 'Descript', d: 'AI audio and video editing.', c: 'Video', r: '4.7', co: 'Descript', w: 'https://descript.com' },
+  'descript': { t: 'Descript', d: 'Edit videos like text with AI transcription. Remove filler words, add captions, clone voices. 4.7★ rated by 100K+ creators.', c: 'Video', r: '4.7', co: 'Descript', w: 'https://descript.com' },
   'luma-ai': { t: 'Luma AI', d: '3D capture and generation with neural fields.', c: 'Video', r: '4.4', co: 'Luma AI', w: 'https://lumalabs.ai' },
   'elevenlabs': { t: 'ElevenLabs', d: 'AI voice synthesis and voice cloning.', c: 'Audio', r: '4.8', co: 'ElevenLabs', w: 'https://elevenlabs.io' },
   'murf-ai': { t: 'Murf AI', d: 'Professional AI voiceover generator.', c: 'Audio', r: '4.4', co: 'Murf AI', w: 'https://murf.ai' },
@@ -59,7 +59,7 @@ const T: Record<string, ToolMeta> = {
   'semrush': { t: 'Semrush', d: 'All-in-one SEO and digital marketing platform.', c: 'SEO', r: '4.5', co: 'Semrush', w: 'https://semrush.com' },
   'marketmuse': { t: 'MarketMuse', d: 'AI content strategy and SEO optimization.', c: 'SEO', r: '4.3', co: 'MarketMuse', w: 'https://marketmuse.com' },
   'zapier': { t: 'Zapier', d: 'Automation platform with AI workflows.', c: 'Automation', r: '4.5', co: 'Zapier', w: 'https://zapier.com' },
-  'wix-adi': { t: 'Wix ADI', d: 'AI website builder for custom sites.', c: 'Automation', r: '4.2', co: 'Wix.com', w: 'https://wix.com' },
+  'wix-adi': { t: 'Wix ADI', d: 'Build professional websites in minutes with AI. No coding needed. Free plan available. 4.2★ from 200M+ users.', c: 'Automation', r: '4.2', co: 'Wix.com', w: 'https://wix.com' },
 };
 
 const Y = new Date().getFullYear();
@@ -67,38 +67,38 @@ const CATS = ['writing','design','coding','marketing','productivity','audio','vi
 const TAGS = ['free','writing','image-generation','coding','chatbot','productivity','marketing','video','audio','research','conversation','art','subscription','paid','text-to-speech','video-editing','voice-cloning','seo','design','collaboration','automation','assistant','analysis','open-source','business','ai-writing','ai-design','ai-coding','ai-video','ai-audio','text-generation','image-editing','content-creation','data-analysis'];
 
 const catDesc: Record<string, string> = {
-  writing: 'Best AI writing tools for content creation. Compare ChatGPT, Claude, Jasper AI, Grammarly.',
-  design: 'Top AI design tools for image generation. Compare Midjourney, DALL-E, Stable Diffusion, Canva AI.',
-  coding: 'AI coding assistants for faster development. GitHub Copilot, Cursor, Replit reviews.',
-  marketing: 'AI marketing tools for content, ads, SEO. Jasper AI, Copy.ai, HubSpot AI.',
-  productivity: 'AI productivity tools for tasks and meetings. Notion AI, Otter.ai, ClickUp.',
-  audio: 'AI audio tools for voice and music. ElevenLabs, Mubert, Murf AI.',
-  video: 'AI video tools for editing and generation. Synthesia, Runway ML, Descript.',
-  research: 'AI research tools for analysis. Perplexity, Arc Search, Google Trends.',
-  data: 'AI data tools for analytics. Semrush, Google Trends.',
-  automation: 'AI automation tools for workflows. Zapier, Wix ADI, Make.',
-  sales: 'AI sales tools for outreach and CRM. Reply.io, Gong, HubSpot AI.',
-  social: 'AI social media tools. Sprout Social, Buffer AI.',
-  seo: 'AI SEO tools for optimization. Surfer SEO, MarketMuse, Semrush.',
+  writing: '✍️ Compare top AI writing tools: ChatGPT, Claude, Jasper AI, Grammarly. Free & paid options. Create blog posts, emails, and copy 10x faster.',
+  design: '🎨 Best AI design tools for stunning images: Midjourney, DALL-E 3, Stable Diffusion, Canva AI. Free trials available. Create art in seconds.',
+  coding: '💻 Top AI coding assistants boost productivity 50%: GitHub Copilot, Cursor, Replit. Write code faster, debug smarter. Free for students.',
+  marketing: '📈 AI marketing tools that increase conversions: Jasper AI, Copy.ai, HubSpot AI. Generate ads, social posts, and SEO content in minutes.',
+  productivity: '⚡ AI productivity tools save 10+ hours/week: Notion AI, Otter.ai, ClickUp. Automate tasks, transcribe meetings, manage projects smarter.',
+  audio: '🎵 AI audio tools for voice & music: ElevenLabs (best voice cloning), Mubert, Murf AI. Create podcasts, voiceovers, and music royalty-free.',
+  video: '🎬 AI video tools for editing & generation: Synthesia, Runway ML, Descript. Create professional videos without filming. 4.5★+ rated.',
+  research: '🔍 AI research tools for faster insights: Perplexity (cited answers), Arc Search, Google Trends. Find information 5x faster than Google.',
+  data: '📊 AI data tools for analytics & insights: Semrush, Google Trends. Analyze markets, track competitors, predict trends with AI.',
+  automation: '🤖 AI automation tools connect 5,000+ apps: Zapier, Wix ADI, Make. Build websites, automate workflows, no coding required.',
+  sales: '💰 AI sales tools close deals faster: Reply.io, Gong, HubSpot AI. Automate outreach, analyze calls, boost revenue 30%+.',
+  social: '📱 AI social media tools boost engagement: Sprout Social, Buffer AI. Schedule posts, analyze metrics, grow followers automatically.',
+  seo: '🚀 AI SEO tools rank #1 on Google: Surfer SEO, MarketMuse, Semrush. Optimize content, research keywords, outrank competitors.',
 };
 
 const PM: Record<string, [string, string, string]> = {
-  '/': [`ToolsML - Discover Best AI Tools ${Y} | 1000+ Curated Solutions`, 'Find perfect AI tools from 1000+ options. Compare features, pricing, reviews. Updated weekly.', 'Find the Perfect AI Tool for Every Task'],
-  '/browse': ['Browse All AI Tools - Complete Directory | ToolsML', 'Explore 1000+ AI tools. Filter by category, pricing, features.', 'Browse All AI Tools'],
-  '/about': ['About ToolsML - AI Tool Discovery Platform', 'Learn about ToolsML, the leading AI tools platform trusted by 50K+ users.', 'About ToolsML'],
-  '/blog': ['AI Tools Blog - Latest Insights & Reviews | ToolsML', 'Latest AI tools, trends, and expert reviews.', 'AI Tools Blog'],
-  '/contact': ['Contact ToolsML - Get in Touch', 'Contact ToolsML for support, partnerships, or submissions.', 'Contact Us'],
-  '/submit': ['Submit Your AI Tool - Get Listed on ToolsML', 'Submit your AI tool to reach thousands of users.', 'Submit Your AI Tool'],
-  '/privacy': ['Privacy Policy - ToolsML', 'How ToolsML protects your privacy.', 'Privacy Policy'],
-  '/terms': ['Terms of Service - ToolsML', 'ToolsML terms of service and user agreement.', 'Terms of Service'],
-  '/advertise': ['Advertise on ToolsML - Reach AI Tool Buyers', 'Reach engaged users searching for AI solutions.', 'Advertise with ToolsML'],
-  '/tutorials': ['AI Tools Tutorials - Learn How to Use AI | ToolsML', 'Step-by-step tutorials on AI tools.', 'AI Tools Tutorials'],
-  '/compare': ['Compare AI Tools Side by Side | ToolsML', 'Compare features, pricing, and reviews.', 'Compare AI Tools'],
-  '/comparison': ['Tool Comparison - Compare AI Tools Side by Side | ToolsML', 'Compare multiple AI tools side-by-side.', 'AI Tool Comparison'],
-  '/favorites': ['My Favorite AI Tools | ToolsML', 'Your curated collection of favorite AI tools.', 'My Favorite AI Tools'],
-  '/changelog': ['Changelog - ToolsML Updates', 'Latest ToolsML features and improvements.', 'Changelog'],
-  '/api-docs': ['API Documentation | ToolsML', 'Integrate ToolsML data with our API.', 'API Documentation'],
-  '/site-map': ['Site Map | ToolsML', 'Navigate all pages on ToolsML.', 'Site Map'],
+  '/': [`ToolsML - Discover 1,000+ Best AI Tools ${Y} | Free & Paid Options`, '🤖 Find the perfect AI tool from 1,000+ options. Compare features, pricing, and reviews. ChatGPT, Midjourney, Jasper AI & more. Updated daily.', 'Find the Perfect AI Tool for Every Task'],
+  '/browse': ['Browse 1,000+ AI Tools by Category - Complete Directory | ToolsML', 'Explore our complete directory of AI tools. Filter by category, pricing (free/paid), features, and ratings. Find your perfect AI solution.', 'Browse All AI Tools'],
+  '/about': ['About ToolsML - #1 AI Tool Discovery Platform Trusted by 50K+ Users', 'ToolsML helps professionals discover and compare AI tools. Founded in 2023, trusted by 50,000+ users worldwide. Unbiased reviews, expert guides.', 'About ToolsML'],
+  '/blog': ['AI Tools Blog - Latest Reviews, Tutorials & Insights ${Y} | ToolsML', 'Expert AI tool reviews, comparison guides, and tutorials. Learn which tools save time and money. Updated daily by our research team.', 'AI Tools Blog'],
+  '/contact': ['Contact ToolsML - Get Help, Report Issues, Partner With Us', 'Contact our team for support, partnerships, or tool submissions. Response time: 24 hours. Email: contact@toolsml.com', 'Contact Us'],
+  '/submit': ['Submit Your AI Tool - Get Listed on ToolsML (50K+ Monthly Visitors)', 'List your AI tool on ToolsML and reach 50,000+ potential customers. Free basic listing. Premium options available. Approval in 48 hours.', 'Submit Your AI Tool'],
+  '/privacy': ['Privacy Policy - How ToolsML Protects Your Data | GDPR Compliant', 'Learn how ToolsML collects, uses, and protects your data. GDPR compliant. No selling of personal information. Last updated: ' + Y, 'Privacy Policy'],
+  '/terms': ['Terms of Service - ToolsML User Agreement & Guidelines', 'ToolsML terms of service, user agreement, and community guidelines. Read before using our platform. Last updated: ' + Y, 'Terms of Service'],
+  '/advertise': ['Advertise on ToolsML - Reach 50K+ AI Tool Buyers & Decision Makers', 'Reach engaged professionals actively searching for AI solutions. 50K+ monthly visitors. Banner ads, sponsored listings, and newsletter placements.', 'Advertise with ToolsML'],
+  '/tutorials': ['AI Tools Tutorials - Step-by-Step Guides for Beginners & Experts', 'Free tutorials on using AI tools effectively. Beginner-friendly guides for ChatGPT, Midjourney, Jasper AI, and 100+ tools.', 'AI Tools Tutorials'],
+  '/compare': ['Compare AI Tools Side-by-Side - Features, Pricing, Reviews | ToolsML', 'Compare multiple AI tools in one view. See features, pricing, pros/cons, and user ratings side-by-side. Make informed decisions faster.', 'Compare AI Tools'],
+  '/comparison': ['AI Tool Comparison - Side-by-Side Feature, Price & Review Comparison', 'Compare AI tools side-by-side: features, pricing, user ratings, pros/cons. ChatGPT vs Claude, Midjourney vs DALL-E, and 100+ comparisons.', 'AI Tool Comparison'],
+  '/favorites': ['My Favorite AI Tools - Your Curated Collection | ToolsML', 'Save and organize your favorite AI tools. Create custom lists, bookmark tools you love, and access them anytime.', 'My Favorite AI Tools'],
+  '/changelog': ['Changelog - Latest ToolsML Features & Updates ${Y}', 'See what is new on ToolsML. New features, tool additions, and platform improvements. Updated weekly.', 'Changelog'],
+  '/api-docs': ['ToolsML API Documentation - Integrate AI Tool Data Into Your App', 'Access ToolsML data via REST API. Free for non-commercial use. Get tool info, ratings, categories, and more. Documentation & code examples.', 'API Documentation'],
+  '/site-map': ['Site Map - Complete Navigation Index of ToolsML Pages', 'Browse all pages on ToolsML: categories, tools, blog posts, and resources. Find what you need quickly.', 'Site Map'],
 };
 
 const esc = (s: string) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -113,8 +113,8 @@ function getMeta(path: string) {
   if (tm) {
     const tool = T[tm[1]];
     if (tool) return {
-      title: `${tool.t} Review ${Y} - Features, Pricing & Alternatives | ToolsML`,
-      description: `${tool.t} by ${tool.co}: ${tool.d} Rating: ${tool.r}/5.`,
+      title: `${tool.t} Review ${Y} - Pricing, Features & Alternatives (${tool.r}★ Rated)`,
+      description: `${tool.t} by ${tool.co}: ${tool.d} Rating: ${tool.r}/5. See pricing, features, pros/cons, and alternatives.`,
       h1: `${tool.t} - AI ${tool.c} Tool Review`,
       canonical: `https://toolsml.com/tool/${tm[1]}`,
     };
@@ -123,9 +123,10 @@ function getMeta(path: string) {
   const cm = path.match(/^\/category\/([a-z0-9-]+)$/);
   if (cm) {
     const cn = cap(cm[1]);
+    const desc = catDesc[cm[1]] || `Top ${cn.toLowerCase()} AI tools with ratings and reviews. Compare features, pricing, free trials.`;
     return {
-      title: `Best ${cn} AI Tools ${Y} - Top Rated & Compared | ToolsML`,
-      description: catDesc[cm[1]] || `Best ${cn.toLowerCase()} AI tools with ratings and reviews.`,
+      title: `${CATS.length} Best ${cn} AI Tools ${Y} - Free & Paid Options Compared`,
+      description: desc,
       h1: `Best AI ${cn} Tools ${Y}`,
       canonical: `https://toolsml.com/category/${cm[1]}`,
     };
@@ -135,16 +136,16 @@ function getMeta(path: string) {
   if (tgm) {
     const tn = tagLabel(tgm[1]);
     return {
-      title: `${tn} AI Tools - Browse & Compare ${Y} | ToolsML`,
-      description: `Find the best ${tn.toLowerCase()} AI tools. Compare features and pricing.`,
+      title: `${tn} AI Tools - Browse, Compare & Find the Best ${Y} | ToolsML`,
+      description: `Discover the best ${tn.toLowerCase()} AI tools. Compare features, pricing, and user ratings. Find free and paid options that fit your needs.`,
       h1: `${tn} AI Tools`,
       canonical: `https://toolsml.com/tag/${tgm[1]}`,
     };
   }
 
   return {
-    title: `ToolsML - Discover & Compare the Best AI Tools ${Y}`,
-    description: 'Find and compare 1000+ AI tools for writing, design, video, code, and more.',
+    title: `ToolsML - Discover & Compare 1,000+ Best AI Tools ${Y}`,
+    description: 'Find and compare AI tools for writing, design, video, code, and more. Expert reviews, pricing, and user ratings. Free & paid options.',
     h1: 'Discover the Best AI Tools',
     canonical: `https://toolsml.com${path}`,
   };
