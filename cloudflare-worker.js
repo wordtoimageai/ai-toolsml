@@ -180,15 +180,6 @@ function isBot(userAgent) {
 }
 
 /**
- * Check if the user agent is a trusted search engine bot
- */
-function isTrustedBot(userAgent) {
-  if (!userAgent) return false;
-  const ua = userAgent.toLowerCase();
-  return TRUSTED_BOTS.some(bot => ua.includes(bot));
-}
-
-/**
  * Check if the request is for a static file
  */
 function isStaticFile(pathname) {
@@ -211,6 +202,18 @@ export default {
     const userAgent = request.headers.get('User-Agent') || '';
     const clientIP = getClientIP(request);
     
+    // Explicit bypass for core SEO and static files
+    // This ensures Lovable serves them correctly instead of trying to prerender them
+    if (url.pathname === '/sitemap.xml' || url.pathname === '/robots.txt' || 
+        url.pathname === '/manifest.json' || url.pathname === '/llms.txt') {
+      const originUrl = new URL(request.url);
+      originUrl.host = ORIGIN_HOST;
+      return fetch(originUrl.toString(), {
+        method: request.method,
+        headers: request.headers,
+      });
+    }
+
     // Skip static files - pass through to origin
     if (isStaticFile(url.pathname)) {
       const originUrl = new URL(request.url);
