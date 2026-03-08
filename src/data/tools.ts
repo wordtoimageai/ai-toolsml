@@ -272,31 +272,37 @@ export const tools: Tool[] = [
     id: 'claude',
     icon: '🤖',
     title: 'Claude',
-    description: 'Advanced AI assistant by Anthropic, known for helpful, harmless, and honest responses.',
-    longDescription: 'Claude is Anthropic\'s AI assistant designed to be helpful, harmless, and honest. It excels at complex reasoning, analysis, and creative tasks while maintaining high safety standards.',
+    description: 'Advanced AI assistant by Anthropic with industry-leading 200K context window. Best for long documents, analysis, and safe AI.',
+    longDescription: 'Claude is Anthropic\'s flagship AI assistant, built on Constitutional AI principles to be helpful, harmless, and honest. Claude 3.5 Sonnet, the latest model, matches or exceeds GPT-4o on most benchmarks while offering a massive 200K-token context window — enough to process entire books or codebases in a single conversation. Key use cases include analyzing lengthy legal documents and contracts, summarizing research papers, writing and reviewing code with full-repository context, creating detailed business reports, and having nuanced conversations about complex topics. Claude\'s key differentiator vs ChatGPT is its longer context window (200K vs 128K), superior handling of long documents, and stronger safety alignment. Compared to Gemini, Claude tends to give more carefully reasoned responses but lacks multimodal search. The free tier includes Claude 3.5 Sonnet with usage limits, while Pro ($20/mo) offers 5x higher limits and priority access.',
     tags: ['Assistant', 'Analysis', 'Writing'],
     category: 'writing',
     pricing: 'Freemium',
     priceInfo: { startingPrice: 0, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Free tier available, Pro $20/month' },
     website: 'https://claude.ai',
     features: [
-      'Long-form document analysis',
-      'Creative writing assistance',
-      'Code generation',
-      'Research and analysis',
-      'Safe and aligned responses',
-      'File upload support'
+      '200K-token context window (entire books/codebases)',
+      'Advanced reasoning and multi-step analysis',
+      'PDF, image, and document upload support',
+      'Artifacts for code, documents, and visualizations',
+      'Constitutional AI safety alignment',
+      'Code generation across major languages',
+      'API access for developers (Anthropic API)',
+      'Team plan with admin controls'
     ],
     pros: [
-      'Excellent reasoning abilities',
-      'Strong safety measures',
-      'Good at long documents',
-      'Helpful and honest'
+      'Industry-leading 200K context window',
+      'Excellent at analyzing long, complex documents',
+      'Strong safety alignment — fewer harmful outputs',
+      'Artifacts feature for interactive code and visuals',
+      'Thoughtful, nuanced responses on sensitive topics',
+      'Competitive free tier with Sonnet model'
     ],
     cons: [
-      'Limited availability in some regions',
-      'Usage limits on free tier',
-      'Newer compared to competitors'
+      'Slower response times than ChatGPT on some queries',
+      'No web browsing or real-time information access',
+      'Limited availability in some countries',
+      'No image generation capability',
+      'Smaller plugin/integration ecosystem than ChatGPT'
     ],
     rating: 4.6,
     reviewCount: 4230,
