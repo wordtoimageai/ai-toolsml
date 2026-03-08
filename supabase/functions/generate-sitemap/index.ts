@@ -19,7 +19,7 @@ const toolsData = [
   { id: 'runway-ml', title: 'Runway ML', category: 'video', priority: 0.85 },
   { id: 'synthesia', title: 'Synthesia', category: 'video', priority: 0.8 },
   { id: 'descript', title: 'Descript', category: 'audio', priority: 0.8 },
-  { id: 'murf', title: 'Murf', category: 'audio', priority: 0.75 },
+  { id: 'murf-ai', title: 'Murf AI', category: 'audio', priority: 0.75 },
   { id: 'grammarly', title: 'Grammarly', category: 'writing', priority: 0.85 },
   { id: 'canva-ai', title: 'Canva AI', category: 'design', priority: 0.85 },
   { id: 'figma-ai', title: 'Figma AI', category: 'design', priority: 0.8 },
