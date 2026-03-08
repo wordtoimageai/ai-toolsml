@@ -122,6 +122,7 @@ const App = () => (
                   <Route path="/comparison" element={<ToolComparison />} />
                   <Route path="/site-map" element={<SiteMap />} />
                   <Route path="/unsubscribe" element={<Unsubscribe />} />
+                  <Route path="/other-ai-tools" element={<OtherAITools />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
