@@ -423,6 +423,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      unsubscribe_newsletter: {
+        Args: { p_email: string; p_reason?: string }
+        Returns: boolean
+      }
     }
     Enums: {
       app_role: "admin" | "vendor" | "user"

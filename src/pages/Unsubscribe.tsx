@@ -39,19 +39,15 @@ const Unsubscribe = () => {
     setIsUnsubscribing(true);
     
     try {
-      const { data, error } = await (supabase as any)
-        .from('newsletter_subscribers')
-        .update({ 
-          is_active: false, 
-          unsubscribed_at: new Date().toISOString(),
-          unsubscribe_reason: reason 
-        })
-        .eq('email', email.trim().toLowerCase())
-        .select();
+      const { data: success, error } = await (supabase as any)
+        .rpc('unsubscribe_newsletter', { 
+          p_email: email.trim().toLowerCase(),
+          p_reason: reason 
+        });
 
       if (error) throw error;
 
-      if (!data || data.length === 0) {
+      if (!success) {
         toast({
           title: "Email not found",
           description: "This email is not subscribed to our newsletter.",
