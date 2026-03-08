@@ -943,31 +943,37 @@ export const tools: Tool[] = [
     id: 'figma',
     icon: '🎨',
     title: 'Figma',
-    description: 'Collaborative design platform with AI-powered design assistance.',
-    longDescription: 'Figma is the leading collaborative design platform used by teams worldwide. With AI-powered features for design assistance, prototyping, and team collaboration, it\'s essential for modern product design workflows.',
+    description: 'The #1 collaborative design platform used by 4M+ designers. Browser-based UI/UX design, prototyping, and dev handoff.',
+    longDescription: 'Figma is the industry-standard collaborative design platform used by over 4 million designers at companies like Google, Microsoft, Airbnb, and Uber. As a browser-based tool, it enables real-time multi-user editing — multiple designers can work on the same file simultaneously, making it the "Google Docs of design." Figma AI (introduced 2024) adds intelligent features like auto-layout suggestions, asset search, and design generation from text prompts. Key use cases include UI/UX design for web and mobile apps, design system creation and maintenance, interactive prototyping with animations, developer handoff with auto-generated CSS/code, and brand asset management. Compared to Sketch, Figma offers superior collaboration and cross-platform access; compared to Adobe XD (now discontinued), Figma has a much larger community and plugin ecosystem. The free Starter plan supports 3 files, Professional is $15/editor/month, and Organization is $45/editor/month.',
     tags: ['Design', 'Collaboration', 'Prototyping'],
     category: 'design',
     pricing: 'Freemium',
     priceInfo: { startingPrice: 0, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Free for individuals, Professional $15/editor/month' },
     website: 'https://figma.com',
     features: [
-      'Real-time collaborative design',
-      'AI-powered design suggestions',
-      'Interactive prototyping',
-      'Design system management',
-      'Developer handoff tools',
-      'Version control and history'
+      'Real-time multiplayer design editing',
+      'Figma AI for design suggestions and generation',
+      'Interactive prototyping with smart animations',
+      'Design system with reusable components and variables',
+      'Dev Mode with auto-generated CSS, iOS, and Android code',
+      'Plugin ecosystem with 2,000+ community plugins',
+      'Version history and branching',
+      'FigJam whiteboard for brainstorming'
     ],
     pros: [
-      'Excellent collaboration features',
-      'Browser-based, no installation needed',
-      'Strong community and resources',
-      'Good free tier'
+      'Best-in-class real-time collaboration',
+      'Browser-based — works on any OS, no installation',
+      'Massive community with free templates and plugins',
+      'Generous free tier for individual designers',
+      'Seamless developer handoff with Dev Mode',
+      'Industry standard — easier to find collaborators'
     ],
     cons: [
-      'Can be slow with large files',
-      'Limited offline functionality',
-      'Learning curve for advanced features'
+      'Performance degrades with very large files (100+ frames)',
+      'Requires internet connection (limited offline)',
+      'Advanced prototyping less powerful than Principle/ProtoPie',
+      'AI features still early-stage vs specialized AI tools',
+      'Can be expensive for large teams ($15-45/editor/month)'
     ],
     rating: 4.7,
     reviewCount: 21340,
