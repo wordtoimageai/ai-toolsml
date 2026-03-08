@@ -59,6 +59,7 @@ const Footer = () => {
               <Link to="/contact" className="text-gray-400 hover:text-white text-sm transition-colors">Contact</Link>
               <Link to="/advertise" className="text-gray-400 hover:text-white text-sm transition-colors">Advertise</Link>
               <Link to="/submit" className="text-gray-400 hover:text-white text-sm transition-colors">Submit Tool</Link>
+              <Link to="/other-ai-tools" className="text-gray-400 hover:text-white text-sm transition-colors">Other AI Tools</Link>
             </div>
           </div>
 

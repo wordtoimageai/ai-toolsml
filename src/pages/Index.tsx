@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { usePrivacyAnalytics } from "@/hooks/usePrivacyAnalytics";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
@@ -124,6 +125,16 @@ const Index = () => {
           </div>
         </section>
         <TrustSignals />
+        {/* Other AI Tools CTA */}
+        <section className="py-12 bg-primary/5">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <h2 className="text-2xl font-bold text-foreground mb-3">Looking for Niche AI Tools?</h2>
+            <p className="text-muted-foreground mb-6">Explore lesser-known AI tools for automation, data analysis, sales, SEO, and more.</p>
+            <Link to="/other-ai-tools" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity">
+              Browse Other AI Tools →
+            </Link>
+          </div>
+        </section>
         <StatsSection />
         <Newsletter />
       </main>
