@@ -20,6 +20,7 @@ const RATE_LIMIT_COOLDOWN_MS = 30_000; // 30 seconds client-side cooldown
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
   const lastSubmitRef = useRef<number>(0);
@@ -28,6 +29,17 @@ const Newsletter = () => {
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     setValidationError(null);
+
+    // Honeypot check — bots fill hidden fields
+    if (honeypot) {
+      // Fake success to not alert bots
+      toast({
+        title: "Successfully subscribed!",
+        description: "Thank you for subscribing.",
+      });
+      setEmail("");
+      return;
+    }
 
     // Client-side validation
     const result = emailSchema.safeParse(email);
@@ -99,6 +111,17 @@ const Newsletter = () => {
 
         <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto animate-scale-in">
           <div className="flex-1">
+            {/* Honeypot field — hidden from real users, filled by bots */}
+            <input
+              type="text"
+              name="website"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              autoComplete="off"
+              tabIndex={-1}
+              aria-hidden="true"
+              style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }}
+            />
             <Input
               type="email"
               placeholder="Enter your email"
