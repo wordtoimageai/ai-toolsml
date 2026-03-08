@@ -80,31 +80,37 @@ export const tools: Tool[] = [
     id: 'midjourney',
     icon: '🎨',
     title: 'Midjourney',
-    description: 'Create stunning, high-quality images from text descriptions using advanced AI algorithms.',
-    longDescription: 'Midjourney is a revolutionary AI art generator that transforms text prompts into breathtaking visual artwork. Used by artists, designers, and creatives worldwide, it offers unparalleled quality in AI-generated imagery with a unique artistic style.',
+    description: 'Create stunning, photorealistic and artistic images from text descriptions. The gold standard for AI image generation quality.',
+    longDescription: 'Midjourney is the leading AI art generator, renowned for producing the highest-quality AI images available. Running through Discord, it transforms text prompts into breathtaking visual artwork ranging from photorealistic photos to stylized illustrations. Midjourney V6 introduced major improvements in prompt understanding, text rendering, and coherence. Key use cases include concept art for games and films, marketing visuals and social media graphics, product mockups, interior design visualization, and creative exploration. Compared to DALL-E 3, Midjourney typically produces more aesthetically refined images with better composition, while Stable Diffusion offers more customization for technical users. The Basic plan ($10/mo) includes ~200 image generations, with Standard ($30/mo) and Pro ($60/mo) plans offering unlimited relaxed-mode generations.',
     tags: ['Image Generation', 'Art', 'Paid'],
     category: 'design',
     pricing: 'Subscription',
     priceInfo: { startingPrice: 10, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Basic $10/month, Standard $30/month, Pro $60/month' },
     website: 'https://midjourney.com',
     features: [
-      'High-quality image generation',
-      'Multiple art styles',
-      'Aspect ratio control',
-      'Image variations',
-      'Upscaling capabilities',
-      'Community gallery'
+      'Highest-quality AI image generation (V6)',
+      'Multiple art styles from photorealistic to abstract',
+      'Aspect ratio and resolution control',
+      'Image variations and remixing',
+      '4x upscaling to high resolution',
+      'Pan, zoom, and outpainting tools',
+      'Style reference and character consistency',
+      'Community gallery with millions of creations'
     ],
     pros: [
-      'Exceptional image quality',
-      'Unique artistic style',
-      'Active community',
-      'Regular updates and improvements'
+      'Best overall image quality among AI generators',
+      'Exceptional aesthetic sense and composition',
+      'Active community of 16M+ users for inspiration',
+      'Regular updates with significant quality jumps',
+      'Good at understanding complex, detailed prompts',
+      'Excellent for professional creative workflows'
     ],
     cons: [
-      'Requires Discord to use',
-      'No free tier',
-      'Can be expensive for heavy usage'
+      'Requires Discord — no standalone web app yet',
+      'No free tier (was removed in 2023)',
+      'Expensive for heavy commercial usage',
+      'Less control than Stable Diffusion for technical users',
+      'Images are public by default on lower plans'
     ],
     rating: 4.7,
     reviewCount: 8935,
