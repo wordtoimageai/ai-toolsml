@@ -28,6 +28,8 @@ import FAQ, { generateFAQSchema } from "@/components/FAQ";
 import { tools } from "@/data/tools";
 import { homepageFAQs } from "@/data/homepage-faq";
 
+const currentYear = new Date().getFullYear();
+
 const Index = () => {
   const { trackPageView } = usePrivacyAnalytics();
 
