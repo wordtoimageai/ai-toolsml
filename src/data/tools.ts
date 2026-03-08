@@ -588,30 +588,36 @@ export const tools: Tool[] = [
     id: 'elevenlabs',
     icon: '🗣️',
     title: 'ElevenLabs',
-    description: 'Advanced AI voice generation and cloning with over 300 realistic voices.',
-    longDescription: 'ElevenLabs offers the most advanced AI voice synthesis technology, featuring over 300 voices with emotional tone control. Perfect for audiobooks, podcasts, video narration, and creating custom voice content.',
+    description: 'Industry-leading AI voice generation and cloning with 300+ ultra-realistic voices in 32 languages.',
+    longDescription: 'ElevenLabs is the industry leader in AI voice synthesis, producing the most human-sounding AI-generated speech available. Its technology powers audiobooks, podcasts, video narration, gaming dialogue, and accessibility tools for millions of users. The platform offers 300+ pre-built voices with granular emotional control (happiness, sadness, anger, excitement) and supports voice cloning from as little as 30 seconds of audio. Key use cases include audiobook narration at scale, YouTube and TikTok voiceovers, podcast production, e-learning course narration, and creating custom brand voices. Compared to Amazon Polly, ElevenLabs produces dramatically more natural speech; compared to Play.ht, it offers superior emotional control and voice cloning accuracy. The free tier includes 10,000 characters/month, with Starter at $5/mo, Creator at $22/mo, and Scale at $99/mo for commercial use.',
     tags: ['Voice Synthesis', 'Audio', 'Text-to-Speech'],
     category: 'audio',
     pricing: 'Freemium',
     website: 'https://elevenlabs.io',
     features: [
-      'High-quality voice synthesis',
-      '300+ professional voices',
-      'Emotional tone and style control',
-      'Voice cloning technology',
-      'Multi-language support',
-      'API for developers'
+      'Ultra-realistic voice synthesis (near-human quality)',
+      '300+ pre-built voices across 32 languages',
+      'Voice cloning from 30 seconds of audio',
+      'Granular emotional tone and pacing control',
+      'Projects feature for long-form audiobook production',
+      'Real-time streaming API for developers',
+      'Voice library marketplace',
+      'Sound effects and music generation'
     ],
     pros: [
-      'Exceptional voice quality and realism',
-      'Wide variety of voices and languages',
-      'Emotional control over speech',
-      'Professional audio output'
+      'Most realistic AI voices on the market',
+      'Exceptional voice cloning accuracy',
+      'Wide language support (32 languages)',
+      'Professional audiobook production workflow',
+      'Affordable entry point ($5/mo Starter plan)',
+      'Active developer API and community'
     ],
     cons: [
-      'Expensive for high-volume usage',
-      'Ethical concerns with voice cloning',
-      'Limited free tier'
+      'Expensive at scale ($99/mo for commercial rights)',
+      'Ethical concerns around voice cloning misuse',
+      'Free tier limited to 10,000 characters/month',
+      'Voice cloning requires clear, clean audio samples',
+      'Some voices sound less natural in certain languages'
     ],
     rating: 4.8,
     reviewCount: 11200,
