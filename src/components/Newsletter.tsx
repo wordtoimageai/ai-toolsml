@@ -111,6 +111,17 @@ const Newsletter = () => {
 
         <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto animate-scale-in">
           <div className="flex-1">
+            {/* Honeypot field — hidden from real users, filled by bots */}
+            <input
+              type="text"
+              name="website"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              autoComplete="off"
+              tabIndex={-1}
+              aria-hidden="true"
+              style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }}
+            />
             <Input
               type="email"
               placeholder="Enter your email"
