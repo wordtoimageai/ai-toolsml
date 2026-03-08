@@ -30,6 +30,17 @@ const Newsletter = () => {
     e.preventDefault();
     setValidationError(null);
 
+    // Honeypot check — bots fill hidden fields
+    if (honeypot) {
+      // Fake success to not alert bots
+      toast({
+        title: "Successfully subscribed!",
+        description: "Thank you for subscribing.",
+      });
+      setEmail("");
+      return;
+    }
+
     // Client-side validation
     const result = emailSchema.safeParse(email);
     if (!result.success) {
