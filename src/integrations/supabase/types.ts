@@ -408,6 +408,10 @@ export type Database = {
       }
     }
     Functions: {
+      check_newsletter_rate_limit: {
+        Args: { p_email: string }
+        Returns: boolean
+      }
       get_user_roles: {
         Args: { _user_id: string }
         Returns: Database["public"]["Enums"]["app_role"][]
