@@ -33,7 +33,6 @@ const Newsletter = () => {
 
       if (error) throw error;
 
-      const unsubscribeUrl = `/unsubscribe?email=${encodeURIComponent(email)}`;
       
       toast({
         title: "Successfully subscribed!",
