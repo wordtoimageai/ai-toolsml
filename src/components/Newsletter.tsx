@@ -32,7 +32,7 @@ const Newsletter = () => {
     // Client-side validation
     const result = emailSchema.safeParse(email);
     if (!result.success) {
-      setValidationError(result.error.errors[0].message);
+      setValidationError(result.error.issues[0].message);
       return;
     }
 
