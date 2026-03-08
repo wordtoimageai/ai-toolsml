@@ -162,31 +162,37 @@ export const tools: Tool[] = [
     id: 'jasper-ai',
     icon: '📈',
     title: 'Jasper AI',
-    description: 'AI-powered marketing copywriting platform for creating high-converting content.',
-    longDescription: 'Jasper AI is the ultimate AI writing assistant for businesses and marketers. It helps create compelling copy for ads, emails, websites, and more, with templates optimized for conversion and engagement.',
+    description: 'AI-powered marketing copywriting platform trusted by 100,000+ brands. Create blog posts, ads, and social copy 10x faster.',
+    longDescription: 'Jasper AI is the leading AI content platform purpose-built for marketing teams, trusted by 100,000+ brands including IBM, Canva, and Anthropic. Unlike general-purpose AI chatbots, Jasper is trained specifically for marketing workflows: ad copy, landing pages, email campaigns, blog posts, and social media content. Its Brand Voice feature learns your company\'s tone, terminology, and style guidelines to ensure consistent on-brand output across all content. Key use cases include generating ad variations for A/B testing, scaling blog content production, writing product descriptions, and creating email sequences. Compared to ChatGPT, Jasper offers superior marketing templates and brand controls; compared to Copy.ai, Jasper provides deeper team collaboration and workflow features. The Creator plan starts at $49/mo, with Teams at $125/mo including collaboration features.',
     tags: ['Marketing', 'Copywriting', 'Business'],
     category: 'marketing',
     pricing: 'Subscription',
     priceInfo: { startingPrice: 49, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Creator $49/month, Pro $69/month' },
     website: 'https://jasper.ai',
     features: [
-      'Marketing copy templates',
-      'Brand voice customization',
-      'SEO optimization',
-      'Multi-language support',
-      'Team collaboration',
-      'Content planning'
+      '50+ marketing-specific content templates',
+      'Brand Voice engine for tone consistency',
+      'SEO optimization with Surfer SEO integration',
+      'Multi-language content in 30+ languages',
+      'Team collaboration with approval workflows',
+      'Campaign brief to full content generation',
+      'Chrome extension for writing anywhere',
+      'Analytics dashboard for content performance'
     ],
     pros: [
-      'Excellent for marketing copy',
-      'Brand voice consistency',
-      'Template variety',
-      'Good team features'
+      'Purpose-built for marketing — not a generic chatbot',
+      'Brand Voice ensures consistent company tone',
+      'Excellent template library for every marketing format',
+      'Strong team collaboration and workflow tools',
+      'Integrates with Surfer SEO, Grammarly, and more',
+      'Active community and regular training webinars'
     ],
     cons: [
-      'Expensive for small businesses',
-      'Learning curve for advanced features',
-      'Limited creative writing capabilities'
+      'Expensive for solopreneurs ($49/mo minimum)',
+      'Learning curve to master Brand Voice setup',
+      'Output quality depends heavily on prompt engineering',
+      'Limited creative writing and fiction capabilities',
+      'Word limits on lower plans can be restrictive'
     ],
     rating: 4.5,
     reviewCount: 6840,
