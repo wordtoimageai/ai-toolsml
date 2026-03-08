@@ -24,8 +24,7 @@ const Newsletter = () => {
     setIsSubscribing(true);
     
     try {
-      // Upsert: if email exists and was unsubscribed, reactivate it
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('newsletter_subscribers')
         .upsert(
           { email: email.trim().toLowerCase(), is_active: true, unsubscribed_at: null },
