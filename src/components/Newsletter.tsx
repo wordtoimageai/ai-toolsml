@@ -24,8 +24,7 @@ const Newsletter = () => {
     setIsSubscribing(true);
     
     try {
-      // Upsert: if email exists and was unsubscribed, reactivate it
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('newsletter_subscribers')
         .upsert(
           { email: email.trim().toLowerCase(), is_active: true, unsubscribed_at: null },
@@ -34,18 +33,10 @@ const Newsletter = () => {
 
       if (error) throw error;
 
-      const unsubscribeUrl = `/unsubscribe?email=${encodeURIComponent(email)}`;
       
       toast({
         title: "Successfully subscribed!",
-        description: (
-          <div className="space-y-2">
-            <p>Thank you for subscribing with: {email}</p>
-            <p className="text-xs text-muted-foreground">
-              You can <Link to={unsubscribeUrl} className="underline hover:text-primary">unsubscribe</Link> at any time.
-            </p>
-          </div>
-        ),
+        description: `Thank you for subscribing with: ${email}. You can unsubscribe at any time from the link in our footer.`,
       });
       setEmail("");
     } catch (error: unknown) {

@@ -39,7 +39,7 @@ const Unsubscribe = () => {
     setIsUnsubscribing(true);
     
     try {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('newsletter_subscribers')
         .update({ 
           is_active: false, 
