@@ -43,6 +43,7 @@ const UserPrivacyDashboard = lazy(() => import("./components/UserPrivacyDashboar
 const AffiliateAnalyticsDashboard = lazy(() => import("./components/AffiliateAnalyticsDashboard").then(m => ({ default: m.AffiliateAnalyticsDashboard })));
 const SiteMap = lazy(() => import("./pages/SiteMap"));
 const BrowseTools = lazy(() => import("./pages/BrowseTools"));
+const OtherAITools = lazy(() => import("./pages/OtherAITools"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 
 const queryClient = new QueryClient();
