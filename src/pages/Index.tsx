@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { usePrivacyAnalytics } from "@/hooks/usePrivacyAnalytics";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
