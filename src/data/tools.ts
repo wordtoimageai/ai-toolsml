@@ -348,31 +348,37 @@ export const tools: Tool[] = [
     id: 'notion-ai',
     icon: '📝',
     title: 'Notion AI',
-    description: 'AI-powered workspace for notes, docs, and project management with intelligent writing assistance.',
-    longDescription: 'Notion AI transforms your workspace into an intelligent hub for productivity. Integrated directly into Notion, it helps with writing, brainstorming, summarizing, and organizing information across all your projects and documents.',
+    description: 'AI-powered workspace for notes, docs, and project management. Used by 30M+ users at startups and enterprises.',
+    longDescription: 'Notion AI transforms your workspace into an intelligent productivity hub, used by over 30 million people at companies like Figma, Pixar, and Nike. Unlike standalone AI writing tools, Notion AI is deeply integrated into your existing workspace — it can search across all your docs, databases, and wikis to answer questions with company-specific context. Key use cases include auto-generating meeting notes and action items, writing and editing documents with brand-aware AI, building project wikis that answer team questions, creating databases with AI-populated fields, and translating content for international teams. Compared to ClickUp, Notion offers more flexibility and a cleaner UX; compared to Coda, Notion has a larger community and better AI integration. The free plan includes limited AI queries, Plus is $12/mo with 30 AI responses/member, and the AI add-on ($10/member/mo) provides unlimited AI across any plan.',
     tags: ['Productivity', 'Writing', 'Organization'],
     category: 'productivity',
     pricing: 'Freemium',
     priceInfo: { startingPrice: 0, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Free plan available, Plus $12/month, AI add-on $10/member/month' },
     website: 'https://notion.so',
     features: [
-      'AI-powered Q&A for your workspace',
-      'Document generation and editing',
-      'Meeting notes summarization',
-      'Task and project organization',
-      'Team collaboration tools',
-      'Template library with AI assistance'
+      'AI Q&A across your entire workspace',
+      'AI writing assistant for docs, wikis, and databases',
+      'Meeting notes auto-generation with action items',
+      'Database AI: auto-fill, summarize, and categorize',
+      'Template library with 10,000+ community templates',
+      'Team collaboration with permissions and sharing',
+      'API and 80+ integrations (Slack, GitHub, Jira)',
+      'Offline mode and mobile apps'
     ],
     pros: [
-      'Seamless integration with existing Notion workspace',
-      'Excellent for team collaboration',
-      'Versatile AI assistance',
-      'Strong organizational features'
+      'AI deeply integrated — not a bolt-on feature',
+      'Searches your entire workspace for contextual answers',
+      'Extremely flexible: notes, databases, wikis, projects',
+      'Beautiful, clean interface with low learning curve',
+      'Massive template community for any use case',
+      'Strong free tier for personal use'
     ],
     cons: [
-      'Learning curve for new users',
-      'AI features require paid plan',
-      'Can be overwhelming with many features'
+      'AI add-on is an extra $10/member/month',
+      'Can feel slow with very large workspaces',
+      'Overwhelming for users who want simple note-taking',
+      'Limited offline functionality compared to native apps',
+      'Database features have a learning curve'
     ],
     rating: 4.6,
     reviewCount: 8920,
