@@ -121,31 +121,37 @@ export const tools: Tool[] = [
     id: 'github-copilot',
     icon: '💻',
     title: 'GitHub Copilot',
-    description: 'AI-powered code completion tool that helps developers write better code faster.',
-    longDescription: 'GitHub Copilot is an AI pair programmer that helps you write code faster with less work. Trained on billions of lines of code, it provides intelligent code suggestions and can generate entire functions from comments.',
+    description: 'AI-powered code completion and chat that helps developers write better code 55% faster. Used by 1.8M+ developers.',
+    longDescription: 'GitHub Copilot is the most widely adopted AI coding assistant, used by 1.8 million developers and over 50,000 organizations. Powered by OpenAI Codex and GPT-4, it provides real-time code suggestions, generates entire functions from natural language comments, and offers an inline chat for explaining and refactoring code. Key use cases include autocompleting boilerplate code, writing unit tests from existing code, translating between programming languages, explaining unfamiliar codebases, and generating documentation. Studies show Copilot helps developers complete tasks 55% faster. Alternatives include Cursor (AI-first IDE with deeper codebase understanding), Amazon CodeWhisperer (AWS-optimized, free for individuals), and Cody by Sourcegraph (codebase-aware chat). The Individual plan is $10/mo, Business $19/user/mo with organizational controls.',
     tags: ['Coding', 'Productivity', 'Subscription'],
     category: 'coding',
     pricing: 'Subscription',
     priceInfo: { startingPrice: 10, currency: 'USD', billingCycle: 'monthly', priceDescription: '$10/month for individuals, $19/user/month for business' },
     website: 'https://github.com/features/copilot',
     features: [
-      'Intelligent code completion',
-      'Function generation from comments',
-      'Multiple language support',
-      'IDE integration',
-      'Code explanation',
-      'Test generation'
+      'Real-time code completion across all major languages',
+      'Natural language to code generation',
+      'Copilot Chat for in-IDE Q&A and debugging',
+      'Unit test generation from existing code',
+      'Code explanation and documentation',
+      'Multi-file context awareness',
+      'IDE integration (VS Code, JetBrains, Neovim)',
+      'Pull request summaries and reviews'
     ],
     pros: [
-      'Significantly speeds up coding',
-      'Supports many programming languages',
-      'Integrates seamlessly with popular IDEs',
-      'Learning from vast codebase'
+      '55% faster task completion (GitHub study)',
+      'Supports 20+ programming languages fluently',
+      'Deep integration with VS Code and JetBrains',
+      'Constantly improving with GPT-4 backbone',
+      'Free for verified students and OSS maintainers',
+      'Enterprise security and IP protections'
     ],
     cons: [
-      'Subscription required',
-      'Sometimes suggests suboptimal code',
-      'Privacy concerns with code analysis'
+      'Subscription required ($10-19/mo)',
+      'Can suggest insecure or suboptimal patterns',
+      'Privacy concerns — code sent to cloud for processing',
+      'Autocomplete can be distracting in small files',
+      'Less effective for niche or proprietary frameworks'
     ],
     rating: 4.6,
     reviewCount: 12760,
