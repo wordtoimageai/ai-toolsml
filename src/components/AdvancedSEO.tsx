@@ -35,7 +35,7 @@ export const AdvancedSEO = ({
   // Generate optimized, dynamic content using SEO utility functions
   const seoTitle = title || (
     tool 
-      ? `${tool.title} Review 2025: Features, Pricing & Alternatives | ToolsML`
+      ? `${tool.title} Review ${new Date().getFullYear()}: Features, Pricing & Alternatives | ToolsML`
       : category 
         ? generateSEOTitle(undefined, category)
         : generateSEOTitle()
