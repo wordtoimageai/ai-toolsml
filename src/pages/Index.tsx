@@ -52,13 +52,13 @@ const Index = () => {
   return (
     <>
       <AdvancedSEO 
-        title="ToolsML - Discover Best AI Tools 2025 | 1000+ Curated Solutions"
+        title={`ToolsML - Discover Best AI Tools ${currentYear} | 1000+ Curated Solutions`}
         description="Find perfect AI tools from 1000+ options across 200+ categories. Compare features, pricing, and reviews. Updated weekly with latest AI innovations."
         pageType="homepage"
         url="/"
       />
       <AdvancedMetaTags
-        title="ToolsML - Discover Best AI Tools 2025 | 1000+ Curated Solutions"
+        title={`ToolsML - Discover Best AI Tools ${currentYear} | 1000+ Curated Solutions`}
         description="Find perfect AI tools from 1000+ options across 200+ categories. Compare features, pricing, and reviews. Updated weekly with latest AI innovations."
         url="/"
         type="website"
