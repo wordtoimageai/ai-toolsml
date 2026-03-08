@@ -520,30 +520,36 @@ export const tools: Tool[] = [
     id: 'runway-ml',
     icon: '🎬',
     title: 'Runway ML',
-    description: 'Advanced AI video editing and generation platform with Gen-3 Alpha technology.',
-    longDescription: 'Runway ML is at the forefront of AI-powered video creation and editing. With their Gen-3 Alpha model, users can generate, edit, and enhance videos using cutting-edge AI technology, making professional video production accessible to everyone.',
+    description: 'Leading AI video generation and editing platform. Create and edit professional videos with Gen-3 Alpha text-to-video.',
+    longDescription: 'Runway ML is the pioneering platform for AI-powered video creation, trusted by Hollywood studios and independent creators alike. Their Gen-3 Alpha model generates high-quality video clips from text prompts or images, while their editing suite offers AI-powered tools like background removal, motion tracking, and style transfer. Runway\'s technology was part of the research behind Stable Diffusion. Key use cases include creating video ads and social media content from text descriptions, removing or replacing video backgrounds, adding visual effects without After Effects, generating B-roll footage, and rapid prototyping for film and animation. Compared to Pika, Runway offers superior video quality and more editing tools; compared to Sora (OpenAI), Runway is already publicly available with a proven track record. The Basic plan is free (limited credits), Standard is $15/mo, and Pro is $35/mo.',
     tags: ['Video Editing', 'AI Generation', 'Creative'],
     category: 'video',
     pricing: 'Freemium',
     website: 'https://runwayml.com',
     features: [
-      'Text-to-video generation',
-      'AI video editing tools',
-      'Background removal and replacement',
-      'Style transfer for videos',
-      'Motion tracking and effects',
-      'Collaborative editing workspace'
+      'Gen-3 Alpha text-to-video generation',
+      'Image-to-video animation',
+      'AI background removal and replacement',
+      'Style transfer and visual effects',
+      'Motion tracking and object removal',
+      'Collaborative editing workspace',
+      'API access for developers',
+      'Training custom AI models'
     ],
     pros: [
-      'Cutting-edge AI video technology',
-      'Professional-grade results',
-      'Intuitive creative tools',
-      'Regular feature updates'
+      'Most advanced publicly available text-to-video AI',
+      'Professional-grade editing tools included',
+      'Used by Hollywood studios (Everything Everywhere All at Once)',
+      'Regular model updates with significant quality improvements',
+      'Intuitive interface for non-technical users',
+      'Free tier available to try before buying'
     ],
     cons: [
-      'Expensive for heavy usage',
-      'Requires powerful hardware for best performance',
-      'Learning curve for advanced features'
+      'Video generation credits consumed quickly',
+      'Generated videos limited to short clips (5-18 seconds)',
+      'Requires powerful internet for real-time preview',
+      'Expensive for heavy commercial usage',
+      'AI-generated video quality still below live footage'
     ],
     rating: 4.6,
     reviewCount: 9140,
