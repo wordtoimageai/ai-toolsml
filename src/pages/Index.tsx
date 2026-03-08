@@ -28,6 +28,8 @@ import FAQ, { generateFAQSchema } from "@/components/FAQ";
 import { tools } from "@/data/tools";
 import { homepageFAQs } from "@/data/homepage-faq";
 
+const currentYear = new Date().getFullYear();
+
 const Index = () => {
   const { trackPageView } = usePrivacyAnalytics();
 
@@ -50,13 +52,13 @@ const Index = () => {
   return (
     <>
       <AdvancedSEO 
-        title="ToolsML - Discover Best AI Tools 2025 | 1000+ Curated Solutions"
+        title={`ToolsML - Discover Best AI Tools ${currentYear} | 1000+ Curated Solutions`}
         description="Find perfect AI tools from 1000+ options across 200+ categories. Compare features, pricing, and reviews. Updated weekly with latest AI innovations."
         pageType="homepage"
         url="/"
       />
       <AdvancedMetaTags
-        title="ToolsML - Discover Best AI Tools 2025 | 1000+ Curated Solutions"
+        title={`ToolsML - Discover Best AI Tools ${currentYear} | 1000+ Curated Solutions`}
         description="Find perfect AI tools from 1000+ options across 200+ categories. Compare features, pricing, and reviews. Updated weekly with latest AI innovations."
         url="/"
         type="website"
@@ -75,7 +77,7 @@ const Index = () => {
       <OrganizationSchema />
       <ItemListSchema 
         items={featuredTools}
-        listName="Featured AI Tools 2025"
+        listName={`Featured AI Tools ${currentYear}`}
         listDescription="Top-rated AI tools curated by ToolsML editorial team"
         maxItems={8}
       />

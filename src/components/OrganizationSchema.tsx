@@ -80,7 +80,7 @@ const OrganizationSchema = () => {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "ToolsML - Best AI Tools Directory 2025",
+    "name": `ToolsML - Best AI Tools Directory ${new Date().getFullYear()}`,
     "alternateName": "ToolsML",
     "url": "https://toolsml.com",
     "description": "Discover, compare, and find the perfect AI tools for your needs. 1000+ curated AI solutions across 200+ categories, updated weekly.",

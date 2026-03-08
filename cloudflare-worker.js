@@ -180,6 +180,15 @@ function isBot(userAgent) {
 }
 
 /**
+ * Check if the user agent is a trusted search engine bot
+ */
+function isTrustedBot(userAgent) {
+  if (!userAgent) return false;
+  const ua = userAgent.toLowerCase();
+  return TRUSTED_BOTS.some(bot => ua.includes(bot));
+}
+
+/**
  * Check if the request is for a static file
  */
 function isStaticFile(pathname) {

@@ -8,15 +8,16 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SEOHelmet } from "@/components/SEOHelmet";
 import { MailX, CheckCircle, ArrowLeft } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 const Unsubscribe = () => {
   const [searchParams] = useSearchParams();
   const [email, setEmail] = useState("");
   const [isUnsubscribing, setIsUnsubscribing] = useState(false);
   const [isUnsubscribed, setIsUnsubscribed] = useState(false);
+  const [reason, setReason] = useState<string | null>(null);
   const { toast } = useToast();
 
-  // Pre-fill email from URL parameter if provided
   useEffect(() => {
     const emailParam = searchParams.get("email");
     if (emailParam) {
@@ -24,7 +25,7 @@ const Unsubscribe = () => {
     }
   }, [searchParams]);
 
-  const handleUnsubscribe = (e: React.FormEvent) => {
+  const handleUnsubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email.trim()) {
@@ -37,15 +38,42 @@ const Unsubscribe = () => {
 
     setIsUnsubscribing(true);
     
-    // Simulate unsubscribe process
-    setTimeout(() => {
-      setIsUnsubscribing(false);
+    try {
+      const { data, error } = await supabase
+        .from('newsletter_subscribers')
+        .update({ 
+          is_active: false, 
+          unsubscribed_at: new Date().toISOString(),
+          unsubscribe_reason: reason 
+        })
+        .eq('email', email.trim().toLowerCase())
+        .select();
+
+      if (error) throw error;
+
+      if (!data || data.length === 0) {
+        toast({
+          title: "Email not found",
+          description: "This email is not subscribed to our newsletter.",
+          variant: "destructive",
+        });
+        return;
+      }
+
       setIsUnsubscribed(true);
       toast({
         title: "Successfully unsubscribed",
         description: "You will no longer receive newsletter emails.",
       });
-    }, 1500);
+    } catch (error: unknown) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsUnsubscribing(false);
+    }
   };
 
   return (
@@ -132,14 +160,13 @@ const Unsubscribe = () => {
               </CardContent>
             </Card>
             
-            {/* Feedback section */}
             {!isUnsubscribed && (
               <div className="mt-8 text-center text-sm text-muted-foreground">
                 <p className="mb-2">We'd love to hear why you're leaving:</p>
                 <div className="flex flex-wrap justify-center gap-2">
-                  <Button variant="outline" size="sm" className="text-xs">Too many emails</Button>
-                  <Button variant="outline" size="sm" className="text-xs">Not relevant</Button>
-                  <Button variant="outline" size="sm" className="text-xs">Other</Button>
+                  <Button variant={reason === 'too-many' ? 'default' : 'outline'} size="sm" className="text-xs" onClick={() => setReason('too-many')}>Too many emails</Button>
+                  <Button variant={reason === 'not-relevant' ? 'default' : 'outline'} size="sm" className="text-xs" onClick={() => setReason('not-relevant')}>Not relevant</Button>
+                  <Button variant={reason === 'other' ? 'default' : 'outline'} size="sm" className="text-xs" onClick={() => setReason('other')}>Other</Button>
                 </div>
               </div>
             )}

@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
-  const [isSubscribed, setIsSubscribed] = useState(false);
   const { toast } = useToast();
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email.trim()) {
@@ -23,11 +23,17 @@ const Newsletter = () => {
 
     setIsSubscribing(true);
     
-    setTimeout(() => {
-      setIsSubscribing(false);
-      setIsSubscribed(true);
-      
-      // Generate unsubscribe link with encoded email
+    try {
+      // Upsert: if email exists and was unsubscribed, reactivate it
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .upsert(
+          { email: email.trim().toLowerCase(), is_active: true, unsubscribed_at: null },
+          { onConflict: 'email' }
+        );
+
+      if (error) throw error;
+
       const unsubscribeUrl = `/unsubscribe?email=${encodeURIComponent(email)}`;
       
       toast({
@@ -42,7 +48,15 @@ const Newsletter = () => {
         ),
       });
       setEmail("");
-    }, 1500);
+    } catch (error: unknown) {
+      toast({
+        title: "Subscription failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubscribing(false);
+    }
   };
 
   return (
@@ -75,7 +89,6 @@ const Newsletter = () => {
           </Button>
         </form>
         
-        {/* Unsubscribe link */}
         <p className="mt-4 text-xs text-muted-foreground">
           We respect your privacy. <Link to="/unsubscribe" className="underline hover:text-primary">Unsubscribe</Link> at any time.
         </p>
