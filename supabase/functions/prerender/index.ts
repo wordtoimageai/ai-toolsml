@@ -78,6 +78,7 @@ const PM: Record<string,[string,string,string]> = {
 '/changelog': [`Changelog - ToolsML Updates ${Y}`,'See what is new on ToolsML. New features and tool additions.','Changelog'],
 '/api-docs': ['ToolsML API Documentation','Access ToolsML data via REST API. Free for non-commercial use.','API Documentation'],
 '/site-map': ['Site Map - ToolsML','Browse all pages on ToolsML.','Site Map'],
+'/other-ai-tools': [`Other AI Tools ${Y} — Hidden Gems Beyond ChatGPT & Midjourney`,`Discover 20+ lesser-known AI tools for automation, data analysis, sales, social media, SEO, audio, and research. Curated reviews with pricing.`,`Other AI Tools You Should Know in ${Y}`],
 };
 
 const esc = (s: string) => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');

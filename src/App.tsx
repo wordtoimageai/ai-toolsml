@@ -43,6 +43,7 @@ const UserPrivacyDashboard = lazy(() => import("./components/UserPrivacyDashboar
 const AffiliateAnalyticsDashboard = lazy(() => import("./components/AffiliateAnalyticsDashboard").then(m => ({ default: m.AffiliateAnalyticsDashboard })));
 const SiteMap = lazy(() => import("./pages/SiteMap"));
 const BrowseTools = lazy(() => import("./pages/BrowseTools"));
+const OtherAITools = lazy(() => import("./pages/OtherAITools"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 
 const queryClient = new QueryClient();
@@ -121,6 +122,7 @@ const App = () => (
                   <Route path="/comparison" element={<ToolComparison />} />
                   <Route path="/site-map" element={<SiteMap />} />
                   <Route path="/unsubscribe" element={<Unsubscribe />} />
+                  <Route path="/other-ai-tools" element={<OtherAITools />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
