@@ -129,8 +129,16 @@ const Footer = () => {
 
         {/* Bottom Links */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-gray-400 text-sm">
-            &copy; {new Date().getFullYear()} ToolsML. All rights reserved. Built with ❤️ for the AI community.
+          <p className="text-gray-400 text-sm flex items-center gap-2">
+            &copy; {new Date().getFullYear()} ToolsML by{' '}
+            <a 
+              href="https://startbd.org" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-primary hover:text-white transition-colors font-medium"
+            >
+              Start BD
+            </a>. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-gray-400 text-sm">
             <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>

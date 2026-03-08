@@ -8,7 +8,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://toolsml.com/</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -16,7 +16,7 @@
   <!-- Static Pages -->
   <url>
     <loc>https://toolsml.com/browse</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -28,79 +28,79 @@
   </url>
   <url>
     <loc>https://toolsml.com/about</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://toolsml.com/blog</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tutorials</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/contact</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/submit</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/compare</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/changelog</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://toolsml.com/api-docs</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://toolsml.com/advertise</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://toolsml.com/privacy</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://toolsml.com/terms</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://toolsml.com/site-map</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://toolsml.com/favorites</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.4</priority>
   </url>
@@ -108,79 +108,79 @@
   <!-- Category Pages (All 13 Categories) -->
   <url>
     <loc>https://toolsml.com/category/writing</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/design</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/coding</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/marketing</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/productivity</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/audio</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/video</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/research</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/data</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/automation</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/sales</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/social</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://toolsml.com/category/seo</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
@@ -188,301 +188,301 @@
   <!-- Tool Detail Pages (All Tools) -->
   <url>
     <loc>https://toolsml.com/tool/chatgpt</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/midjourney</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/github-copilot</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/claude</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/jasper-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/perplexity</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/stable-diffusion</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/notion-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/synthesia</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/runway-ml</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/elevenlabs</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/adobe-firefly</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/zapier</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/figma</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/deepseek</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/grammarly</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/otter-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/descript</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/canva-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/replit-ghostwriter</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/surfer-seo</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/arc-search</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/mubert</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/reclaim-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/clickup-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/hubspot-email-writer</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/albert-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/sprout-social</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/reply-io</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/marketmuse</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/wix-adi</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/loom</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/google-trends</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/semrush-market-explorer</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/fireflies-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/codesignal</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/codium-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/cursor</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/copy-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/writesonic</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/beautiful-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/luma-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/dalle</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/dalle-3</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/hubspot-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/gong</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/leonardo-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/murf-ai</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/semrush</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tool/canva</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -490,151 +490,151 @@
   <!-- Popular Tag Pages -->
   <url>
     <loc>https://toolsml.com/tag/free</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/writing</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/image-generation</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/productivity</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/coding</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/chatbot</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/marketing</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/video</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/audio</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/research</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/conversation</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/art</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/subscription</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/text-to-speech</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/video-editing</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/voice-cloning</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/seo</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/design</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/collaboration</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/automation</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/paid</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/assistant</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/analysis</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/open-source</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://toolsml.com/tag/business</loc>
-    <lastmod>2025-12-29</lastmod>
+    <lastmod>2026-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
