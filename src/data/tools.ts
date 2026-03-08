@@ -554,30 +554,36 @@ export const tools: Tool[] = [
     id: 'descript',
     icon: '📹',
     title: 'Descript',
-    description: 'Edit audio and video by editing text, with AI-powered transcription and voice synthesis.',
-    longDescription: 'Descript revolutionizes audio and video editing by allowing you to edit media files like text documents. With AI transcription, voice cloning, and collaborative features, it\'s perfect for podcasters, video creators, and content teams.',
+    description: 'Edit video and audio by editing text — the simplest way to create podcasts, videos, and social clips.',
+    longDescription: 'Descript is a revolutionary media editing platform that lets you edit video and audio as easily as editing a Google Doc. Instead of manipulating timelines, you edit the transcript — delete a word from the text, and it disappears from the video. Used by 3M+ creators, podcasters, and marketing teams, Descript combines transcription (97% accuracy), screen recording, video editing, and AI voice cloning (Overdub) in one app. Key use cases include podcast production and editing, YouTube video creation, internal training videos, social media clip creation, and meeting recording. Compared to Adobe Premiere, Descript is dramatically easier to learn; compared to CapCut, it offers superior transcription and podcast workflows. The free plan includes 1 hour of transcription, with Hobbyist at $24/mo, Pro at $33/mo, and Business at $40/mo.',
     tags: ['Audio Editing', 'Video Editing', 'Transcription'],
     category: 'video',
     pricing: 'Freemium',
     website: 'https://descript.com',
     features: [
-      'Text-based audio/video editing',
-      'AI transcription with speaker labels',
-      'Voice cloning (Overdub)',
-      'Collaborative editing workspace',
-      'Automatic filler word removal',
-      'Multi-track editing and mixing'
+      'Text-based audio and video editing',
+      '97% accurate AI transcription with speaker labels',
+      'Overdub voice cloning for corrections',
+      'Automatic filler word and silence removal',
+      'Screen recording with webcam overlay',
+      'Social media clip export (vertical, square)',
+      'Collaborative editing with comments',
+      'Stock media library and templates'
     ],
     pros: [
-      'Revolutionary text-based editing approach',
-      'Excellent transcription accuracy',
-      'Great for podcast and video production',
-      'Collaborative features'
+      'Revolutionary text-based editing — no timeline skills needed',
+      'Excellent transcription accuracy (97%+)',
+      'All-in-one: record, transcribe, edit, publish',
+      'Overdub lets you fix mistakes without re-recording',
+      'Great for podcasters and content teams',
+      'Regular feature updates and improvements'
     ],
     cons: [
-      'Voice cloning requires ethical considerations',
-      'Limited advanced video effects',
-      'Subscription required for professional features'
+      'Voice cloning raises ethical questions',
+      'Limited advanced color grading and effects',
+      'Can be slow with very long recordings (2+ hours)',
+      'Overdub requires training with your voice',
+      'Pro features require paid subscription'
     ],
     rating: 4.7,
     reviewCount: 8760,
