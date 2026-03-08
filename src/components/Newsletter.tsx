@@ -20,6 +20,7 @@ const RATE_LIMIT_COOLDOWN_MS = 30_000; // 30 seconds client-side cooldown
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [isSubscribing, setIsSubscribing] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
   const lastSubmitRef = useRef<number>(0);
