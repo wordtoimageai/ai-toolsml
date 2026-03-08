@@ -16,7 +16,7 @@ const toolsData = [
   { id: 'copy-ai', title: 'Copy.ai', category: 'writing', priority: 0.8 },
   { id: 'notion-ai', title: 'Notion AI', category: 'productivity', priority: 0.85 },
   { id: 'github-copilot', title: 'GitHub Copilot', category: 'coding', priority: 0.9 },
-  { id: 'runway', title: 'Runway', category: 'video', priority: 0.85 },
+  { id: 'runway-ml', title: 'Runway ML', category: 'video', priority: 0.85 },
   { id: 'synthesia', title: 'Synthesia', category: 'video', priority: 0.8 },
   { id: 'descript', title: 'Descript', category: 'audio', priority: 0.8 },
   { id: 'murf', title: 'Murf', category: 'audio', priority: 0.75 },
