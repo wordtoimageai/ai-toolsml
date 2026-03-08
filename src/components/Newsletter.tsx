@@ -37,14 +37,7 @@ const Newsletter = () => {
       
       toast({
         title: "Successfully subscribed!",
-        description: (
-          <div className="space-y-2">
-            <p>Thank you for subscribing with: {email}</p>
-            <p className="text-xs text-muted-foreground">
-              You can <Link to={unsubscribeUrl} className="underline hover:text-primary">unsubscribe</Link> at any time.
-            </p>
-          </div>
-        ),
+        description: `Thank you for subscribing with: ${email}. You can unsubscribe at any time from the link in our footer.`,
       });
       setEmail("");
     } catch (error: unknown) {
