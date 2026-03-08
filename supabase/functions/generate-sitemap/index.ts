@@ -12,7 +12,7 @@ const toolsData = [
   { id: 'claude', title: 'Claude', category: 'writing', priority: 0.9 },
   { id: 'dall-e', title: 'DALL-E', category: 'image', priority: 0.85 },
   { id: 'stable-diffusion', title: 'Stable Diffusion', category: 'image', priority: 0.85 },
-  { id: 'jasper', title: 'Jasper', category: 'writing', priority: 0.8 },
+  { id: 'jasper-ai', title: 'Jasper AI', category: 'writing', priority: 0.8 },
   { id: 'copy-ai', title: 'Copy.ai', category: 'writing', priority: 0.8 },
   { id: 'notion-ai', title: 'Notion AI', category: 'productivity', priority: 0.85 },
   { id: 'github-copilot', title: 'GitHub Copilot', category: 'coding', priority: 0.9 },
