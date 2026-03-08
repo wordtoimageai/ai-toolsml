@@ -39,31 +39,37 @@ export const tools: Tool[] = [
     id: 'chatgpt',
     icon: '✍️',
     title: 'ChatGPT',
-    description: 'Advanced conversational AI that can help with writing, coding, analysis, and creative tasks.',
-    longDescription: 'ChatGPT is a state-of-the-art conversational AI developed by OpenAI. It excels at understanding context and generating human-like responses across a wide range of topics. From creative writing to code debugging, ChatGPT has become an essential tool for millions of users worldwide.',
+    description: 'Advanced conversational AI that can help with writing, coding, analysis, and creative tasks. Used by 200M+ users weekly.',
+    longDescription: 'ChatGPT is a state-of-the-art conversational AI developed by OpenAI, used by over 200 million people weekly as of 2024. Powered by GPT-4o and GPT-4 Turbo, it excels at understanding nuanced context and generating human-like responses across writing, coding, data analysis, math, and creative tasks. Key use cases include drafting blog posts and marketing copy, debugging and writing code in 20+ languages, summarizing long documents, brainstorming ideas, and learning new subjects through conversational tutoring. ChatGPT is widely considered the benchmark for general-purpose AI assistants, though alternatives like Claude excel at longer documents and Gemini offers tighter Google integration. The free tier provides GPT-4o mini access, while ChatGPT Plus ($20/mo) unlocks GPT-4o, DALL-E image generation, Advanced Data Analysis, and custom GPTs.',
     tags: ['Writing', 'Conversation', 'Free'],
     category: 'writing',
     pricing: 'Freemium',
     priceInfo: { startingPrice: 0, currency: 'USD', billingCycle: 'monthly', priceDescription: 'Free tier available, Plus $20/mo' },
     website: 'https://chat.openai.com',
     features: [
-      'Natural language conversation',
-      'Code generation and debugging',
-      'Creative writing assistance',
-      'Analysis and research help',
-      'Multiple language support',
-      'Context-aware responses'
+      'Natural language conversation with GPT-4o',
+      'Code generation and debugging in 20+ languages',
+      'Creative writing assistance and brainstorming',
+      'Advanced Data Analysis with file uploads',
+      'DALL-E image generation (Plus plan)',
+      'Custom GPTs and plugin ecosystem',
+      'Voice mode for hands-free conversations',
+      'Web browsing for real-time information'
     ],
     pros: [
-      'Highly accurate responses',
-      'Excellent at explaining complex topics',
-      'Fast response times',
-      'Free tier available'
+      'Best-in-class general reasoning and accuracy',
+      'Massive plugin and GPT ecosystem',
+      'Fast response times with streaming',
+      'Generous free tier with GPT-4o mini',
+      'Multimodal: text, images, voice, files',
+      'Regular model updates and improvements'
     ],
     cons: [
-      'Knowledge cutoff limitations',
-      'Can sometimes generate incorrect information',
-      'Rate limits on free tier'
+      'Knowledge can lag on very recent events',
+      'Can hallucinate facts with high confidence',
+      'Rate limits on free tier (GPT-4o mini only)',
+      'Privacy concerns for sensitive business data',
+      'Expensive for teams ($25-30/user/month)'
     ],
     rating: 4.8,
     reviewCount: 15420,
