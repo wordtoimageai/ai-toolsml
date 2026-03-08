@@ -77,7 +77,7 @@ const Index = () => {
       <OrganizationSchema />
       <ItemListSchema 
         items={featuredTools}
-        listName="Featured AI Tools 2025"
+        listName={`Featured AI Tools ${currentYear}`}
         listDescription="Top-rated AI tools curated by ToolsML editorial team"
         maxItems={8}
       />

@@ -22,7 +22,7 @@ const toolsData = [
   { id: 'murf-ai', title: 'Murf AI', category: 'audio', priority: 0.75 },
   { id: 'grammarly', title: 'Grammarly', category: 'writing', priority: 0.85 },
   { id: 'canva-ai', title: 'Canva AI', category: 'design', priority: 0.85 },
-  { id: 'figma-ai', title: 'Figma AI', category: 'design', priority: 0.8 },
+  { id: 'figma', title: 'Figma', category: 'design', priority: 0.8 },
   { id: 'writesonic', title: 'Writesonic', category: 'writing', priority: 0.75 },
   { id: 'perplexity', title: 'Perplexity', category: 'research', priority: 0.85 },
   { id: 'you-com', title: 'You.com', category: 'research', priority: 0.75 },
