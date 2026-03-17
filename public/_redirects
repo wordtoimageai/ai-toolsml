@@ -1,0 +1,16 @@
+# Cloudflare Pages SPA Routing
+# All routes fall back to index.html so React Router handles them client-side
+# Without this, direct URL visits (e.g. /tool/chatgpt) return 404 on Cloudflare Pages
+
+# Redirect trailing slash to canonical (no trailing slash)
+/browse/   /browse   301
+/compare/  /compare  301
+/submit/   /submit   301
+/blog/     /blog     301
+/about/    /about    301
+/contact/  /contact  301
+/privacy/  /privacy  301
+/terms/    /terms    301
+
+# SPA fallback — must be last
+/*    /index.html   200
