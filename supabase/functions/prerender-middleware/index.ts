@@ -194,7 +194,7 @@ serve(async (req) => {
   } catch (error) {
     console.error('Prerender middleware error:', error);
     return new Response(
-      JSON.stringify({ error: 'Prerender middleware failed', details: error.message }),
+      JSON.stringify({ error: 'Prerender middleware failed', details: (error as Error).message }),
       {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
