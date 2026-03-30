@@ -307,7 +307,7 @@ serve(async (req) => {
     console.error('Sitemap generation error:', error);
     return new Response(JSON.stringify({ 
       error: 'Failed to generate sitemap',
-      message: error.message 
+      message: (error as Error).message 
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }

@@ -256,7 +256,7 @@ serve(async (req) => {
     // Default: PNG format for social platforms
     const pngData = await svgToPng(svg);
     
-    return new Response(pngData, {
+    return new Response(pngData as unknown as BodyInit, {
       headers: {
         ...corsHeaders,
         'Content-Type': 'image/png',
