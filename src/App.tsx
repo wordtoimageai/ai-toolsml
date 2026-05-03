@@ -14,6 +14,7 @@ import PrivacyConsentBanner from "./components/PrivacyConsentBanner";
 import PreconnectLinks from "./components/PreconnectLinks";
 import PrerenderReady from "./components/PrerenderReady";
 import PrerenderMetaTags from "./components/PrerenderMetaTags";
+import AnalyticsPageViews from "./components/AnalyticsPageViews";
 
 // Import Index directly (not lazy) since it's the main entry point for LCP optimization
 import Index from "./pages/Index";
@@ -71,6 +72,7 @@ const App = () => (
             <BrowserRouter>
               <PrerenderReady />
               <PrerenderMetaTags />
+              <AnalyticsPageViews />
               <CompareBar />
               <PrivacyConsentBanner />
               <Suspense fallback={<PageSkeleton />}>
