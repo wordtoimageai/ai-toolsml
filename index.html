@@ -234,8 +234,14 @@
     
     <!-- Defer non-critical scripts: Analytics & Service Worker -->
     <script defer>
+      // Restrict analytics to the production hostname to keep GA tag-coverage clean.
+      // Lovable preview/project URLs (id-preview-*.lovable.app, *.lovableproject.com,
+      // ai-toolsml.lovable.app) and localhost are excluded.
+      var __ANALYTICS_HOSTS = ['toolsml.com', 'www.toolsml.com'];
+      var __isProdHost = __ANALYTICS_HOSTS.indexOf(window.location.hostname) !== -1;
       // Load analytics after LCP (requestIdleCallback for non-blocking)
       function loadAnalytics() {
+        if (!__isProdHost) return;
         if (window.__analyticsLoaded) return;
         window.__analyticsLoaded = true;
         var s = document.createElement('script');
@@ -246,7 +252,17 @@
         function gtag(){dataLayer.push(arguments);}
         window.gtag = gtag;
         gtag('js', new Date());
-        gtag('config', 'G-BWC5XNH86E', { 'send_page_view': false });
+        // Send the initial page_view ourselves so SPA navigations can use the same code path.
+        gtag('config', 'G-BWC5XNH86E', {
+          send_page_view: false,
+          anonymize_ip: true,
+          transport_type: 'beacon'
+        });
+        gtag('event', 'page_view', {
+          page_path: window.location.pathname + window.location.search,
+          page_location: window.location.href,
+          page_title: document.title
+        });
       }
       // Use requestIdleCallback or setTimeout fallback
       if ('requestIdleCallback' in window) {
