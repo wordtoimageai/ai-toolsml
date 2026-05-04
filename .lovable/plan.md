@@ -1,33 +1,33 @@
+# Add GA4 User-ID Tracking on Auth State Change
 
+Single file change to `src/hooks/useAuth.ts` — sends the Supabase user UUID to GA4 as `user_id` whenever auth state changes, so GA4 can stitch sessions across devices.
 
-## Plan: Fix Edge Function Build Errors
+## Change
 
-### Summary
-Fix 4 TypeScript errors across 4 edge functions — 3 are `unknown` error type narrowing issues, 1 is a `Uint8Array` response body type mismatch.
+In `src/hooks/useAuth.ts`:
 
-### Changes
+1. Add module-scoped helpers above the `useAuth` export:
+   - `GA_ID = 'G-BWC5XNH86E'` (matches existing tag in `index.html`)
+   - `isProductionHost()` — returns true only for `toolsml.com` / `www.toolsml.com`, mirroring the gate in `index.html` so preview/lovable.app domains never call gtag
+   - `setGtagUserId(userId, attempt)` — calls `window.gtag('config', GA_ID, { user_id })`; if `window.gtag` isn't ready yet (it loads lazily via `requestIdleCallback`), retry up to 3 times at 500ms intervals
+2. Add `window.gtag` to the global Window typing (small ambient declaration in the same file) to satisfy TypeScript without touching `vite-env.d.ts`
+3. Inside the hook, add a new `useEffect` with `[user?.id]` dependency:
+   - On login → `setGtagUserId(user.id)`
+   - On logout / no user → `setGtagUserId(null)` (sent as `undefined` to clear)
 
-**1. Fix `error` type narrowing (3 files)**
+No PII is sent — only the Supabase UUID. No changes to `index.html`, no migrations, no other files.
 
-In each catch block, replace `error.message` with `(error as Error).message`:
+## Why this is safe
 
-- `supabase/functions/generate-sitemap/index.ts` line ~310
-- `supabase/functions/prerender-middleware/index.ts` line ~197
-- `supabase/functions/sitemap/index.ts` line ~498
+- Hostname gate matches the analytics loader in `index.html`, so this is a no-op on preview domains.
+- Retry-with-backoff handles the race where auth resolves before `requestIdleCallback` loads gtag.
+- UUID-only respects the existing privacy posture (consent banner, no PII in analytics).
+- `[user?.id]` dependency ensures we only fire on actual auth transitions, not on every profile/role re-render.
 
-**2. Fix `Uint8Array` response body (`og-image/index.ts` line ~259)**
+## Files
 
-Change:
-```ts
-return new Response(pngData, { ... })
-```
-To:
-```ts
-return new Response(pngData as unknown as BodyInit, { ... })
-```
-Or use `pngData.buffer` if the runtime supports `ArrayBuffer` as `BodyInit`.
+- `src/hooks/useAuth.ts` — add helpers + one `useEffect` (~25 lines)
 
-### Impact
-- No functional changes — purely type-safety fixes
-- Unblocks the build pipeline
+## Post-deploy
 
+After Publish, mark **GA4 → Admin → Tasks → Add first-party data → Set up User-ID** as complete (7/15).
