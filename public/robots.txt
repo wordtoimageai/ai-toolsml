@@ -29,11 +29,9 @@ Allow: /advertise
 # SEO optimization for specific bots
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
@@ -43,11 +41,9 @@ Allow: /
 
 User-agent: Baiduspider
 Allow: /
-Crawl-delay: 2
 
 User-agent: Yandex
 Allow: /
-Crawl-delay: 2
 
 # Social media crawlers (for link previews)
 User-agent: Twitterbot
@@ -89,10 +85,8 @@ Allow: /
 
 # Block bad bots and scrapers
 User-agent: AhrefsBot
-Crawl-delay: 10
 
 User-agent: SemrushBot
-Crawl-delay: 10
 
 User-agent: MJ12bot
 Disallow: /
