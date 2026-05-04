@@ -10,6 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Loader2, Mail, Lock, User, Building } from 'lucide-react';
 import SEO from '@/components/SEO';
 import { z } from 'zod';
+import { trackQualifyLead } from '@/lib/ga-events';
 
 // Validation schemas
 const signInSchema = z.object({
