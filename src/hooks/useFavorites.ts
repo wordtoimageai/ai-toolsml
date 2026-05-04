@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { trackCloseConvertLead } from '@/lib/ga-events';
 
 const FAVORITES_KEY = 'toolsml-favorites';
 
@@ -19,11 +20,17 @@ export const useFavorites = () => {
 
   const toggleFavorite = (toolId: string) => {
     setFavorites(prev => {
-      const newFavorites = prev.includes(toolId)
-        ? prev.filter(id => id !== toolId)
-        : [...prev, toolId];
+      const isAdding = !prev.includes(toolId);
+      const newFavorites = isAdding
+        ? [...prev, toolId]
+        : prev.filter(id => id !== toolId);
       
       localStorage.setItem(FAVORITES_KEY, JSON.stringify(newFavorites));
+
+      // Fire only when adding (meaningful engagement signal for GA4)
+      if (isAdding) {
+        trackCloseConvertLead({ tool_id: toolId, action: 'favorite' });
+      }
       return newFavorites;
     });
   };
