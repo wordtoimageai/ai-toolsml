@@ -5,7 +5,6 @@ Allow: /
 Sitemap: https://toolsml.com/sitemap.xml
 
 # Crawl-delay for respectful crawling
-Crawl-delay: 1
 
 # Disallow admin and internal paths
 Disallow: /admin/
