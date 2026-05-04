@@ -127,6 +127,7 @@ export default function Auth() {
           variant: 'destructive',
         });
       } else {
+        trackQualifyLead('email');
         toast({
           title: 'Check your email',
           description: 'We sent you a confirmation link to complete your registration.',
