@@ -2,6 +2,33 @@ import { useState, useEffect } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 
+// GA4 User-ID tracking helpers.
+// Mirrors the hostname gate in index.html so preview/lovable.app domains
+// never call gtag and pollute analytics.
+const GA_ID = 'G-BWC5XNH86E';
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+const isProductionHost = () =>
+  typeof window !== 'undefined' &&
+  (window.location.hostname === 'toolsml.com' ||
+    window.location.hostname === 'www.toolsml.com');
+
+const setGtagUserId = (userId: string | null, attempt = 0): void => {
+  if (!isProductionHost()) return;
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('config', GA_ID, { user_id: userId ?? undefined });
+  } else if (attempt < 3) {
+    // gtag loads lazily via requestIdleCallback in index.html — retry briefly.
+    window.setTimeout(() => setGtagUserId(userId, attempt + 1), 500);
+  }
+};
+
 interface Profile {
   id: string;
   email: string | null;
@@ -80,6 +107,16 @@ export const useAuth = (): AuthState & {
 
     return () => subscription.unsubscribe();
   }, []);
+
+  // Send the Supabase user UUID to GA4 as user_id so sessions can be stitched
+  // across devices. UUID only — no email or other PII.
+  useEffect(() => {
+    if (user?.id) {
+      setGtagUserId(user.id);
+    } else {
+      setGtagUserId(null);
+    }
+  }, [user?.id]);
 
   const fetchProfile = async (userId: string) => {
     try {
