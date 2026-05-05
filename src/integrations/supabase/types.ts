@@ -423,6 +423,15 @@ export type Database = {
         }
         Returns: boolean
       }
+      track_affiliate_click: {
+        Args: {
+          p_link_id: string
+          p_referrer?: string
+          p_session_id?: string
+          p_user_agent?: string
+        }
+        Returns: boolean
+      }
       unsubscribe_newsletter: {
         Args: { p_email: string; p_reason?: string }
         Returns: boolean
