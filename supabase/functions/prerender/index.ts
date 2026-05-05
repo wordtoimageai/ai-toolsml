@@ -108,15 +108,18 @@ function buildHtml(path: string): string {
   }
   const catLinks = CATS.map(c=>`<a href="/category/${c}">${cap(c)}</a>`).join(' | ');
   const toolLinks = Object.entries(T).map(([id,t])=>`<a href="/tool/${id}">${t[0]}</a>`).join(' | ');
-  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(m.title)}</title><meta name="description" content="${esc(m.description)}"><link rel="canonical" href="${m.canonical}"><meta name="robots" content="index,follow"><meta property="og:title" content="${esc(m.title)}"><meta property="og:description" content="${esc(m.description)}"><meta property="og:url" content="${m.canonical}"></head><body><header><a href="/">ToolsML</a></header><main>${body}</main><footer><nav><p>${catLinks}</p><p>${toolLinks}</p></nav><p>&copy; ${Y} ToolsML</p></footer></body></html>`;
+  const canonical = esc(m.canonical);
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(m.title)}</title><meta name="description" content="${esc(m.description)}"><link rel="canonical" href="${canonical}"><meta name="robots" content="index,follow"><meta property="og:title" content="${esc(m.title)}"><meta property="og:description" content="${esc(m.description)}"><meta property="og:url" content="${canonical}"></head><body><header><a href="/">ToolsML</a></header><main>${body}</main><footer><nav><p>${catLinks}</p><p>${toolLinks}</p></nav><p>&copy; ${Y} ToolsML</p></footer></body></html>`;
 }
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response(null, { headers: cors });
   try {
     const url = new URL(req.url);
-    const path = url.searchParams.get('path') || '/';
-    const np = path.startsWith('/') ? path : `/${path}`;
+    const rawPath = url.searchParams.get('path') || '/';
+    // Sanitize: only allow safe URL path characters to prevent injection
+    const safePath = rawPath.replace(/[^a-zA-Z0-9\/_\-]/g, '');
+    const np = safePath.startsWith('/') ? safePath : `/${safePath}`;
     const fmt = url.searchParams.get('format');
     if (fmt === 'json') return new Response(JSON.stringify(getMeta(np)), { headers: { ...cors, 'Content-Type': 'application/json' } });
     return new Response(buildHtml(np), { headers: { ...cors, 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=86400', 'X-Prerendered': 'true' } });
