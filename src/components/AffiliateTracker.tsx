@@ -69,61 +69,20 @@ export const AffiliateTracker = ({ toolId, children }: AffiliateTrackerProps) =>
     if (!affiliateUrl) return;
 
     try {
-      // Get affiliate link details
-      const { data: affiliateLink } = await supabase
-        .from('affiliate_links')
+      const { data: linkRow } = await supabase
+        .from('affiliate_links_public')
         .select('id')
         .eq('tool_id', toolId)
         .eq('is_active', true)
         .single();
 
-      if (affiliateLink) {
-        const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-        const sessionId = getSessionId();
-
-        // Rate limiting: Check for recent click from this user or session (within last hour)
-        if (user?.id) {
-          // Authenticated user rate limiting
-          const { data: recentClick } = await supabase
-            .from('affiliate_clicks')
-            .select('id')
-            .eq('affiliate_link_id', affiliateLink.id)
-            .eq('user_id', user.id)
-            .gte('created_at', oneHourAgo)
-            .limit(1)
-            .maybeSingle();
-
-          if (recentClick) {
-            return; // Skip tracking - user already clicked recently
-          }
-        } else {
-          // Anonymous user rate limiting via session_id
-          const { data: recentClick } = await supabase
-            .from('affiliate_clicks')
-            .select('id')
-            .eq('affiliate_link_id', affiliateLink.id)
-            .eq('session_id', sessionId)
-            .is('user_id', null)
-            .gte('created_at', oneHourAgo)
-            .limit(1)
-            .maybeSingle();
-
-          if (recentClick) {
-            return; // Skip tracking - session already clicked recently
-          }
-        }
-
-        // Track the click
-        await supabase
-          .from('affiliate_clicks')
-          .insert({
-            affiliate_link_id: affiliateLink.id,
-            user_id: user?.id || null,
-            session_id: sessionId,
-            ip_address: null,
-            user_agent: getMinimalUserAgent(),
-            referrer: document.referrer || null
-          });
+      if (linkRow) {
+        await supabase.rpc('track_affiliate_click', {
+          p_link_id: linkRow.id,
+          p_session_id: getSessionId(),
+          p_user_agent: getMinimalUserAgent(),
+          p_referrer: document.referrer || null,
+        });
       }
     } catch (error) {
       if (import.meta.env.DEV) {
@@ -175,59 +134,20 @@ export const useAffiliateTracker = (toolId: string) => {
     if (!affiliateUrl) return;
 
     try {
-      const { data: affiliateLink } = await supabase
-        .from('affiliate_links')
+      const { data: linkRow } = await supabase
+        .from('affiliate_links_public')
         .select('id')
         .eq('tool_id', toolId)
         .eq('is_active', true)
         .single();
 
-      if (affiliateLink) {
-        const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-        const sessionId = getSessionId();
-
-        // Rate limiting: Check for recent click from this user or session (within last hour)
-        if (user?.id) {
-          // Authenticated user rate limiting
-          const { data: recentClick } = await supabase
-            .from('affiliate_clicks')
-            .select('id')
-            .eq('affiliate_link_id', affiliateLink.id)
-            .eq('user_id', user.id)
-            .gte('created_at', oneHourAgo)
-            .limit(1)
-            .maybeSingle();
-
-          if (recentClick) {
-            return;
-          }
-        } else {
-          // Anonymous user rate limiting via session_id
-          const { data: recentClick } = await supabase
-            .from('affiliate_clicks')
-            .select('id')
-            .eq('affiliate_link_id', affiliateLink.id)
-            .eq('session_id', sessionId)
-            .is('user_id', null)
-            .gte('created_at', oneHourAgo)
-            .limit(1)
-            .maybeSingle();
-
-          if (recentClick) {
-            return;
-          }
-        }
-
-        await supabase
-          .from('affiliate_clicks')
-          .insert({
-            affiliate_link_id: affiliateLink.id,
-            user_id: user?.id || null,
-            session_id: sessionId,
-            ip_address: null,
-            user_agent: getMinimalUserAgent(),
-            referrer: document.referrer || null
-          });
+      if (linkRow) {
+        await supabase.rpc('track_affiliate_click', {
+          p_link_id: linkRow.id,
+          p_session_id: getSessionId(),
+          p_user_agent: getMinimalUserAgent(),
+          p_referrer: document.referrer || null,
+        });
       }
     } catch (error) {
       if (import.meta.env.DEV) {
