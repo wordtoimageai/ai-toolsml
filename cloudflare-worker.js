@@ -214,7 +214,8 @@ export default {
     // Explicit bypass for core SEO and static files
     // This ensures Lovable serves them correctly instead of trying to prerender them
     if (url.pathname === '/sitemap.xml' || url.pathname === '/robots.txt' || 
-        url.pathname === '/manifest.json' || url.pathname === '/llms.txt') {
+        url.pathname === '/manifest.json' || url.pathname === '/llms.txt' ||
+        url.pathname === '/ads.txt') {
       const originUrl = new URL(request.url);
       originUrl.host = ORIGIN_HOST;
       return fetch(originUrl.toString(), {
