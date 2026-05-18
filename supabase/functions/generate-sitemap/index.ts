@@ -124,16 +124,7 @@ function generateMainSitemap(): string {
 `;
   }
 
-  // Tag pages
-  for (const tag of popularTags) {
-    xml += `  <url>
-    <loc>${baseUrl}/tag/${escapeXml(tag)}</loc>
-    <lastmod>${lastMod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-`;
-  }
+  // Tag pages intentionally excluded — noindexed to preserve crawl budget.
 
   xml += '</urlset>';
   return xml;

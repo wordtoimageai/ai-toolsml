@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://toolsml.com</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/hero-image.jpg</image:loc>
+      <image:title>ToolsML - AI Tools Directory</image:title>
+      <image:caption>Discover and compare the best AI tools</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/figma</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/figma.jpg</image:loc>
+      <image:title>Figma Screenshot</image:title>
+      <image:caption>Figma - The #1 collaborative design platform used by 4M+ designers. Browser-based UI/UX design, prototyping, and dev handoff.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/figma.png</image:loc>
+      <image:title>Figma Logo</image:title>
+      <image:caption>Official Figma logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/zapier</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/zapier.jpg</image:loc>
+      <image:title>Zapier Screenshot</image:title>
+      <image:caption>Zapier - Connect and automate workflows between 7000+ apps without coding.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/zapier.png</image:loc>
+      <image:title>Zapier Logo</image:title>
+      <image:caption>Official Zapier logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/chatgpt</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/chatgpt.jpg</image:loc>
+      <image:title>ChatGPT Screenshot</image:title>
+      <image:caption>ChatGPT - Advanced conversational AI that can help with writing, coding, analysis, and creative tasks. Used by 200M+ users weekly.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/chatgpt.png</image:loc>
+      <image:title>ChatGPT Logo</image:title>
+      <image:caption>Official ChatGPT logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/clickup-ai</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/clickup-ai.jpg</image:loc>
+      <image:title>ClickUp Screenshot</image:title>
+      <image:caption>ClickUp - All-in-one project management platform with AI-powered task automation and insights.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/clickup-ai.png</image:loc>
+      <image:title>ClickUp Logo</image:title>
+      <image:caption>Official ClickUp logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/wix-adi</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/wix-adi.jpg</image:loc>
+      <image:title>Wix ADI Screenshot</image:title>
+      <image:caption>Wix ADI - AI-powered website builder that creates custom sites based on your needs.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/wix-adi.png</image:loc>
+      <image:title>Wix ADI Logo</image:title>
+      <image:caption>Official Wix ADI logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/loom</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/loom.jpg</image:loc>
+      <image:title>Loom Screenshot</image:title>
+      <image:caption>Loom - AI-enhanced screen recording and video messaging for async communication.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/loom.png</image:loc>
+      <image:title>Loom Logo</image:title>
+      <image:caption>Official Loom logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/github-copilot</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/github-copilot.jpg</image:loc>
+      <image:title>GitHub Copilot Screenshot</image:title>
+      <image:caption>GitHub Copilot - AI-powered code completion and chat that helps developers write better code 55% faster. Used by 1.8M+ developers.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/github-copilot.png</image:loc>
+      <image:title>GitHub Copilot Logo</image:title>
+      <image:caption>Official GitHub Copilot logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/otter-ai</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/otter-ai.jpg</image:loc>
+      <image:title>Otter.ai Screenshot</image:title>
+      <image:caption>Otter.ai - AI-powered meeting transcription and note-taking with real-time collaboration features.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/otter-ai.png</image:loc>
+      <image:title>Otter.ai Logo</image:title>
+      <image:caption>Official Otter.ai logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/elevenlabs</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/elevenlabs.jpg</image:loc>
+      <image:title>ElevenLabs Screenshot</image:title>
+      <image:caption>ElevenLabs - Industry-leading AI voice generation and cloning with 300+ ultra-realistic voices in 32 languages.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/elevenlabs.png</image:loc>
+      <image:title>ElevenLabs Logo</image:title>
+      <image:caption>Official ElevenLabs logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/hubspot-email-writer</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/hubspot-email-writer.jpg</image:loc>
+      <image:title>HubSpot Email Writer Screenshot</image:title>
+      <image:caption>HubSpot Email Writer - AI-powered email copywriting integrated with CRM and marketing automation.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/hubspot-email-writer.png</image:loc>
+      <image:title>HubSpot Email Writer Logo</image:title>
+      <image:caption>Official HubSpot Email Writer logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/runway-ml</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/runway-ml.jpg</image:loc>
+      <image:title>Runway ML Screenshot</image:title>
+      <image:caption>Runway ML - Leading AI video generation and editing platform. Create and edit professional videos with Gen-3 Alpha text-to-video.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/runway-ml.png</image:loc>
+      <image:title>Runway ML Logo</image:title>
+      <image:caption>Official Runway ML logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/midjourney</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/midjourney.jpg</image:loc>
+      <image:title>Midjourney Screenshot</image:title>
+      <image:caption>Midjourney - Create stunning, photorealistic and artistic images from text descriptions. The gold standard for AI image generation quality.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/midjourney.png</image:loc>
+      <image:title>Midjourney Logo</image:title>
+      <image:caption>Official Midjourney logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/descript</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/descript.jpg</image:loc>
+      <image:title>Descript Screenshot</image:title>
+      <image:caption>Descript - Edit video and audio by editing text — the simplest way to create podcasts, videos, and social clips.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/descript.png</image:loc>
+      <image:title>Descript Logo</image:title>
+      <image:caption>Official Descript logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/notion-ai</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/notion-ai.jpg</image:loc>
+      <image:title>Notion AI Screenshot</image:title>
+      <image:caption>Notion AI - AI-powered workspace for notes, docs, and project management. Used by 30M+ users at startups and enterprises.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/notion-ai.png</image:loc>
+      <image:title>Notion AI Logo</image:title>
+      <image:caption>Official Notion AI logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/semrush-market-explorer</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/semrush-market-explorer.jpg</image:loc>
+      <image:title>Semrush Market Explorer Screenshot</image:title>
+      <image:caption>Semrush Market Explorer - Comprehensive market research and competitor analysis platform.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/semrush-market-explorer.png</image:loc>
+      <image:title>Semrush Market Explorer Logo</image:title>
+      <image:caption>Official Semrush Market Explorer logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/stable-diffusion</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/stable-diffusion.jpg</image:loc>
+      <image:title>Stable Diffusion Screenshot</image:title>
+      <image:caption>Stable Diffusion - Open-source AI image generator with incredible flexibility and customization options.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/stable-diffusion.png</image:loc>
+      <image:title>Stable Diffusion Logo</image:title>
+      <image:caption>Official Stable Diffusion logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/sprout-social</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/sprout-social.jpg</image:loc>
+      <image:title>Sprout Social Screenshot</image:title>
+      <image:caption>Sprout Social - AI-powered social media management with sentiment analysis and optimization.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/sprout-social.png</image:loc>
+      <image:title>Sprout Social Logo</image:title>
+      <image:caption>Official Sprout Social logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/synthesia</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/synthesia.jpg</image:loc>
+      <image:title>Synthesia Screenshot</image:title>
+      <image:caption>Synthesia - Create professional AI avatar videos in 140+ languages without cameras or studios.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/synthesia.png</image:loc>
+      <image:title>Synthesia Logo</image:title>
+      <image:caption>Official Synthesia logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/jasper-ai</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/jasper-ai.jpg</image:loc>
+      <image:title>Jasper AI Screenshot</image:title>
+      <image:caption>Jasper AI - AI-powered marketing copywriting platform trusted by 100,000+ brands. Create blog posts, ads, and social copy 10x faster.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/jasper-ai.png</image:loc>
+      <image:title>Jasper AI Logo</image:title>
+      <image:caption>Official Jasper AI logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/adobe-firefly</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/adobe-firefly.jpg</image:loc>
+      <image:title>Adobe Firefly Screenshot</image:title>
+      <image:caption>Adobe Firefly - Generative AI for creative assets integrated with Adobe Creative Cloud.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/adobe-firefly.png</image:loc>
+      <image:title>Adobe Firefly Logo</image:title>
+      <image:caption>Official Adobe Firefly logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/fireflies-ai</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/fireflies-ai.jpg</image:loc>
+      <image:title>Fireflies.ai Screenshot</image:title>
+      <image:caption>Fireflies.ai - AI meeting assistant for transcription, analysis, and conversation intelligence.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/fireflies-ai.png</image:loc>
+      <image:title>Fireflies.ai Logo</image:title>
+      <image:caption>Official Fireflies.ai logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/perplexity</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/perplexity.jpg</image:loc>
+      <image:title>Perplexity Screenshot</image:title>
+      <image:caption>Perplexity - AI-powered research assistant that provides accurate answers with source citations.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/perplexity.png</image:loc>
+      <image:title>Perplexity Logo</image:title>
+      <image:caption>Official Perplexity logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/reclaim-ai</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/reclaim-ai.jpg</image:loc>
+      <image:title>Reclaim AI Screenshot</image:title>
+      <image:caption>Reclaim AI - Automated scheduling and calendar management that protects your time for deep work.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/reclaim-ai.png</image:loc>
+      <image:title>Reclaim AI Logo</image:title>
+      <image:caption>Official Reclaim AI logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/google-trends</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/google-trends.jpg</image:loc>
+      <image:title>Google Trends Screenshot</image:title>
+      <image:caption>Google Trends - Analyze real-time search data trends and market insights.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/google-trends.png</image:loc>
+      <image:title>Google Trends Logo</image:title>
+      <image:caption>Official Google Trends logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/replit-ghostwriter</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/replit-ghostwriter.jpg</image:loc>
+      <image:title>Replit Ghostwriter Screenshot</image:title>
+      <image:caption>Replit Ghostwriter - AI coding assistant integrated with cloud-based development environment.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/replit-ghostwriter.png</image:loc>
+      <image:title>Replit Ghostwriter Logo</image:title>
+      <image:caption>Official Replit Ghostwriter logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/surfer-seo</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/surfer-seo.jpg</image:loc>
+      <image:title>Surfer SEO Screenshot</image:title>
+      <image:caption>Surfer SEO - Data-driven content optimization with real-time SEO scoring.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/surfer-seo.png</image:loc>
+      <image:title>Surfer SEO Logo</image:title>
+      <image:caption>Official Surfer SEO logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/claude</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/claude.jpg</image:loc>
+      <image:title>Claude Screenshot</image:title>
+      <image:caption>Claude - Advanced AI assistant by Anthropic with industry-leading 200K context window. Best for long documents, analysis, and safe AI.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/claude.png</image:loc>
+      <image:title>Claude Logo</image:title>
+      <image:caption>Official Claude logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/mubert</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/mubert.jpg</image:loc>
+      <image:title>Mubert Screenshot</image:title>
+      <image:caption>Mubert - Generate royalty-free music and soundtracks using AI for any project or mood.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/mubert.png</image:loc>
+      <image:title>Mubert Logo</image:title>
+      <image:caption>Official Mubert logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/reply-io</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/reply-io.jpg</image:loc>
+      <image:title>Reply.io Screenshot</image:title>
+      <image:caption>Reply.io - AI-powered sales outreach automation with personalized email sequences.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/reply-io.png</image:loc>
+      <image:title>Reply.io Logo</image:title>
+      <image:caption>Official Reply.io logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/arc-search</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/arc-search.jpg</image:loc>
+      <image:title>Arc Search Screenshot</image:title>
+      <image:caption>Arc Search - Mobile-focused AI search engine with intelligent browsing features.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/arc-search.png</image:loc>
+      <image:title>Arc Search Logo</image:title>
+      <image:caption>Official Arc Search logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/codesignal</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/codesignal.jpg</image:loc>
+      <image:title>CodeSignal Screenshot</image:title>
+      <image:caption>CodeSignal - AI-powered technical assessment and developer skill evaluation platform.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/codesignal.png</image:loc>
+      <image:title>CodeSignal Logo</image:title>
+      <image:caption>Official CodeSignal logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/marketmuse</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/marketmuse.jpg</image:loc>
+      <image:title>MarketMuse Screenshot</image:title>
+      <image:caption>MarketMuse - AI-powered content strategy and SEO optimization platform.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/marketmuse.png</image:loc>
+      <image:title>MarketMuse Logo</image:title>
+      <image:caption>Official MarketMuse logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/codium-ai</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/codium-ai.jpg</image:loc>
+      <image:title>CodiumAI Screenshot</image:title>
+      <image:caption>CodiumAI - AI-powered code integrity and test generation for developers.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/codium-ai.png</image:loc>
+      <image:title>CodiumAI Logo</image:title>
+      <image:caption>Official CodiumAI logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/deepseek</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/deepseek.jpg</image:loc>
+      <image:title>DeepSeek Screenshot</image:title>
+      <image:caption>DeepSeek - Open-weight AI model for developers building custom AI applications.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/deepseek.png</image:loc>
+      <image:title>DeepSeek Logo</image:title>
+      <image:caption>Official DeepSeek logo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://toolsml.com/tool/albert-ai</loc>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-screenshots/albert-ai.jpg</image:loc>
+      <image:title>Albert.ai Screenshot</image:title>
+      <image:caption>Albert.ai - Self-optimizing digital advertising platform that autonomously manages ad campaigns.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://toolsml.com/tool-logos/albert-ai.png</image:loc>
+      <image:title>Albert.ai Logo</image:title>
+      <image:caption>Official Albert.ai logo</image:caption>
+    </image:image>
+  </url>
+</urlset>

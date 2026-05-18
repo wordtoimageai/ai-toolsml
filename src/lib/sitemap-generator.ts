@@ -75,27 +75,8 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
     });
   });
 
-  // Tag pages (top 50 most popular tags)
-  const tagCounts = new Map<string, number>();
-  tools.forEach(tool => {
-    tool.tags.forEach(tag => {
-      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
-    });
-  });
-
-  const topTags = Array.from(tagCounts.entries())
-    .sort(([,a], [,b]) => b - a)
-    .slice(0, 50)
-    .map(([tag]) => tag);
-
-  topTags.forEach(tag => {
-    entries.push({
-      url: `${baseUrl}/tag/${encodeURIComponent(tag.toLowerCase())}`,
-      lastmod: currentDate,
-      changefreq: 'weekly',
-      priority: 0.7
-    });
-  });
+  // Tag pages intentionally excluded from sitemap — they are noindexed
+  // to avoid wasting crawl budget on thin tag listings.
 
   // Comparison pages (most popular tools)
   const topTools = tools
@@ -177,7 +158,6 @@ Disallow: /privacy-dashboard
 # Allow specific important paths for better crawling
 Allow: /tool/
 Allow: /category/
-Allow: /tag/
 Allow: /compare/
 Allow: /blog/
 Allow: /about

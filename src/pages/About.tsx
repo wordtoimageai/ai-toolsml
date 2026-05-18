@@ -37,10 +37,48 @@ const About = () => {
             <div className="prose prose-lg max-w-none">
               <div className="search-container mb-12">
                 <h2 className="text-3xl font-bold text-foreground mb-6">Our Mission</h2>
-                <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                  At ToolsML, we believe AI should be accessible to everyone. Our mission is to help 
-                  professionals, creators, and businesses discover the perfect AI tools for their needs. 
-                  We curate, review, and compare the best AI-powered solutions across every industry.
+                <p className="text-muted-foreground text-lg leading-relaxed mb-6">
+                  ToolsML is an independent, human-curated directory of artificial intelligence
+                  tools, launched in 2024 to help professionals, creators, developers, and small
+                  businesses cut through the noise of a market that adds dozens of new AI products
+                  every week. We believe AI should be accessible, well-documented, and easy to
+                  compare — without sponsored rankings, paid placement, or marketing fluff
+                  disguised as reviews. Every tool in our directory is evaluated by a real person,
+                  not an automated scraper, and our listings are refreshed weekly so pricing,
+                  features, and screenshots stay accurate.
+                </p>
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  Today ToolsML tracks more than 1,000 AI tools across writing, design, video,
+                  coding, marketing, productivity, audio, research, and more. We publish detailed
+                  comparisons, pricing breakdowns, and use-case guides so you can decide in
+                  minutes — not weeks — which tool actually fits your workflow.
+                </p>
+              </div>
+
+              <div className="search-container mb-12">
+                <h2 className="text-3xl font-bold text-foreground mb-6">How We Curate Tools</h2>
+                <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+                  Our editorial process is intentionally hands-on. Every submission — whether
+                  from a vendor, a community member, or our own research — is reviewed against
+                  four criteria before it ever appears on the site:
+                </p>
+                <ul className="text-muted-foreground text-lg leading-relaxed list-disc pl-6 space-y-2">
+                  <li><strong>Real product, real users.</strong> The tool must be live, working, and have actual customers — no vaporware or pre-launch landing pages.</li>
+                  <li><strong>Clear AI value.</strong> The product must use machine learning or generative AI in a meaningful way, not just as a marketing label.</li>
+                  <li><strong>Transparent pricing.</strong> We require a published pricing page (free, freemium, or paid) so visitors aren't surprised at checkout.</li>
+                  <li><strong>Hands-on verification.</strong> An editor signs up, tests the core workflow, and writes the summary, pros, and cons in their own words.</li>
+                </ul>
+              </div>
+
+              <div className="search-container mb-12">
+                <h2 className="text-3xl font-bold text-foreground mb-6">Independent and Reader-Funded</h2>
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  ToolsML is not owned by any AI vendor and does not accept payment for higher
+                  rankings, "featured" badges, or favorable reviews. Some links are affiliate
+                  links, which means we may earn a small commission if you sign up for a paid plan
+                  after clicking through — this never affects which tools we list, where they
+                  rank, or what we write about them. Vendors can submit their tool for free and
+                  request corrections at any time, but editorial decisions stay with our team.
                 </p>
               </div>
 
@@ -85,18 +123,19 @@ const About = () => {
               <div className="search-container text-center">
                 <h2 className="text-3xl font-bold text-foreground mb-6">Join Our Community</h2>
                 <p className="text-muted-foreground text-lg mb-8">
-                  Have an AI tool to share? Found an amazing solution? We'd love to hear from you!
+                  Built an AI tool you'd like listed? Spotted a pricing change or a tool that's
+                  no longer maintained? We rely on readers and makers to keep ToolsML accurate.
+                  Submit a tool, send corrections, or just say hello — we read every message.
                 </p>
-                <div className="flex gap-4 justify-center">
+                <div className="flex flex-wrap gap-4 justify-center">
                   <Button asChild className="btn-gradient">
-                    <Link to="/submit">
-                      Submit a Tool
-                    </Link>
+                    <Link to="/submit">Submit a Tool</Link>
                   </Button>
                   <Button asChild variant="outline">
-                    <Link to="/">
-                      Browse Tools
-                    </Link>
+                    <Link to="/contact">Contact Us</Link>
+                  </Button>
+                  <Button asChild variant="outline">
+                    <Link to="/">Browse Tools</Link>
                   </Button>
                 </div>
               </div>

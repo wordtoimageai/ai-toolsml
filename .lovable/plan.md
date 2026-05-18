@@ -1,33 +1,28 @@
-# Add GA4 User-ID Tracking on Auth State Change
+## Goal
+Fix the "Discovered/Crawled — not indexed" issues from the GSC guide by removing crawl-budget drain (thin `/tag/*` pages) and beefing up the `/about` page. This is the "Week 1 — stop the bleeding" set from the guide; the rest (per-tool 500-word reviews) is editorial work better tackled separately.
 
-Single file change to `src/hooks/useAuth.ts` — sends the Supabase user UUID to GA4 as `user_id` whenever auth state changes, so GA4 can stitch sessions across devices.
+## Changes
 
-## Change
+### 1. Noindex all `/tag/*` pages
+`src/pages/Tag.tsx` — pass `noIndex` through `AdvancedSEO` (or add a `<Helmet><meta name="robots" content="noindex, follow" /></Helmet>`) so every tag page returns `noindex, follow`. This stops Google from wasting crawl budget on thin tag lists while still letting it follow outbound links to tool pages.
 
-In `src/hooks/useAuth.ts`:
+### 2. Remove tag URLs from sitemaps
+- `supabase/functions/generate-sitemap/index.ts` — delete the `for (const tag of popularTags)` block (lines ~127–136) and the `tags` count in the summary.
+- `src/lib/sitemap-generator.ts` — if it emits `/tag/*` entries (used by `scripts/generate-sitemap.js` → `public/sitemap.xml`), remove them too.
+- Regenerate `public/sitemap.xml` so the static fallback no longer lists tag URLs.
 
-1. Add module-scoped helpers above the `useAuth` export:
-   - `GA_ID = 'G-BWC5XNH86E'` (matches existing tag in `index.html`)
-   - `isProductionHost()` — returns true only for `toolsml.com` / `www.toolsml.com`, mirroring the gate in `index.html` so preview/lovable.app domains never call gtag
-   - `setGtagUserId(userId, attempt)` — calls `window.gtag('config', GA_ID, { user_id })`; if `window.gtag` isn't ready yet (it loads lazily via `requestIdleCallback`), retry up to 3 times at 500ms intervals
-2. Add `window.gtag` to the global Window typing (small ambient declaration in the same file) to satisfy TypeScript without touching `vite-env.d.ts`
-3. Inside the hook, add a new `useEffect` with `[user?.id]` dependency:
-   - On login → `setGtagUserId(user.id)`
-   - On logout / no user → `setGtagUserId(null)` (sent as `undefined` to clear)
+### 3. Expand `/about` to 300+ words of substantive content
+`src/pages/About.tsx` — replace the four short emoji cards with real editorial copy: who runs ToolsML, when it launched, editorial process (how tools are picked, tested, updated weekly), independence/no-pay-to-play stance, contact + submission CTA. Target ~400 words total across the page so Google has something to index.
 
-No PII is sent — only the Supabase UUID. No changes to `index.html`, no migrations, no other files.
+### 4. Optional permanent noindex for low-value tag names
+The guide flags `/tag/free`, `/tag/paid`, `/tag/subscription` as inherently low value. Already covered by step 1 (all tags noindexed). No extra work needed unless we later un-noindex other tags.
 
-## Why this is safe
+## Out of scope (flagged for follow-up)
+- **Per-tool 500-word reviews + pros/cons + pricing** for Midjourney/Deepseek/Jasper/etc. — editorial content work, not a code change. Schema markup (`SoftwareApplication`) is already present via `ProductSchema`/`ToolDetail` — verified earlier.
+- **Manual GSC actions**: re-submitting sitemap, "Request Indexing" on top tools, removing tag URLs in GSC — these are user-side actions in Search Console.
+- **Cloudflare worker redeploy** — needed only if you also want stale tag URLs to 410; not required for this fix.
 
-- Hostname gate matches the analytics loader in `index.html`, so this is a no-op on preview domains.
-- Retry-with-backoff handles the race where auth resolves before `requestIdleCallback` loads gtag.
-- UUID-only respects the existing privacy posture (consent banner, no PII in analytics).
-- `[user?.id]` dependency ensures we only fire on actual auth transitions, not on every profile/role re-render.
-
-## Files
-
-- `src/hooks/useAuth.ts` — add helpers + one `useEffect` (~25 lines)
-
-## Post-deploy
-
-After Publish, mark **GA4 → Admin → Tasks → Add first-party data → Set up User-ID** as complete (7/15).
+## Verification
+- Visit `/tag/video` in preview, view source, confirm `<meta name="robots" content="noindex, follow">`.
+- Open `/sitemap.xml` (or the edge function output) and confirm no `/tag/` entries.
+- `/about` shows expanded copy without layout breakage.

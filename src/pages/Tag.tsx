@@ -1,4 +1,5 @@
 import { useParams, Navigate, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AdvancedSEO from '@/components/AdvancedSEO';
@@ -44,6 +45,9 @@ const Tag = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <meta name="robots" content="noindex, follow" />
+      </Helmet>
       <AdvancedSEO 
         title={`${decodedTag} AI Tools - Discover ${filteredTools.length}+ Solutions | ToolsML`}
         description={`Discover the best AI tools tagged with "${decodedTag}". Find ${filteredTools.length} cutting-edge AI solutions for ${decodedTag.toLowerCase()}. Compare features, pricing & reviews.`}
