@@ -1,10 +1,27 @@
 User-agent: *
 Allow: /
 
-# Sitemap reference
+# Sitemap index (includes all sitemaps)
+Sitemap: https://toolsml.com/sitemap-index.xml
+
+# Individual sitemaps
 Sitemap: https://toolsml.com/sitemap.xml
+Sitemap: https://toolsml.com/sitemap-writing.xml
+Sitemap: https://toolsml.com/sitemap-design.xml
+Sitemap: https://toolsml.com/sitemap-coding.xml
+Sitemap: https://toolsml.com/sitemap-marketing.xml
+Sitemap: https://toolsml.com/sitemap-productivity.xml
+Sitemap: https://toolsml.com/sitemap-audio.xml
+Sitemap: https://toolsml.com/sitemap-video.xml
+Sitemap: https://toolsml.com/sitemap-research.xml
+Sitemap: https://toolsml.com/sitemap-data.xml
+Sitemap: https://toolsml.com/sitemap-automation.xml
+Sitemap: https://toolsml.com/sitemap-sales.xml
+Sitemap: https://toolsml.com/sitemap-social.xml
+Sitemap: https://toolsml.com/sitemap-seo.xml
 
 # Crawl-delay for respectful crawling
+Crawl-delay: 1
 
 # Disallow admin and internal paths
 Disallow: /admin/
@@ -17,7 +34,6 @@ Disallow: /privacy-dashboard
 # Allow specific important paths for better crawling
 Allow: /tool/
 Allow: /category/
-Allow: /tag/
 Allow: /compare/
 Allow: /blog/
 Allow: /about
@@ -29,9 +45,11 @@ Allow: /advertise
 # SEO optimization for specific bots
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
@@ -41,9 +59,11 @@ Allow: /
 
 User-agent: Baiduspider
 Allow: /
+Crawl-delay: 2
 
 User-agent: Yandex
 Allow: /
+Crawl-delay: 2
 
 # Social media crawlers (for link previews)
 User-agent: Twitterbot
@@ -85,8 +105,10 @@ Allow: /
 
 # Block bad bots and scrapers
 User-agent: AhrefsBot
+Crawl-delay: 10
 
 User-agent: SemrushBot
+Crawl-delay: 10
 
 User-agent: MJ12bot
 Disallow: /
