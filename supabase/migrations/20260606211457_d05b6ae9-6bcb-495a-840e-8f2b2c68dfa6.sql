@@ -1,0 +1,2 @@
+CREATE POLICY "Admins can view newsletter subscribers" ON public.newsletter_subscribers FOR SELECT TO authenticated USING (public.has_role(auth.uid(), 'admin'::public.app_role));
+CREATE POLICY "Deny anonymous select on newsletter_subscribers" ON public.newsletter_subscribers AS RESTRICTIVE FOR SELECT TO anon USING (false);
