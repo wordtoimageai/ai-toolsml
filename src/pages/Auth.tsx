@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Mail, Lock, User, Building } from 'lucide-react';
+import { Loader2, Mail, Lock, User } from 'lucide-react';
 import SEO from '@/components/SEO';
 import { z } from 'zod';
 import { trackQualifyLead } from '@/lib/ga-events';
@@ -37,9 +37,6 @@ const signUpSchema = z.object({
     .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
     .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
     .regex(/[0-9]/, 'Password must contain at least one number'),
-  vendorCompany: z.string()
-    .max(100, 'Company name must be less than 100 characters')
-    .optional()
 });
 
 export default function Auth() {
@@ -47,8 +44,6 @@ export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
-  const [isVendor, setIsVendor] = useState(false);
-  const [vendorCompany, setVendorCompany] = useState('');
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -86,7 +81,6 @@ export default function Auth() {
       fullName,
       email,
       password,
-      vendorCompany: isVendor ? vendorCompany : undefined
     });
 
     if (!validationResult.success) {
@@ -96,12 +90,6 @@ export default function Auth() {
         errors[field] = issue.message;
       });
       setValidationErrors(errors);
-      return;
-    }
-
-    // Additional vendor company validation
-    if (isVendor && (!vendorCompany || vendorCompany.trim().length === 0)) {
-      setValidationErrors({ vendorCompany: 'Company name is required for vendor accounts' });
       return;
     }
 
@@ -115,8 +103,6 @@ export default function Auth() {
           emailRedirectTo: `${window.location.origin}/`,
           data: {
             full_name: validationResult.data.fullName,
-            is_vendor: isVendor,
-            vendor_company: isVendor ? vendorCompany.trim() : null
           }
         }
       });
@@ -314,40 +300,6 @@ export default function Auth() {
                       Password must be at least 8 characters with uppercase, lowercase, and number
                     </p>
                   </div>
-                  
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      id="vendor-signup"
-                      checked={isVendor}
-                      onChange={(e) => setIsVendor(e.target.checked)}
-                      className="rounded border-gray-300"
-                    />
-                    <Label htmlFor="vendor-signup" className="text-sm">
-                      I'm signing up as a tool vendor
-                    </Label>
-                  </div>
-                  
-                  {isVendor && (
-                    <div className="space-y-2">
-                      <Label htmlFor="vendor-company">Company Name</Label>
-                      <div className="relative">
-                        <Building className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          id="vendor-company"
-                          type="text"
-                          placeholder="Enter your company name"
-                          value={vendorCompany}
-                          onChange={(e) => setVendorCompany(e.target.value)}
-                          className={`pl-10 ${validationErrors.vendorCompany ? 'border-destructive' : ''}`}
-                          aria-invalid={!!validationErrors.vendorCompany}
-                        />
-                      </div>
-                      {validationErrors.vendorCompany && (
-                        <p className="text-sm text-destructive">{validationErrors.vendorCompany}</p>
-                      )}
-                    </div>
-                  )}
                   
                   <Button type="submit" className="w-full" disabled={isLoading}>
                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}

@@ -179,8 +179,9 @@ export const useAuth = (): AuthState & {
   const isPro = profile?.subscription_tier && 
     ['pro', 'enterprise'].includes(profile.subscription_tier) && 
     isSubscriptionActive;
-  // Use roles array as source of truth, with is_vendor as fallback for backward compatibility
-  const isVendor = roles.includes('vendor') || profile?.is_vendor || false;
+  // Roles table is the sole source of truth for vendor status.
+  // profile.is_vendor is not trusted because it can be seeded from signup metadata.
+  const isVendor = roles.includes('vendor');
   const isAdmin = roles.includes('admin');
 
   return {
