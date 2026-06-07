@@ -119,6 +119,14 @@ const App = () => (
                       </ProtectedRoute>
                     } 
                   />
+                  <Route 
+                    path="/admin/sitemap-status" 
+                    element={
+                      <ProtectedRoute requireAdmin>
+                        <AdminSitemapStatus />
+                      </ProtectedRoute>
+                    } 
+                  />
                   <Route path="/advertise" element={<Advertise />} />
                   <Route path="/tag/:tag" element={<Tag />} />
                   <Route path="/blog/:slug" element={<BlogPost />} />
