@@ -46,6 +46,7 @@ const SiteMap = lazy(() => import("./pages/SiteMap"));
 const BrowseTools = lazy(() => import("./pages/BrowseTools"));
 const OtherAITools = lazy(() => import("./pages/OtherAITools"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
+const AdminSitemapStatus = lazy(() => import("./pages/AdminSitemapStatus"));
 
 const queryClient = new QueryClient();
 
