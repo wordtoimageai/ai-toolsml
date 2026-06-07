@@ -301,40 +301,6 @@ export default function Auth() {
                     </p>
                   </div>
                   
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      id="vendor-signup"
-                      checked={isVendor}
-                      onChange={(e) => setIsVendor(e.target.checked)}
-                      className="rounded border-gray-300"
-                    />
-                    <Label htmlFor="vendor-signup" className="text-sm">
-                      I'm signing up as a tool vendor
-                    </Label>
-                  </div>
-                  
-                  {isVendor && (
-                    <div className="space-y-2">
-                      <Label htmlFor="vendor-company">Company Name</Label>
-                      <div className="relative">
-                        <Building className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                        <Input
-                          id="vendor-company"
-                          type="text"
-                          placeholder="Enter your company name"
-                          value={vendorCompany}
-                          onChange={(e) => setVendorCompany(e.target.value)}
-                          className={`pl-10 ${validationErrors.vendorCompany ? 'border-destructive' : ''}`}
-                          aria-invalid={!!validationErrors.vendorCompany}
-                        />
-                      </div>
-                      {validationErrors.vendorCompany && (
-                        <p className="text-sm text-destructive">{validationErrors.vendorCompany}</p>
-                      )}
-                    </div>
-                  )}
-                  
                   <Button type="submit" className="w-full" disabled={isLoading}>
                     {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                     Create Account
