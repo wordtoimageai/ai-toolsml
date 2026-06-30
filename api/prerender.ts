@@ -453,8 +453,10 @@ function generateHTML(path: string): string {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const path = (req.query.path as string) || '/';
-  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const rawPath = (req.query.path as string) || '/';
+  // Whitelist safe URL path characters to prevent HTML/script injection via canonical URL
+  const sanitized = rawPath.replace(/[^a-zA-Z0-9\/_\-]/g, '');
+  const normalizedPath = sanitized.startsWith('/') ? sanitized : `/${sanitized}`;
   const userAgent = req.headers['user-agent'] || '';
   const isBotRequest = isBot(userAgent);
   
@@ -466,6 +468,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Prerendered', 'true');
     res.setHeader('X-Prerender-Path', normalizedPath);
     res.setHeader('X-Canonical-URL', meta.canonical);
