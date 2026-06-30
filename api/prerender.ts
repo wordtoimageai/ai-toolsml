@@ -394,13 +394,13 @@ function generateHTML(path: string): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeHtml(meta.title)}</title>
   <meta name="description" content="${escapeHtml(meta.description)}">
-  <link rel="canonical" href="${meta.canonical}">
+  <link rel="canonical" href="${escapeHtml(meta.canonical)}">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   
   <!-- Open Graph -->
   <meta property="og:type" content="${path.startsWith('/tool/') ? 'article' : 'website'}">
-  <meta property="og:url" content="${meta.canonical}">
+  <meta property="og:url" content="${escapeHtml(meta.canonical)}">
   <meta property="og:title" content="${escapeHtml(meta.title)}">
   <meta property="og:description" content="${escapeHtml(meta.description)}">
   <meta property="og:image" content="https://toolsml.com/og-image.jpg">
@@ -417,8 +417,8 @@ function generateHTML(path: string): string {
   <meta name="twitter:site" content="@toolsml">
   
   <!-- Hreflang for international SEO -->
-  <link rel="alternate" hreflang="en" href="${meta.canonical}">
-  <link rel="alternate" hreflang="x-default" href="${meta.canonical}">
+  <link rel="alternate" hreflang="en" href="${escapeHtml(meta.canonical)}">
+  <link rel="alternate" hreflang="x-default" href="${escapeHtml(meta.canonical)}">
   
   <link rel="icon" type="image/png" href="/favicon.png">
   <script type="application/ld+json">${JSON.stringify(structuredData)}</script>
@@ -453,8 +453,10 @@ function generateHTML(path: string): string {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const path = (req.query.path as string) || '/';
-  const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+  const rawPath = (req.query.path as string) || '/';
+  // Whitelist safe URL path characters to prevent HTML/script injection via canonical URL
+  const sanitized = rawPath.replace(/[^a-zA-Z0-9\/_\-]/g, '');
+  const normalizedPath = sanitized.startsWith('/') ? sanitized : `/${sanitized}`;
   const userAgent = req.headers['user-agent'] || '';
   const isBotRequest = isBot(userAgent);
   
@@ -466,6 +468,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 'public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
     res.setHeader('X-Prerendered', 'true');
     res.setHeader('X-Prerender-Path', normalizedPath);
     res.setHeader('X-Canonical-URL', meta.canonical);
@@ -484,7 +487,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   <meta charset="UTF-8">
   <title>${escapeHtml(fallbackMeta.title)}</title>
   <meta name="description" content="${escapeHtml(fallbackMeta.description)}">
-  <link rel="canonical" href="${fallbackMeta.canonical}">
+  <link rel="canonical" href="${escapeHtml(fallbackMeta.canonical)}">
   <meta name="robots" content="index, follow">
 </head>
 <body>
