@@ -40,6 +40,34 @@ All tools in our directory include:
 ## API
 For developers interested in accessing our tool data, please contact us through our website.
 
+## Pages
+- [Home](/): AI tools directory homepage with featured and trending tools.
+- [Browse All Tools](/browse): Full searchable catalog of AI tools with filters.
+- [Compare Tools](/compare): Side-by-side comparisons of AI tools.
+- [Blog](/blog): Articles and guides about AI tools and workflows.
+- [Tutorials](/tutorials): How-to guides for popular AI tools.
+- [About](/about): About ToolsML and our editorial process.
+- [Contact](/contact): Get in touch with the ToolsML team.
+- [Submit a Tool](/submit): Add a new AI tool to the directory.
+- [Advertise](/advertise): Sponsorship and promotion options.
+- [Privacy Policy](/privacy): How we handle user data.
+- [Terms of Service](/terms): Terms for using ToolsML.
+
+## Categories
+- [Writing AI Tools](/category/writing): Content generation, copywriting, editing.
+- [Design AI Tools](/category/design): Image generation and design assistants.
+- [Coding AI Tools](/category/coding): Code assistants and developer tools.
+- [Marketing AI Tools](/category/marketing): Marketing automation and campaigns.
+- [Productivity AI Tools](/category/productivity): Workflow and task automation.
+- [Video AI Tools](/category/video): Video editing and generation.
+- [Audio AI Tools](/category/audio): Voice, music, and speech tools.
+- [Research AI Tools](/category/research): Data analysis and research assistants.
+- [SEO AI Tools](/category/seo): Search optimization tools.
+- [Sales AI Tools](/category/sales): Sales enablement and outreach.
+- [Automation AI Tools](/category/automation): Workflow automation.
+- [Data AI Tools](/category/data): Data processing and analytics.
+- [Social Media AI Tools](/category/social): Social content and scheduling.
+
 ## Contact
 Website: https://toolsml.com
 Submit a tool: https://toolsml.com/submit

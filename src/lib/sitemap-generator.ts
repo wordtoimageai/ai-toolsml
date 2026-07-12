@@ -42,7 +42,9 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
     { path: '/submit', priority: 0.7, changefreq: 'monthly' as const },
     { path: '/favorites', priority: 0.5, changefreq: 'daily' as const },
     { path: '/compare', priority: 0.7, changefreq: 'weekly' as const },
-    { path: '/site-map', priority: 0.5, changefreq: 'monthly' as const }
+    { path: '/site-map', priority: 0.5, changefreq: 'monthly' as const },
+    { path: '/browse', priority: 0.9, changefreq: 'daily' as const },
+    { path: '/tools', priority: 0.9, changefreq: 'daily' as const }
   ];
 
   staticPages.forEach(page => {
@@ -78,22 +80,8 @@ export const generateSitemapEntries = (): SitemapEntry[] => {
   // Tag pages intentionally excluded from sitemap — they are noindexed
   // to avoid wasting crawl budget on thin tag listings.
 
-  // Comparison pages (most popular tools)
-  const topTools = tools
-    .sort((a, b) => b.rating * b.reviewCount - a.rating * a.reviewCount)
-    .slice(0, 20);
-
-  topTools.forEach((tool, index) => {
-    if (index < topTools.length - 1) {
-      const otherTool = topTools[index + 1];
-      entries.push({
-        url: `${baseUrl}/compare/${tool.id}-vs-${otherTool.id}`,
-        lastmod: currentDate,
-        changefreq: 'monthly',
-        priority: 0.6
-      });
-    }
-  });
+  // Note: /compare/:a-vs-:b routes are not implemented — omit from sitemap
+  // to avoid crawler 404s. Re-enable once the dynamic route exists.
 
   return entries;
 };

@@ -141,8 +141,8 @@ export const ToolComparison = ({ currentTool, alternatives }: ComparisonProps) =
                     variant="outline"
                     className="w-full"
                   >
-                    <Link to={`/tool/${tool.id}`}>
-                      View Details
+                    <Link to={`/tool/${tool.id}`} aria-label={`View ${tool.title} details`}>
+                      View {tool.title} details
                     </Link>
                   </Button>
                 )}

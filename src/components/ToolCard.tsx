@@ -118,7 +118,7 @@ const ToolCard = ({ tool, onVisit }: ToolCardProps) => {
           className="border-primary text-primary hover:bg-primary hover:text-primary-foreground min-h-[44px] text-sm sm:text-base"
         >
           <Link to={`/tool/${tool.id}`} aria-label={`Learn more about ${tool.title}`}>
-            Learn More
+            Learn more about {tool.title}
           </Link>
         </Button>
       </div>
