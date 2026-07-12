@@ -60,7 +60,7 @@
     <link rel="manifest" href="/manifest.json">
     
     <!-- SEO Meta Tags - Defaults with data-rh for React Helmet override -->
-    <title data-rh="true">ToolsML — Discover &amp; Compare the Best AI Tools (Curated Weekly)</title>
+    <title data-rh="true">ToolsML — Compare the Best AI Tools, Curated Weekly</title>
     <meta name="description" content="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases.">
     <meta name="author" content="ToolsML Editorial Team" />
     <meta data-rh="true" name="keywords" content="AI tools, artificial intelligence, machine learning, productivity, automation, AI directory, AI software, best AI tools, AI comparison, AI reviews" />
@@ -73,10 +73,13 @@
     <!-- Dynamic canonical update for crawlers without JS -->
     <script>
       (function(){
+        var path = window.location.pathname.replace(/\/$/, '') || '/';
+        var fullUrl = 'https://toolsml.com' + (path === '/' ? '/' : path);
         var c = document.getElementById('canonical-link');
-        if (c && window.location.pathname !== '/') {
-          c.href = 'https://toolsml.com' + window.location.pathname.replace(/\/$/, '');
-        }
+        if (c && path !== '/') c.href = fullUrl;
+        // Self-reference og:url per route for non-JS crawlers
+        var ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', fullUrl);
       })();
     </script>
 
@@ -167,8 +170,8 @@
   
   
   
-  <meta property="og:title" content="ToolsML — Discover &amp; Compare the Best AI Tools (Curated Weekly)">
-  <meta name="twitter:title" content="ToolsML — Discover &amp; Compare the Best AI Tools (Curated Weekly)">
+  <meta property="og:title" content="ToolsML — Compare the Best AI Tools, Curated Weekly">
+  <meta name="twitter:title" content="ToolsML — Compare the Best AI Tools, Curated Weekly">
   <meta property="og:description" content="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases.">
   <meta name="twitter:description" content="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases.">
 </head>

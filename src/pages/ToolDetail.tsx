@@ -192,7 +192,9 @@ const ToolDetail = () => {
             {/* Description */}
             <Card>
               <CardHeader>
-                <CardTitle>About {tool.title}</CardTitle>
+                <CardTitle asChild>
+                  <h2>About {tool.title}</h2>
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed">
@@ -204,7 +206,9 @@ const ToolDetail = () => {
             {/* Features */}
             <Card>
               <CardHeader>
-                <CardTitle>Key Features</CardTitle>
+                <CardTitle asChild>
+                  <h2>Key Features</h2>
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -222,7 +226,9 @@ const ToolDetail = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-green-600 dark:text-green-400">Pros</CardTitle>
+                  <CardTitle asChild className="text-green-600 dark:text-green-400">
+                    <h2>Pros</h2>
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
@@ -238,7 +244,9 @@ const ToolDetail = () => {
 
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-red-600 dark:text-red-400">Cons</CardTitle>
+                  <CardTitle asChild className="text-red-600 dark:text-red-400">
+                    <h2>Cons</h2>
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
