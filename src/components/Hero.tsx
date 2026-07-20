@@ -47,8 +47,8 @@ const Hero = () => {
           <div className="inline-flex items-center gap-2 bg-primary-foreground/10 backdrop-blur-sm px-4 py-2 rounded-full border border-primary-foreground/10 animate-fade-in">
             <Sparkles className="w-4 h-4 text-primary-foreground" />
             <span className="text-sm font-medium text-primary-foreground">Discover 1000+ AI Tools</span>
-            <span className="text-primary-foreground/60">•</span>
-            <span className="text-sm text-primary-foreground/80">Updated Weekly</span>
+            <span className="text-primary-foreground/80">•</span>
+            <span className="text-sm text-primary-foreground/90">Updated Weekly</span>
           </div>
 
           {/* Main Title - LCP Element with priority rendering */}
@@ -93,7 +93,7 @@ const Hero = () => {
             
             {/* Suggested Searches */}
             <div className="flex flex-wrap justify-center gap-2 mt-5">
-              <span className="text-primary-foreground/60 text-sm">Popular:</span>
+              <span className="text-primary-foreground/80 text-sm">Popular:</span>
               {suggestedSearches.map((search, index) => (
                 <button
                   key={index}
@@ -117,7 +117,7 @@ const Hero = () => {
               </div>
               <div className="text-left">
                 <div className="text-xl font-semibold">4.8/5</div>
-                <div className="text-sm text-primary-foreground/60">Avg Rating</div>
+                <div className="text-sm text-primary-foreground/80">Avg Rating</div>
               </div>
             </div>
             <div className="flex items-center gap-3 text-primary-foreground/90">
@@ -126,7 +126,7 @@ const Hero = () => {
               </div>
               <div className="text-left">
                 <div className="text-xl font-semibold">200+</div>
-                <div className="text-sm text-primary-foreground/60">Categories</div>
+                <div className="text-sm text-primary-foreground/80">Categories</div>
               </div>
             </div>
             <div className="flex items-center gap-3 text-primary-foreground/90">
@@ -135,7 +135,7 @@ const Hero = () => {
               </div>
               <div className="text-left">
                 <div className="text-xl font-semibold">50K+</div>
-                <div className="text-sm text-primary-foreground/60">Monthly Users</div>
+                <div className="text-sm text-primary-foreground/80">Monthly Users</div>
               </div>
             </div>
           </div>
