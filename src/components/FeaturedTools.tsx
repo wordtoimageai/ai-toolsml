@@ -4,7 +4,7 @@ import { Star, ExternalLink, ArrowRight, Sparkles } from "lucide-react";
 import { tools } from "@/data/tools";
 
 const FeaturedTools = () => {
-  const featuredTools = tools
+  const featuredTools = [...tools]
     .sort((a, b) => (b.rating * b.reviewCount) - (a.rating * a.reviewCount))
     .slice(0, 8);
 

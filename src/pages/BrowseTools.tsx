@@ -50,6 +50,7 @@ const pricingFilters = [
   { id: "free", label: "Free" },
   { id: "freemium", label: "Freemium" },
   { id: "paid", label: "Paid" },
+  { id: "subscription", label: "Subscription" },
 ];
 
 const BrowseTools = () => {
