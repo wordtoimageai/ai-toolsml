@@ -134,7 +134,7 @@ const ToolDetail = () => {
             <div className="flex-1">
               {/* Tool Title - LCP element */}
               <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
-                <h1 className="text-4xl font-black text-foreground" data-lcp="true">{tool.title}</h1>
+                <h1 className="text-4xl font-black text-foreground" data-lcp="true">{tool.title} Review: Features &amp; Pricing</h1>
                 <Badge className={pricingColor[tool.pricing]}>
                   {tool.pricing}
                 </Badge>
