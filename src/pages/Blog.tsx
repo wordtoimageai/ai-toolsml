@@ -105,7 +105,8 @@ const Blog = () => {
                         <span className="text-sm text-muted-foreground">{post.date}</span>
                         <Button variant="outline" size="sm" asChild>
                           <Link to={`/blog/${post.id === 1 ? 'future-ai-tools-2025' : post.id === 2 ? 'choose-ai-writing-tool' : 'ai-design-tools-2025'}`}>
-                            Read More
+                            Read the full guide
+                            <span className="sr-only">: {post.title}</span>
                           </Link>
                         </Button>
                       </div>
