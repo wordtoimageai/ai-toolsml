@@ -35,8 +35,8 @@ export const generateSEOTitle = (
     return `Best AI ${category.charAt(0).toUpperCase() + category.slice(1)} Tools 2025 | ${baseName}`;
   }
   
-  // Default homepage
-  return `${baseName} — Discover & Compare the Best AI Tools (Curated Weekly)`;
+  // Default homepage (kept under 60 characters)
+  return `${baseName} — Compare the Best AI Tools`;
 };
 
 /**
