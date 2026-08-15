@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { useUserSubmissions } from '@/hooks/useUserSubmissions';
 import { CATEGORIES, PRICING_OPTIONS } from '@/lib/constants';
+import { supabase } from '@/integrations/supabase/client';
 
 const submitFormSchema = z.object({
   title: z.string().min(1, 'Tool name is required').min(2, 'Tool name must be at least 2 characters'),
@@ -40,18 +41,36 @@ const Submit = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulate submission delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Create submission with proper data structure
-      const submission = addSubmission({
+      const features = data.features
+        ? data.features.split('\n').map(f => f.trim()).filter(Boolean)
+        : [];
+
+      const { data: userData } = await supabase.auth.getUser();
+
+      // Persist the submission to the backend before confirming success
+      const { error } = await supabase.from('public_tool_submissions').insert({
+        tool_name: data.title,
+        tool_description: data.description,
+        tool_url: data.website,
+        category: data.category,
+        pricing_model: data.pricing,
+        company: data.company,
+        contact_email: data.email,
+        features,
+        submitted_by: userData?.user?.id ?? null,
+      });
+
+      if (error) throw error;
+
+      // Keep a local copy so the user can track their submission
+      addSubmission({
         title: data.title,
         description: data.description,
         website: data.website,
         category: data.category,
         pricing: data.pricing as any,
         company: data.company,
-        features: data.features ? data.features.split('\n').filter(f => f.trim()) : [],
+        features,
         tags: [data.category, data.pricing], // Simple tags based on category and pricing
         icon: '🤖' // Default icon for user submissions
       });
@@ -63,6 +82,7 @@ const Submit = () => {
       
       reset();
     } catch (error) {
+      console.error('Tool submission failed:', error);
       toast({
         title: "Submission Failed",
         description: "There was an error submitting your tool. Please try again.",
