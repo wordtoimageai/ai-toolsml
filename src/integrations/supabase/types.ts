@@ -203,6 +203,51 @@ export type Database = {
         }
         Relationships: []
       }
+      public_tool_submissions: {
+        Row: {
+          category: string
+          company: string
+          contact_email: string
+          created_at: string
+          features: string[]
+          id: string
+          pricing_model: string
+          status: string
+          submitted_by: string | null
+          tool_description: string
+          tool_name: string
+          tool_url: string
+        }
+        Insert: {
+          category: string
+          company: string
+          contact_email: string
+          created_at?: string
+          features?: string[]
+          id?: string
+          pricing_model: string
+          status?: string
+          submitted_by?: string | null
+          tool_description: string
+          tool_name: string
+          tool_url: string
+        }
+        Update: {
+          category?: string
+          company?: string
+          contact_email?: string
+          created_at?: string
+          features?: string[]
+          id?: string
+          pricing_model?: string
+          status?: string
+          submitted_by?: string | null
+          tool_description?: string
+          tool_name?: string
+          tool_url?: string
+        }
+        Relationships: []
+      }
       sitemap_regeneration_log: {
         Row: {
           details: Json | null
