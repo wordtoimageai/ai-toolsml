@@ -81,16 +81,6 @@ const ToolDetail = () => {
         pageType="tool"
       />
       <ProductSchema tool={tool} />
-      <AdvancedMetaTags
-        title={`${tool.title} - ${tool.description}`}
-        description={tool.longDescription}
-        url={`/tool/${tool.id}`}
-        type="product"
-        tool={tool}
-        tags={tool.tags}
-        author={tool.company}
-        publishedTime={tool.founded}
-      />
       <PerformanceOptimizer
         preconnect={[tool.website]}
         criticalImages={['/og-image.jpg']}

@@ -13,10 +13,7 @@ import StatsSection from "@/components/StatsSection";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import AdvancedSEO from "@/components/AdvancedSEO";
-import SitemapGenerator from "@/components/SitemapGenerator";
-import OrganizationSchema from "@/components/OrganizationSchema";
-import ItemListSchema from "@/components/ItemListSchema";
-import AdvancedMetaTags from "@/components/AdvancedMetaTags";
+
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
 import { CategoryLinks, PopularTags, QuickNavigation, ToolsByCategoryPreview, AllToolsLinksSection } from "@/components/InternalLinks";
 import HowItWorks from "@/components/HowItWorks";

@@ -165,14 +165,6 @@ const Category = () => {
         tools={tools}
         description={categorySEO.description}
       />
-      <AdvancedMetaTags
-        title={categorySEO.title}
-        description={categorySEO.description}
-        url={`/category/${category}`}
-        type="website"
-        section={displayName}
-        tags={categorySEO.keywords.split(', ')}
-      />
       <PerformanceOptimizer
         prefetch={tools.slice(0, 5).map(tool => ({
           href: `/tool/${tool.id}`,

@@ -128,11 +128,9 @@ export const AdvancedSEO = ({
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link rel="dns-prefetch" href="//toolsml.com" />
       
-      {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify(generateStructuredData())}
-      </script>
-      
+      {/* Structured data is handled by dedicated schema components (ProductSchema,
+          OrganizationSchema, CollectionPageSchema) to avoid duplicate JSON-LD. */}
+
       {/* Additional tool-specific meta tags for rich results */}
       {tool && (
         <>
