@@ -11,7 +11,6 @@ import { useRecentlyViewed } from "@/hooks/useRecentlyViewed";
 import { usePrivacyAnalytics } from "@/hooks/usePrivacyAnalytics";
 import AdvancedSEO from "@/components/AdvancedSEO";
 import ProductSchema from "@/components/ProductSchema";
-import AdvancedMetaTags from "@/components/AdvancedMetaTags";
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
 import { RelatedTools, ContextualCTA, CategoryLinks, PopularTags } from "@/components/InternalLinks";
 import { AlternativeTools, TrendingTools, ToolCrossLinks } from "@/components/EnhancedInternalLinks";
@@ -82,16 +81,6 @@ const ToolDetail = () => {
         pageType="tool"
       />
       <ProductSchema tool={tool} />
-      <AdvancedMetaTags
-        title={`${tool.title} - ${tool.description}`}
-        description={tool.longDescription}
-        url={`/tool/${tool.id}`}
-        type="product"
-        tool={tool}
-        tags={tool.tags}
-        author={tool.company}
-        publishedTime={tool.founded}
-      />
       <PerformanceOptimizer
         preconnect={[tool.website]}
         criticalImages={['/og-image.jpg']}

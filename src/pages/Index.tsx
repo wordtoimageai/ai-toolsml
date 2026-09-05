@@ -13,10 +13,9 @@ import StatsSection from "@/components/StatsSection";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import AdvancedSEO from "@/components/AdvancedSEO";
-import SitemapGenerator from "@/components/SitemapGenerator";
 import OrganizationSchema from "@/components/OrganizationSchema";
 import ItemListSchema from "@/components/ItemListSchema";
-import AdvancedMetaTags from "@/components/AdvancedMetaTags";
+import SitemapGenerator from "@/components/SitemapGenerator";
 import PerformanceOptimizer from "@/components/PerformanceOptimizer";
 import { CategoryLinks, PopularTags, QuickNavigation, ToolsByCategoryPreview, AllToolsLinksSection } from "@/components/InternalLinks";
 import HowItWorks from "@/components/HowItWorks";
@@ -56,13 +55,6 @@ const Index = () => {
         description="Find perfect AI tools from 1000+ options across 200+ categories. Compare features, pricing, and reviews. Updated weekly with latest AI innovations."
         pageType="homepage"
         url="/"
-      />
-      <AdvancedMetaTags
-        title={`ToolsML: Best AI Tools ${currentYear} — Curated Directory`}
-        description="Find perfect AI tools from 1000+ options across 200+ categories. Compare features, pricing, and reviews. Updated weekly with latest AI innovations."
-        url="/"
-        type="website"
-        tags={['AI tools', 'artificial intelligence', 'machine learning', 'productivity']}
       />
       <PerformanceOptimizer
         dnsPrefetch={[

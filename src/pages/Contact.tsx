@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AdvancedSEO from '@/components/AdvancedSEO';
@@ -9,7 +10,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useForm } from 'react-hook-form';
 import { useToast } from '@/hooks/use-toast';
-import { Mail, MessageSquare, HelpCircle } from 'lucide-react';
+import { Mail, MessageSquare, HelpCircle, Loader2 } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 interface ContactForm {
   name: string;
@@ -21,18 +23,45 @@ interface ContactForm {
 
 const Contact = () => {
   const { toast } = useToast();
+  const [submitting, setSubmitting] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<ContactForm>();
 
   const onSubmit = async (data: ContactForm) => {
-    // Simulate submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you within 24 hours.",
-    });
-    
-    reset();
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.from('contact_messages').insert({
+        name: data.name.trim(),
+        email: data.email.trim(),
+        inquiry_type: data.type || 'general',
+        subject: data.subject.trim(),
+        message: data.message.trim(),
+      });
+
+      if (error) {
+        console.error('Contact form submission failed:', error.message);
+        toast({
+          title: "Message not sent",
+          description: "Something went wrong on our side. Please try again or email hello@toolsml.com.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you within 24 hours.",
+      });
+      reset();
+    } catch (e) {
+      console.error('Contact form submission failed:', e);
+      toast({
+        title: "Message not sent",
+        description: "Something went wrong on our side. Please try again or email hello@toolsml.com.",
+        variant: "destructive",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
