@@ -56,13 +56,6 @@ const Index = () => {
         pageType="homepage"
         url="/"
       />
-      <AdvancedMetaTags
-        title={`ToolsML: Best AI Tools ${currentYear} — Curated Directory`}
-        description="Find perfect AI tools from 1000+ options across 200+ categories. Compare features, pricing, and reviews. Updated weekly with latest AI innovations."
-        url="/"
-        type="website"
-        tags={['AI tools', 'artificial intelligence', 'machine learning', 'productivity']}
-      />
       <PerformanceOptimizer
         dnsPrefetch={[
           '//toolsml.com'
