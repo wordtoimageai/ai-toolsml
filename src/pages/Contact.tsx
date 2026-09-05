@@ -29,7 +29,9 @@ const Contact = () => {
   const onSubmit = async (data: ContactForm) => {
     setSubmitting(true);
     try {
-      const { error } = await supabase.from('contact_messages').insert({
+      // Cast needed until the contact_messages migration is applied and types regenerate
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { error } = await (supabase as any).from('contact_messages').insert({
         name: data.name.trim(),
         email: data.email.trim(),
         inquiry_type: data.type || 'general',
