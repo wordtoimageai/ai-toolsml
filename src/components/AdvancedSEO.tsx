@@ -77,50 +77,12 @@ export const AdvancedSEO = ({
   // Generate dynamic Open Graph image based on tool data
   const ogImage = image || (tool ? generateOGImage(tool.title, tool.category) : generateOGImage());
   const fullImageUrl = ogImage.startsWith('http') ? ogImage : `https://toolsml.com${ogImage}`;
-  // Generate structured data
-  const generateStructuredData = () => {
-    if (tool) {
-      return {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": tool.title,
-        "description": tool.description,
-        "url": tool.website,
-        "applicationCategory": "AI Tool",
-        "operatingSystem": "Web",
-        "offers": {
-          "@type": "Offer",
-          "price": tool.pricing === 'Free' ? '0' : undefined,
-          "priceCurrency": "USD"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": tool.rating,
-          "reviewCount": tool.reviewCount,
-          "bestRating": 5,
-          "worstRating": 1
-        },
-        "author": {
-          "@type": "Organization",
-          "name": tool.company
-        },
-        "featureList": tool.features
-      };
-    }
-    
-    return {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "ToolsML",
-      "description": "Human-curated directory of AI tools with pricing, features, and reviews",
-      "url": "https://toolsml.com",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://toolsml.com/?search={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    };
-  };
+  // Structured data is intentionally NOT emitted here to avoid duplicate JSON-LD.
+  // Single sources of truth per page type:
+  //   - Tool pages: ProductSchema (SoftwareApplication)
+  //   - Homepage: OrganizationSchema (Organization + WebSite + BreadcrumbList)
+  //   - Category pages: CollectionPageSchema
+  // This component owns only meta/social tags.
 
   return (
     <Helmet>

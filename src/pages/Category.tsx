@@ -3,7 +3,6 @@ import { getToolsByCategory } from '@/data/tools';
 import { getCategorySEO } from '@/data/category-seo';
 import AdvancedSEO from '@/components/AdvancedSEO';
 import CollectionPageSchema from '@/components/CollectionPageSchema';
-import AdvancedMetaTags from '@/components/AdvancedMetaTags';
 import PerformanceOptimizer from '@/components/PerformanceOptimizer';
 import { ContextualCTA, PopularTags, FeaturedToolsLinks } from '@/components/InternalLinks';
 import RelatedCategories from '@/components/RelatedCategories';
