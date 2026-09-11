@@ -209,8 +209,15 @@ const Contact = () => {
                       )}
                     </div>
 
-                    <Button type="submit" className="btn-gradient w-full py-3">
-                      Send Message
+                    <Button type="submit" disabled={submitting} className="btn-gradient w-full py-3">
+                      {submitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        'Send Message'
+                      )}
                     </Button>
                   </form>
                 </div>
