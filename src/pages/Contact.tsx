@@ -26,6 +26,11 @@ const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<ContactForm>();
 
+  const openMailFallback = (data: ContactForm) => {
+    const body = `Name: ${data.name.trim()}\nEmail: ${data.email.trim()}\nType: ${data.type || 'general'}\n\n${data.message.trim()}`;
+    window.location.href = `mailto:hello@toolsml.com?subject=${encodeURIComponent(data.subject.trim())}&body=${encodeURIComponent(body)}`;
+  };
+
   const onSubmit = async (data: ContactForm) => {
     setSubmitting(true);
     try {
@@ -41,10 +46,10 @@ const Contact = () => {
 
       if (error) {
         console.error('Contact form submission failed:', error.message);
+        openMailFallback(data);
         toast({
-          title: "Message not sent",
-          description: "Something went wrong on our side. Please try again or email hello@toolsml.com.",
-          variant: "destructive",
+          title: "Opening your email app",
+          description: "We couldn't submit the form directly, so we've drafted your message to hello@toolsml.com.",
         });
         return;
       }
@@ -56,15 +61,16 @@ const Contact = () => {
       reset();
     } catch (e) {
       console.error('Contact form submission failed:', e);
+      openMailFallback(data);
       toast({
-        title: "Message not sent",
-        description: "Something went wrong on our side. Please try again or email hello@toolsml.com.",
-        variant: "destructive",
+        title: "Opening your email app",
+        description: "We couldn't submit the form directly, so we've drafted your message to hello@toolsml.com.",
       });
     } finally {
       setSubmitting(false);
     }
   };
+
 
   return (
     <div className="min-h-screen">
