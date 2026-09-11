@@ -8,9 +8,12 @@
  * toolsml.com/*
  * 
  * Rate Limiting Configuration:
- * - Uses in-memory sliding window rate limiting
- * - For production, consider Cloudflare Rate Limiting Rules (dashboard)
- *   or Workers KV for distributed rate limiting across edge locations
+ * - Uses Workers KV for distributed rate limiting across edge locations
+ * - Falls back to in-memory sliding window rate limiting for local operations
+ * - For production, bind KV namespace as 'RATE_LIMIT_KV' in wrangler.toml:
+ *   [[env.production.kv_namespaces]]
+ *   binding = "RATE_LIMIT_KV"
+ *   id = "your-kv-namespace-id"
  */
 
 const BOT_AGENTS = [
@@ -67,8 +70,11 @@ const BOT_AGENTS = [
   'amazonbot'
 ];
 
+// Pre-compute bot agent set for O(1) lookup instead of O(n) array scan
+const BOT_AGENTS_SET = new Set(BOT_AGENTS.map(b => b.toLowerCase()));
+
 // Legitimate search engine bots that should bypass rate limiting
-const TRUSTED_BOTS = [
+const TRUSTED_BOTS_SET = new Set([
   'googlebot',
   'bingbot',
   'applebot',
@@ -81,7 +87,7 @@ const TRUSTED_BOTS = [
   'slackbot',
   'discordbot',
   'whatsapp'
-];
+]);
 
 // Your Supabase prerender endpoint
 const PRERENDER_URL = 'https://kpynatdltoakbpwbjxqm.supabase.co/functions/v1/prerender';
@@ -100,40 +106,118 @@ const RATE_LIMIT_CONFIG = {
   windowSeconds: 60,
   // Maximum requests for suspicious/unknown bots
   suspiciousBotMaxRequests: 10,
+  // Maximum entries to keep in memory before using KV store
+  maxMemoryEntries: 5000,
+  // KV expiration time in seconds (1 hour)
+  kvExpirationTtl: 3600,
 };
 
 // In-memory rate limit store (per worker instance)
-// Note: For distributed rate limiting across edge locations, use Workers KV
+// Once this exceeds maxMemoryEntries, we rely on Workers KV for distributed rate limiting
 const rateLimitStore = new Map();
 
 /**
- * Clean up expired rate limit entries
+ * Clean up expired rate limit entries from memory
+ * Runs automatically when store exceeds maxMemoryEntries
  */
 function cleanupRateLimitStore() {
   const now = Date.now();
+  let removedCount = 0;
   for (const [key, data] of rateLimitStore.entries()) {
     if (now - data.windowStart > RATE_LIMIT_CONFIG.windowSeconds * 1000) {
       rateLimitStore.delete(key);
+      removedCount++;
     }
   }
+  return removedCount;
 }
 
 /**
- * Check if request should be rate limited
+ * Check rate limit using KV store for distributed limiting
+ * Falls back to in-memory store for performance when KV is unavailable
  * Returns { limited: boolean, remaining: number, resetIn: number }
  */
-function checkRateLimit(clientIP, isTrustedBot) {
+async function checkRateLimitWithKV(clientIP, isTrustedBot, env) {
   const now = Date.now();
   const maxRequests = isTrustedBot 
     ? RATE_LIMIT_CONFIG.maxRequests * 2 // Double limit for trusted bots
     : RATE_LIMIT_CONFIG.maxRequests;
   
-  // Clean up old entries periodically (1% chance per request)
-  if (Math.random() < 0.01) {
-    cleanupRateLimitStore();
+  const key = `prerender:${clientIP}`;
+  
+  // If KV is available, use it for distributed rate limiting
+  if (env && env.RATE_LIMIT_KV) {
+    try {
+      const kvData = await env.RATE_LIMIT_KV.get(key);
+      
+      if (!kvData) {
+        // First request in this window
+        await env.RATE_LIMIT_KV.put(
+          key,
+          JSON.stringify({ count: 1, windowStart: now }),
+          { expirationTtl: RATE_LIMIT_CONFIG.kvExpirationTtl }
+        );
+        return { 
+          limited: false, 
+          remaining: maxRequests - 1,
+          resetIn: RATE_LIMIT_CONFIG.windowSeconds
+        };
+      }
+      
+      const data = JSON.parse(kvData);
+      
+      // Check if window has expired
+      if (now - data.windowStart > RATE_LIMIT_CONFIG.windowSeconds * 1000) {
+        // Reset window
+        await env.RATE_LIMIT_KV.put(
+          key,
+          JSON.stringify({ count: 1, windowStart: now }),
+          { expirationTtl: RATE_LIMIT_CONFIG.kvExpirationTtl }
+        );
+        return { 
+          limited: false, 
+          remaining: maxRequests - 1,
+          resetIn: RATE_LIMIT_CONFIG.windowSeconds
+        };
+      }
+      
+      // Check if over limit
+      if (data.count >= maxRequests) {
+        const resetIn = Math.ceil((data.windowStart + RATE_LIMIT_CONFIG.windowSeconds * 1000 - now) / 1000);
+        return { 
+          limited: true, 
+          remaining: 0,
+          resetIn
+        };
+      }
+      
+      // Increment counter
+      data.count++;
+      await env.RATE_LIMIT_KV.put(
+        key,
+        JSON.stringify(data),
+        { expirationTtl: RATE_LIMIT_CONFIG.kvExpirationTtl }
+      );
+      
+      const resetIn = Math.ceil((data.windowStart + RATE_LIMIT_CONFIG.windowSeconds * 1000 - now) / 1000);
+      return { 
+        limited: false, 
+        remaining: maxRequests - data.count,
+        resetIn
+      };
+    } catch (error) {
+      console.error(`[KV Error] Failed to check rate limit: ${error.message}. Falling back to memory store.`);
+      // Fall through to in-memory store
+    }
   }
   
-  const key = `prerender:${clientIP}`;
+  // Fallback: Use in-memory rate limit store
+  // If store is too large, clean up expired entries
+  if (rateLimitStore.size > RATE_LIMIT_CONFIG.maxMemoryEntries) {
+    const removed = cleanupRateLimitStore();
+    console.log(`[Rate Limit] Cleaned up ${removed} expired entries`);
+  }
+  
   const existing = rateLimitStore.get(key);
   
   if (!existing || (now - existing.windowStart > RATE_LIMIT_CONFIG.windowSeconds * 1000)) {
@@ -171,21 +255,29 @@ function checkRateLimit(clientIP, isTrustedBot) {
 }
 
 /**
- * Check if the user agent is a known bot/crawler
+ * Check if the user agent is a known bot/crawler using Set lookup (O(1))
  */
 function isBot(userAgent) {
   if (!userAgent) return false;
   const ua = userAgent.toLowerCase();
-  return BOT_AGENTS.some(bot => ua.includes(bot));
+  // Check if any bot agent string is contained in the user agent
+  for (const bot of BOT_AGENTS_SET) {
+    if (ua.includes(bot)) return true;
+  }
+  return false;
 }
 
 /**
- * Check if the user agent is a trusted search engine bot
+ * Check if the user agent is a trusted search engine bot using Set lookup (O(1))
  */
 function isTrustedBot(userAgent) {
   if (!userAgent) return false;
   const ua = userAgent.toLowerCase();
-  return TRUSTED_BOTS.some(bot => ua.includes(bot));
+  // Check if any trusted bot agent string is contained in the user agent
+  for (const bot of TRUSTED_BOTS_SET) {
+    if (ua.includes(bot)) return true;
+  }
+  return false;
 }
 
 /**
@@ -238,8 +330,8 @@ export default {
     if (isBot(userAgent)) {
       const trusted = isTrustedBot(userAgent);
       
-      // Apply rate limiting for prerender requests
-      const rateLimit = checkRateLimit(clientIP, trusted);
+      // Apply rate limiting for prerender requests (with KV fallback)
+      const rateLimit = await checkRateLimitWithKV(clientIP, trusted, env);
       
       if (rateLimit.limited) {
         console.log(`[Rate Limited] IP: ${clientIP}, UA: ${userAgent.substring(0, 50)}...`);
