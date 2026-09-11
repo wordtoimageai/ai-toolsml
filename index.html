@@ -21,7 +21,8 @@
     <style>
       /* Critical above-the-fold styles - inline for fastest FCP/LCP */
       *,*::before,*::after{box-sizing:border-box}
-      body{margin:0;font-family:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:hsl(0 0% 99%);color:hsl(240 10% 10%);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+      body{margin:0;font-family:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background-color:hsl(0 0% 99%);color:hsl(240 10% 10%);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.5}
+      html{scroll-behavior:smooth}
       
       /* Font-display swap fallback */
       @font-face{font-family:'Outfit';font-style:normal;font-weight:700 900;font-display:swap;src:local('Outfit')}
@@ -38,11 +39,11 @@
       /* Critical Hero Styles - LCP elements */
       .hero-gradient{background:linear-gradient(165deg,hsl(252,68%,58%) 0%,hsl(280,75%,45%) 50%,hsl(320,70%,40%) 100%);contain:layout style paint}
       /* LCP Element: Hero Title - highest priority rendering */
-      .hero-title{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;color:white;margin-bottom:1.5rem;text-shadow:0 4px 8px rgba(0,0,0,0.3);line-height:1.1;letter-spacing:-0.02em;text-rendering:optimizeLegibility;content-visibility:auto}
+      .hero-title{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;color:white;margin-bottom:1.5rem;text-shadow:0 4px 8px rgba(0,0,0,0.3);line-height:1.1;letter-spacing:-0.02em;text-rendering:optimizeLegibility}
       .hero-subtitle{font-size:clamp(1.125rem,2vw,1.5rem);color:rgba(255,255,255,0.9);margin-bottom:3rem;max-width:42rem;margin-left:auto;margin-right:auto;line-height:1.6}
       
       /* Critical Layout Classes for LCP path */
-      .fixed{position:fixed}.top-0{top:0}.w-full{width:100%}.z-50{z-index:50}.min-h-screen{min-height:100vh}.flex{display:flex}.items-center{align-items:center}.justify-center{justify-content:center}.pt-16,.pt-20{padding-top:5rem}.text-center{text-align:center}
+      .fixed{position:fixed}.top-0{top:0}.w-full{width:100%}.z-50{z-index:50}.min-h-screen{min-height:100vh}.flex{display:flex}.items-center{align-items:center}.justify-center{justify-content:center}.w-screen{width:100vw}.h-screen{height:100vh}
       .max-w-6xl{max-width:72rem;margin-left:auto;margin-right:auto}.px-4{padding-left:1rem;padding-right:1rem}
       
       /* API Docs page critical styles */
@@ -63,7 +64,7 @@
     <title data-rh="true">ToolsML — Compare the Best AI Tools, Curated Weekly</title>
     <meta name="description" content="Find and compare the best AI tools for writing, design, video, code, and more. Human-curated, updated weekly with features, pricing, and real use-cases.">
     <meta name="author" content="ToolsML Editorial Team" />
-    <meta data-rh="true" name="keywords" content="AI tools, artificial intelligence, machine learning, productivity, automation, AI directory, AI software, best AI tools, AI comparison, AI reviews" />
+    <meta data-rh="true" name="keywords" content="AI tools, artificial intelligence, machine learning, productivity, automation, AI directory, AI software, best AI tools, AI comparison, AI reviews">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#667eea" />
     
@@ -279,12 +280,14 @@
       if ('requestIdleCallback' in window) {
         requestIdleCallback(loadAnalytics, { timeout: 3000 });
       } else {
-        setTimeout(loadAnalytics, 2000);
+        setTimeout(loadAnalytics, 3000);
       }
       // Service Worker registration after load
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
-          navigator.serviceWorker.register('/sw.js').catch(function() {});
+          navigator.serviceWorker.register('/sw.js').catch(function(err) {
+            console.warn('Service Worker registration failed:', err);
+          });
         });
       }
     </script>
