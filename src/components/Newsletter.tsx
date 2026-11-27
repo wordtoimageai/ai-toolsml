@@ -60,26 +60,15 @@ const Newsletter = () => {
     lastSubmitRef.current = now;
 
     try {
-      // Server-side rate limit check
-      const { data: allowed, error: rlError } = await (supabase as any)
-        .rpc('check_newsletter_rate_limit', { p_email: result.data });
-
-      if (rlError) throw rlError;
-
-      if (!allowed) {
-        setValidationError("Too many signup attempts. Please try again later.");
-        setIsSubscribing(false);
-        return;
-      }
-
-      const { error } = await (supabase as any)
+      const { error } = await supabase
         .from('newsletter_subscribers')
-        .upsert(
-          { email: result.data.toLowerCase(), is_active: true, unsubscribed_at: null },
-          { onConflict: 'email' }
-        );
+        .insert({
+          email: result.data.toLowerCase(),
+          is_active: true,
+          unsubscribed_at: null,
+        });
 
-      if (error) throw error;
+      if (error && error.code !== '23505') throw error;
 
       toast({
         title: "Successfully subscribed!",

@@ -1,36 +1,32 @@
-import { useState, useEffect } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SEOHelmet } from "@/components/SEOHelmet";
-import { MailX, CheckCircle, ArrowLeft } from "lucide-react";
+import { MailX, CheckCircle, ArrowLeft, LogIn } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 
 const Unsubscribe = () => {
-  const [searchParams] = useSearchParams();
-  const [email, setEmail] = useState("");
+  const { user, loading: authLoading } = useAuth();
   const [isUnsubscribing, setIsUnsubscribing] = useState(false);
   const [isUnsubscribed, setIsUnsubscribed] = useState(false);
   const [reason, setReason] = useState<string | null>(null);
   const { toast } = useToast();
 
-  useEffect(() => {
-    const emailParam = searchParams.get("email");
-    if (emailParam) {
-      setEmail(decodeURIComponent(emailParam));
-    }
-  }, [searchParams]);
+  const accountEmail = user?.email?.trim().toLowerCase() ?? "";
 
   const handleUnsubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email.trim()) {
+    if (!accountEmail) {
       toast({
-        title: "Please enter your email",
+        title: "Sign in required",
+        description: "Please sign in with the subscribed email address to unsubscribe.",
         variant: "destructive",
       });
       return;
@@ -39,11 +35,10 @@ const Unsubscribe = () => {
     setIsUnsubscribing(true);
     
     try {
-      const { data: success, error } = await (supabase as any)
-        .rpc('unsubscribe_newsletter', { 
-          p_email: email.trim().toLowerCase(),
-          p_reason: reason 
-        });
+      const { data: success, error } = await supabase.rpc('unsubscribe_newsletter', {
+        p_email: accountEmail,
+        p_reason: reason ?? undefined,
+      });
 
       if (error) throw error;
 
@@ -105,7 +100,9 @@ const Unsubscribe = () => {
                     </div>
                     <CardTitle className="text-2xl">Unsubscribe from Newsletter</CardTitle>
                     <CardDescription>
-                      Enter your email address to unsubscribe from our weekly AI tools newsletter.
+                      {user
+                        ? "Confirm below to remove your account email from our weekly AI tools newsletter."
+                        : "Sign in with your subscribed email address to verify and cancel your newsletter subscription."}
                     </CardDescription>
                   </>
                 )}
@@ -124,6 +121,22 @@ const Unsubscribe = () => {
                       </Button>
                     </Link>
                   </div>
+                ) : authLoading ? (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    Checking your account...
+                  </p>
+                ) : !user ? (
+                  <div className="space-y-4">
+                    <Link to="/auth">
+                      <Button className="w-full">
+                        <LogIn className="w-4 h-4 mr-2" />
+                        Sign In to Unsubscribe
+                      </Button>
+                    </Link>
+                    <p className="text-xs text-muted-foreground text-center">
+                      Don't have an account? Please <Link to="/contact" className="text-primary hover:underline">contact us</Link> and we'll remove your email for you.
+                    </p>
+                  </div>
                 ) : (
                   <form onSubmit={handleUnsubscribe} className="space-y-4">
                     <div>
@@ -131,10 +144,9 @@ const Unsubscribe = () => {
                       <Input
                         id="email"
                         type="email"
-                        placeholder="Enter your email address"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full"
+                        value={accountEmail}
+                        readOnly
+                        className="w-full bg-muted"
                         required
                       />
                     </div>
@@ -156,7 +168,7 @@ const Unsubscribe = () => {
               </CardContent>
             </Card>
             
-            {!isUnsubscribed && (
+            {!isUnsubscribed && user && (
               <div className="mt-8 text-center text-sm text-muted-foreground">
                 <p className="mb-2">We'd love to hear why you're leaving:</p>
                 <div className="flex flex-wrap justify-center gap-2">
