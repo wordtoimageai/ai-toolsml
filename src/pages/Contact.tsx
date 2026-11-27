@@ -44,6 +44,14 @@ const Contact = () => {
 
       if (error) {
         console.error('Contact form submission failed:', error.message);
+        if (error.code === '42501' || error.code === '23514') {
+          toast({
+            title: "Please check your message",
+            description: "Make sure all required fields are valid and your message is at least 10 characters.",
+            variant: "destructive",
+          });
+          return;
+        }
         openMailFallback(data);
         toast({
           title: "Opening your email app",
@@ -130,13 +138,21 @@ const Contact = () => {
 
               <div className="lg:col-span-2">
                 <div className="search-container">
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <Label htmlFor="name">Name *</Label>
                         <Input
                           id="name"
-                          {...register('name', { required: 'Name is required' })}
+                          maxLength={200}
+                          {...register('name', {
+                            validate: (value) => {
+                              const len = value.trim().length;
+                              if (len < 1) return 'Name is required';
+                              if (len > 200) return 'Name must be 200 characters or fewer';
+                              return true;
+                            },
+                          })}
                           className="mt-1"
                         />
                         {errors.name && (
@@ -149,12 +165,15 @@ const Contact = () => {
                         <Input
                           id="email"
                           type="email"
-                          {...register('email', { 
-                            required: 'Email is required',
-                            pattern: {
-                              value: /^\S+@\S+$/,
-                              message: 'Please enter a valid email'
-                            }
+                          maxLength={320}
+                          {...register('email', {
+                            validate: (value) => {
+                              const trimmed = value.trim();
+                              if (!trimmed) return 'Email is required';
+                              if (trimmed.length > 320) return 'Email must be 320 characters or fewer';
+                              if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(trimmed)) return 'Please enter a valid email address';
+                              return true;
+                            },
                           })}
                           className="mt-1"
                         />
@@ -185,7 +204,15 @@ const Contact = () => {
                         <Label htmlFor="subject">Subject *</Label>
                         <Input
                           id="subject"
-                          {...register('subject', { required: 'Subject is required' })}
+                          maxLength={300}
+                          {...register('subject', {
+                            validate: (value) => {
+                              const len = value.trim().length;
+                              if (len < 1) return 'Subject is required';
+                              if (len > 300) return 'Subject must be 300 characters or fewer';
+                              return true;
+                            },
+                          })}
                           className="mt-1"
                         />
                         {errors.subject && (
@@ -198,8 +225,17 @@ const Contact = () => {
                       <Label htmlFor="message">Message *</Label>
                       <Textarea
                         id="message"
-                        {...register('message', { required: 'Message is required' })}
-                        placeholder="Tell us more about your inquiry..."
+                        maxLength={5000}
+                        {...register('message', {
+                          validate: (value) => {
+                            const len = value.trim().length;
+                            if (len < 1) return 'Message is required';
+                            if (len < 10) return 'Message must be at least 10 characters';
+                            if (len > 5000) return 'Message must be 5000 characters or fewer';
+                            return true;
+                          },
+                        })}
+                        placeholder="Tell us more about your inquiry (at least 10 characters)..."
                         className="mt-1 min-h-[120px]"
                       />
                       {errors.message && (
