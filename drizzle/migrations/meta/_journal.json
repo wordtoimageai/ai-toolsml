@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1789687161784,
+      "tag": "0000_tighten_public_insert_policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1795822443019,
+      "tag": "0001_fix_vendor_status_and_newsletter_rpcs",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795831077767,
+      "tag": "0002_harden_submissions_and_verified_unsubscribe",
+      "breakpoints": true
+    }
+  ]
+}

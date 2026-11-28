@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useForm } from 'react-hook-form';
+import { useForm, type FieldErrors } from 'react-hook-form';
 import { useToast } from '@/hooks/use-toast';
 import { Mail, MessageSquare, HelpCircle, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
@@ -32,20 +32,36 @@ const Contact = () => {
   };
 
   const onSubmit = async (data: ContactForm) => {
+    const inquiryType = data.type || 'general';
     setSubmitting(true);
     try {
-      // Cast needed until the contact_messages migration is applied and types regenerate
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { error } = await (supabase as any).from('contact_messages').insert({
+      const { error } = await supabase.from('contact_messages').insert({
         name: data.name.trim(),
         email: data.email.trim(),
-        inquiry_type: data.type || 'general',
+        inquiry_type: inquiryType,
         subject: data.subject.trim(),
         message: data.message.trim(),
       });
 
       if (error) {
         console.error('Contact form submission failed:', error.message);
+        if (error.code === '42501' || error.code === '23514') {
+          window.__lovableEvents?.track?.('project.contact_form_validation_error', {
+            source: 'server',
+            error_count: 1,
+            error_code: error.code,
+          });
+          toast({
+            title: "Please check your message",
+            description: "Make sure all required fields are valid and your message is at least 10 characters.",
+            variant: "destructive",
+          });
+          return;
+        }
+        window.__lovableEvents?.track?.('project.contact_form_fallback_used', {
+          inquiry_type: inquiryType,
+          reason: 'api_error',
+        });
         openMailFallback(data);
         toast({
           title: "Opening your email app",
@@ -54,6 +70,9 @@ const Contact = () => {
         return;
       }
 
+      window.__lovableEvents?.track?.('project.contact_form_submitted', {
+        inquiry_type: inquiryType,
+      });
       toast({
         title: "Message Sent!",
         description: "We'll get back to you within 24 hours.",
@@ -61,6 +80,10 @@ const Contact = () => {
       reset();
     } catch (e) {
       console.error('Contact form submission failed:', e);
+      window.__lovableEvents?.track?.('project.contact_form_fallback_used', {
+        inquiry_type: inquiryType,
+        reason: 'exception',
+      });
       openMailFallback(data);
       toast({
         title: "Opening your email app",
@@ -69,6 +92,18 @@ const Contact = () => {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const onInvalid = (fieldErrors: FieldErrors<ContactForm>) => {
+    const fields = Object.keys(fieldErrors) as Array<keyof ContactForm>;
+    const primaryField = fields[0];
+    if (!primaryField) return;
+    window.__lovableEvents?.track?.('project.contact_form_validation_error', {
+      source: 'client',
+      error_count: fields.length,
+      primary_field: primaryField,
+      fields,
+    });
   };
 
 
@@ -132,13 +167,21 @@ const Contact = () => {
 
               <div className="lg:col-span-2">
                 <div className="search-container">
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <Label htmlFor="name">Name *</Label>
                         <Input
                           id="name"
-                          {...register('name', { required: 'Name is required' })}
+                          maxLength={200}
+                          {...register('name', {
+                            validate: (value) => {
+                              const len = value.trim().length;
+                              if (len < 1) return 'Name is required';
+                              if (len > 200) return 'Name must be 200 characters or fewer';
+                              return true;
+                            },
+                          })}
                           className="mt-1"
                         />
                         {errors.name && (
@@ -151,12 +194,15 @@ const Contact = () => {
                         <Input
                           id="email"
                           type="email"
-                          {...register('email', { 
-                            required: 'Email is required',
-                            pattern: {
-                              value: /^\S+@\S+$/,
-                              message: 'Please enter a valid email'
-                            }
+                          maxLength={320}
+                          {...register('email', {
+                            validate: (value) => {
+                              const trimmed = value.trim();
+                              if (!trimmed) return 'Email is required';
+                              if (trimmed.length > 320) return 'Email must be 320 characters or fewer';
+                              if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(trimmed)) return 'Please enter a valid email address';
+                              return true;
+                            },
                           })}
                           className="mt-1"
                         />
@@ -187,7 +233,15 @@ const Contact = () => {
                         <Label htmlFor="subject">Subject *</Label>
                         <Input
                           id="subject"
-                          {...register('subject', { required: 'Subject is required' })}
+                          maxLength={300}
+                          {...register('subject', {
+                            validate: (value) => {
+                              const len = value.trim().length;
+                              if (len < 1) return 'Subject is required';
+                              if (len > 300) return 'Subject must be 300 characters or fewer';
+                              return true;
+                            },
+                          })}
                           className="mt-1"
                         />
                         {errors.subject && (
@@ -200,8 +254,17 @@ const Contact = () => {
                       <Label htmlFor="message">Message *</Label>
                       <Textarea
                         id="message"
-                        {...register('message', { required: 'Message is required' })}
-                        placeholder="Tell us more about your inquiry..."
+                        maxLength={5000}
+                        {...register('message', {
+                          validate: (value) => {
+                            const len = value.trim().length;
+                            if (len < 1) return 'Message is required';
+                            if (len < 10) return 'Message must be at least 10 characters';
+                            if (len > 5000) return 'Message must be 5000 characters or fewer';
+                            return true;
+                          },
+                        })}
+                        placeholder="Tell us more about your inquiry (at least 10 characters)..."
                         className="mt-1 min-h-[120px]"
                       />
                       {errors.message && (

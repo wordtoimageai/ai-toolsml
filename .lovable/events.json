@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "events": {
+    "project.contact_form_fallback_used": {
+      "event_schema_version": 1,
+      "description": "The contact form fell back to opening the visitor's email app after a submission failure.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "inquiry_type": {
+            "enum": [
+              "general",
+              "tool-submission",
+              "partnership",
+              "bug-report",
+              "other"
+            ],
+            "type": "string"
+          },
+          "reason": {
+            "enum": [
+              "api_error",
+              "exception"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "inquiry_type",
+          "reason"
+        ],
+        "type": "object"
+      }
+    },
+    "project.contact_form_submitted": {
+      "event_schema_version": 1,
+      "description": "A visitor successfully submitted the contact form.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "inquiry_type": {
+            "enum": [
+              "general",
+              "tool-submission",
+              "partnership",
+              "bug-report",
+              "other"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "inquiry_type"
+        ],
+        "type": "object"
+      }
+    },
+    "project.contact_form_validation_error": {
+      "event_schema_version": 1,
+      "description": "A contact form submission failed client-side or server-side validation.",
+      "privacy": {
+        "contains_pii": false,
+        "purpose": "product_analytics"
+      },
+      "properties_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "error_code": {
+            "enum": [
+              "42501",
+              "23514"
+            ],
+            "type": "string"
+          },
+          "error_count": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "fields": {
+            "items": {
+              "enum": [
+                "name",
+                "email",
+                "subject",
+                "message",
+                "type"
+              ],
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "primary_field": {
+            "enum": [
+              "name",
+              "email",
+              "subject",
+              "message",
+              "type"
+            ],
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "client",
+              "server"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "source",
+          "error_count"
+        ],
+        "type": "object"
+      }
+    }
+  }
+}
