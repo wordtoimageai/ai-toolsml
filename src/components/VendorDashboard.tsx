@@ -114,10 +114,18 @@ const VendorDashboard = () => {
   useEffect(() => {
     if (user && isVendor) {
       fetchSubmissions();
+    } else {
+      setSubmissions([]);
+      setLoading(false);
     }
   }, [user, isVendor]);
 
   const fetchSubmissions = async () => {
+    if (!user || !isVendor) {
+      setSubmissions([]);
+      setLoading(false);
+      return;
+    }
     try {
       const { data, error } = await supabase
         .from('tool_submissions')

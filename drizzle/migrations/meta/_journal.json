@@ -15,6 +15,13 @@
       "when": 1795822443019,
       "tag": "0001_fix_vendor_status_and_newsletter_rpcs",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1795831077767,
+      "tag": "0002_harden_submissions_and_verified_unsubscribe",
+      "breakpoints": true
     }
   ]
 }

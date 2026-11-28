@@ -19,6 +19,7 @@ const Unsubscribe = () => {
   const { toast } = useToast();
 
   const accountEmail = user?.email?.trim().toLowerCase() ?? "";
+  const isEmailVerified = Boolean(user?.email_confirmed_at);
 
   const handleUnsubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,6 +28,15 @@ const Unsubscribe = () => {
       toast({
         title: "Sign in required",
         description: "Please sign in with the subscribed email address to unsubscribe.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!isEmailVerified) {
+      toast({
+        title: "Email verification required",
+        description: "Please verify your email address before unsubscribing from the newsletter.",
         variant: "destructive",
       });
       return;
@@ -57,9 +67,12 @@ const Unsubscribe = () => {
         description: "You will no longer receive newsletter emails.",
       });
     } catch (error: unknown) {
+      const errMsg = error instanceof Error ? error.message : "";
       toast({
-        title: "Something went wrong",
-        description: "Please try again later.",
+        title: errMsg.toLowerCase().includes("verified email") ? "Email verification required" : "Something went wrong",
+        description: errMsg.toLowerCase().includes("verified email")
+          ? "Please verify your email address before unsubscribing from the newsletter."
+          : "Please try again later.",
         variant: "destructive",
       });
     } finally {
@@ -154,11 +167,16 @@ const Unsubscribe = () => {
                     <Button
                       type="submit"
                       variant="destructive"
-                      disabled={isUnsubscribing}
+                      disabled={isUnsubscribing || !isEmailVerified}
                       className="w-full"
                     >
                       {isUnsubscribing ? "Unsubscribing..." : "Unsubscribe"}
                     </Button>
+                    {!isEmailVerified && (
+                      <p className="text-xs text-destructive text-center">
+                        Please verify your email address via the confirmation link we sent you before unsubscribing.
+                      </p>
+                    )}
                     
                     <p className="text-xs text-muted-foreground text-center">
                       If you're having trouble, please <Link to="/contact" className="text-primary hover:underline">contact us</Link> for assistance.

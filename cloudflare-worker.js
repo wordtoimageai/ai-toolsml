@@ -334,7 +334,7 @@ export default {
       const rateLimit = await checkRateLimitWithKV(clientIP, trusted, env);
       
       if (rateLimit.limited) {
-        console.log(`[Rate Limited] IP: ${clientIP}, UA: ${userAgent.substring(0, 50)}...`);
+        console.log(`[Rate Limited] UA: ${userAgent.substring(0, 50)}..., Trusted: ${trusted}`);
         
         return new Response('Too Many Requests', {
           status: 429,
@@ -353,7 +353,7 @@ export default {
         // Build prerender URL with the path
         const prerenderUrl = `${PRERENDER_URL}?path=${encodeURIComponent(url.pathname)}`;
         
-        console.log(`[Bot Detected] IP: ${clientIP}, UA: ${userAgent.substring(0, 50)}..., Path: ${url.pathname}, Trusted: ${trusted}`);
+        console.log(`[Bot Detected] UA: ${userAgent.substring(0, 50)}..., Path: ${url.pathname}, Trusted: ${trusted}`);
         
         const prerenderResponse = await fetch(prerenderUrl, {
           headers: {
